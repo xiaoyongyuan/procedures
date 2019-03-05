@@ -6,11 +6,38 @@ Page({
      */
     data: {
         userInfo: null,
-        title:'个人中心'
+        title:'个人中心',
+        showModal: false,
+    },
+    submit: function () {
+        this.setData({
+            showModal: true
+        })
+    },
+
+    preventTouchMove: function () {
+
+    },
+
+
+    go: function () {
+        this.setData({
+            showModal: false
+        })
     },
     changeToversion:function(){
         wx.navigateTo({
             url:'../versions/versions'
+        })
+    },
+    clearcache:function(){
+        wx.showActionSheet({
+            itemList: ['列1','列2','列3'],//显示的列表项
+            success: function (res) {//res.tapIndex点击的列表项
+                console.log("点击了列表项：" + that[res.tapIndex])
+            },
+            fail: function (res) { },
+            complete:function(res){ }
         })
     },
     /**
