@@ -1,0 +1,8 @@
+<view class="page">
+    <navbar back home text="{{navigationBarTitle}}"></navbar>
+    <view class="versiondetail">
+        <view>
+            <image class="logo-image" src="../../images/logo.png"></image>
+        </view>
+    </view>
+</view>

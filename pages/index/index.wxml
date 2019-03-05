@@ -1,0 +1,79 @@
+<!--index.wxml-->
+<view class="page">
+  <component-topnav inner-title="{{ title }}" is-show-back="false"></component-topnav>
+  <view class="page__hd i-header">
+    <view class="g-bd">
+      <view class="g-bda">
+        <view bindtap="" class="g-bda-userinfo">
+          <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+          <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="page__bd">
+    <view class="infodisplay">
+      <view class="infodisplay-top">
+        <view  style="flex:1">
+          <text class="infodisplay-top-num serve">70</text><text class="infodisplay-top-chinese">天</text>
+        </view>
+        <view  style="flex:1">
+          <text class="infodisplay-top-num equip">4</text><text class="infodisplay-top-chinese">个</text>
+        </view>
+        <view  style="flex:1">
+          <text class="infodisplay-top-num alarm">{{ alarm }}</text><text class="infodisplay-top-chinese">次</text>
+        </view>
+      </view>
+      <view class="infodisplay-bottom">
+        <view  style="flex:1">
+          <text>已服务</text>
+        </view>
+        <view  style="flex:1">
+          <text>设备</text>
+        </view>
+        <view  style="flex:1">
+          <text>警示</text>
+        </view>
+      </view>
+
+    </view>
+    <view class="my-list">
+      <navigator url="#" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd weui-cell_primary">
+          <view>选择企业</view>
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+      <navigator url="#" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd weui-cell_primary">
+          <view>添加设备</view>
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+      <navigator url="#" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd weui-cell_primary">
+          <view>修改密码</view>
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+      <navigator url="#" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd weui-cell_primary">
+          <view>清除缓存</view>
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+      <navigator
+              url="#"
+              class="weui-cell weui-cell_access"
+              hover-class="weui-cell_active"
+              bindtap="changeToversion"
+      >
+        <view class="weui-cell__bd weui-cell_primary">
+          <view>版本</view>
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+    </view>
+  </view>
+</view>

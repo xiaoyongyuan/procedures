@@ -1,0 +1,50 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/authorize/authorize",
+    "pages/equip/equip",
+    "pages/alarm/alarm",
+    "pages/business/business",
+    "pages/versions/versions"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black",
+    "navigationStyle":"custom"
+  },
+  "tabBar": {
+    "color": "#6e6d6b",
+    "selectedColor": "#4a90e2",
+    "borderStyle": "black",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/business/business",
+        "iconPath": "images/business.png",
+        "selectedIconPath": "images/business_solid.png",
+        "text": "业务"
+      },
+      {
+        "pagePath": "pages/alarm/alarm",
+        "iconPath": "images/alarm.png",
+        "selectedIconPath": "images/alarm_solid.png",
+        "text": "报警"
+      },
+      {
+        "pagePath": "pages/equip/equip",
+        "iconPath": "images/equip.png",
+        "selectedIconPath": "images/icon_equip.png",
+        "text": "设备"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/icon_me_line.png",
+        "selectedIconPath": "images/icon_me_solid.png",
+        "text": "我的"
+      }
+    ]
+  }
+}
