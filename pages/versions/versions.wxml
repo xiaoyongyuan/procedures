@@ -1,8 +1,12 @@
 <view class="page">
     <navbar back home text="{{navigationBarTitle}}"></navbar>
     <view class="versiondetail">
-        <view>
+        <view class="versiondetail-logo">
             <image class="logo-image" src="../../images/logo.png"></image>
+            <text class="version-detail">版本:1.0.3</text>
+        </view>
+        <view class="version-introduce">
+            <text>更准确  更及时  更安全</text>
         </view>
     </view>
 </view>
