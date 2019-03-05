@@ -1,4 +1,4 @@
-/* pages/versions/versions.wxss */
+/* pages/versions/versions.wxss  */
 .versiondetail{
     background-color: #e7e7e7;
     width: 100%;
