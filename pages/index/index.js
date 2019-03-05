@@ -8,6 +8,7 @@ Page({
         userInfo: null,
         title:'个人中心',
         showModal: false,
+        cache:93.45
     },
     submit: function () {
         this.setData({
@@ -18,12 +19,21 @@ Page({
     preventTouchMove: function () {
 
     },
-
-
     go: function () {
         this.setData({
             showModal: false
         })
+    },
+    openToast: function () {
+        this.setData({
+            showModal: false,
+            cache:0.0,
+        })
+        wx.showToast({
+            title: '清除成功！',
+            icon: 'success',
+            duration: 2000
+        });
     },
     changeToversion:function(){
         wx.navigateTo({

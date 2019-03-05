@@ -163,3 +163,8 @@ page {
   justify-content: center;
   flex-wrap: wrap;
 }
+.cache text{
+  font-size: 13px;
+  color: #7b7b7b;
+  margin-right: 40rpx;
+}

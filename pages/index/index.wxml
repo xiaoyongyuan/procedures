@@ -67,7 +67,9 @@
         <view class="weui-cell__bd weui-cell_primary">
           <view>清除缓存</view>
         </view>
-        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        <view class="cache">
+          <text>{{ cache }}KB</text>
+        </view>
       </navigator>
       <navigator
               url="#"
@@ -83,7 +85,7 @@
     </view>
   </view>
   <view class="modalDlg">
-    <view class="clearData" wx:if="{{showModal}}" bindtap="go">
+    <view class="clearData" wx:if="{{showModal}}" bindtap="openToast">
       <text>清空缓存数据</text>
     </view>
     <view class="cancle" wx:if="{{showModal}}" bindtap="go">
