@@ -40,14 +40,9 @@ Page({
             url:'../versions/versions'
         })
     },
-    clearcache:function(){
-        wx.showActionSheet({
-            itemList: ['列1','列2','列3'],//显示的列表项
-            success: function (res) {//res.tapIndex点击的列表项
-                console.log("点击了列表项：" + that[res.tapIndex])
-            },
-            fail: function (res) { },
-            complete:function(res){ }
+    changeToaddequip:function(){
+        wx.navigateTo({
+            url:'../addequip/addequip'
         })
     },
     /**
@@ -95,10 +90,11 @@ Page({
         }
 
         wx.request({
-            url: 'http://news-at.zhihu.com/api/4/news/latest', //这里填写你的接口路径
+            url: 'http://api.aokecloud.cn/api/camera/getlist_forAPP', //这里填写你的接口路径
             header: { //这里写你借口返回的数据是什么类型，这里就体现了微信小程序的强大，直接给你解析数据，再也不用去寻找各种方法去解析json，xml等数据了
                 'Content-Type': 'application/json'
             },
+            method:"POST",
             data: {//这里写你要请求的参数
                 x: '' ,
                 y: ''

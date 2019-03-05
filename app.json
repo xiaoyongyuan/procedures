@@ -6,7 +6,8 @@
     "pages/equip/equip",
     "pages/alarm/alarm",
     "pages/business/business",
-    "pages/versions/versions"
+    "pages/versions/versions",
+    "pages/addequip/addequip"
   ],
   "window":{
     "backgroundTextStyle":"light",
