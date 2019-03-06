@@ -27,6 +27,7 @@ page{
 .weui-btn{
     background-color: #00a0e9;
     color: white;
+    border-radius: 12px;
 }
 .addequip-input{
     height: 340rpx;
@@ -44,18 +45,18 @@ page{
     width: 80%;
     align-items: center;
     display: flex;
-    flex-direction: row;
+
+    /*flex-direction: row;*/
 }
 .weui-input{
-    background-color: orange;
+    /*background-color: orange;*/
     width: 85%;
     display:inline-block;
-    height: 100%;
+    /*height: 100%;*/
 }
-.test{
-    background-color: blue;
-}
-.testimage{
-    width: 100%;
-    height: 100%;
+.scancode{
+    width: 25px;
+    height: 25px;
+    position: relative;
+    right: -7px;
 }

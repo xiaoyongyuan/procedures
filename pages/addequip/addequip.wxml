@@ -8,7 +8,8 @@
             </view>
             <view class="view-input">
                 <input class="weui-input" placeholder="请输入设备ID" />
-                <view class="test" style='width:15%;display:inline-block;height:100%;'><image src='../../images/saoyisao.png' class="testimage" style='display:inline' mode="aspectFit"></image></view>
+                <image src='../../images/saoyisao.png' class="scancode" style='display:inline' mode="aspectFit" bindtap="click"></image>
+                <view>{{show}}</view>
             </view>
         </view>
     </view>

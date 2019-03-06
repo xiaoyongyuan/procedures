@@ -40,6 +40,11 @@ Page({
             url:'../versions/versions'
         })
     },
+    selectcompany:function(){
+        wx.navigateTo({
+            url:'../selectcompany/selectcompany'
+        })
+    },
     changeToaddequip:function(){
         wx.navigateTo({
             url:'../addequip/addequip'
