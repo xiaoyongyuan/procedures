@@ -63,6 +63,11 @@ Page({
             url:'../bindingaccount/bindingaccount'
         })
     },
+    // changeToindex:function(){
+    //     wx.switchTab({
+    //         url: '/pages/index/index'
+    //     })
+    // },
     formSubmit(e) {
         let that = this,
             formData = e.detail.value,
@@ -75,6 +80,10 @@ Page({
         }
         if (!formData.code){
             errMsg = '验证码不能为空！';
+        }else {
+            wx.switchTab({
+                url: '/pages/index/index'
+            })
         }
         if (formData.phone){
             if (!phoneRexp.test(formData.phone)) {
