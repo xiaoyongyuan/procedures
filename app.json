@@ -8,6 +8,7 @@
     "pages/alarm/alarm",
     "pages/business/business",
     "pages/versions/versions",
+    "pages/selectcompany/selectcompany",
     "pages/addequip/addequip",
     "pages/bindingaccount/bindingaccount"
   ],
