@@ -1,0 +1,7 @@
+<!--pages/selectcompany/selectcompany.wxml-->
+<view class="page">
+    <navbar back home text="{{navigationBarTitle}}"></navbar>
+    <view class="test">
+
+    </view>
+</view>
