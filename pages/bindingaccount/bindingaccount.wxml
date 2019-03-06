@@ -7,13 +7,12 @@
                 <view class="g-bd">
                     <view class="g-bda">
                         <view bindtap="" class="g-bda-userinfo">
-                            <image class="userinfo-avatar" src="/images/logo.jpg"></image>
+                            <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
                             <text class="userinfo-nickname">{{userInfo.nickName}}</text>
                         </view>
                     </view>
                 </view>
             </view>
-            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
         </view>
         <view class="view-form">
             <form bindsubmit='formSubmit'>
