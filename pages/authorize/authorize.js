@@ -25,12 +25,12 @@ Page({
               that.queryUsreInfo();
               console.log("测试王永康");
               //用户已经授权过
-              //   wx.navigateTo({
-              //       url: '/pages/index/index'
-              //   })
-              wx.switchTab({
-                url: '/pages/index/index'
-              })
+                wx.navigateTo({
+                    url: '/pages/register/register'
+                })
+              // wx.switchTab({
+              //   url: '/pages/index/index'
+              // })
             }
           });
         }
@@ -63,12 +63,12 @@ Page({
         }
       });
       //授权成功后，跳转进入小程序首页
-      wx.switchTab({
-        url: '/pages/index/index'
-      })
-        // wx.navigateTo({
-        //     url: '/pages/index/index'
-        // })
+      // wx.switchTab({
+      //   url: '/pages/index/index'
+      // })
+        wx.navigateTo({
+            url: '/pages/register/register'
+        })
     } else {
       //用户按了拒绝按钮
       wx.showModal({

@@ -1,4 +1,4 @@
-// pages/addequip/addequip.js
+// pages/bindingaccount/bindingaccount.js
 const app = getApp();
 Page({
 
@@ -6,7 +6,15 @@ Page({
      * 页面的初始数据
      */
     data: {
-        navigationBarTitle: '添加设备',
+        navigationBarTitle: '绑定账号',
+        btnTxt: '获取验证码',
+        isGetCode: false,
+        Loading: false,
+        countDown: 60,
+        formData: {
+            phone: '',
+            code: ''
+        },
         // 这里是一些组件内部数据
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,

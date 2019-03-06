@@ -1,0 +1,2 @@
+/* pages/bindingaccount/bindingaccount.wxss */
+@import "../register/register.wxss";

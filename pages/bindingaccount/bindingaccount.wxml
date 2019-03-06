@@ -1,0 +1,39 @@
+<!--pages/bindingaccount/bindingaccount.wxml-->
+<view class="page">
+    <navbar back home text="{{navigationBarTitle}}"></navbar>
+    <view class="bindPhoneTitle" style="position:absolute;top:{{ someData.statusBarHeight+someData.titleBarHeight}}px">
+        <view bindtap="" class="g-bda-userinfo">
+            <view class="page__hd i-header">
+                <view class="g-bd">
+                    <view class="g-bda">
+                        <view bindtap="" class="g-bda-userinfo">
+                            <image class="userinfo-avatar" src="/images/logo.jpg"></image>
+                            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        </view>
+        <view class="view-form">
+            <form bindsubmit='formSubmit'>
+                <view class="formItemPhone">
+                    <label>手机号</label>
+                    <input name="phone" placeholder="请输入手机号" data-id="phone"
+                           placeholder-class='inputClass' bindinput='Input' />
+                </view>
+                <view class="formItemPhone">
+                    <label>验证码</label>
+                    <input name="code" placeholder="请输入验证码" data-id="code"
+                           placeholder-class='inputClass' bindinput='Input' />
+                    <button class='codeBtn' wx:if="{{!isGetCode}}"
+                            catchtap='getPhoneCode'>{{btnTxt}}</button>
+                    <text class='code_toast' wx:else>{{countDown}}s</text>
+                </view>
+                <button class="btn-register" formType="submit">
+                    绑定
+                </button>
+            </form>
+        </view>
+    </view>
+</view>

@@ -7,7 +7,6 @@ page{
 .page{
     height: 100%;
     background-color: #e7e7e7;
-
 }
 .page-addequip-input{
     align-items: center;
@@ -16,8 +15,18 @@ page{
     font-size: 16px;
 }
 .page-addequip-button{
-    height: 65px;
-    background-color: orange;
+    margin-top: 300px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+}
+.addequip-weui-btn{
+    width: 90%;
+}
+.weui-btn{
+    background-color: #00a0e9;
+    color: white;
 }
 .addequip-input{
     height: 340rpx;
@@ -33,4 +42,20 @@ page{
     border: 1px #ececec solid;
     border-radius: 12px;
     width: 80%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+.weui-input{
+    background-color: orange;
+    width: 85%;
+    display:inline-block;
+    height: 100%;
+}
+.test{
+    background-color: blue;
+}
+.testimage{
+    width: 100%;
+    height: 100%;
 }
