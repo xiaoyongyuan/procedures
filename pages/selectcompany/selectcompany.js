@@ -1,17 +1,35 @@
 // pages/selectcompany/selectcompany.js
+const app = getApp();
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        navigationBarTitle: '我的其他企业'
+        navigationBarTitle: '我的其他企业',
+        // 这里是一些组件内部数据
+        someData: {
+            statusBarHeight: app.globalData.statusBarHeight,
+            titleBarHeight: app.globalData.titleBarHeight
+        }
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        var that = this;
+        wx.getSystemInfo({
+            success:function (res) {
+                console.log(res.brand);//手机品牌
+                console.log(res.model);//手机型号
+                console.log(res.screenWidth)//手机屏幕宽度
+                console.log("手机屏幕高度其他企业",res.screenHeight)//手机屏幕高度
+                that.setData({
+                    screenHeight:res.screenHeight
+                })
+            }
+        })
 
     },
 

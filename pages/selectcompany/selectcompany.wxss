@@ -1,4 +1,6 @@
 /* pages/selectcompany/selectcompany.wxss */
+@import "/utils/common.wxss";
+@import "../index/index.wxss";
 page{
     line-height: 1.6;
     font-family: -apple-system-font, "Helvetica Neue", sans-serif;
@@ -8,7 +10,20 @@ page{
     height: 100%;
     background-color: #e7e7e7;
 }
+.view-list-bac{
+    background-color: #e7e7e7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.view-list{
+    background-color: white;
+    width: 94%;
+    height: 96%;
+    margin: auto;
+    border-radius: 12px;
+    font-size: 14px;
+}
 .test{
-    height: 65px;
-    background-color: orange;
+    border-bottom: 1rpx solid #f5f5f5;
 }

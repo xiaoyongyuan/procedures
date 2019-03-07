@@ -63,8 +63,7 @@ Page({
                 console.log(res.brand);//手机品牌
                 console.log(res.model);//手机型号
                 console.log(res.screenWidth)//手机屏幕宽度
-                console.log(res.screenHeight)//手机屏幕高度
-                console.log(that.data.screenHeight)//手机屏幕高度
+                console.log("手机屏幕高度",res.screenHeight)//手机屏幕高度
             }
         })
         if (app.globalData.userInfo) {
