@@ -2,7 +2,7 @@
 <view class="page">
     <navbar back home text="{{navigationBarTitle}}"></navbar>
     <view class="top" style="height: {{ someData.statusBarHeight+someData.titleBarHeight }}px">
-
+        <!--占位view-->
     </view>
     <view class="view-list-bac" style="height: {{ screenHeight - someData.statusBarHeight - someData.titleBarHeight }}px">
         <view class="view-list">

@@ -1,5 +1,78 @@
 <!--pages/alarm/alarm.wxml-->
 <view class="page">
     <navbar back home text="{{navigationBarTitle}}"></navbar>
+    <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}" bindtap="go"></view>
 
+    <view class="select-list">
+        <view class='list-msg2' bindtap='bindShowMsg' style="position:absolute;top:{{ someData.statusBarHeight+someData.titleBarHeight+10 }}px">
+            <text>{{tihuoWay}}</text>
+            <image style='height:24rpx;width:40rpx;' src='/images/below.png'></image>
+        </view>
+    </view>
+    <view class="top" style="height: {{ someData.statusBarHeight+someData.titleBarHeight +40 }}px">
+        <!--占位view-->
+    </view>
+
+    <view class="alarm-list">
+        <view class="alarm-list-one">
+            <view class="alarm-list-one-top">
+                <view class="alarm-list-one-top-left">
+                    <view class="alarm-list-one-top-img">
+                        <image src="/images/alarmlist.png"></image>
+                    </view>
+                </view>
+                <view class="alarm-list-one-top-right">
+                    <view class="alarm-list-one-top-right-T">
+                        <text>报警类型:入侵报警</text>
+                    </view>
+                    <view class="alarm-list-one-top-right-B">
+                        <text>报警时间:2019-01-14 09:29:41</text>
+                    </view>
+                </view>
+            </view>
+            <view class="alarm-list-one-bottom">
+                <view class="alarm-list-one-bottom-left">
+                    <text>设备:测试一</text>
+                </view>
+                <view class="alarm-list-one-bottom-right">
+                    <text>报警对象:人</text>
+                </view>
+            </view>
+        </view>
+
+
+    </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 下拉需要显示的列表 -->
+    <view class="select_box_center">
+        <view class="select_box" wx:if="{{showModal}}" bindtap="go" style="position:absolute;top:{{ someData.statusBarHeight+someData.titleBarHeight+41 }}px">
+            <view class="select_one" bindtap="mySelect" data-name="全部"><text>全部</text></view>
+            <view class="select_one" bindtap="mySelect" data-name="收藏列表"><text>收藏列表</text></view>
+            <view class="select_one" bindtap="mySelect" data-name="测试一"><text>测试一</text></view>
+            <view class="select_one" bindtap="mySelect" data-name="yy"><text>yy</text></view>
+            <view class="select_one" bindtap="mySelect" data-name="60"><text>60</text></view>
+            <view class="select_one" bindtap="mySelect" data-name="西安"><text>西安</text></view>
+        </view>
+    </view>
 </view>
