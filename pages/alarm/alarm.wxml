@@ -1,2 +1,5 @@
 <!--pages/alarm/alarm.wxml-->
-<text>pages/alarm/alarm.wxml</text>
+<view class="page">
+    <navbar back home text="{{navigationBarTitle}}"></navbar>
+
+</view>

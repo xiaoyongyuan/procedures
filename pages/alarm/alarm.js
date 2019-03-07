@@ -5,7 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        navigationBarTitle:'树莓派企业测试账户1'
     },
 
     /**

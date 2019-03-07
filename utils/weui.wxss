@@ -64,9 +64,9 @@ icon {
   top: 0;
   right: 0;
   height: 1px;
-  border-top: 1rpx solid #D9D9D9;
+  border-top: 1rpx solid #f5f5f5;
   color: #D9D9D9;
-  left: 15px;
+  /*left: 15px;*/
 }
 .weui-cell:first-child:before {
   display: none;
