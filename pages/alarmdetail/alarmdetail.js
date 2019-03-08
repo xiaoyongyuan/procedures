@@ -7,8 +7,13 @@ Page({
      */
     data: {
         navigationBarTitle:'报警详情',
-        navbar: ['首页', '搜索', '我'],
-        currentTab: 0
+        navbar: ['报警图片', '报警视频'],
+        currentTab: 0,
+        // 这里是一些组件内部数据
+        someData: {
+            statusBarHeight: app.globalData.statusBarHeight,
+            titleBarHeight: app.globalData.titleBarHeight
+        }
     },
 
     navbarTap: function(e){

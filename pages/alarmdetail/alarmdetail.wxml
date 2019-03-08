@@ -1,21 +1,71 @@
 <!--pages/alarmdetail/alarmdetail.wxml-->
 <view class="page">
-    <navbar back home text="{{navigationBarTitle}}"></navbar>
+    <navbar back home text="{{navigationBarTitle}}"  wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap"></navbar>
 
-    <!--首页-->
-    <view hidden="{{currentTab!==0}}">
-        tab_01
+    <view class="navbar" style="margin-top: {{ someData.statusBarHeight+someData.titleBarHeight }}px">
+        <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
     </view>
 
-    <!--搜索-->
-    <view hidden="{{currentTab!==1}}">
-        tab_02
+    <view class="alarmdetail">
+        <!--报警图片-->
+        <view class="alarmdetail-pic" hidden="{{currentTab!==0}}">
+            <image src="/images/alarmdetailpic.png"></image>
+            <view class="alarmdetail-check">
+                <view class="alarmdetail-check-in">
+                    <view class="alarmdetail-check-in-left">
+                        <view class="img-checkin">
+                            <image src="/images/xuanze.png"></image>
+                        </view>
+                        <text>围界信息</text>
+                    </view>
+                    <view class="alarmdetail-check-in-right">
+                        <view class="img-checkin">
+                            <image src="/images/xuanze.png"></image>
+                        </view>
+                        <text>报警信息</text>
+                    </view>
+                </view>
+            </view>
+            <view class="alarmdetail-info">
+                <view class="alarmdetail-info-item">
+                    <view class="alarmdetail-info-item-left">
+                        <text>报警类型： 入侵报警</text>
+                    </view>
+                    <view class="alarmdetail-info-item-right">
+                        <text>报警对象： 人</text>
+                    </view>
+                </view>
+                <view class="alarmdetail-info-item">
+                    <view class="alarmdetail-info-item-left">
+                        <text>设备： 椒图精灵SO1</text>
+                    </view>
+                    <view class="alarmdetail-info-item-right">
+                        <text>设备地点： yy</text>
+                    </view>
+                </view>
+                <view class="alarmdetail-info-item">
+                    <text>报警时间：2019-01-19 10:50:59</text>
+                </view>
+            </view>
+            <view class="alarmdetail-btn">
+                <view class="alarmdetail-btn-left">
+                    <button class="weui-btn">上一条</button>
+                </view>
+                <view class="alarmdetail-btn-right">
+                    <button class="weui-btn">下一条</button>
+                </view>
+            </view>
+        </view>
+        <!--报警视频-->
+        <view class="alarmdetail-video" hidden="{{currentTab!==1}}">
+            <video
+                    id="myVideo"
+                    src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
+                    controls
+            ></video>
+            <view class="video-intro">
+                <text>视频简介： 入侵报警</text>
+            </view>
+        </view>
     </view>
-
-    <!--我-->
-    <view hidden="{{currentTab!==2}}">
-        tab_03
-    </view>
-
-
 </view>

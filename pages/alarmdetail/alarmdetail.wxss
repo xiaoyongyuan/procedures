@@ -4,6 +4,26 @@ page{
     flex-direction: column;
     height: 100%;
 }
+.page{
+    height: 100%;
+    background-color: #e7e7e7;
+}
+.alarmdetail{
+    height: 440rpx;
+    margin-top: 20rpx;
+}
+.alarmdetail-pic{
+    width: 100%;
+    height: 100%;
+}
+.alarmdetail-video{
+    width: 100%;
+    height: 100%;
+}
+.alarmdetail-pic image{
+    width: 100%;
+    height: 100%;
+}
 .navbar{
     flex: none;
     display: flex;
@@ -14,9 +34,11 @@ page{
     flex: auto;
     text-align: center;
     line-height: 80rpx;
+    font-size: 28rpx;
+    color: #5f7068;
 }
 .navbar .item.active{
-    color: #FFCC00;
+    color: #237af5;
 }
 .navbar .item.active:after{
     content: "";
@@ -26,5 +48,108 @@ page{
     left: 0;
     right: 0;
     height: 4rpx;
-    background: #FFCC00;
+    background: #237af5;
+}
+.alarmdetail-check{
+    height: 80rpx;
+    margin-top: -10rpx;
+    display: flex;
+    justify-content: center;
+}
+.alarmdetail-check-in{
+    height: 30rpx;
+    width: 94%;
+    margin: auto;
+    display: flex;
+}
+.alarmdetail-check-in-left{
+    height: 100%;
+    width: 40%;
+    display: flex;
+    line-height: 30rpx;
+}
+.alarmdetail-check-in-left text{
+    color: #237af5;
+    margin-left: 10rpx;
+    font-size: 28rpx;
+}
+.img-checkin{
+    height: 100%;
+    width: 30rpx;
+}
+.img-checkin image{
+    width: 100%;
+    height: 100%;
+}
+.alarmdetail-check-in-right{
+    line-height: 30rpx;
+    display: flex;
+    height: 100%;
+    width: 60%;
+}
+.alarmdetail-check-in-right text{
+    color: #237af5;
+    margin-left: 10rpx;
+    font-size: 28rpx;
+}
+.alarmdetail-info{
+    width: 94%;
+    height: 240rpx;
+    background-color: white;
+    border-radius: 24rpx;
+    margin: auto;
+}
+.alarmdetail-info-item{
+    width: 100%;
+    height: 80rpx;
+    display: flex;
+    border-bottom: 1px #ededed solid;
+}
+.alarmdetail-info-item text{
+    color: #4f4f4f;
+    line-height: 80rpx;
+    font-size: 28rpx;
+    margin-left: 20rpx;
+}
+.alarmdetail-info-item-left{
+    height: 100%;
+    width: 50%;
+}
+.alarmdetail-info-item-right{
+    height: 100%;
+    width: 50%;
+}
+.alarmdetail-btn{
+    margin-top: 40rpx;
+    height: 80rpx;
+    display: flex;
+}
+.alarmdetail-btn-left{
+    height: 100%;
+    width: 50%;
+}
+.alarmdetail-btn-right{
+    height: 100%;
+    width: 50%;
+}
+.weui-btn{
+    width: 85%;
+    height: 100%;
+    font-size: 28rpx;
+    background-color: #00a0e9;
+    color: white;
+    border-radius: 24rpx;
+}
+#myVideo{
+    width: 100%;
+    height: 100%;
+}
+.video-intro{
+    margin-top: 40rpx;
+    height: 40rpx;
+}
+.video-intro text{
+    font-size: 24rpx;
+    margin-left: 20rpx;
+    color: #4f4f4f;
 }
