@@ -10,7 +10,8 @@
     "pages/versions/versions",
     "pages/selectcompany/selectcompany",
     "pages/addequip/addequip",
-    "pages/bindingaccount/bindingaccount"
+    "pages/bindingaccount/bindingaccount",
+    "pages/alarmdetail/alarmdetail"
   ],
   "window":{
     "backgroundTextStyle":"light",

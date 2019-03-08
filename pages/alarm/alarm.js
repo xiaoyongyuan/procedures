@@ -25,6 +25,12 @@ Page({
             titleBarHeight: app.globalData.titleBarHeight
         }
     },
+    //跳转详情页
+    changeToalarmdetail:function(){
+        wx.navigateTo({
+            url:'../alarmdetail/alarmdetail'
+        })
+    },
     //扫一扫
     click: function (event) {
         var that = this;

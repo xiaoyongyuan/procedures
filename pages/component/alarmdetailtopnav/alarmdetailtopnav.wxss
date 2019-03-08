@@ -22,6 +22,10 @@
   display: flex;
   align-items: center;
 }
+.capsule .unlabeled{
+  position: absolute;
+  left: 100rpx;
+}
 
 .capsule > view {
   width: 32px;
@@ -40,16 +44,6 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%,-50%);
-  display: inline-block;
-}
-.capsule .calendar{
-  width: 60%;
-  height: 100%;
-  position: absolute;
-  left: 100rpx;
-  top: 50%;
-  transform: translate(-50%,-50%);
-  display: inline-block;
 }
 
 .title {
