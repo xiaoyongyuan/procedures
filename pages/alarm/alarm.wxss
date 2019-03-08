@@ -25,7 +25,7 @@ page {
     justify-content: center;
 }
 .list-msg2 {
-    height: 30px;
+    height: 60rpx;
     display: flex;
     z-index: 9999;
     align-items: center;
@@ -33,10 +33,10 @@ page {
     padding: 0 10rpx;
     background-color: #fff;
     width: 90%;
-    border-radius: 8px;
+    border-radius: 16rpx;
 }
 .list-msg2 text{
-    font-size: 14px;
+    font-size: 28rpx;
 }
 .select_box_center{
     display: flex;
@@ -48,8 +48,8 @@ page {
     padding: 0 10rpx;
     width: 92%;
     overflow: hidden;
-    font-size: 14px;
-    border-radius: 12px;
+    font-size: 28rpx;
+    border-radius: 24rpx;
     z-index: 9999;
 }
 
@@ -66,11 +66,11 @@ page {
 .select_one {
     height: 60rpx;
     line-height: 60rpx;
-    border-bottom: 1px solid #ebebeb;
-    margin-top: 10px;
+    border-bottom: 2rpx solid #ebebeb;
+    margin-top: 20rpx;
 }
 .select_one text{
-    margin-left: 10px;
+    margin-left: 20rpx;
 }
 .mask{
     width: 100%;
@@ -87,14 +87,14 @@ page {
     justify-content: center;
     width: 100%;
     height: 240rpx;
-    margin-top: 10px;
+    margin-top: 20rpx;
 }
 .alarm-list-one-top{
     display: flex;
     height: 75%;
     width: 90%;
-    background-color: #fff;
-    border-radius: 8px;
+    background-color: #00a0e9;
+    border-radius: 16rpx;
     margin: auto;
 }
 .alarm-list-one-bottom{
@@ -103,9 +103,9 @@ page {
     height: 25%;
     background-color: #f4f4f4;
     width: 80%;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    font-size: 14px;
+    border-bottom-left-radius: 16rpx;
+    border-bottom-right-radius: 16rpx;
+    font-size: 28rpx;
 }
 .alarm-list-one-bottom-left{
     width: 50%;
@@ -122,34 +122,49 @@ page {
 .alarm-list-one-bottom text{
     flex-direction: column;
     align-items:center;
-    margin-left: 20px;
+    margin-left: 40rpx;
 }
 .alarm-list-one-top-left{
-    width: 35%;
+
+    width: 37%;
     height: 100%;
 }
 .alarm-list-one-top-right{
-    width: 65%;
+    border-radius: 0 16rpx 16rpx 0;
+    background-color: white;
+    width: 63%;
     height: 100%;
+}
+.alarm-list-one-top-right text{
+    margin-left: 20rpx;
 }
 .alarm-list-one-top-right-T{
     font-weight: bold;
     align-items: center;
     display: flex;
     height: 50%;
-    font-size: 16px;
+    font-size: 32rpx;
 }
 .alarm-list-one-top-right-B{
     align-items: center;
     display: flex;
-    font-size: 12px;
+    font-size: 24rpx;
     height: 50%;
 }
 .alarm-list-one-top-img{
-    width: 90%;
-    height: 90%;
+    width: 94%;
+    height: 80%;
+    margin: auto;
 }
-.alarm-list-one-top-left image{
+.alarm-list-one-top-left-bac{
+    background-color: white;
+    height: 100%;
+    width: 96%;
+    float: right;
+    display: flex;
+    align-items: center;
+}
+.alarm-list-one-top-left-bac image{
     width: 100%;
     height: 100%;
 }

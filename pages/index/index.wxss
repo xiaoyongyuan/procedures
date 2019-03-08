@@ -28,7 +28,7 @@ page {
   /*flex-direction: row;*/
   flex-direction: column;
   flex-wrap: wrap;
-  border-radius: 12px;
+  border-radius: 24rpx;
   margin-top: -60rpx;
 }
 .infodisplay-top{
@@ -40,8 +40,7 @@ page {
   text-align: center;
 }
 .infodisplay-top-chinese{
-  font-size: 13px;
-  /*font-weight:bold;*/
+  font-size: 26rpx;
 }
 .infodisplay-top .equip{
    color: #009ee8;
@@ -50,7 +49,7 @@ page {
   color: #df1334;
 }
 .infodisplay-top-num{
-  font-size: 23px;
+  font-size: 52rpx;
   font-weight:bold;
 }
 .infodisplay-bottom{
@@ -59,7 +58,7 @@ page {
   color: #afafaf;
   display: flex;
   flex-direction: row;
-  font-size: 13px;
+  font-size: 26rpx;
   text-align: center;
   line-height: 48rpx;
 }
@@ -67,9 +66,9 @@ page {
   height: 500rpx;
   width: 94%;
   background-color: #fff;
-  border-radius: 12px;
+  border-radius: 24rpx;
   margin-top: 20rpx;
-  font-size: 16px;
+  font-size: 32rpx;
 }
 
 
@@ -108,7 +107,7 @@ page {
   margin: 20rpx;
   margin-bottom: 2rpx;
   border-radius: 50%;
-  border: 2px solid #fff;
+  border: 4rpx solid #fff;
 }
 
 .userinfo-nickname{
@@ -134,12 +133,12 @@ page {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border-radius: 12px;
+  border-radius: 24rpx;
   z-index: 9999;
   flex-wrap: wrap;
   position: fixed;
   bottom: 100rpx;
-  font-size: 14px;
+  font-size: 28rpx;
   color: #e12140;
 }
 .cancle{
@@ -150,12 +149,12 @@ page {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border-radius: 12px;
+  border-radius: 24rpx;
   z-index: 9999;
   flex-wrap: wrap;
   position: fixed;
   bottom: 10rpx;
-  font-size: 14px;
+  font-size: 28rpx;
 }
 .modalDlg{
   display: flex;
@@ -164,7 +163,7 @@ page {
   flex-wrap: wrap;
 }
 .cache text{
-  font-size: 13px;
+  font-size: 26rpx;
   color: #7b7b7b;
   margin-right: 40rpx;
 }

@@ -21,8 +21,8 @@ page{
     width: 94%;
     height: 96%;
     margin: auto;
-    border-radius: 12px;
-    font-size: 14px;
+    border-radius: 24rpx;
+    font-size: 28rpx;
 }
 .test{
     border-bottom: 1rpx solid #f5f5f5;

@@ -17,8 +17,10 @@
         <view class="alarm-list-one">
             <view class="alarm-list-one-top">
                 <view class="alarm-list-one-top-left">
-                    <view class="alarm-list-one-top-img">
-                        <image src="/images/alarmlist.png"></image>
+                    <view class="alarm-list-one-top-left-bac">
+                        <view class="alarm-list-one-top-img">
+                            <image src="/images/alarmlist.png"></image>
+                        </view>
                     </view>
                 </view>
                 <view class="alarm-list-one-top-right">

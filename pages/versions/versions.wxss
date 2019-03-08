@@ -15,7 +15,7 @@
 .logo-image{
     width: 160rpx;
     height: 160rpx;
-    margin-top: 150px;
+    margin-top: 300rpx;
 }
 .versiondetail-logo{
     align-items: center;
@@ -24,7 +24,7 @@
 }
 .version-detail{
     margin-top: 20rpx;
-    font-size: 16px;
+    font-size: 32rpx;
 }
 .version-introduce{
     margin-top: 100rpx;
