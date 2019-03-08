@@ -1,0 +1,65 @@
+/* pages/equipdetail/equipdetail.wxss */
+page{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.page{
+    /*height: 100%;*/
+    background-color: #e7e7e7;
+}
+.topsetting{
+    height: 180rpx;
+    width: 94%;
+    background-color: white;
+    margin: auto;
+    margin-top: 20rpx;
+    border-radius: 24rpx;
+    display: flex;
+}
+.topsetting-item{
+    width: 25%;
+}
+.topsetting-item-top-image{
+    position: absolute;
+    bottom: 0px;
+    width: 70rpx;
+    height: 80rpx;
+    margin: auto;
+    align-items: center;
+}
+.topsetting-item-top-image image{
+    width: 100%;
+    height: 100%;
+}
+.topsetting-item-top{
+    position: relative;
+    height: 65%;
+    display: flex;
+    justify-content: center;
+}
+.topsetting-item-bottom{
+    display: flex;
+    justify-content: center;
+    height: 20%;
+}
+.topsetting-item-bottom text{
+    font-size: 28rpx;
+    margin: auto;
+}
+.equipinfo{
+    height: 900rpx;
+    width: 94%;
+    background-color: white;
+    margin: auto;
+    border-radius: 24rpx;
+    margin-top: 20rpx;
+}
+.camera{
+    height: 800rpx;
+    width: 94%;
+    background-color: white;
+    margin: auto;
+    margin-top: 20rpx;
+    border-radius: 24rpx;
+}

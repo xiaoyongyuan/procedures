@@ -1,4 +1,4 @@
-// pages/equip/equip.js
+// pages/equipdetail/equipdetail.js
 const app = getApp();
 Page({
 
@@ -6,19 +6,14 @@ Page({
      * 页面的初始数据
      */
     data: {
-        title:'树莓派企业测试账户1',
+        navigationBarTitle:'设备详情',
         // 这里是一些组件内部数据
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
         }
     },
-    //跳转详情页
-    changeToequipdetail:function(){
-        wx.navigateTo({
-            url:'../equipdetail/equipdetail'
-        })
-    },
+
     /**
      * 生命周期函数--监听页面加载
      */

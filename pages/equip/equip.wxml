@@ -1,2 +1,36 @@
 <!--pages/equip/equip.wxml-->
-<text>pages/equip/equip.wxml</text>
+<view class="page">
+    <component-topnav inner-title="{{ title }}" is-show-back="false"></component-topnav>
+
+    <view class="alarm-list">
+        <view class="alarm-list-one" bindtap="changeToequipdetail">
+            <view class="alarm-list-one-top">
+                <view class="alarm-list-one-top-left">
+                    <view class="alarm-list-one-top-left-bac">
+                        <view class="alarm-list-one-top-img">
+                            <image src="/images/equiplist.png"></image>
+                        </view>
+                    </view>
+                </view>
+                <view class="alarm-list-one-top-right">
+                    <view class="alarm-list-one-top-right-T">
+                        <text>报警类型:入侵报警</text>
+                    </view>
+                    <view class="alarm-list-one-top-right-B">
+                        <text>报警时间:2019-01-14 09:29:41</text>
+                    </view>
+                </view>
+            </view>
+            <view class="alarm-list-one-bottom">
+                <view class="alarm-list-one-bottom-left">
+                    <text>设备：测试一</text>
+                </view>
+                <view class="alarm-list-one-bottom-right">
+                    <text>地点：西安</text>
+                </view>
+            </view>
+        </view>
+
+
+    </view>
+</view>

@@ -11,7 +11,8 @@
     "pages/selectcompany/selectcompany",
     "pages/addequip/addequip",
     "pages/bindingaccount/bindingaccount",
-    "pages/alarmdetail/alarmdetail"
+    "pages/alarmdetail/alarmdetail",
+    "pages/equipdetail/equipdetail"
   ],
   "window":{
     "backgroundTextStyle":"light",

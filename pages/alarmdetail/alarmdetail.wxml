@@ -1,6 +1,6 @@
 <!--pages/alarmdetail/alarmdetail.wxml-->
 <view class="page">
-    <navbar back home text="{{navigationBarTitle}}"  wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap"></navbar>
+    <navbar back home text="{{navigationBarTitle}}"></navbar>
 
     <view class="navbar" style="margin-top: {{ someData.statusBarHeight+someData.titleBarHeight }}px">
         <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
