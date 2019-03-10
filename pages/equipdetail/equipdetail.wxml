@@ -48,10 +48,147 @@
 
     </view>
     <view class="equipinfo">
-
+        <view class="equipinfo-item-first">
+            <text>设备信息</text>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>设备</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>efa60tt7</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>报警类型</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>入侵报警</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>所在位置</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>西安</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>报警最后时间</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>2019-01-14 13:14:56</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>防区设置</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>1个</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>设防时间</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>2段</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>上次心跳</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>2019-01-14 13:14:56</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>设备温度</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>53℃</text>
+            </view>
+        </view>
+        <view class="equipinfo-item-last">
+            <view class="equipinfo-item-last-btn">
+                <button class="weui-btn">设备闪灯</button>
+            </view>
+        </view>
     </view>
     <view class="camera">
-
+        <view class="equipinfo-item-first">
+            <text>摄像头信息</text>
+        </view>
+        <view class="camera-item">
+            <view class="camera-item-left">
+                <text>设备IP</text>
+            </view>
+            <view class="camera-item-right">
+                <text>192.168.1.66</text>
+            </view>
+        </view>
+        <view class="camera-item">
+            <view class="camera-item-left">
+                <text>设备端口</text>
+            </view>
+            <view class="camera-item-right">
+                <text>554</text>
+            </view>
+        </view>
+        <view class="camera-item">
+            <view class="camera-item-left">
+                <text>设备状态</text>
+            </view>
+            <view class="camera-item-right">
+                <text>设备离线</text>
+            </view>
+        </view>
+        <view class="camera-item">
+            <view class="camera-item-left">
+                <text>设备软件版本</text>
+            </view>
+            <view class="camera-item-right">
+                <text>0.9</text>
+            </view>
+        </view>
+        <view class="camera-item">
+            <view class="camera-item-left">
+                <text>设备硬件版本</text>
+            </view>
+            <view class="camera-item-right">
+                <text>0.9</text>
+            </view>
+        </view>
+        <view class="camera-item">
+            <view class="camera-item-left">
+                <text>升级时间</text>
+            </view>
+            <view class="camera-item-right">
+                <text>无</text>
+            </view>
+        </view>
+        <view class="camera-item">
+            <view class="camera-item-left">
+                <text>登录时间</text>
+            </view>
+            <view class="camera-item-right">
+                <text>2019-01-14 13:14:56</text>
+            </view>
+        </view>
+        <view class="camera-item">
+            <view class="camera-item-left">
+                <text>当前状态</text>
+            </view>
+            <view class="camera-item-right">
+                <text>正常</text>
+            </view>
+        </view>
     </view>
 
 </view>

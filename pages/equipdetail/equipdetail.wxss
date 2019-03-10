@@ -63,3 +63,102 @@ page{
     margin-top: 20rpx;
     border-radius: 24rpx;
 }
+.equipinfo-item-first{
+    height: 89rpx;
+    border-bottom: 1px solid #e7e7e7;
+    display: flex;
+    align-items: center;
+}
+.equipinfo-item-first text{
+    margin-left: 30rpx;
+    font-size: 28rpx;
+    color: #161616;
+}
+.camera-item-first{
+    height: 88rpx;
+    border-bottom: 1px solid #e7e7e7;
+    display: flex;
+    align-items: center;
+}
+.camera-item-first text{
+    margin-left: 30rpx;
+    font-size: 28rpx;
+    color: #161616;
+}
+.equipinfo-item{
+    height: 89rpx;
+    border-bottom: 1px solid #e7e7e7;
+}
+.camera-item{
+    height: 88rpx;
+    border-bottom: 1px solid #e7e7e7;
+}
+.camera-item-left{
+    height: 100%;
+    width: 30%;
+    float: left;
+    display: flex;
+    align-items: center;
+    flex-direction:row;
+    justify-content:flex-end;
+}
+.camera-item-left text{
+    font-size: 28rpx;
+    color: #161616;
+}
+.camera-item-right{
+    height: 100%;
+    width: 70%;
+    float: right;
+    display: flex;
+    align-items: center;
+}
+.camera-item-right text{
+    margin-left: 30rpx;
+    font-size: 28rpx;
+    color: #565656;
+}
+
+
+.equipinfo-item-left{
+    height: 100%;
+    width: 30%;
+    float: left;
+    display: flex;
+    align-items: center;
+    flex-direction:row;
+    justify-content:flex-end;
+}
+.equipinfo-item-left text{
+    font-size: 28rpx;
+    color: #161616;
+}
+.equipinfo-item-right{
+    height: 100%;
+    width: 70%;
+    float: right;
+    display: flex;
+    align-items: center;
+}
+.equipinfo-item-right text{
+    margin-left: 30rpx;
+    font-size: 28rpx;
+    color: #565656;
+}
+.equipinfo-item-last{
+    height: 89rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.equipinfo-item-last-btn{
+    height: 56rpx;
+    width: 130rpx;
+}
+.equipinfo-item-last-btn .weui-btn{
+    height: 100%;
+    width: 100%;
+    color: white;
+    background-color: #00a0e9;
+    font-size: 28rpx;
+}
