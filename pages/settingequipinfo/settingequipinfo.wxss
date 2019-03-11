@@ -1,0 +1,47 @@
+@import "../equipdetailsettinginfo/equipdetailsettinginfo.wxss";
+page{
+    line-height: 1.6;
+    font-family: -apple-system-font, "Helvetica Neue", sans-serif;
+    height: 100%;
+}
+.page{
+    height: 100%;
+    background-color: #e7e7e7;
+}
+.settingequipinfo{
+    height: 400rpx;
+    width: 94%;
+    background-color: white;
+    margin: auto;
+    border-radius: 24rpx;
+}
+.settingequipinfo-item{
+    height: 100rpx;
+    width: 100%;
+    border-bottom: 2rpx solid #e7e7e7;
+}
+.settingequipinfo-item-left{
+     height: 100%;
+     width: 25%;
+     float: left;
+    display: flex;
+    align-items: center;
+    flex-direction:row;
+    justify-content:flex-end;
+ }
+.settingequipinfo-item-right{
+    height: 100%;
+    width: 75%;
+    float: right;
+    display: flex;
+    align-items: center;
+}
+.settingequipinfo-item-left text{
+    font-size: 28rpx;
+    color: #161616;
+}
+.settingequipinfo-item-right input{
+    margin-left: 20rpx;
+    font-size: 28rpx;
+    color: #565656;
+}

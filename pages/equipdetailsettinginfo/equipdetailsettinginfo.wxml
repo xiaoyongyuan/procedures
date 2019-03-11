@@ -1,0 +1,96 @@
+<!--pages/equipdetailsettinginfo/equipdetailsettinginfo.wxml-->
+<view class="page">
+    <navbar back home text="{{navigationBarTitle}}"></navbar>
+    <view class="top" style="height: {{ someData.statusBarHeight+someData.titleBarHeight+10 }}px">
+        <!--占位view-->
+    </view>
+    <view class="equipinfo">
+        <view class="equipinfo-item-first">
+            <text>设备信息</text>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>IP:</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>192.168.10.64</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>端口号:</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>554</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>用户名:</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>admin</text>
+            </view>
+        </view>
+        <view class="equipinfo-item-last">
+            <view class="equipinfo-item-left">
+                <text>用户密码:</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>a1234567</text>
+            </view>
+        </view>
+
+    </view>
+    <view class="equipdetail">
+        <view class="equipinfo-item-first">
+            <text>设备详情</text>
+            <view class="equipinfo-flush">
+                <image class="equipinfo-flush-img" src="/images/flush.png"></image>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>软件版本号:</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>1.1.1</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>硬件版本号:</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>1.1.1</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>设备温度:</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>32℃</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>运行状态:</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>运行中</text>
+            </view>
+        </view>
+        <view class="equipinfo-item-last">
+            <view class="equipinfo-item-left">
+                <text>设置状态:</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>设置成功</text>
+            </view>
+        </view>
+    </view>
+    <view class="settinginfo-btn">
+        <button class="weui-btn" bindtap="changeTosettingequipinfo">设置</button>
+    </view>
+</view>

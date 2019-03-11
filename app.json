@@ -12,13 +12,15 @@
     "pages/addequip/addequip",
     "pages/bindingaccount/bindingaccount",
     "pages/alarmdetail/alarmdetail",
-    "pages/equipdetail/equipdetail"
+    "pages/equipdetail/equipdetail",
+    "pages/equipdetailsettinginfo/equipdetailsettinginfo",
+    "pages/settingequipinfo/settingequipinfo"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black",
+    "navigationBarTextStyle":"white",
     "navigationStyle":"custom"
   },
   "tabBar": {

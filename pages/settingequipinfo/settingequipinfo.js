@@ -1,4 +1,4 @@
-// pages/equipdetail/equipdetail.js
+// pages/settingequipinfo/settingequipinfo.js
 const app = getApp();
 Page({
 
@@ -6,19 +6,14 @@ Page({
      * 页面的初始数据
      */
     data: {
-        navigationBarTitle:'设备详情',
+        navigationBarTitle:'设置设备信息',
         // 这里是一些组件内部数据
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
         }
     },
-    //页面跳转
-    changeTosettinginfo:function(){
-        wx.navigateTo({
-            url:'../equipdetailsettinginfo/equipdetailsettinginfo'
-        })
-    },
+
     /**
      * 生命周期函数--监听页面加载
      */

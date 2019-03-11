@@ -153,12 +153,12 @@ page{
 }
 .equipinfo-item-last-btn{
     height: 56rpx;
-    width: 130rpx;
+    width: 160rpx;
 }
 .equipinfo-item-last-btn .weui-btn{
     height: 100%;
     width: 100%;
     color: white;
     background-color: #00a0e9;
-    font-size: 28rpx;
+    font-size: 24rpx;
 }
