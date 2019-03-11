@@ -1,4 +1,4 @@
-// pages/equipdetail/equipdetail.js
+// pages/defenceareasetting/defenceareasetting.js
 const app = getApp();
 Page({
 
@@ -6,23 +6,17 @@ Page({
      * 页面的初始数据
      */
     data: {
-        navigationBarTitle:'设备详情',
+        navigationBarTitle:'防区设置',
         // 这里是一些组件内部数据
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
         }
     },
-    //页面跳转设置信息
-    changeTosettinginfo:function(){
+    //页面跳转
+    changeTosettingequipinfo:function(){
         wx.navigateTo({
-            url:'../equipdetailsettinginfo/equipdetailsettinginfo'
-        })
-    },
-    //页面跳转防区设置
-    changeTodefenceareasetting:function(){
-        wx.navigateTo({
-            url:'../defenceareasetting/defenceareasetting'
+            url:'../settingequipinfo/settingequipinfo'
         })
     },
     /**

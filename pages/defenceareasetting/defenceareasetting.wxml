@@ -1,0 +1,65 @@
+<!--pages/equipdetailsettinginfo/equipdetailsettinginfo.wxml-->
+<view class="page">
+    <navbar back home text="{{navigationBarTitle}}"></navbar>
+    <view class="top" style="height: {{ someData.statusBarHeight+someData.titleBarHeight }}px">
+        <!--占位view-->
+    </view>
+    <view class="defencearea-top">
+        <view class="defencearea-img-inner">
+            <image class="defencearea-img" src="/images/fangqutu.png"></image>
+        </view>
+    </view>
+    <view class="defencearea-btn">
+        <view class="defencearea-btn-left">
+            <button class="weui-btn">增加防区</button>
+        </view>
+        <view class="defencearea-btn-right">
+            <button class="weui-btn">保存</button>
+        </view>
+    </view>
+    <view class="defenceareainfo">
+        <text>防区信息</text>
+    </view>
+    <view class="defenceareadelete">
+        <view class="defenceareadelete-one">
+            <view class="defenceareadelete-one-left">
+                <text>防区1</text>
+            </view>
+            <view class="defenceareadelete-one-right">
+                <view class="defenceareadelete-one-right-img">
+                    <image src="/images/shanchu2.png"></image>
+                </view>
+            </view>
+        </view>
+        <view class="defenceareadelete-two">
+            <view class="defenceareadelete-two-left">
+                <text>防区2</text>
+            </view>
+            <view class="defenceareadelete-two-right">
+                <view class="defenceareadelete-one-right-img">
+                    <image src="/images/shanchu2.png"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="guide">
+        <text>设防指引</text>
+    </view>
+    <view class="guideinfo">
+        <view class="guideinfo-top">
+            <text>
+                1、增加防区：点击增加防区按钮，手指放在图片的左上角出现一个红色区域，把手指放在红色区域的中间部分，移动 到自己想要的防区，手指放在四条边上可对区域的大小进行缩放，缩放到想要的区域是按保存键上传数据
+            </text>
+        </view>
+        <view class="guideinfo-middle">
+            <text>
+                2、删除防区：按钮的颜色和防区的颜色一一对应，最多可绘制两个防区，要想绘制防区必须删除一个防区
+            </text>
+        </view>
+        <view class="guideinfo-bottom">
+            <text>
+                3、获取图片：点击图片右上角的按钮，可随机抓取最新的图片
+            </text>
+        </view>
+    </view>
+</view>

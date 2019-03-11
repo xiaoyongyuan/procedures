@@ -1,0 +1,182 @@
+page{
+    line-height: 1.6;
+    font-family: -apple-system-font, "Helvetica Neue", sans-serif;
+    height: 100%;
+}
+.page{
+    height: 100%;
+    background-color: #e7e7e7;
+}
+.defencearea-top{
+    width: 100%;
+    height: 440rpx;
+    display: flex;
+    align-items: center;
+}
+.defencearea-img-inner{
+    width: 94%;
+    height: 90%;
+    margin: auto;
+}
+.defencearea-img{
+    width: 100%;
+    height: 100%;
+}
+.defencearea-btn{
+    height: 80rpx;
+    width: 100%;
+    margin-top: 20rpx;
+}
+.defencearea-btn-left{
+    height: 100%;
+    width: 50%;
+    float: left;
+}
+.defencearea-btn-right{
+    height: 100%;
+    width: 50%;
+    float: right;
+}
+.weui-btn{
+    width: 70%;
+    background-color: #f4f4f4;
+    font-size: 28rpx;
+    height: 100%;
+    border-radius: 24rpx;
+    color: #4f4f4f;
+}
+.defenceareainfo{
+    width: 100%;
+    height: 80rpx;
+}
+.defenceareainfo text{
+    font-size: 28rpx;
+    margin-left: 40rpx;
+    line-height: 80rpx;
+}
+.defenceareadelete{
+    height: 80rpx;
+    width: 100%;
+    margin-top: 40rpx;
+}
+.defenceareadelete-one{
+    width: 280rpx;
+    height: 100%;
+    border-radius: 24rpx;
+    border: 1px solid #00a0e9;
+    float: left;
+    margin-left: 24rpx;
+}
+.defenceareadelete-two{
+    float: left;
+    width: 280rpx;
+    height: 100%;
+    border-radius: 24rpx;
+    border: 1px solid #e26f82;
+    margin-left: 24rpx;
+}
+.defenceareadelete-one-left{
+    border-right: 1px solid #00a0e9;
+    width: 69%;
+    height: 100%;
+    float: left;
+    display: flex;
+    justify-content: center;
+}
+.defenceareadelete-two-left{
+    border-right: 1px solid #e26f82;
+    width: 69%;
+    height: 100%;
+    float: left;
+    display: flex;
+    justify-content: center;
+}
+.defenceareadelete-one-right{
+    float: right;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.defenceareadelete-two-right{
+    float: right;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.defenceareadelete-one-left text{
+    font-size: 28rpx;
+    color: #4f4f4f;
+    line-height: 80rpx;
+}
+.defenceareadelete-two-left text{
+    font-size: 28rpx;
+    color: #4f4f4f;
+    line-height: 80rpx;
+}
+.defenceareadelete-one-right-img{
+    width: 28rpx;
+    height: 30rpx;
+    margin: auto;
+    margin-top: 10rpx;
+}
+.defenceareadelete-one-right-img image{
+    width: 100%;
+    height: 100%;
+}
+.guide{
+    width: 100%;
+    height: 70rpx;
+    margin-top: 20rpx;
+}
+.guide text{
+    font-size: 28rpx;
+    margin-left: 40rpx;
+    line-height: 70rpx;
+}
+.guideinfo{
+    height: 320rpx;
+    width: 94%;
+    background-color: white;
+    border-radius: 24rpx;
+    margin: auto;
+}
+.guideinfo-top{
+    margin: auto;
+    width: 96%;
+    height: 45%;
+    position: relative;
+    line-height: 30rpx;
+}
+.guideinfo-middle{
+    margin: auto;
+    width: 96%;
+    height: 25%;
+    position: relative;
+    line-height: 30rpx;
+}
+.guideinfo-top text{
+    font-size: 24rpx;
+    position: absolute;
+    top: 0;
+}
+.guideinfo-middle text{
+    font-size: 24rpx;
+    position: absolute;
+    top: 0;
+}
+.guideinfo-bottom{
+    margin: auto;
+    width: 96%;
+    height: 30%;
+    position: relative;
+    line-height: 30rpx;
+}
+.guideinfo-bottom text{
+    font-size: 24rpx;
+    position: absolute;
+    top: 0;
+}
