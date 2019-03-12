@@ -16,10 +16,50 @@
     </view>
     <view class="start-end-time">
         <view class="starttime">
-
+            <view class="section">
+                <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+                    <view class="picker">
+                        开始时间{{array[index]}}
+                    </view>
+                </picker>
+            </view>
+        </view>
+        <view class="section">
+            <text>~~</text>
         </view>
         <view class="endtime">
+            <view class="section">
+                <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+                    <view class="picker">
+                        截止时间{{array[index]}}
+                    </view>
+                </picker>
+            </view>
+        </view>
+        <view class="queryechart">
+            <text>图表查看</text>
+        </view>
+    </view>
 
+    <view class="fortitytimelist">
+        <view class="fortitytimelist-left">
+            <view class="fortitytimelist-left-top">
+                <view class="circle"></view>
+                <view class="day">
+                    <text>工作日</text>
+                </view>
+            </view>
+            <view class="fortitytimelist-left-bottom">
+                <view class="timeicon">
+                    <image src="/images/timeqx.png"></image>
+                </view>
+                <view class="time">
+                    <text>0:00~23:00</text>
+                </view>
+            </view>
+        </view>
+        <view class="fortitytimelist-right">
+            <switch class="switch" checked bindchange="switch1Change" />
         </view>
 
     </view>

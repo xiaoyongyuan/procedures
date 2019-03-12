@@ -18,7 +18,132 @@
     margin: auto;
 }
 .start-end-time{
+    display: flex;
     width: 100%;
     height: 70rpx;
-    background-color: orange;
+}
+.section{
+    height: 70rpx;
+    line-height: 70rpx;
+}
+.section text{
+    margin-left: 20rpx;
+}
+.starttime{
+    width: 30%;
+    height: 100%;
+    border: 1px solid #efefef;
+    border-radius: 24rpx;
+    margin-left: 20rpx;
+}
+.endtime{
+    width: 30%;
+    height: 100%;
+    border: 1px solid #efefef;
+    border-radius: 24rpx;
+    margin-left: 20rpx;
+}
+.picker{
+    font-size: 26rpx;
+    /*color: #bbb;*/
+    margin: auto;
+}
+.queryechart{
+    height: 70rpx;
+    font-size: 26rpx;
+    color: #22abeb;
+    line-height: 70rpx;
+    margin-left: 40rpx;
+}
+.fortitytimelist{
+    height: 140rpx;
+    width: 94%;
+    border-radius: 24rpx;
+    border: 1px solid #efefef;
+    margin: auto;
+    margin-top: 40rpx;
+}
+.fortitytimelist-left{
+    height: 100%;
+    width: 80%;
+    float: left;
+}
+.fortitytimelist-right{
+    height: 100%;
+    width: 20%;
+    float: right;
+    display: flex;
+    align-items: center;
+}
+.switch{
+    margin: auto;
+}
+
+/*swtich整体大小及背景色*/
+.wx-switch-input{
+    width:82rpx !important;
+    height:36rpx !important;
+    background: #009ee8 !important;
+    border: #009ee8 !important; /* 2018-07-18 重置开关边框颜色 */
+}
+/*白色样式（false的样式）*/
+.wx-switch-input::before{
+    width:82rpx !important;
+    height: 36rpx !important;
+    background: #9a9a9a !important;
+    border: #9a9a9a !important; /* 2018-07-18 重置开关边框颜色 */
+}
+/*绿色样式（true的样式）*/
+.wx-switch-input::after{
+    background: #e7e7e7 !important;
+    width: 40rpx !important;
+    height: 36rpx !important;
+}
+.fortitytimelist-left-top{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+}
+.fortitytimelist-left-bottom{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.circle {
+    width: 20rpx;
+    height: 20rpx;
+    border-radius: 50%;
+    background-color: #00a0e9;
+    position: relative;
+    /*top: 10rpx;*/
+    left: 30rpx;
+}
+.day{
+    height: 100%;
+    margin-left: 50rpx;
+}
+.day text{
+    line-height: 70rpx;
+    font-size: 26rpx;
+}
+.timeicon{
+    width: 30rpx;
+    height: 30rpx;
+    margin-left: 30rpx;
+    margin-top: -10rpx;
+}
+.timeicon image{
+    width: 100%;
+    height: 100%;
+}
+.time{
+    height: 100%;
+    margin-left: 20rpx;
+}
+.time text{
+    line-height: 70rpx;
+    font-size: 26rpx;
 }
