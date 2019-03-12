@@ -1,0 +1,24 @@
+
+
+.radio-list{
+    width: 100%;
+    height: 100rpx;
+    display: flex;
+    align-items: center;
+}
+.radio-item{
+    width: 33.33%;
+    height: 100%;
+    float: left;
+    font-size: 26rpx;
+}
+.radio-list-inner{
+    width: 80%;
+    height: 50%;
+    margin: auto;
+}
+.start-end-time{
+    width: 100%;
+    height: 70rpx;
+    background-color: orange;
+}

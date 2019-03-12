@@ -9,7 +9,7 @@
     <view class="alarmdetail">
         <!--报警图片-->
         <view class="alarmdetail-pic" hidden="{{currentTab!==0}}">
-            <image src="/images/alarmdetailpic.png"></image>
+            <image src="http://pic01.aokecloud.cn/alarm/1000004/pic/20190119/1000004_20190119102346_320X240.jpg"></image>
             <view class="alarmdetail-check">
                 <view class="alarmdetail-check-in">
                     <view class="alarmdetail-check-in-left">

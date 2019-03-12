@@ -6,7 +6,7 @@
     </view>
     <view class="defencearea-top">
         <view class="defencearea-img-inner">
-            <image class="defencearea-img" src="/images/fangqutu.png"></image>
+            <image class="defencearea-img" src="http://pic01.aokecloud.cn/alarm/1000004/pic/20190114/1000004_20190114093241_640X480.jpg"></image>
         </view>
     </view>
     <view class="defencearea-btn">

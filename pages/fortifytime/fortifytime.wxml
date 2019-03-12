@@ -1,5 +1,28 @@
 <!--pages/fortifytime/fortifytime.wxml-->
 <view class="page">
     <navbar back home text="{{navigationBarTitle}}"></navbar>
+    <view class="top" style="height: {{ someData.statusBarHeight+someData.titleBarHeight }}px">
+        <!--占位view-->
+    </view>
+
+    <view class="radio-list">
+        <view class="radio-list-inner">
+            <radio-group  bindchange="checkboxChange">
+                <label wx:for="{{items}}" class="radio-item">
+                    <radio value="{{item.value}}"  color="#594d9c" checked="{{item.checked}}">{{item.name}}</radio>
+                </label>
+            </radio-group>
+        </view>
+    </view>
+    <view class="start-end-time">
+        <view class="starttime">
+
+        </view>
+        <view class="endtime">
+
+        </view>
+
+    </view>
+
 
 </view>
