@@ -1,6 +1,5 @@
 <!--pages/fortifytime/fortifytime.wxml-->
 <view class="page">
-    <text>设防时间</text>
-
+    <navbar back home text="{{navigationBarTitle}}"></navbar>
 
 </view>

@@ -1,0 +1,13 @@
+<view class="navbar" style="{{'height: ' + navigationBarHeight}}">
+  <view style="{{'height: ' + statusBarHeight}}"></view>
+  <view class="status-bar" style="height:{{someData.statusBarHeight}}px"></view>
+  <view class='title-container' style="height:{{someData.titleBarHeight}}px">
+    <view class='capsule' wx:if="{{ back || home }}">
+      <view>
+        <image src='img/back.svg' bindtap='back' wx:if="{{back}}"></image>
+        <text class="unlabeled">添加</text>
+      </view>
+    </view>
+    <view class='title'>{{text}}</view>
+  </view>
+</view>
