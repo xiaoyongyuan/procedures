@@ -37,7 +37,7 @@
             </view>
         </view>
         <view class="queryechart">
-            <text>图表查看</text>
+            <text bindtap="changeTofortifytimeEchart">图表查看</text>
         </view>
     </view>
 

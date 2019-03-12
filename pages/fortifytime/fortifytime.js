@@ -33,6 +33,12 @@ Page({
     checkboxChange: function (e) {
         console.log('checkbox发生chang事件', e.detail.value)
     },
+    //页面跳转图表查看
+    changeTofortifytimeEchart:function(){
+        wx.navigateTo({
+            url:'../fortifytimeEchart/fortifytimeEchart'
+        })
+    },
     switch1Change(e) {
         console.log('switch1 发生 change 事件，携带值为', e.detail.value)
     },

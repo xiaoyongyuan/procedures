@@ -16,7 +16,8 @@
     "pages/equipdetailsettinginfo/equipdetailsettinginfo",
     "pages/settingequipinfo/settingequipinfo",
     "pages/defenceareasetting/defenceareasetting",
-    "pages/fortifytime/fortifytime"
+    "pages/fortifytime/fortifytime",
+    "pages/fortifytimeEchart/fortifytimeEchart"
   ],
   "window":{
     "backgroundTextStyle":"light",
