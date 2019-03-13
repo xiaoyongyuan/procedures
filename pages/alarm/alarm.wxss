@@ -23,6 +23,8 @@ page {
 .select-list{
     display: flex;
     justify-content: center;
+    position: relative;
+    z-index: 998;
 }
 .list-msg2 {
     height: 60rpx;
