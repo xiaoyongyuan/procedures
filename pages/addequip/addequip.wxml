@@ -7,9 +7,8 @@
                 <input class="weui-input" placeholder="请输入设备安装地址" />
             </view>
             <view class="view-input">
-                <input class="weui-input" placeholder="请输入设备ID" />
+                <input class="weui-input" placeholder="请输入设备ID" value="{{ scanresult }}" />
                 <image src='../../images/saoyisao.png' class="scancode" style='display:inline' mode="aspectFit" bindtap="click"></image>
-                <view>{{show}}</view>
             </view>
         </view>
     </view>

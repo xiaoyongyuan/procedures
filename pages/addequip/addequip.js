@@ -11,27 +11,26 @@ Page({
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
-        }
+        },
+        scanresult:''
     },
     //扫一扫
     click: function (event) {
         var that = this;
-        var show;
         wx.scanCode({
             success: (res) => {
-                this.show = "结果:" + res.result + "二维码类型:" + res.scanType + "字符集:" + res.charSet + "路径:" + res.path;
                 that.setData({
-                    show: this.show
+                    scanresult:res.result
                 })
                 wx.showToast({
-                    title: '成功',
+                    title: '扫描成功',
                     icon: 'success',
                     duration: 2000
                 })
             },
             fail: (res) => {
                 wx.showToast({
-                    title: '失败',
+                    title: '扫描失败',
                     icon: 'success',
                     duration: 2000
                 })
