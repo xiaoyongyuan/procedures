@@ -1,6 +1,6 @@
 <!--pages/alarm/alarm.wxml-->
 <view class="page">
-    <navbar back home text="{{navigationBarTitle}}"></navbar>
+    <navbar back text="{{navigationBarTitle}}"></navbar>
     <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}" bindtap="go"></view>
 
     <view class="select-list">
@@ -9,9 +9,12 @@
             <image style='height:24rpx;width:40rpx;' src='/images/below.png'></image>
         </view>
     </view>
+
     <view class="top" style="height: {{ someData.statusBarHeight+someData.titleBarHeight +40 }}px">
         <!--占位view-->
     </view>
+
+    <!--<input class="weui-input" placeholder="请输入设备ID" value="{{ scanresult }}" />-->
 
     <view class='list-li mflex'  wx:for="{{alarmListData}}"  wx:key="index" >
         <view class="alarm-list">

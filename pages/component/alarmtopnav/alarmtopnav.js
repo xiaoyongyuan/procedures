@@ -1,5 +1,6 @@
 const app = getApp()
 
+
 Component({
 
   properties: {
@@ -11,10 +12,11 @@ Component({
       type: Boolean,
       value: false
     },
-    home: {
-      type: Boolean,
-      value: false
+    scanresultbefore:{
+        type:String,
+        value:''
     }
+
   },
 
   data: {
@@ -41,10 +43,9 @@ Component({
           var that = this;
           wx.scanCode({
               success: (res) => {
-                  this.show = "结果:" + res.result + "二维码类型:" + res.scanType + "字符集:" + res.charSet + "路径:" + res.path;
-                  that.setData({
-                      show: this.show
-                  })
+                  var scanresult = res.result;
+                 wx.setStorageSync('scanresult',scanresult);
+                 console.log("前",scanresult);
                   wx.showToast({
                       title: '成功',
                       icon: 'success',

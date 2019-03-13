@@ -13,7 +13,11 @@ page {
     background-color: #fff;
     position: relative;
 }
-
+.weui-input{
+    /*display: none;*/
+    width: 85%;
+    border: 1px solid #f00;
+}
 .list-msg1 {
     height: 60rpx;
     display: flex;

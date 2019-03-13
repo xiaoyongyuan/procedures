@@ -82,7 +82,8 @@ Page({
                 "alarmobj": "人",
                 "imgUrl": "http://pic01.aokecloud.cn/alarm/1000019/pic/20190312//EFGABC019_20190312165339.jpg",
             },
-        ]
+        ],
+        scanresult:''
     },
     //跳转详情页
     changeToalarmdetail:function(){
@@ -121,6 +122,7 @@ Page({
                 })
             }
         })
+
     },
     bindShowMsg: function () {
         this.setData({
@@ -133,11 +135,6 @@ Page({
             select:!this.data.select
         })
     },
-    // bindShowMsg() {
-    //     this.setData({
-    //         select:!this.data.select
-    //     })
-    // },
     mySelect(e) {
         var name = e.currentTarget.dataset.name
         this.setData({
@@ -191,7 +188,11 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        const scanresult = wx.getStorageSync('scanresult');
+        this.setData({
+            scanresult:scanresult
+        })
+        console.log("后",scanresult);
     },
 
     /**

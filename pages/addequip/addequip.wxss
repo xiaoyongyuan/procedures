@@ -46,14 +46,10 @@ page{
     width: 80%;
     align-items: center;
     display: flex;
-
-    /*flex-direction: row;*/
 }
 .weui-input{
-    /*background-color: orange;*/
     width: 85%;
     display:inline-block;
-    /*height: 100%;*/
 }
 .scancode{
     width: 50rpx;

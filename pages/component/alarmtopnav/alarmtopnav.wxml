@@ -6,9 +6,9 @@
       <view bindtap='back'>
         <image class="calendar" src='img/calendar.png'></image>
         <image src='img/saoyisao.png' bindtap="clicks"></image>
-        <view>{{show}}</view>
       </view>
     </view>
     <view class='title'>{{text}}</view>
+    <view>{{ scanresultbefore }}</view>
   </view>
 </view>
