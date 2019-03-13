@@ -40,26 +40,34 @@
 
     </view>
     <view class="my-list">
-      <navigator url="#" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="selectcompany">
+      <navigator
+              url="/pages/selectcompany/selectcompany"
+              class="weui-cell weui-cell_access"
+              hover-class="weui-cell_active"
+      >
         <view class="weui-cell__bd weui-cell_primary">
           <view>选择企业</view>
         </view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </navigator>
-      <navigator url="#" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="changeToaddequip">
+      <navigator
+              url="/pages/addequip/addequip"
+              class="weui-cell weui-cell_access"
+              hover-class="weui-cell_active"
+      >
         <view class="weui-cell__bd weui-cell_primary">
           <view>添加设备</view>
         </view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </navigator>
-      <navigator url="#" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__bd weui-cell_primary">
           <view>修改密码</view>
         </view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-      </navigator>
-      <navigator
-              url="#"
+      </view>
+      <view
               class="weui-cell weui-cell_access"
               hover-class="weui-cell_active"
               bindtap="submit"
@@ -70,12 +78,11 @@
         <view class="cache">
           <text>{{ cache }}KB</text>
         </view>
-      </navigator>
+      </view>
       <navigator
-              url="#"
+              url="/pages/versions/versions"
               class="weui-cell weui-cell_access"
               hover-class="weui-cell_active"
-              bindtap="changeToversion"
       >
         <view class="weui-cell__bd weui-cell_primary">
           <view>版本</view>

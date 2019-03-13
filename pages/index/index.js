@@ -35,21 +35,6 @@ Page({
             duration: 2000
         });
     },
-    changeToversion:function(){
-        wx.navigateTo({
-            url:'../versions/versions'
-        })
-    },
-    selectcompany:function(){
-        wx.navigateTo({
-            url:'../selectcompany/selectcompany'
-        })
-    },
-    changeToaddequip:function(){
-        wx.navigateTo({
-            url:'../addequip/addequip'
-        })
-    },
     /**
      * 生命周期函数--监听页面加载
      */
