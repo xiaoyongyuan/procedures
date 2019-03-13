@@ -5,7 +5,7 @@
     <view class='capsule' wx:if="{{ back || home }}">
       <view>
         <image src='img/back.svg' bindtap='back' wx:if="{{back}}"></image>
-        <text class="unlabeled">刷新</text>
+        <text class="unlabeled" bindtap="aa">刷新</text>
       </view>
     </view>
     <view class='title'>{{text}}</view>
