@@ -1,6 +1,23 @@
 <!--pages/alarm/alarm.wxml-->
 <view class="page">
-    <navbar back text="{{navigationBarTitle}}"></navbar>
+    <view class="navbar" style="{{'height: ' + navigationBarHeight}}">
+        <view style="{{'height: ' + statusBarHeight}}"></view>
+        <view class="status-bar" style="height:{{someData.statusBarHeight}}px"></view>
+        <view class='title-container' style="height:{{someData.titleBarHeight}}px">
+            <view class='capsule'>
+                <view bindtap='back'>
+                    <image class="calendar" src='/images/calendar.png'></image>
+                    <image src='/images/saoyisao2.png' bindtap="clicks"></image>
+                </view>
+            </view>
+            <view class='title'>{{text}}</view>
+            <view>{{ scanresultbefore }}</view>
+        </view>
+    </view>
+
+
+
+    <!--<navbar back text="{{navigationBarTitle}}"></navbar>-->
     <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}" bindtap="go"></view>
 
     <view class="select-list">
@@ -14,7 +31,7 @@
         <!--占位view-->
     </view>
 
-    <!--<input class="weui-input" placeholder="请输入设备ID" value="{{ scanresult }}" />-->
+    <input class="weui-input" placeholder="请输入设备ID" value="{{ scanresult }}" />
 
     <view class='list-li mflex'  wx:for="{{alarmListData}}"  wx:key="index" >
         <view class="alarm-list">
