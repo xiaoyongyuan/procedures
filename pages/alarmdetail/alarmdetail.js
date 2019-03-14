@@ -13,7 +13,9 @@ Page({
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
-        }
+        },
+        // list传过来的详情
+        detail:{},
     },
 
     navbarTap: function(e){
@@ -26,7 +28,14 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        var that= this
+        // 字符串转json
+        var info = JSON.parse(options.Mesgs);
+        that.setData({
+            // 把从list页面获取到的属性值赋给详情页的detail，供详情页使用
+            detail: info
+        })
+        console.log("detail",this.data.detail);
     },
 
     /**

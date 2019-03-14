@@ -28,17 +28,19 @@ Page({
         //测试模拟数据
         alarmListData: [
             {
-                "alarmtype": "入侵报警",
-                "alarmtime": "2019-03-12 18:01:38",
-                "equip": "yy",
-                "alarmobj": "人",
-                "imgUrl": "http://pic01.aokecloud.cn/alarm/1000004/pic/20190119/1000004_20190119104637_320X240.jpg",
+                alarmtype: "12",
+                alarmtime: "2019-03-12 18:01:38",
+                equip: "yy",
+                alarmobj: "人23",
+                "address": "理工大",
+                imgUrl: "http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg",
             },
             {
                 "alarmtype": "整点打卡",
                 "alarmtime": "2019-02-12 12:43:38",
                 "equip": "西安",
                 "alarmobj": "人",
+                "address": "咸阳",
                 "imgUrl": "http://pic01.aokecloud.cn/alarm/1000019/pic/20190312/EFGABC019_20190312182043_320X180.jpg",
             },
             {
@@ -46,13 +48,15 @@ Page({
                 "alarmtime": "2019-03-12 18:01:38",
                 "equip": "yy",
                 "alarmobj": "人",
-                "imgUrl": "http://pic01.aokecloud.cn/alarm/1000004/pic/20190119/1000004_20190119104637_320X240.jpg",
+                "address": "咸阳",
+                "imgUrl": "http://pic22.nipic.com/20120714/9622064_105642209176_2.jpg",
             },
             {
                 "alarmtype": "整点打卡",
                 "alarmtime": "2019-02-12 12:43:38",
                 "equip": "西安",
                 "alarmobj": "人",
+                "address": "渭南",
                 "imgUrl": "http://pic01.aokecloud.cn/alarm/1000019/pic/20190312/EFGABC019_20190312180148_320X180.jpg",
             },
             {
@@ -60,6 +64,7 @@ Page({
                 "alarmtime": "2019-03-12 18:01:38",
                 "equip": "yy",
                 "alarmobj": "人",
+                "address": "渭南",
                 "imgUrl": "http://pic01.aokecloud.cn/alarm/1000019/pic/20190312/EFGABC019_20190312175426_320X180.jpg",
             },
             {
@@ -67,6 +72,7 @@ Page({
                 "alarmtime": "2019-03-12 16:53:39",
                 "equip": "西安",
                 "alarmobj": "人",
+                "address": "渭南",
                 "imgUrl": "http://pic01.aokecloud.cn/alarm/1000019/pic/20190312/EFGABC019_20190312172013_320X180.jpg",
             },
             {
@@ -74,6 +80,7 @@ Page({
                 "alarmtime": "2019-03-12 16:50:03",
                 "equip": "yy",
                 "alarmobj": "人",
+                "address": "渭南",
                 "imgUrl": "http://pic01.aokecloud.cn/alarm/1000019/pic/20190312/EFGABC019_20190312163744_320X180.jpg",
             },
             {
@@ -81,6 +88,7 @@ Page({
                 "alarmtime": "2019-03-12 16:37:44",
                 "equip": "西安",
                 "alarmobj": "人",
+                "address": "渭南",
                 "imgUrl": "http://pic01.aokecloud.cn/alarm/1000019/pic/20190312//EFGABC019_20190312165339.jpg",
             },
         ],
@@ -89,9 +97,16 @@ Page({
     /**
      * 跳转报警详情页
      */
-    changeToalarmdetail:function(){
+    changeToalarmdetail:function(e){
+        var that = this;
+        //获取当前点击元素的id(索引值)
+        var Id = e.currentTarget.id;
+        //获取当前点击元素的属性值。
+        var mesg = that.data.alarmListData[Id];
+        //因为获取到的值是个对象，url只能传字符串，所以必须把它转化为字符串。
+        mesg = JSON.stringify(mesg);
         wx.navigateTo({
-            url:'../alarmdetail/alarmdetail'
+            url:'../alarmdetail/alarmdetail?Mesgs=' + mesg
         })
     },
 

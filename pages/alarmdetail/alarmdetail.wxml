@@ -9,7 +9,7 @@
     <view class="alarmdetail">
         <!--报警图片-->
         <view class="alarmdetail-pic" hidden="{{currentTab!==0}}">
-            <image src="http://pic01.aokecloud.cn/alarm/1000004/pic/20190119/1000004_20190119102346_320X240.jpg"></image>
+            <image src="{{ detail.imgUrl }}"></image>
             <view class="alarmdetail-check">
                 <view class="alarmdetail-check-in">
                     <view class="alarmdetail-check-in-left">
@@ -29,22 +29,22 @@
             <view class="alarmdetail-info">
                 <view class="alarmdetail-info-item">
                     <view class="alarmdetail-info-item-left">
-                        <text>报警类型： 入侵报警</text>
+                        <text>报警类型： {{ detail.alarmtype }}</text>
                     </view>
                     <view class="alarmdetail-info-item-right">
-                        <text>报警对象： 人</text>
+                        <text>报警对象： {{ detail.alarmobj }}</text>
                     </view>
                 </view>
                 <view class="alarmdetail-info-item">
                     <view class="alarmdetail-info-item-left">
-                        <text>设备： 椒图精灵SO1</text>
+                        <text>设备： {{ detail.equip }}</text>
                     </view>
                     <view class="alarmdetail-info-item-right">
-                        <text>设备地点： yy</text>
+                        <text>设备地点： {{ detail.address }}</text>
                     </view>
                 </view>
                 <view class="alarmdetail-info-item">
-                    <text>报警时间：2019-01-19 10:50:59</text>
+                    <text>报警时间：{{ detail.alarmtime }}</text>
                 </view>
             </view>
             <view class="alarmdetail-btn">
