@@ -11,7 +11,9 @@ Page({
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
-        }
+        },
+        // list传过来的详情
+        detail:{},
     },
     //页面跳转设置信息
     changeTosettinginfo:function(){
@@ -35,7 +37,13 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        var that= this
+        // 字符串转json
+        var info = JSON.parse(options.Mesgs);
+        that.setData({
+            // 把从list页面获取到的属性值赋给详情页的detail，供详情页使用
+            detail: info
+        })
     },
 
     /**

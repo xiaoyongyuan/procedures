@@ -56,7 +56,7 @@
                 <text>设备</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>efa60tt7</text>
+                <text>{{ detail.equip }}</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -64,7 +64,7 @@
                 <text>报警类型</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>入侵报警</text>
+                <text>{{ detail.alarmtype }}</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -72,15 +72,15 @@
                 <text>所在位置</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>西安</text>
+                <text>{{ detail.address }}</text>
             </view>
         </view>
         <view class="equipinfo-item">
             <view class="equipinfo-item-left">
-                <text>报警最后时间</text>
+                <text>最后报警时间</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>2019-01-14 13:14:56</text>
+                <text>{{ detail.alarmtime }}</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -88,7 +88,7 @@
                 <text>防区设置</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>1个</text>
+                <text>{{ detail.defenceareasetting }}个</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -96,7 +96,7 @@
                 <text>设防时间</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>2段</text>
+                <text>{{ detail.fortifytime }}段</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -104,7 +104,7 @@
                 <text>上次心跳</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>2019-01-14 13:14:56</text>
+                <text>{{ detail.lastheart }}</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -112,7 +112,8 @@
                 <text>设备温度</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>53℃</text>
+                <text wx:if="{{detail.equiptemp > 50}}" style="color: #df1737">{{ detail.equiptemp }}℃</text>
+                <text wx:else style="color: #00a0e9">{{ detail.equiptemp }}℃</text>
             </view>
         </view>
         <view class="equipinfo-item-last">
@@ -130,7 +131,8 @@
                 <text>设备IP</text>
             </view>
             <view class="camera-item-right">
-                <text>192.168.1.66</text>
+                <text wx:if="{{ detail.equipIP !== '' }}">{{ detail.equipIP }}</text>
+                <text wx:else>未设定</text>
             </view>
         </view>
         <view class="camera-item">
@@ -138,7 +140,8 @@
                 <text>设备端口</text>
             </view>
             <view class="camera-item-right">
-                <text>554</text>
+                <text wx:if="{{ detail.port !== '' }}">{{ detail.port }}</text>
+                <text wx:else>无</text>
             </view>
         </view>
         <view class="camera-item">
@@ -146,7 +149,8 @@
                 <text>设备状态</text>
             </view>
             <view class="camera-item-right">
-                <text>设备离线</text>
+                <text wx:if="{{ detail.equipstate == 0 }}">设备离线</text>
+                <text wx:else style="color: #00a0e9">运行中</text>
             </view>
         </view>
         <view class="camera-item">
@@ -154,7 +158,7 @@
                 <text>设备软件版本</text>
             </view>
             <view class="camera-item-right">
-                <text>0.9</text>
+                <text>{{ detail.softversion }}</text>
             </view>
         </view>
         <view class="camera-item">
@@ -162,7 +166,7 @@
                 <text>设备硬件版本</text>
             </view>
             <view class="camera-item-right">
-                <text>0.9</text>
+                <text>{{ detail.hardversion }}</text>
             </view>
         </view>
         <view class="camera-item">
@@ -170,7 +174,7 @@
                 <text>升级时间</text>
             </view>
             <view class="camera-item-right">
-                <text>无</text>
+                <text>{{ detail.upgradetime }}</text>
             </view>
         </view>
         <view class="camera-item">
@@ -178,7 +182,7 @@
                 <text>登录时间</text>
             </view>
             <view class="camera-item-right">
-                <text>2019-01-14 13:14:56</text>
+                <text>{{ detail.logintime }}</text>
             </view>
         </view>
         <view class="camera-item">
@@ -186,7 +190,8 @@
                 <text>当前状态</text>
             </view>
             <view class="camera-item-right">
-                <text>正常</text>
+                <text wx:if="{{ detail.currentstate === 1 }}">正常</text>
+                <text wx:else>未工作</text>
             </view>
         </view>
     </view>

@@ -4,7 +4,7 @@
 
     <view class='list-li mflex'  wx:for="{{equipListData}}"  wx:key="index" >
         <view class="alarm-list">
-            <view class="alarm-list-one" bindtap="changeToequipdetail">
+            <view class="alarm-list-one" bindtap="changeToequipdetail" id='{{index}}'>
                 <view class="alarm-list-one-top">
                     <view class="alarm-list-one-top-left">
                         <view class="alarm-list-one-top-left-bac">
