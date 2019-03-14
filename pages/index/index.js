@@ -40,17 +40,6 @@ Page({
      */
     onLoad: function (options) {
         var that = this;
-        //   that.setData({
-        //     userInfo: app.globalData.userInfo
-        //   });
-        wx.getSystemInfo({
-            success:function (res) {
-                console.log(res.brand);//手机品牌
-                console.log(res.model);//手机型号
-                console.log(res.screenWidth)//手机屏幕宽度
-                console.log("手机屏幕高度",res.screenHeight)//手机屏幕高度
-            }
-        })
         if (app.globalData.userInfo) {
             this.setData({
                 userInfo: app.globalData.userInfo,
@@ -88,13 +77,15 @@ Page({
                 x: '' ,
                 y: ''
             },
-
             success: function(res) {
                 //这里就是请求成功后，进行一些函数操作
                 that.setData({
                     alarm:res.data.stories[0].ga_prefix
                 })
                 console.log(res.data.stories[0].ga_prefix)
+            },
+            fail: function (res) {
+                console.log(res);
             }
         })
     },

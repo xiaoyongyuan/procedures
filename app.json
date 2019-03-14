@@ -1,22 +1,22 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/register/register",
-    "pages/logs/logs",
-    "pages/authorize/authorize",
     "pages/equip/equip",
     "pages/alarm/alarm",
     "pages/business/business",
+    "pages/register/register",
+    "pages/bindingaccount/bindingaccount",
+    "pages/logs/logs",
+    "pages/authorize/authorize",
     "pages/versions/versions",
     "pages/selectcompany/selectcompany",
     "pages/addequip/addequip",
-    "pages/bindingaccount/bindingaccount",
     "pages/alarmdetail/alarmdetail",
     "pages/equipdetail/equipdetail",
     "pages/equipdetailsettinginfo/equipdetailsettinginfo",
-    "pages/settingequipinfo/settingequipinfo",
     "pages/defenceareasetting/defenceareasetting",
     "pages/fortifytime/fortifytime",
+    "pages/settingequipinfo/settingequipinfo",
     "pages/fortifytimeEchart/fortifytimeEchart"
   ],
   "window":{

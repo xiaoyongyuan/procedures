@@ -1,6 +1,7 @@
 // pages/alarm/alarm.js
 var dateTimePicker = require('../../utils/dateTimePicker.js');
 const app = getApp();
+var request = require('../../utils/request.js');
 Page({
 
     /**
@@ -26,72 +27,7 @@ Page({
             titleBarHeight: app.globalData.titleBarHeight
         },
         //测试模拟数据
-        alarmListData: [
-            {
-                alarmtype: "12",
-                alarmtime: "2019-03-12 18:01:38",
-                equip: "yy",
-                alarmobj: "人23",
-                "address": "理工大",
-                imgUrl: "http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg",
-            },
-            {
-                "alarmtype": "整点打卡",
-                "alarmtime": "2019-02-12 12:43:38",
-                "equip": "西安",
-                "alarmobj": "人",
-                "address": "咸阳",
-                "imgUrl": "http://pic01.aokecloud.cn/alarm/1000019/pic/20190312/EFGABC019_20190312182043_320X180.jpg",
-            },
-            {
-                "alarmtype": "入侵报警",
-                "alarmtime": "2019-03-12 18:01:38",
-                "equip": "yy",
-                "alarmobj": "人",
-                "address": "咸阳",
-                "imgUrl": "http://pic22.nipic.com/20120714/9622064_105642209176_2.jpg",
-            },
-            {
-                "alarmtype": "整点打卡",
-                "alarmtime": "2019-02-12 12:43:38",
-                "equip": "西安",
-                "alarmobj": "人",
-                "address": "渭南",
-                "imgUrl": "http://pic01.aokecloud.cn/alarm/1000019/pic/20190312/EFGABC019_20190312180148_320X180.jpg",
-            },
-            {
-                "alarmtype": "入侵报警",
-                "alarmtime": "2019-03-12 18:01:38",
-                "equip": "yy",
-                "alarmobj": "人",
-                "address": "渭南",
-                "imgUrl": "http://pic01.aokecloud.cn/alarm/1000019/pic/20190312/EFGABC019_20190312175426_320X180.jpg",
-            },
-            {
-                "alarmtype": "整点打卡",
-                "alarmtime": "2019-03-12 16:53:39",
-                "equip": "西安",
-                "alarmobj": "人",
-                "address": "渭南",
-                "imgUrl": "http://pic01.aokecloud.cn/alarm/1000019/pic/20190312/EFGABC019_20190312172013_320X180.jpg",
-            },
-            {
-                "alarmtype": "入侵报警",
-                "alarmtime": "2019-03-12 16:50:03",
-                "equip": "yy",
-                "alarmobj": "人",
-                "address": "渭南",
-                "imgUrl": "http://pic01.aokecloud.cn/alarm/1000019/pic/20190312/EFGABC019_20190312163744_320X180.jpg",
-            },
-            {
-                "alarmtype": "整点打卡",
-                "alarmtime": "2019-03-12 16:37:44",
-                "equip": "西安",
-                "alarmobj": "人",
-                "address": "渭南",
-                "imgUrl": "http://pic01.aokecloud.cn/alarm/1000019/pic/20190312//EFGABC019_20190312165339.jpg",
-            },
-        ],
+        alarmListData: [],
         scanresult:''
     },
     /**
@@ -157,6 +93,44 @@ Page({
                 })
             }
         })
+        /**
+         * 请求列表接口
+         */
+
+        request.postReq("/api/alarm/getlist_forAPP",
+            {
+                account:'18210812953',
+                apptime:'2019-01-19 22:23'
+            },
+            function(res){
+                that.setData({
+                alarmListData:res.data
+            })
+            console.log("alarmListData",that.data.alarmListData);
+        })
+
+        // wx.request({
+        //     url: 'http://api.aokecloud.cn/api/alarm/getlist_forAPP', //这里填写你的接口路径
+        //     header: { //这里写你接口返回的数据是什么类型，这里就体现了微信小程序的强大，直接给你解析数据，再也不用去寻找各种方法去解析json，xml等数据了
+        //         'Content-Type': 'application/json'
+        //     },
+        //     method:"POST",
+        //     data: {//这里写你要请求的参数
+        //         wxaccount: '123456' ,
+        //         user: '18210812953',
+        //         wxtype:'1',
+        //         comid:'1000004',
+        //         account:'18210812953',
+        //         apptime:'2019-01-19 22:23'
+        //     },
+        //     success: function(res) {
+        //         //这里就是请求成功后，进行一些函数操作
+        //        console.log("成功",res);
+        //     },
+        //     fail: function (res) {
+        //         console.log("错误",res);
+        //     }
+        // })
 
     },
     bindShowMsg: function () {

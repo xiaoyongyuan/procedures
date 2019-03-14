@@ -40,7 +40,7 @@
                     <view class="alarm-list-one-top-left">
                         <view class="alarm-list-one-top-left-bac">
                             <view class="alarm-list-one-top-img">
-                                <image src='{{ item.imgUrl }}'></image>
+                                <image src='{{ item.pic_min }}'></image>
                             </view>
                         </view>
                     </view>
