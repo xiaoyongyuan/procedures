@@ -100,7 +100,7 @@ page {
     display: flex;
     height: 75%;
     width: 90%;
-    background-color: #00a0e9;
+    /*background-color: #00a0e9;*/
     border-radius: 16rpx;
     margin: auto;
 }
