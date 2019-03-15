@@ -15,6 +15,11 @@
                     </view>
                     <view class="alarm-list-one-top-right">
                         <view class="alarm-list-one-top-right-T">
+                            <view class="on-off-line">
+                                <view class="on-off-line-circle">
+                                </view>
+                                <text>离线</text>
+                            </view>
                             <text>报警类型:{{ item.alarmtype }}</text>
                         </view>
                         <view class="alarm-list-one-top-right-B">
@@ -31,8 +36,6 @@
                     </view>
                 </view>
             </view>
-
-
         </view>
     </view>
 </view>
