@@ -26,7 +26,6 @@ Page({
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
         },
-        //测试模拟数据
         alarmListData: [],
         scanresult:''
     },

@@ -1,5 +1,6 @@
 // pages/equipdetail/equipdetail.js
 const app = getApp();
+var request = require('../../utils/request.js');
 Page({
 
     /**
@@ -13,7 +14,7 @@ Page({
             titleBarHeight: app.globalData.titleBarHeight
         },
         // list传过来的详情
-        detail:{},
+        equipdetailData:{},
     },
     //页面跳转设置信息
     changeTosettinginfo:function(){
@@ -39,11 +40,45 @@ Page({
     onLoad: function (options) {
         var that= this
         // 字符串转json
-        var info = JSON.parse(options.Mesgs);
-        that.setData({
-            // 把从list页面获取到的属性值赋给详情页的detail，供详情页使用
-            detail: info
-        })
+        var code = options.code;
+        console.log("设备闪灯",code);
+        /**
+         * 请求设备详情接口
+         */
+
+        request.postReq("/api/camera/getone",
+            {
+                code:code
+            },
+            function(res){
+                that.setData({
+                    equipdetailData:res.data,
+                    workingtime:res.workingtime.length,
+                    lastheart:res.heartdata.time,
+                    temp:res.heartdata.temp,
+                    softversion:res.login.version,
+                    upgrade:res.upgrade,
+                    logintime:res.login.time
+                })
+            })
+    },
+    /**
+     * 设备闪灯
+     */
+    equiplight:function(options){
+        var that = this;
+        console.log("eid",that.data.equipdetailData.eid)
+        request.postReq("/api/equipment/FlashLampV1",
+            {
+                eid:that.data.equipdetailData.eid
+            },
+            function(res){
+                wx.showToast({
+                    title: '请求成功',
+                    icon: 'success',
+                    duration: 2000
+                })
+            })
     },
 
     /**

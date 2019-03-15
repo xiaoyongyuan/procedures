@@ -9,7 +9,7 @@
                     <view class="alarm-list-one-top-left">
                         <view class="alarm-list-one-top-left-bac">
                             <view class="alarm-list-one-top-img">
-                                <image src='{{ item.imgUrl }}'></image>
+                                <image src='{{ item.picpath }}'></image>
                             </view>
                         </view>
                     </view>
@@ -18,16 +18,16 @@
                             <text>报警类型:{{ item.alarmtype }}</text>
                         </view>
                         <view class="alarm-list-one-top-right-B">
-                            <text>报警时间:{{ item.alarmtime }}</text>
+                            <text>报警时间:{{ item.atime }}</text>
                         </view>
                     </view>
                 </view>
                 <view class="alarm-list-one-bottom">
                     <view class="alarm-list-one-bottom-left">
-                        <text>设备：{{ item.equip }}</text>
+                        <text>设备：{{ item.name }}</text>
                     </view>
                     <view class="alarm-list-one-bottom-right">
-                        <text>地点：{{ item.address }}</text>
+                        <text>地点：{{ item.location }}</text>
                     </view>
                 </view>
             </view>
