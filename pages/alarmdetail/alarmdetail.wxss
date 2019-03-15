@@ -73,7 +73,6 @@ page{
     line-height: 30rpx;
 }
 .alarmdetail-check-in-left text{
-    color: #237af5;
     margin-left: 10rpx;
     font-size: 28rpx;
 }
@@ -92,7 +91,6 @@ page{
     width: 60%;
 }
 .alarmdetail-check-in-right text{
-    color: #237af5;
     margin-left: 10rpx;
     font-size: 28rpx;
 }

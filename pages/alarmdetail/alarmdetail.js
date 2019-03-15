@@ -22,9 +22,31 @@ Page({
             type: Boolean,
             value: false
         },
-        ifsign:null
+        surround:true,
+        alarminfo:true,
     },
 
+    /**
+     * 围界信息
+     */
+    surroundinfo:function(){
+        var that = this;
+        that.setData({
+            surround:!that.data.surround
+        })
+    },
+    /**
+     * 报警信息
+     */
+    alarminfo:function(){
+        var that = this;
+        that.setData({
+            alarminfo:!that.data.alarminfo
+        })
+    },
+    /**
+     * 返回上一页
+     */
     back: function () {
         wx.navigateBack({
             delta: 1
@@ -40,17 +62,20 @@ Page({
      */
     ifsign:function(){
         var that = this;
-        console.log("that.data.alarmdetailData.code",that.data.alarmdetailData.code);
-        console.log("that.data.alarmdetailData.ifdanger",that.data.alarmdetailData.ifdanger);
-        request.postReq("api.aokecloud.cn /api/alarm/update",
-            {
-                code:that.data.alarmdetailData.code,
-                ifdanger:that.data.alarmdetailData.ifdanger
-            },
-            function (res) {
-
-            }
-        )
+        console.log("sign前",that.data.sign);
+           that.setData({
+               sign:!that.data.sign
+           })
+        console.log("sign后",that.data.sign);
+        // request.postReq("api.aokecloud.cn /api/alarm/update",
+        //     {
+        //         code:that.data.alarmdetailData.code,
+        //         ifdanger:that.data.alarmdetailData.ifdanger
+        //     },
+        //     function (res) {
+        //
+        //     }
+        // )
 
     },
     /**
@@ -58,7 +83,6 @@ Page({
      */
     next:function(){
         var that = this;
-        console.log("that.data.alarmdetailData.next",that.data.alarmdetailData)
         if(that.data.alarmdetailData.next === ""){
             wx.showToast({
                 title: '已是第一条报警',
@@ -75,6 +99,15 @@ Page({
                 that.setData({
                     alarmdetailData:res.data
                 })
+                if(that.data.alarmdetailData.ifdanger === 1){
+                    that.setData({
+                        sign:true
+                    })
+                }else {
+                    that.setData({
+                        sign:false
+                    })
+                }
             }
         )
     },
@@ -83,7 +116,6 @@ Page({
      */
     last:function(){
         var that = this;
-        console.log("that.data.alarmdetailData.last",that.data.alarmdetailData)
         if(that.data.alarmdetailData.last === ""){
             wx.showToast({
                 title: '已是第一条报警',
@@ -101,6 +133,15 @@ Page({
                 that.setData({
                     alarmdetailData:res.data
                 })
+                if(that.data.alarmdetailData.ifdanger === 1){
+                    that.setData({
+                        sign:true
+                    })
+                }else {
+                    that.setData({
+                        sign:false
+                    })
+                }
             }
         )
     },
@@ -123,6 +164,15 @@ Page({
                 that.setData({
                     alarmdetailData:res.data
                 })
+                if(that.data.alarmdetailData.ifdanger === 1){
+                    that.setData({
+                        sign:true
+                    })
+                }else {
+                    that.setData({
+                        sign:false
+                    })
+                }
             })
 
     },

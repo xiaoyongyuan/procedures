@@ -8,7 +8,7 @@
                 <view>
                     <image src='/images/back.svg' bindtap='back' wx:if="{{back}}"></image>
                     <view class="sign" bindtap="ifsign">
-                        <image class="ifdanger" wx:if="{{ alarmdetailData.ifdanger === 0 }}" src='/images/weibiaoji.png'></image>
+                        <image class="ifdanger" wx:if="{{ sign === false }}" src='/images/weibiaoji.png'></image>
                         <image class="ifdanger" wx:else src='/images/biaoji.png'></image>
                     </view>
                 </view>
@@ -29,15 +29,31 @@
             <image src="{{ alarmdetailData.pic_original }}"></image>
             <view class="alarmdetail-check">
                 <view class="alarmdetail-check-in">
-                    <view class="alarmdetail-check-in-left">
+
+
+                    <view class="alarmdetail-check-in-left" bindtap="surroundinfo" wx:if="{{ surround === true }}">
                         <view class="img-checkin">
                             <image src="/images/xuanze.png"></image>
                         </view>
-                        <text>围界信息</text>
+                        <text style="color: #237af5">围界信息</text>
                     </view>
-                    <view class="alarmdetail-check-in-right">
+                    <view class="alarmdetail-check-in-left" bindtap="surroundinfo" wx:else>
+                        <view class="img-checkin">
+                            <image src="/images/check.png"></image>
+                        </view>
+                        <text >围界信息</text>
+                    </view>
+
+
+                    <view class="alarmdetail-check-in-right" bindtap="alarminfo" wx:if="{{ alarminfo === true }}">
                         <view class="img-checkin">
                             <image src="/images/xuanze.png"></image>
+                        </view>
+                        <text style="color: #237af5">报警信息</text>
+                    </view>
+                    <view class="alarmdetail-check-in-right" bindtap="alarminfo" wx:else>
+                        <view class="img-checkin">
+                            <image src="/images/check.png"></image>
                         </view>
                         <text>报警信息</text>
                     </view>
