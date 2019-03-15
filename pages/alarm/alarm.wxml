@@ -36,9 +36,7 @@
     <view class='list-li mflex'  wx:for="{{alarmListData}}"  wx:key="index" >
         <view class="alarm-list">
             <view class="alarm-list-one">
-
-
-                <view class="alarm-list-one-top" wx:if="{{ item.ifdel === 0 }}" style="background-color: #fff"  bindtap="changeToalarmdetail" id='{{index}}'>
+                <view class="alarm-list-one-top" wx:if="{{ item.ifdanger === 0 }}" style="background-color: #fff"  bindtap="changeToalarmdetail" id='{{index}}'>
                     <view class="alarm-list-one-top-left">
                         <view class="alarm-list-one-top-left-bac">
                             <view class="alarm-list-one-top-img">
@@ -72,8 +70,6 @@
                         </view>
                     </view>
                 </view>
-
-
                 <view class="alarm-list-one-bottom">
                     <view class="alarm-list-one-bottom-left">
                         <text>设备:{{ item.name }}</text>
