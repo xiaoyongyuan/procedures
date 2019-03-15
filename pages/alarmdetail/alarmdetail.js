@@ -21,7 +21,8 @@ Page({
         back: {
             type: Boolean,
             value: false
-        }
+        },
+        ifsign:null
     },
 
     back: function () {
@@ -34,23 +35,38 @@ Page({
             currentTab: e.currentTarget.dataset.idx
         })
     },
+    /**
+     * 标记和取消标记
+     */
+    ifsign:function(){
+        var that = this;
+        console.log("that.data.alarmdetailData.code",that.data.alarmdetailData.code);
+        console.log("that.data.alarmdetailData.ifdanger",that.data.alarmdetailData.ifdanger);
+        request.postReq("api.aokecloud.cn /api/alarm/update",
+            {
+                code:that.data.alarmdetailData.code,
+                ifdanger:that.data.alarmdetailData.ifdanger
+            },
+            function (res) {
 
+            }
+        )
+
+    },
     /**
      * 请求下一条数据
      */
     next:function(){
         var that = this;
-        console.log("hhh",that.data.index);
-        request.postReq("/api/alarm/getlist_forAPP",
+        console.log("next",that.data.alarmdetailData.next);
+        request.postReq("/api/alarm/getone",
             {
-                account:'18210812953',
-                apptime:'2019-01-19 22:23'
+                next:that.data.alarmdetailData.next.toString()
             },
             function (res) {
                 that.setData({
-                    alarmdetailData:res.data[that.data.index++]
+                    alarmdetailData:res.data
                 })
-                console.log("请求下一条res",res.data[that.data.index++]);
             }
         )
     },
@@ -62,15 +78,9 @@ Page({
         var that= this
         // 字符串转json
         const code = options.code;
-        const index = parseInt(options.index);
-        console.log("index",index);
-        that.setData({
-            index:index
-        })
         /**
          * 请求报警详情接口
          */
-
         request.postReq("/api/alarm/getone",
             {
                 code:code

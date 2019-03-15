@@ -9,6 +9,9 @@ page{
     height: 100%;
     background-color: #e7e7e7;
 }
+.sign{
+    background-color: orange;
+}
 .alarmdetail{
     height: 440rpx;
     margin-top: 20rpx;

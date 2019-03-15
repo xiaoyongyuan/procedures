@@ -7,7 +7,10 @@
             <view class='capsule' wx:if="{{ back }}">
                 <view>
                     <image src='/images/back.svg' bindtap='back' wx:if="{{back}}"></image>
-                    <image class="ifdanger" src='/images/weibiaoji.png' bindtap="click"></image>
+                    <view class="sign" bindtap="ifsign">
+                        <image class="ifdanger" wx:if="{{ alarmdetailData.ifdanger === 0 }}" src='/images/weibiaoji.png'></image>
+                        <image class="ifdanger" wx:else src='/images/biaoji.png'></image>
+                    </view>
                 </view>
             </view>
             <view class='title'>{{text}}</view>

@@ -36,13 +36,10 @@ Page({
         var that = this;
         //获取当前点击元素的id(索引值)
         var Id = e.currentTarget.id;
-        console.log("下一条",Id);
         //获取当前点击元素的属性值。
         var code = that.data.alarmListData[Id].code;
-        //因为获取到的值是个对象，url只能传字符串，所以必须把它转化为字符串。
-        // mesg = JSON.stringify(mesg);
         wx.navigateTo({
-            url:'../alarmdetail/alarmdetail?code=' + code + '&index=' + Id
+            url:'../alarmdetail/alarmdetail?code=' + code
         })
     },
 
@@ -118,47 +115,6 @@ Page({
             showModal: false,
             select:!this.data.select
         })
-    },
-    mySelect(e) {
-        var name = e.currentTarget.dataset.name
-        this.setData({
-            tihuoWay: name,
-            select: false
-        })
-    },
-    changeDate(e){
-        this.setData({ date:e.detail.value});
-    },
-    changeTime(e){
-        this.setData({ time: e.detail.value });
-    },
-    changeDateTime(e){
-        this.setData({ dateTime: e.detail.value });
-    },
-    changeDateTime1(e) {
-        this.setData({ dateTime1: e.detail.value });
-    },
-    changeDateTimeColumn(e){
-        var arr = this.data.dateTime, dateArr = this.data.dateTimeArray;
-
-        arr[e.detail.column] = e.detail.value;
-        dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]]);
-
-        this.setData({
-            dateTimeArray: dateArr,
-            dateTime: arr
-        });
-    },
-    changeDateTimeColumn1(e) {
-        var arr = this.data.dateTime1, dateArr = this.data.dateTimeArray1;
-
-        arr[e.detail.column] = e.detail.value;
-        dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]]);
-
-        this.setData({
-            dateTimeArray1: dateArr,
-            dateTime1: arr
-        });
     },
 
     /**
