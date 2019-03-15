@@ -17,8 +17,18 @@ Page({
         },
         // list传过来的详情
         alarmdetailData:{},
+        text:'报警详情',
+        back: {
+            type: Boolean,
+            value: false
+        }
     },
 
+    back: function () {
+        wx.navigateBack({
+            delta: 1
+        })
+    },
     navbarTap: function(e){
         this.setData({
             currentTab: e.currentTarget.dataset.idx

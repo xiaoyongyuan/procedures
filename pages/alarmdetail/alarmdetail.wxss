@@ -1,4 +1,5 @@
 /* pages/alarmdetail/alarmdetail.wxss */
+@import "/utils/common.wxss";
 page{
     display: flex;
     flex-direction: column;
@@ -24,12 +25,12 @@ page{
     width: 100%;
     height: 100%;
 }
-.navbar{
+.navbars{
     flex: none;
     display: flex;
     background: #fff;
 }
-.navbar .item{
+.navbars .item{
     position: relative;
     flex: auto;
     text-align: center;
@@ -37,10 +38,10 @@ page{
     font-size: 28rpx;
     color: #5f7068;
 }
-.navbar .item.active{
+.navbars .item.active{
     color: #237af5;
 }
-.navbar .item.active:after{
+.navbars .item.active:after{
     content: "";
     display: block;
     position: absolute;
@@ -152,4 +153,7 @@ page{
     font-size: 24rpx;
     margin-left: 20rpx;
     color: #4f4f4f;
+}
+.ifdanger{
+    margin-left: 60rpx;
 }
