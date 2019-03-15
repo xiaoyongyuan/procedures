@@ -58,10 +58,44 @@ Page({
      */
     next:function(){
         var that = this;
-        console.log("next",that.data.alarmdetailData.next);
+        console.log("that.data.alarmdetailData.next",that.data.alarmdetailData)
+        if(that.data.alarmdetailData.next === ""){
+            wx.showToast({
+                title: '已是第一条报警',
+                icon: 'none',
+                duration: 2000
+            })
+            return;
+        }
         request.postReq("/api/alarm/getone",
             {
-                next:that.data.alarmdetailData.next.toString()
+                code:that.data.alarmdetailData.next
+            },
+            function (res) {
+                that.setData({
+                    alarmdetailData:res.data
+                })
+            }
+        )
+    },
+    /**
+     * 请求上一条数据
+     */
+    last:function(){
+        var that = this;
+        console.log("that.data.alarmdetailData.last",that.data.alarmdetailData)
+        if(that.data.alarmdetailData.last === ""){
+            wx.showToast({
+                title: '已是第一条报警',
+                icon: 'none',
+                duration: 2000
+            })
+            return;
+        }
+
+        request.postReq("/api/alarm/getone",
+            {
+                code:that.data.alarmdetailData.last
             },
             function (res) {
                 that.setData({
