@@ -37,12 +37,13 @@ Page({
         var that = this;
         //获取当前点击元素的id(索引值)
         var Id = e.currentTarget.id;
+        console.log("下一条",Id);
         //获取当前点击元素的属性值。
-        var mesg = that.data.alarmListData[Id];
+        var code = that.data.alarmListData[Id].code;
         //因为获取到的值是个对象，url只能传字符串，所以必须把它转化为字符串。
-        mesg = JSON.stringify(mesg);
+        // mesg = JSON.stringify(mesg);
         wx.navigateTo({
-            url:'../alarmdetail/alarmdetail?Mesgs=' + mesg
+            url:'../alarmdetail/alarmdetail?code=' + code + '&index=' + Id
         })
     },
 
@@ -106,32 +107,7 @@ Page({
                 that.setData({
                 alarmListData:res.data
             })
-            console.log("alarmListData",that.data.alarmListData);
         })
-
-        // wx.request({
-        //     url: 'http://api.aokecloud.cn/api/alarm/getlist_forAPP', //这里填写你的接口路径
-        //     header: { //这里写你接口返回的数据是什么类型，这里就体现了微信小程序的强大，直接给你解析数据，再也不用去寻找各种方法去解析json，xml等数据了
-        //         'Content-Type': 'application/json'
-        //     },
-        //     method:"POST",
-        //     data: {//这里写你要请求的参数
-        //         wxaccount: '123456' ,
-        //         user: '18210812953',
-        //         wxtype:'1',
-        //         comid:'1000004',
-        //         account:'18210812953',
-        //         apptime:'2019-01-19 22:23'
-        //     },
-        //     success: function(res) {
-        //         //这里就是请求成功后，进行一些函数操作
-        //        console.log("成功",res);
-        //     },
-        //     fail: function (res) {
-        //         console.log("错误",res);
-        //     }
-        // })
-
     },
     bindShowMsg: function () {
         this.setData({

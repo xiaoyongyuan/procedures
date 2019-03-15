@@ -1,5 +1,6 @@
 // pages/alarmdetail/alarmdetail.js
 var app = getApp()
+var request = require('../../utils/request.js');
 Page({
 
     /**
@@ -15,7 +16,7 @@ Page({
             titleBarHeight: app.globalData.titleBarHeight
         },
         // list传过来的详情
-        detail:{},
+        alarmdetailData:{},
     },
 
     navbarTap: function(e){
@@ -25,16 +26,51 @@ Page({
     },
 
     /**
+     * 请求下一条数据
+     */
+    next:function(){
+        var that = this;
+        console.log("hhh",that.data.index);
+        request.postReq("/api/alarm/getlist_forAPP",
+            {
+                account:'18210812953',
+                apptime:'2019-01-19 22:23'
+            },
+            function (res) {
+                that.setData({
+                    alarmdetailData:res.data[that.data.index++]
+                })
+                console.log("请求下一条res",res.data[that.data.index++]);
+            }
+        )
+    },
+
+    /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
         var that= this
         // 字符串转json
-        var info = JSON.parse(options.Mesgs);
+        const code = options.code;
+        const index = parseInt(options.index);
+        console.log("index",index);
         that.setData({
-            // 把从list页面获取到的属性值赋给详情页的detail，供详情页使用
-            detail: info
+            index:index
         })
+        /**
+         * 请求报警详情接口
+         */
+
+        request.postReq("/api/alarm/getone",
+            {
+                code:code
+            },
+            function(res){
+                that.setData({
+                    alarmdetailData:res.data
+                })
+            })
+
     },
 
     /**
