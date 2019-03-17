@@ -15,6 +15,7 @@ page{
 .alarmdetail{
     height: 440rpx;
     margin-top: 20rpx;
+    z-index:1;
 }
 .alarmdetail-pic{
     width: 100%;
@@ -157,4 +158,38 @@ page{
 }
 .ifdanger{
     margin-left: 60rpx;
+}
+.mask{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    z-index: 999;
+    opacity: 0.7;
+}
+.originalimg{
+    width: 100%;
+    height: 100%;
+}
+.clearData{
+    height: 600rpx;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 9999;
+    flex-wrap: wrap;
+    margin-top: -220rpx;
+    font-size: 28rpx;
+    color: #e12140;
+}
+.modalDlg{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
 }

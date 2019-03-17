@@ -24,6 +24,26 @@ Page({
         },
         surround:true,
         alarminfo:true,
+        showModal: false,
+    },
+
+    /**
+     * 弹出遮罩层
+     */
+    submit: function () {
+        this.setData({
+            showModal: true
+        })
+    },
+
+    preventTouchMove: function () {
+
+    },
+
+    go: function () {
+        this.setData({
+            showModal: false
+        })
     },
 
     /**

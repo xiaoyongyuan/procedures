@@ -1,5 +1,6 @@
 <!--pages/alarmdetail/alarmdetail.wxml-->
 <view class="page">
+    <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}" bindtap="go"></view>
     <view class="navbar" style="{{'height: ' + navigationBarHeight}}">
         <view style="{{'height: ' + statusBarHeight}}"></view>
         <view class="status-bar" style="height:{{someData.statusBarHeight}}px"></view>
@@ -26,11 +27,9 @@
     <view class="alarmdetail">
         <!--报警图片-->
         <view class="alarmdetail-pic" hidden="{{currentTab!==0}}">
-            <image src="{{ alarmdetailData.pic_original }}"></image>
+            <image src="{{ alarmdetailData.picpath }}" bindtap="submit"></image>
             <view class="alarmdetail-check">
                 <view class="alarmdetail-check-in">
-
-
                     <view class="alarmdetail-check-in-left" bindtap="surroundinfo" wx:if="{{ surround === true }}">
                         <view class="img-checkin">
                             <image src="/images/xuanze.png"></image>
@@ -101,4 +100,14 @@
             </view>
         </view>
     </view>
+
+    <!--<view class="originalimg-view" wx:if="{{showModal}}" bindtap="go">-->
+        <!--<image class="originalimg" src="{{ alarmdetailData.pic_original }}"></image>-->
+    <!--</view>-->
+    <view class="modalDlg">
+        <view class="clearData" wx:if="{{showModal}}" bindtap="go">
+            <image class="originalimg" src="{{ alarmdetailData.pic_original }}"></image>
+        </view>
+    </view>
+
 </view>
