@@ -78,7 +78,9 @@
                 <text>运行状态:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>运行中</text>
+                <text wx:if="{{ status === 'run' }}" style="color: #00a0e9">运行中</text>
+                <text wx:elif="{{ status === 'stop' }}">不在布防时间内</text>
+                <text wx:else>摄像头未绑定</text>
             </view>
         </view>
         <view class="equipinfo-item-last">
@@ -86,7 +88,10 @@
                 <text>设置状态:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>设置成功</text>
+                <text wx:if="{{ camerainfo.echange === 0 }}">未提交</text>
+                <text wx:elif="{{ camerainfo.echange === 1 }}" style="color: #00a0e9">设置成功</text>
+                <text wx:elif="{{ camerainfo.echange === 2 }}">设置失败</text>
+                <text wx:else>提交中</text>
             </view>
         </view>
     </view>

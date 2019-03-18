@@ -13,7 +13,6 @@ Page({
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
         },
-
     },
     //页面跳转
     changeTosettingequipinfo:function(){
@@ -31,21 +30,6 @@ Page({
         var that= this
         //字符串转json
         var currentcode = options.currentcode;
-        // console.log("123currentcode",currentcode);
-        // var port = options.port;
-        // var version = options.version;
-        // var temp = options.temp;
-        // var password = options.password;
-        // var username = options.username
-        //
-        // that.setData({
-        //     IP:ip,
-        //     port:port,
-        //     version:version,
-        //     temp:temp,
-        //     password:password,
-        //     username:username
-        // })
         /**
          *  获取查看设备信息
          */
@@ -58,9 +42,10 @@ Page({
                that.setData({
                    camerainfo:res.data,
                    version:res.login.version,
-                   temp:res.heartdata.temp
+                   temp:res.heartdata.temp,
+                   status:res.heartdata.status
                })
-                console.log("camerainfolist23423",that.data.camerainfo);
+                console.log("echange",that.data.camerainfo.echange);
             })
 
     },
