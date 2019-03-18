@@ -10,7 +10,7 @@
                 <text>IP:</text>
             </view>
             <view class="settingequipinfo-item-right">
-                <input placeholder="请输入设备IP" />
+                <input placeholder="请输入设备IP" value="{{ IP }}" />
             </view>
         </view>
         <view class="settingequipinfo-item">
@@ -18,7 +18,7 @@
                 <text>端口号:</text>
             </view>
             <view class="settingequipinfo-item-right">
-                <input placeholder="请输入端口号" />
+                <input placeholder="请输入端口号" value="{{ port }}" />
             </view>
         </view>
         <view class="settingequipinfo-item">

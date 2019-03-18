@@ -18,7 +18,13 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        var that = this;
+        var IP = options.IP;
+        var port = options.port;
+        that.setData({
+            IP:IP,
+            port:port
+        })
     },
 
     /**

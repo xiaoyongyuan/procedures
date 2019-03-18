@@ -15,8 +15,11 @@ Page({
     },
     //页面跳转
     changeTosettingequipinfo:function(){
+        var that = this;
+        var IP = that.data.IP;
+        var port = that.data.port;
         wx.navigateTo({
-            url:'../settingequipinfo/settingequipinfo'
+            url:'../settingequipinfo/settingequipinfo?IP=' + IP + '&port=' + port
         })
     },
     /**
