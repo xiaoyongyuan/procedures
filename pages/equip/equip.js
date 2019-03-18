@@ -1,6 +1,7 @@
 // pages/equip/equip.js
 const app = getApp();
 var request = require('../../utils/request.js');
+const util = require('../../utils/util.js');
 Page({
 
     /**
@@ -35,6 +36,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        var ctime = util.formatTime(new Date());
         /**
          * 请求列表接口
          */
@@ -47,8 +49,24 @@ Page({
                 that.setData({
                     equipListData:res.data
                 })
+                var currenttime = new Date(ctime);
+                for(var i=0;i<res.data.length;i++){
+                 //两个时间相差的分钟数
+                 var  mistiming =  parseInt(currenttime - new Date(that.data.equipListData[i].atime))/ 1000 / 60;
+                 var  mistlastheart = parseInt(currenttime - new Date(that.data.equipListData[i].herattime.time))/ 1000 / 60;
+                 if(mistiming > 1 && mistlastheart > 1){
+                     that.data.equipListData[i]['ismist']=false;
+                     that.setData({
+                         equipListData:that.data.equipListData
+                     })
+                 }else{
+                     that.data.equipListData[i]['ismist']=true;
+                     that.setData({
+                         equipListData:that.data.equipListData
+                     })
+                 }
+                }
             })
-
     },
 
     /**

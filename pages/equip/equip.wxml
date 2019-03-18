@@ -18,7 +18,8 @@
                             <view class="on-off-line">
                                 <view class="on-off-line-circle">
                                 </view>
-                                <text>离线</text>
+                                <text wx:if="{{ item.ismist === false }}">离线</text>
+                                <text wx:else>在线</text>
                             </view>
                             <text>报警类型:{{ item.alarmtype }}</text>
                         </view>
