@@ -159,14 +159,14 @@ page {
     position: absolute;
     right: 0px;
     margin-top: -22rpx;
-    background-color: #2cd7aa;
+    /*background-color: #2cd7aa;*/
     display: flex;
 }
 .on-off-line-circle{
     width: 40rpx;
     height: 40rpx;
     border-radius: 50%;
-    background-color: #2cd7aa;
+    /*background-color: #2cd7aa;*/
     margin-left: -20rpx;
 }
 .on-off-line text{
