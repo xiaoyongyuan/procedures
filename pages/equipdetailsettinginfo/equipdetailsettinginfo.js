@@ -17,8 +17,8 @@ Page({
     //页面跳转
     changeTosettingequipinfo:function(){
         var that = this;
-        var IP = that.data.IP;
-        var port = that.data.port;
+        var IP = that.data.camerainfo.cameraip;
+        var port = that.data.camerainfo.cameraportno;
         wx.navigateTo({
             url:'../settingequipinfo/settingequipinfo?IP=' + IP + '&port=' + port
         })
@@ -45,7 +45,6 @@ Page({
                    temp:res.heartdata.temp,
                    status:res.heartdata.status
                })
-                console.log("echange",that.data.camerainfo.echange);
             })
 
     },

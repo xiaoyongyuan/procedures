@@ -10,7 +10,7 @@
                 <text>IP:</text>
             </view>
             <view class="settingequipinfo-item-right">
-                <input placeholder="请输入设备IP" value="{{ IP }}" />
+                <input name="cameraip" bindinput="cameraipInput" placeholder="请输入设备IP" value="{{ IP }}" />
             </view>
         </view>
         <view class="settingequipinfo-item">
@@ -18,7 +18,7 @@
                 <text>端口号:</text>
             </view>
             <view class="settingequipinfo-item-right">
-                <input placeholder="请输入端口号" value="{{ port }}" />
+                <input name="cameraportno" bindinput="cameraportnoInput" placeholder="请输入端口号" value="{{ port }}" />
             </view>
         </view>
         <view class="settingequipinfo-item">
@@ -26,7 +26,7 @@
                 <text>用户名:</text>
             </view>
             <view class="settingequipinfo-item-right">
-                <input placeholder="请输入用户名" />
+                <input  name="userName"  bindinput ="userNameInput" placeholder="请输入用户名" />
             </view>
         </view>
         <view class="settingequipinfo-item">
@@ -34,11 +34,11 @@
                 <text>用户密码:</text>
             </view>
             <view class="settingequipinfo-item-right">
-                <input placeholder="请输入用户密码" />
+                <input name="psw" bindinput="passWdInput" placeholder="请输入用户密码" />
             </view>
         </view>
     </view>
     <view class="settinginfo-btn">
-        <button class="weui-btn" bindtap="changeTosettingequipinfo">提交</button>
+        <button class="weui-btn" bindtap="formBindsubmit" >提交</button>
     </view>
 </view>
