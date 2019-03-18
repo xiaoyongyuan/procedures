@@ -1,6 +1,7 @@
 // pages/equipdetail/equipdetail.js
 const app = getApp();
 var request = require('../../utils/request.js');
+const util = require('../../utils/util.js');
 Page({
 
     /**
@@ -55,12 +56,13 @@ Page({
      */
     onLoad: function (options) {
         var that= this
+        //当前时间
+        var ctime = util.formatTime(new Date());
         //接收
         var code = options.code;
         that.setData({
             currentcode:code
         })
-        console.log("currentcode",that.data.currentcode);
         /**
          * 请求设备详情接口
          */
@@ -77,8 +79,22 @@ Page({
                     temp:res.heartdata.temp,
                     softversion:res.login.version,
                     upgrade:res.upgrade,
-                    logintime:res.login.time
+                    logintime:res.login.time,
+                    status:res.heartdata.status
                 })
+                var currenttime = new Date(ctime);
+                //两个时间相差的分钟数
+                var  mislastheart =  parseInt(currenttime - new Date(that.data.lastheart))/ 1000 / 60;
+                var  mislasttime = parseInt(currenttime - new Date(that.data.equipdetailData.lasttime))/ 1000 / 60;
+                if(mislastheart > 1 && mislasttime > 1){
+                    that.setData({
+                        isonline:false
+                    })
+                }else {
+                    that.setData({
+                        isonline:true
+                    })
+                }
             })
     },
     /**

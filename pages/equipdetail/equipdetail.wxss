@@ -112,11 +112,36 @@ page{
     display: flex;
     align-items: center;
 }
+.camera-item-right-outline{
+    height: 100%;
+    width: 100%;
+    float: right;
+    display: flex;
+    align-items: center;
+}
+.camera-item-right-online{
+    height: 100%;
+    width: 100%;
+    float: right;
+    display: flex;
+    align-items: center;
+}
 .camera-item-right text{
     margin-left: 30rpx;
     font-size: 28rpx;
     color: #565656;
 }
+.camera-item-right-outline text{
+    margin-left: 30rpx;
+    font-size: 28rpx;
+    color: #565656;
+}
+.camera-item-right-online text{
+    margin-left: 30rpx;
+    font-size: 28rpx;
+    color: #00a0e9;
+}
+
 
 
 .equipinfo-item-left{

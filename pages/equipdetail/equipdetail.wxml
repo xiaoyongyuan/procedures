@@ -150,8 +150,14 @@
                 <text>设备状态</text>
             </view>
             <view class="camera-item-right">
-                <text wx:if="{{ detail.equipstate == 0 }}">设备离线</text>
-                <text wx:else style="color: #00a0e9">运行中</text>
+                <view class="camera-item-right-outline" wx:if="{{ isonline === false }}">
+                    <text>设备离线</text>
+                </view>
+                <view class="camera-item-right-online" wx:else>
+                    <text wx:if="{{ status === 'run' }}">运行中</text>
+                    <text wx:elif="{{ status === 'stop' }}">不在布防时间内</text>
+                    <text wx:else>摄像头未绑定</text>
+                </view>
             </view>
         </view>
         <view class="camera-item">
