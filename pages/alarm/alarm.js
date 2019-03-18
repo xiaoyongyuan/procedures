@@ -45,6 +45,7 @@ Page({
 
     /** 监听tab切换 */
     onTabItemTap(item){
+        var that = this;
         this.setData({
             scanresult:''
         })
@@ -128,7 +129,17 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        var that = this;
+        request.postReq("/api/alarm/getlist_forAPP",
+            {
+                account:'18210812953',
+                apptime:'2019-01-19 22:23'
+            },
+            function(res){
+                that.setData({
+                    alarmListData:res.data
+                })
+            })
     },
 
     /**

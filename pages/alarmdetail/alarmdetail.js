@@ -68,6 +68,7 @@ Page({
      * 返回上一页
      */
     back: function () {
+        var that = this;
         wx.navigateBack({
             delta: 1
         })
@@ -87,13 +88,20 @@ Page({
                sign:!that.data.sign
            })
         console.log("sign后",that.data.sign);
+        var updateifdanger ;
+        if(that.data.sign){
+            updateifdanger = 1
+        }else {
+            updateifdanger = 0
+        }
+        console.log("updateifdanger",updateifdanger);
         request.postReq("/api/alarm/update",
             {
                 code:that.data.alarmdetailData.code,
-                ifdanger:that.data.alarmdetailData.ifdanger
+                ifdanger:updateifdanger
             },
             function (res) {
-              console.log("res",res.data[0]);
+
             }
         )
 
@@ -173,6 +181,9 @@ Page({
         var that= this
         // 字符串转json
         const code = options.code;
+        that.setData({
+            currentcode:code
+        })
         /**
          * 请求报警详情接口
          */
