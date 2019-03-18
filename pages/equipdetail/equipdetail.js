@@ -21,17 +21,21 @@ Page({
      */
     changeTosettinginfo:function(){
         var that = this;
-        var IP = that.data.equipdetailData.ip;
-        var port = that.data.equipdetailData.authport;
-        var version = that.data.softversion;
-        var temp = that.data.temp;
+        // var IP = that.data.equipdetailData.ip;
+        // var port = that.data.equipdetailData.authport;
+        // var version = that.data.softversion;
+        // var temp = that.data.temp;
+        // var password = that.data.equipdetailData.apassword;
+        // var username = that.data.equipdetailData.ausername;
+        var currentcode = that.data.currentcode;
 
         //因为获取到的值是个对象，url只能传字符串，所以必须把它转化为字符串。
         // equipdetailData = JSON.stringify(equipdetailData);
-        console.log("temp",temp);
         wx.navigateTo({
-            url:'../equipdetailsettinginfo/equipdetailsettinginfo?IP=' + IP +
-                '&port=' + port +'&version=' + version + '&temp=' + temp
+            // url:'../equipdetailsettinginfo/equipdetailsettinginfo?IP=' + IP +
+            //     '&port=' + port +'&version=' + version + '&temp=' + temp
+            //     +'&password=' + password + '&username=' + username
+            url:'../equipdetailsettinginfo/equipdetailsettinginfo?currentcode=' + currentcode
         })
     },
     //页面跳转防区设置
@@ -53,6 +57,10 @@ Page({
         var that= this
         //接收
         var code = options.code;
+        that.setData({
+            currentcode:code
+        })
+        console.log("currentcode",that.data.currentcode);
         /**
          * 请求设备详情接口
          */

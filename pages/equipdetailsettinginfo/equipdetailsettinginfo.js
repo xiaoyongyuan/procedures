@@ -1,5 +1,6 @@
 // pages/equipdetailsettinginfo/equipdetailsettinginfo.js
 const app = getApp();
+var request = require('../../utils/request.js');
 Page({
 
     /**
@@ -11,7 +12,8 @@ Page({
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
-        }
+        },
+
     },
     //页面跳转
     changeTosettingequipinfo:function(){
@@ -28,19 +30,38 @@ Page({
     onLoad: function (options) {
         var that= this
         //字符串转json
-        var ip = options.IP;
-        var port = options.port;
-        var version = options.version;
-        var temp = options.temp;
-
-        console.log("ip",ip);
-        console.log("port",port);
-        that.setData({
-            IP:ip,
-            port:port,
-            version:version,
-            temp:temp
-        })
+        var currentcode = options.currentcode;
+        // console.log("123currentcode",currentcode);
+        // var port = options.port;
+        // var version = options.version;
+        // var temp = options.temp;
+        // var password = options.password;
+        // var username = options.username
+        //
+        // that.setData({
+        //     IP:ip,
+        //     port:port,
+        //     version:version,
+        //     temp:temp,
+        //     password:password,
+        //     username:username
+        // })
+        /**
+         *  获取查看设备信息
+         */
+        request.postReq("/api/camera/camerainfo",
+            {
+                code:currentcode
+            },
+            function(res){
+                console.log("res.data",res.data);
+               that.setData({
+                   camerainfo:res.data,
+                   version:res.login.version,
+                   temp:res.heartdata.temp
+               })
+                console.log("camerainfolist23423",that.data.camerainfo);
+            })
 
     },
 

@@ -12,7 +12,7 @@
                 <text>IP:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>{{ IP }}</text>
+                <text>{{ camerainfo.cameraip }}</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -20,7 +20,7 @@
                 <text>端口号:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>{{ port }}</text>
+                <text>{{ camerainfo.authport }}</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -28,7 +28,7 @@
                 <text>用户名:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>admin</text>
+                <text>{{ camerainfo.ausername }}</text>
             </view>
         </view>
         <view class="equipinfo-item-last">
@@ -36,7 +36,7 @@
                 <text>用户密码:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>a1234567</text>
+                <text>{{ camerainfo.camerapasswd }}</text>
             </view>
         </view>
 
