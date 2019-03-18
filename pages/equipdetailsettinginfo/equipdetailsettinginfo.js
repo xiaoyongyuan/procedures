@@ -23,6 +23,21 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        var that= this
+        //字符串转json
+        var ip = options.IP;
+        var port = options.port;
+        var version = options.version;
+        var temp = options.temp;
+
+        console.log("ip",ip);
+        console.log("port",port);
+        that.setData({
+            IP:ip,
+            port:port,
+            version:version,
+            temp:temp
+        })
 
     },
 

@@ -87,15 +87,15 @@ Page({
                sign:!that.data.sign
            })
         console.log("sign后",that.data.sign);
-        // request.postReq("api.aokecloud.cn /api/alarm/update",
-        //     {
-        //         code:that.data.alarmdetailData.code,
-        //         ifdanger:that.data.alarmdetailData.ifdanger
-        //     },
-        //     function (res) {
-        //
-        //     }
-        // )
+        request.postReq("/api/alarm/update",
+            {
+                code:that.data.alarmdetailData.code,
+                ifdanger:that.data.alarmdetailData.ifdanger
+            },
+            function (res) {
+              console.log("res",res.data[0]);
+            }
+        )
 
     },
     /**

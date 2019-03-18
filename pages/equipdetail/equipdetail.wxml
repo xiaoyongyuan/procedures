@@ -167,7 +167,7 @@
                 <text>设备硬件版本</text>
             </view>
             <view class="camera-item-right">
-                <text>1.0.1</text>
+                <text>{{ softversion }}</text>
             </view>
         </view>
         <view class="camera-item">

@@ -1,4 +1,3 @@
-<!--pages/equipdetailsettinginfo/equipdetailsettinginfo.wxml-->
 <view class="page">
     <navbar back home text="{{navigationBarTitle}}"></navbar>
     <view class="top" style="height: {{ someData.statusBarHeight+someData.titleBarHeight+10 }}px">
@@ -13,7 +12,7 @@
                 <text>IP:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>192.168.10.64</text>
+                <text>{{ IP }}</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -21,7 +20,7 @@
                 <text>端口号:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>554</text>
+                <text>{{ port }}</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -54,7 +53,7 @@
                 <text>软件版本号:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>1.1.1</text>
+                <text>{{ version }}</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -62,7 +61,7 @@
                 <text>硬件版本号:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>1.1.1</text>
+                <text>{{ version }}</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -70,7 +69,8 @@
                 <text>设备温度:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>32℃</text>
+                <text wx:if="{{ temp > 50 }}" style="color: #df1737">{{ temp }}℃</text>
+                <text wx:else >{{ temp }}℃</text>
             </view>
         </view>
         <view class="equipinfo-item">

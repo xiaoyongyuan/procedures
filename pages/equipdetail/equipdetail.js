@@ -16,10 +16,22 @@ Page({
         // list传过来的详情
         equipdetailData:{},
     },
-    //页面跳转设置信息
+    /**
+     * 页面跳转设置信息
+     */
     changeTosettinginfo:function(){
+        var that = this;
+        var IP = that.data.equipdetailData.ip;
+        var port = that.data.equipdetailData.authport;
+        var version = that.data.softversion;
+        var temp = that.data.temp;
+
+        //因为获取到的值是个对象，url只能传字符串，所以必须把它转化为字符串。
+        // equipdetailData = JSON.stringify(equipdetailData);
+        console.log("temp",temp);
         wx.navigateTo({
-            url:'../equipdetailsettinginfo/equipdetailsettinginfo'
+            url:'../equipdetailsettinginfo/equipdetailsettinginfo?IP=' + IP +
+                '&port=' + port +'&version=' + version + '&temp=' + temp
         })
     },
     //页面跳转防区设置
@@ -39,9 +51,8 @@ Page({
      */
     onLoad: function (options) {
         var that= this
-        // 字符串转json
+        //接收
         var code = options.code;
-        console.log("设备闪灯",code);
         /**
          * 请求设备详情接口
          */
