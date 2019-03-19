@@ -83,18 +83,15 @@ Page({
      */
     ifsign:function(){
         var that = this;
-        console.log("sign前",that.data.sign);
            that.setData({
                sign:!that.data.sign
            })
-        console.log("sign后",that.data.sign);
         var updateifdanger ;
         if(that.data.sign){
             updateifdanger = 1
         }else {
             updateifdanger = 0
         }
-        console.log("updateifdanger",updateifdanger);
         request.postReq("/api/alarm/update",
             {
                 code:that.data.alarmdetailData.code,
@@ -102,6 +99,20 @@ Page({
             },
             function (res) {
 
+               console.log("res",res.data[0].ifdanger);
+               if(res.data[0].ifdanger === 1){
+                   wx.showToast({
+                       title: '标记成功！',
+                       icon: 'none',
+                       duration: 2000
+                   });
+               }else {
+                   wx.showToast({
+                       title: '您已取消标记！',
+                       icon: 'none',
+                       duration: 2000
+                   });
+               }
             }
         )
 
@@ -116,7 +127,7 @@ Page({
                 title: '已是第一条报警',
                 icon: 'none',
                 duration: 2000
-            })
+            });
             return;
         }
         request.postReq("/api/alarm/getone",
@@ -126,7 +137,7 @@ Page({
             function (res) {
                 that.setData({
                     alarmdetailData:res.data
-                })
+                });
                 if(that.data.alarmdetailData.ifdanger === 1){
                     that.setData({
                         sign:true
