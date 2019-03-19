@@ -1,4 +1,5 @@
 // pages/defenceareasetting/defenceareasetting.js
+var my_carvas,strat_x,strat_y,end_x,end_y;
 const app = getApp();
 Page({
 
@@ -11,7 +12,8 @@ Page({
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
-        }
+        },
+        dianlist:[]
     },
     //页面跳转
     changeTosettingequipinfo:function(){
@@ -29,8 +31,44 @@ Page({
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function () {
+    onReady:function(){
 
+        my_carvas = wx.createCanvasContext('myCanvas', this) //1.创建carvas实例对象，方便后续使用。
+
+    },
+    // 手指触摸事件
+    EventHandleStart:function(e){
+        var that = this;
+        strat_x = e.touches[0].x; // 手指开始触摸时的x轴 x轴--->相对于画布左边的距离
+        strat_y = e.touches[0].y;// 手指开始触摸时的y轴 y轴--->相对于画布顶部的距离
+    },
+    //手指触摸结束时的事件
+    EventHandle: function (e) {
+        var that = this;
+        end_x = e.changedTouches[0].x; // 手指结束触摸时的x轴 x轴--->相对于画布左边的距离
+        end_y = e.changedTouches[0].y;// 手指结束触摸时的y轴 y轴--->相对于画布顶部的距离
+        const data=that.data.dianlist;
+        var dian1 = [strat_x,strat_y];
+        var dian2 = [end_x,end_y];
+        data.push(dian1,dian2);
+        that.setData({
+            dianlist:data
+        });
+        console.log("kaishi",that.data.dianlist);
+        my_carvas.beginPath(); //创建一条路径
+        my_carvas.setStrokeStyle('red');  //设置边框为红色
+        my_carvas.moveTo(that.data.dianlist[0][0],that.data.dianlist[0][1]); //描述路径的起点为手指触摸的x轴和y轴
+        my_carvas.lineTo(that.data.dianlist[1][0],that.data.dianlist[1][1]);//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
+        if(that.data.dianlist.length>2){
+            my_carvas.lineTo(that.data.dianlist[3][0],that.data.dianlist[3][1]);
+
+        }
+        if(that.data.dianlist.length>4){
+            my_carvas.lineTo(that.data.dianlist[5][0],that.data.dianlist[5][1]);
+            my_carvas.lineTo(that.data.dianlist[0][0],that.data.dianlist[0][1]);
+        }
+        my_carvas.stroke();//画出当前路径的边框
+        my_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
     },
 
     /**
