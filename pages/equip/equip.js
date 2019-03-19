@@ -23,13 +23,14 @@ Page({
         var that = this;
         //获取当前点击元素的id(索引值)
         var Id = e.currentTarget.id;
+        console.log("Id",Id);
         //获取当前点击元素的属性值。
         var code = that.data.equipListData[Id].code;
-        // var mesg = that.data.equipListData[Id];
-        //因为获取到的值是个对象，url只能传字符串，所以必须把它转化为字符串。
-        // mesg = JSON.stringify(mesg);
+        //获取当前设备是否离线
+        var mist = that.data.equipListData[Id].ismist;
+        console.log("mist",mist);
         wx.navigateTo({
-            url:'../equipdetail/equipdetail?code=' + code
+            url:'../equipdetail/equipdetail?code=' + code + '&mist=' + mist
         })
     },
     /**
@@ -66,6 +67,7 @@ Page({
                      })
                  }
                 }
+                console.log("ismist",that.data.equipListData[0].ismist);
             })
     },
 

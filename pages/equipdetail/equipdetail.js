@@ -22,34 +22,55 @@ Page({
      */
     changeTosettinginfo:function(){
         var that = this;
-        // var IP = that.data.equipdetailData.ip;
-        // var port = that.data.equipdetailData.authport;
-        // var version = that.data.softversion;
-        // var temp = that.data.temp;
-        // var password = that.data.equipdetailData.apassword;
-        // var username = that.data.equipdetailData.ausername;
         var currentcode = that.data.currentcode;
-
-        //因为获取到的值是个对象，url只能传字符串，所以必须把它转化为字符串。
-        // equipdetailData = JSON.stringify(equipdetailData);
-        wx.navigateTo({
-            // url:'../equipdetailsettinginfo/equipdetailsettinginfo?IP=' + IP +
-            //     '&port=' + port +'&version=' + version + '&temp=' + temp
-            //     +'&password=' + password + '&username=' + username
-            url:'../equipdetailsettinginfo/equipdetailsettinginfo?currentcode=' + currentcode
-        })
+        if(that.data.ismist === "false"){
+            wx.showToast({
+                title: '设备离线，无法操作！',
+                icon: 'none',
+                duration: 2000
+            });
+        }
+        if(that.data.ismist === "true"){
+            wx.navigateTo({
+                        url:'../equipdetailsettinginfo/equipdetailsettinginfo?currentcode=' + currentcode
+                    })
+        }
     },
-    //页面跳转防区设置
+    /**
+     * 页面跳转防区设置
+     */
     changeTodefenceareasetting:function(){
-        wx.navigateTo({
-            url:'../defenceareasetting/defenceareasetting'
-        })
+        var that = this;
+        if(that.data.ismist === "false"){
+            wx.showToast({
+                title: '设备离线，无法操作！',
+                icon: 'none',
+                duration: 2000
+            });
+        }
+        if(that.data.ismist === "true"){
+            wx.navigateTo({
+                url:'../defenceareasetting/defenceareasetting'
+            })
+        }
     },
-    //页面跳转设防时间
+    /**
+     * 页面跳转设防时间
+     */
     changeTofortifytime:function(){
-        wx.navigateTo({
-            url:'../fortifytime/fortifytime'
-        })
+        var that = this;
+        if(that.data.ismist === "false"){
+            wx.showToast({
+                title: '设备离线，无法操作！',
+                icon: 'none',
+                duration: 2000
+            });
+        }
+        if(that.data.ismist === "true"){
+            wx.navigateTo({
+                url:'../fortifytime/fortifytime'
+            })
+        }
     },
     /**
      * 生命周期函数--监听页面加载
@@ -58,11 +79,14 @@ Page({
         var that= this
         //当前时间
         var ctime = util.formatTime(new Date());
-        //接收
+        //接收code
         var code = options.code;
+        //接收设备是否离线
+        var ismist = options.mist;
         that.setData({
-            currentcode:code
-        })
+            currentcode:code,
+            ismist:ismist
+        });
         /**
          * 请求设备详情接口
          */
@@ -81,7 +105,7 @@ Page({
                     upgrade:res.upgrade,
                     logintime:res.login.time,
                     status:res.heartdata.status
-                })
+                });
                 var currenttime = new Date(ctime);
                 //两个时间相差的分钟数
                 var  mislastheart =  parseInt(currenttime - new Date(that.data.lastheart))/ 1000 / 60;
