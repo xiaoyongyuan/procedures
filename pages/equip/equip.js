@@ -23,12 +23,10 @@ Page({
         var that = this;
         //获取当前点击元素的id(索引值)
         var Id = e.currentTarget.id;
-        console.log("Id",Id);
         //获取当前点击元素的属性值。
         var code = that.data.equipListData[Id].code;
         //获取当前设备是否离线
         var mist = that.data.equipListData[Id].ismist;
-        console.log("mist",mist);
         wx.navigateTo({
             url:'../equipdetail/equipdetail?code=' + code + '&mist=' + mist
         })
@@ -49,7 +47,7 @@ Page({
             function(res){
                 that.setData({
                     equipListData:res.data
-                })
+                });
                 var currenttime = new Date(ctime);
                 for(var i=0;i<res.data.length;i++){
                  //两个时间相差的分钟数
@@ -67,7 +65,6 @@ Page({
                      })
                  }
                 }
-                console.log("ismist",that.data.equipListData[0].ismist);
             })
     },
 
