@@ -21,7 +21,9 @@ Page({
         // reddisplay:'none',
         addone:false,
         bluedisplay:'block',
-        reddisplay:'block'
+        reddisplay:'block',
+        deleone:true,
+        deletwo:true
     },
     //页面跳转
     changeTosettingequipinfo:function(){
@@ -52,15 +54,45 @@ Page({
                 console.log("自己的",that.data.field);
                 console.log("自己的1",that.data.field[1]);
                 console.log("自己的2",that.data.field[2]);
+                /**
+                 * 两个都有
+                 */
                 if(that.data.field[1] !== undefined && that.data.field[2] !== undefined){
                     that.setData({
                         addfield:false,
-                        savebtn:false
+                        savebtn:false,
+                        deleone:true,
+                        deletwo:true
                     });
                 }
-                if(that.data.field[1] === undefined || that.data.field[2] === undefined){
+                /**
+                 * 两个都没有
+                 */
+                if(that.data.field[1] === undefined && that.data.field[2] === undefined){
                     that.setData({
-                        savebtn:false
+                        savebtn:false,
+                        deleone:false,
+                        deletwo:false
+                    });
+                }
+                /**
+                 * 有2无1
+                 */
+                if(that.data.field[1] === undefined && that.data.field[2] !== undefined){
+                    that.setData({
+                        deleone:false,
+                        deletwo:true,
+                        savebtn:false,
+                    });
+                }
+                /**
+                 * 有1无2
+                 */
+                if(that.data.field[1] !== undefined && that.data.field[2] === undefined){
+                    that.setData({
+                        deleone:true,
+                        deletwo:false,
+                        savebtn:false,
                     });
                 }
                 /**
@@ -350,7 +382,8 @@ Page({
                         },
                         function(res){
                             that.setData({
-                                field:res.data.field
+                                field:res.data.field,
+                                deleone:true
                             });
                         });
                     wx.showToast({
@@ -402,7 +435,8 @@ Page({
                            if(that.data.field[1] !== undefined && that.data.field[2] !== undefined){
                                that.setData({
                                    addfield:false,
-                                   savebtn:false
+                                   savebtn:false,
+                                   deletwo:true
                                });
                            }
                        });
@@ -456,7 +490,8 @@ Page({
                                 that.setData({
                                     addfield:false,
                                     savebtn:false,
-                                    reddisplay:'block'
+                                    reddisplay:'block',
+                                    deleone:true,
                                 });
                             }
                         });
@@ -468,10 +503,26 @@ Page({
                 })
         }
     },
-//     /**
-//      * 点进来加载蓝色防区
-//      */
+    /**
+     * 删除防区
+     */
+    deleteone:function(){
+        var that = this;
+        console.log("test");
+        request.postReq("/api/camera/fielddel",
+            {
+                code:that.data.currentcode,
+                key:'1'
+            },
+            function(res){
+                wx.showToast({
+                    title: '防区1删除成功',
+                    icon: 'success',
+                    duration: 2000
+                });
+            })
 
+    },
     /**
      * 生命周期函数--监听页面显示
      */

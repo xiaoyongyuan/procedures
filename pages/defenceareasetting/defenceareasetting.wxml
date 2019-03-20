@@ -2,13 +2,12 @@
 <view class="page">
     <navbar back home text="{{navigationBarTitle}}"></navbar>
     <view class="top" style="height: {{ someData.statusBarHeight+someData.titleBarHeight }}px">
-        <!--占位view--> <!--style="display: {{ reddisplay }}"  -->
+
     </view>
     <view class="defencearea-top">
         <view class="defencearea-img-inner" style="background-image: url(http://pic01.aokecloud.cn/alarm/1000004/pic/20190114/1000004_20190114093241_640X480.jpg)">
             <canvas class='myredCanvas' canvas-id="myredCanvas" style="display: {{ reddisplay }}" bindtouchstart='EventHandleStart' bindtouchend='EventHandle' binderror="canvasIdErrorCallback" />
             <canvas class='myblueCanvas' canvas-id="myblueCanvas" style="display: {{ bluedisplay }}" bindtouchstart='EventHandleStartblue' bindtouchend='EventHandleblue' binderror="canvasIdErrorCallbackblue" />
-            <!--<image class="defencearelua-img" src="http://pic01.aokecloud.cn/alarm/1000004/pic/20190114/1000004_20190114093241_640X480.jpg"></image>-->
         </view>
     </view>
     <view class="defencearea-btn">
@@ -25,7 +24,7 @@
         <text>防区信息</text>
     </view>
     <view class="defenceareadelete">
-        <view class="defenceareadelete-one">
+        <view class="defenceareadelete-one" wx:if="{{ deleone === true }}" bindtap="deleteone">
             <view class="defenceareadelete-one-left">
                 <text>防区1</text>
             </view>
@@ -35,13 +34,36 @@
                 </view>
             </view>
         </view>
-        <view class="defenceareadelete-two">
+
+        <view class="defenceareadelete-one" wx:else style="background-color: #f7f7f7; border: none;">
+            <view class="defenceareadelete-one-left" style="border-right: 1px solid #f0f0f0;">
+                <text style="color: #a6a6a6">防区1</text>
+            </view>
+            <view class="defenceareadelete-one-right">
+                <view class="defenceareadelete-one-right-img">
+                    <image src="/images/shanchu.png"></image>
+                </view>
+            </view>
+        </view>
+
+        <view class="defenceareadelete-two" wx:if="{{ deletwo === true }}" bindtap="deletetwo">
             <view class="defenceareadelete-two-left">
                 <text>防区2</text>
             </view>
             <view class="defenceareadelete-two-right">
                 <view class="defenceareadelete-one-right-img">
                     <image src="/images/shanchu2.png"></image>
+                </view>
+            </view>
+        </view>
+
+        <view class="defenceareadelete-two" wx:else style="background-color: #f7f7f7; border: none;">
+            <view class="defenceareadelete-two-left" style="border-right: 1px solid #f0f0f0;">
+                <text style="color: #a6a6a6">防区2</text>
+            </view>
+            <view class="defenceareadelete-two-right">
+                <view class="defenceareadelete-one-right-img">
+                    <image src="/images/shanchu.png"></image>
                 </view>
             </view>
         </view>
