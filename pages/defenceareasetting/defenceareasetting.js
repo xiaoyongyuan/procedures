@@ -29,38 +29,45 @@ Page({
      */
     onLoad: function (options) {
         var that = this;
-        var fieldStr = options.fieldStr;
-        console.log("jieshou",fieldStr);
-        console.log("jieshou",fieldStr[1]);
-        console.log("jieshou44",fieldStr[2]);
-        //字符串转json
-        console.log("hhhhhh");
-        const fieldObj = JSON.parse(fieldStr);
-        that.setData({
-            fieldObj:fieldObj
-        });
-        console.log("jieshou",fieldObj[1]);
-        console.log("jieshou44",fieldObj[2]);//dsfsdf
-        if(fieldStr !== '""'){
-            const x1 = fieldObj[2][0][0][0];
-            const y1 = fieldObj[2][0][0][1];
-            const x2 = fieldObj[2][0][1][0];
-            const y2 = fieldObj[2][0][1][1];
-            const x3 = fieldObj[2][0][2][0];
-            const y3 = fieldObj[2][0][2][1];
-            const x4 = fieldObj[2][0][3][0];
-            const y4 = fieldObj[2][0][3][1];
-            my_carvas = wx.createCanvasContext('myCanvas', this) //1.创建carvas实例对象，方便后续使用。
-            my_carvas.beginPath(); //创建一条路径
-            my_carvas.setStrokeStyle('red');  //设置边框为红色
-            my_carvas.moveTo(x1,y1); //描述路径的起点为手指触摸的x轴和y轴
-            my_carvas.lineTo(x2,y2);//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
-            my_carvas.lineTo(x3,y3);
-            my_carvas.lineTo(x4,y4);
-            my_carvas.lineTo(x1,y1);
-            my_carvas.stroke();//画出当前路径的边框
-            my_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
-        }
+        // var fieldStr = options.fieldStr;
+        var code = options.currentcode;
+        console.log("hhhhcode",code);
+        /**
+         * 请求设备详情接口
+         */
+
+        request.postReq("/api/camera/getone",
+            {
+                code:code
+            },
+            function(res){
+                that.setData({
+                    field:res.data.field
+                });
+                console.log("自己的",that.data.field);
+                console.log("自己的1",that.data.field[1]);
+                console.log("自己的2",that.data.field[2]);
+                if(that.data.field[2] !== undefined){
+                    const x1 = that.data.field[2][0][0][0];
+                    const y1 = that.data.field[2][0][0][1];
+                    const x2 = that.data.field[2][0][1][0];
+                    const y2 = that.data.field[2][0][1][1];
+                    const x3 = that.data.field[2][0][2][0];
+                    const y3 = that.data.field[2][0][2][1];
+                    const x4 = that.data.field[2][0][3][0];
+                    const y4 = that.data.field[2][0][3][1];
+                    my_carvas = wx.createCanvasContext('myCanvas', this);//1.创建carvas实例对象，方便后续使用。
+                    my_carvas.beginPath(); //创建一条路径
+                    my_carvas.setStrokeStyle('red');  //设置边框为红色
+                    my_carvas.moveTo(x1,y1); //描述路径的起点为手指触摸的x轴和y轴
+                    my_carvas.lineTo(x2,y2);//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
+                    my_carvas.lineTo(x3,y3);
+                    my_carvas.lineTo(x4,y4);
+                    my_carvas.lineTo(x1,y1);
+                    my_carvas.stroke();//画出当前路径的边框
+                    my_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
+                }
+            });
     },
 
     /**
@@ -94,7 +101,7 @@ Page({
         });
         console.log("kaishi",that.data.dianlist);
 
-        if(that.data.fieldObj[2] === undefined){
+        if(that.data.field[2] === undefined){
             my_carvas.beginPath(); //创建一条路径
             my_carvas.setStrokeStyle('red');  //设置边框为红色
             my_carvas.moveTo(that.data.dianlist[0][0],that.data.dianlist[0][1]); //描述路径的起点为手指触摸的x轴和y轴

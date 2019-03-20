@@ -53,7 +53,7 @@ Page({
         }
         if(that.data.ismist === "true"){
             wx.navigateTo({
-                url:'../defenceareasetting/defenceareasetting?fieldStr=' + fieldStr
+                url:'../defenceareasetting/defenceareasetting?fieldStr=' + fieldStr + '&currentcode=' + that.data.currentcode
             })
         }
     },
