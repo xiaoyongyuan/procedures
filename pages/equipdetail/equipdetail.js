@@ -43,6 +43,7 @@ Page({
      */
     changeTodefenceareasetting:function(){
         var that = this;
+        const fieldStr = JSON.stringify(that.data.field);
         if(that.data.ismist === "false"){
             wx.showToast({
                 title: '设备离线，无法操作！',
@@ -52,7 +53,7 @@ Page({
         }
         if(that.data.ismist === "true"){
             wx.navigateTo({
-                url:'../defenceareasetting/defenceareasetting'
+                url:'../defenceareasetting/defenceareasetting?fieldStr=' + fieldStr
             })
         }
     },
@@ -106,7 +107,8 @@ Page({
                     softversion:res.login.version,
                     upgrade:res.upgrade,
                     logintime:res.login.time,
-                    status:res.heartdata.status
+                    status:res.heartdata.status,
+                    field:res.data.field
                 });
                 var currenttime = new Date(ctime);
                 //两个时间相差的分钟数

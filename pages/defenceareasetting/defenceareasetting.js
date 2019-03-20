@@ -14,7 +14,8 @@ Page({
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
         },
-        dianlist:[]
+        dianlist:[],
+        addfield:true
     },
     //页面跳转
     changeTosettingequipinfo:function(){
@@ -26,6 +27,52 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        var that = this;
+        var fieldStr = options.fieldStr;
+        console.log("jieshou",fieldStr);
+        if(fieldStr !== ""){
+
+        }
+        //字符串转json
+        const fieldObj = JSON.parse(fieldStr);
+        const x1 = fieldObj[2][0][0][0];
+        const y1 = fieldObj[2][0][0][1];
+        const x2 = fieldObj[2][0][1][0];
+        const y2 = fieldObj[2][0][1][1];
+        const x3 = fieldObj[2][0][2][0];
+        const y3 = fieldObj[2][0][2][1];
+        const x4 = fieldObj[2][0][3][0];
+        const y4 = fieldObj[2][0][3][1];
+        my_carvas = wx.createCanvasContext('myCanvas', this) //1.创建carvas实例对象，方便后续使用。
+        my_carvas.beginPath(); //创建一条路径
+        my_carvas.setStrokeStyle('red');  //设置边框为红色
+        my_carvas.moveTo(x1,y1); //描述路径的起点为手指触摸的x轴和y轴
+        my_carvas.lineTo(x2,y2);//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
+        my_carvas.lineTo(x3,y3);
+        my_carvas.lineTo(x4,y4);
+        my_carvas.lineTo(x1,y1);
+        // if(that.data.dianlist.length>2){
+        //     my_carvas.lineTo(that.data.dianlist[3][0],that.data.dianlist[3][1]);
+        //
+        // }
+        // if(that.data.dianlist.length>4){
+        //     my_carvas.lineTo(that.data.dianlist[5][0],that.data.dianlist[5][1]);
+        //     my_carvas.lineTo(that.data.dianlist[0][0],that.data.dianlist[0][1]);
+        // }
+        my_carvas.stroke();//画出当前路径的边框
+        my_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
+        console.log("jieshou22",fieldObj);
+        console.log("field",fieldObj[2][0][0][0]);
+        console.log("field",fieldObj[2][0][0][1]);
+
+        console.log("field",fieldObj[2][0][1][0]);
+        console.log("field",fieldObj[2][0][1][1]);
+
+        console.log("field",fieldObj[2][0][2][0]);
+        console.log("field",fieldObj[2][0][2][1]);
+
+        console.log("field",fieldObj[2][0][3][0]);
+        console.log("field",fieldObj[2][0][3][1]);
 
     },
 

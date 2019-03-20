@@ -12,7 +12,8 @@
     </view>
     <view class="defencearea-btn">
         <view class="defencearea-btn-left">
-            <button class="weui-btn" bindtap="clear">增加防区</button>
+            <button wx:if="{{ addfield === true }}" style="background-color: #00a0e9" class="weui-btn" bindtap="clear">增加防区</button>
+            <button wx:else class="weui-btn" bindtap="clear">增加防区</button>
         </view>
         <view class="defencearea-btn-right">
             <button class="weui-btn" bindtap="save">保存</button>
