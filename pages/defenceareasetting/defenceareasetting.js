@@ -1,6 +1,7 @@
 // pages/defenceareasetting/defenceareasetting.js
 var my_carvas,strat_x,strat_y,end_x,end_y;
 const app = getApp();
+var request = require('../../utils/request.js');
 Page({
 
     /**
@@ -41,6 +42,7 @@ Page({
         var that = this;
         strat_x = e.touches[0].x; // 手指开始触摸时的x轴 x轴--->相对于画布左边的距离
         strat_y = e.touches[0].y;// 手指开始触摸时的y轴 y轴--->相对于画布顶部的距离
+        console.log("strat_xstrat_y",strat_x,strat_y);
     },
     //手指触摸结束时的事件
     EventHandle: function (e) {
@@ -50,7 +52,9 @@ Page({
         const data=that.data.dianlist;
         var dian1 = [strat_x,strat_y];
         var dian2 = [end_x,end_y];
-        data.push(dian1,dian2);
+        if(that.data.dianlist.length < 6) {
+            data.push(dian1,dian2);
+        }
         that.setData({
             dianlist:data
         });
@@ -71,6 +75,49 @@ Page({
         my_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
     },
 
+    clear:function(){
+        var that = this;
+        console.log("qian",that.data.dianlist);
+        that.setData({
+            dianlist:[]
+        });
+        my_carvas.stroke();//画出当前路径的边框
+        my_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
+        console.log("hou",that.data.dianlist);
+
+    },
+    save:function(){
+        var that = this;
+        /**
+         * 请求增加防区接口
+         */
+        const x1 = that.data.dianlist[0][0];
+        const y1 = that.data.dianlist[0][1];
+        const x2 = that.data.dianlist[1][0];
+        const y2 = that.data.dianlist[1][1];
+        const x3 = that.data.dianlist[3][0];
+        const y3 = that.data.dianlist[3][1];
+        const x4 = that.data.dianlist[5][0];
+        const y4 = that.data.dianlist[5][1];
+        const field = [[ [x1,y1],[x2,y2],[x3,y3],[x4,y4] ]];
+        console.log("field",field);
+        request.postReq("/api/camera/fieldadd",
+            {
+                code:'1000082',
+                key:'2',
+                field:field
+            },
+            function(res){
+                wx.showToast({
+                    title: '请求成功',
+                    icon: 'success',
+                    duration: 2000
+                });
+                // that.setData({
+                //     alarmListData:res.data
+                // })
+            })
+    },
     /**
      * 生命周期函数--监听页面显示
      */

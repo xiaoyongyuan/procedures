@@ -16,6 +16,8 @@ Page({
         },
         // list传过来的详情
         equipdetailData:{},
+        logintime:'',
+
     },
     /**
      * 页面跳转设置信息

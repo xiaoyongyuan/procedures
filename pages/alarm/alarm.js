@@ -97,7 +97,7 @@ Page({
 
         request.postReq("/api/alarm/getlist_forAPP",
             {
-                account:'18210812953',
+                account:'17792542304',
                 apptime:'2019-01-19 22:23'
             },
             function(res){
