@@ -17,9 +17,11 @@ Page({
         dianlist:[],
         pointlist:[],
         addfield:true,
-        reddisplay:'none',
+        savebtn:true,
+        // reddisplay:'none',
         addone:false,
-        bluedisplay:'block'
+        bluedisplay:'block',
+        reddisplay:'block'
     },
     //页面跳转
     changeTosettingequipinfo:function(){
@@ -50,6 +52,17 @@ Page({
                 console.log("自己的",that.data.field);
                 console.log("自己的1",that.data.field[1]);
                 console.log("自己的2",that.data.field[2]);
+                if(that.data.field[1] !== undefined && that.data.field[2] !== undefined){
+                    that.setData({
+                        addfield:false,
+                        savebtn:false
+                    });
+                }
+                if(that.data.field[1] === undefined || that.data.field[2] === undefined){
+                    that.setData({
+                        savebtn:false
+                    });
+                }
                 /**
                  * 点进来加载蓝色防区
                  */
@@ -111,8 +124,8 @@ Page({
     // 手指触摸事件红色
     EventHandleStart:function(e){
         var that = this;
-        strat_x = e.touches[0].x; // 手指开始触摸时的x轴 x轴--->相对于画布左边的距离
-        strat_y = e.touches[0].y;// 手指开始触摸时的y轴 y轴--->相对于画布顶部的距离strat_xblue
+        strat_x = Math.round(e.touches[0].x) ; // 手指开始触摸时的x轴 x轴--->相对于画布左边的距离
+        strat_y = Math.round(e.touches[0].y) ;// 手指开始触摸时的y轴 y轴--->相对于画布顶部的距离strat_xblue
         console.log("strat_xstrat_y",strat_x,strat_y);
     },
     /**
@@ -165,12 +178,43 @@ Page({
                 myblue_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
             }
         }
+        /**
+         * 有2没有1
+         */
+        if(that.data.addfield === false){
+            if(that.data.field[1] === undefined && that.data.field[2] !== undefined){
+                const datapoint=that.data.pointlist;
+                var point1 = [strat_xblue,strat_yblue];
+                var point2 = [end_xblue,end_yblue];
+                if(that.data.pointlist.length < 6) {
+                    datapoint.push(point1,point2);
+                }
+                that.setData({
+                    pointlist:datapoint
+                });
+                console.log("kaishi蓝色哈哈哈哈",that.data.pointlist);
+                myblue_carvas.beginPath(); //创建一条路径
+                myblue_carvas.setStrokeStyle('blue');  //设置边框为蓝色
+                myblue_carvas.moveTo(that.data.pointlist[0][0],that.data.pointlist[0][1]); //描述路径的起点为手指触摸的x轴和y轴
+                myblue_carvas.lineTo(that.data.pointlist[1][0],that.data.pointlist[1][1]);//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
+                if(that.data.pointlist.length>2){
+                    myblue_carvas.lineTo(that.data.pointlist[3][0],that.data.pointlist[3][1]);
+
+                }
+                if(that.data.pointlist.length>4){
+                    myblue_carvas.lineTo(that.data.pointlist[5][0],that.data.pointlist[5][1]);
+                    myblue_carvas.lineTo(that.data.pointlist[0][0],that.data.pointlist[0][1]);
+                }
+                myblue_carvas.stroke();//画出当前路径的边框
+                myblue_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
+            }
+        }
     },
     //手指触摸结束时的事件红色
     EventHandle: function (e) {
         var that = this;
-        end_x = e.changedTouches[0].x; // 手指结束触摸时的x轴 x轴--->相对于画布左边的距离
-        end_y = e.changedTouches[0].y;// 手指结束触摸时的y轴 y轴--->相对于画布顶部的距离
+        end_x = Math.round(e.changedTouches[0].x); // 手指结束触摸时的x轴 x轴--->相对于画布左边的距离
+        end_y = Math.round(e.changedTouches[0].y);// 手指结束触摸时的y轴 y轴--->相对于画布顶部的距离
         const data=that.data.dianlist;
         var dian1 = [strat_x,strat_y];
         var dian2 = [end_x,end_y];
@@ -210,7 +254,8 @@ Page({
         that.setData({
             addfield:!that.data.addfield,
             reddisplay:'block',
-            addone:!that.data.addone
+            addone:!that.data.addone,
+            savebtn:true
         });
         /**
          * 两个防区都没有
@@ -235,6 +280,19 @@ Page({
                 bluedisplay:'none'
             });
         }
+        /**
+         * 有2没有1
+         */
+        if(that.data.field[1] === undefined && that.data.field[2] !== undefined){
+            that.setData({
+                reddisplay:'none'
+            });
+            wx.showToast({
+                title: '请绘制防区1',
+                icon: 'none',
+                duration: 2000
+            });
+        }
     },
     // clear:function(){
     //     var that = this;
@@ -253,9 +311,13 @@ Page({
     save:function(){
         var that = this;
         /**
-         * 两个都没有保存蓝色防区
+         * 两个都没有，保存蓝色防区
          */
-        if(that.data.pointlist.length>0 && that.data.dianlist.length === 0){
+
+        console.log("that.data.pointlist",that.data.pointlist);
+        console.log("that.data.dianlist.length",that.data.dianlist.length);
+        if(that.data.field[1] === undefined && that.data.field[2] === undefined){
+            console.log("两个都没有，保存蓝色防区");
             console.log("测试pointlist",that.data.pointlist.length);
             console.log("测试dianlist",that.data.dianlist.length);
             const bx1 = that.data.pointlist[0][0];
@@ -268,67 +330,143 @@ Page({
             const by4 = that.data.pointlist[5][1];
             const bfield = [[ [bx1,by1],[bx2,by2],[bx3,by3],[bx4,by4] ]];
             console.log("field",bfield);
-            // request.postReq("/api/camera/fieldadd",
-            //     {
-            //         code:'1000082',
-            //         key:'1',
-            //         field:bfield
-            //     },
-            //     function(res){
-            //         wx.showToast({
-            //             title: '防区1保存成功',
-            //             icon: 'success',
-            //             duration: 2000
-            //         });
-            //         that.setData({
-            //             addfield:!that.data.addfield
-            //         });
-            //         /**
-            //          * 请求设备详情接口
-            //          */
-            //         request.postReq("/api/camera/getone",
-            //             {
-            //                 code:that.data.currentcode
-            //             },
-            //             function(res){
-            //                 that.setData({
-            //                     field:res.data.field
-            //                 });
-            //             });
-            //     })
+            request.postReq("/api/camera/fieldadd",
+                {
+                    code:that.data.currentcode,
+                    key:'1',
+                    field:bfield
+                },
+                function(res){
+                    that.setData({
+                        addfield:true,
+                        savebtn:false
+                    });
+                    /**
+                     * 请求设备详情接口
+                     */
+                    request.postReq("/api/camera/getone",
+                        {
+                            code:that.data.currentcode
+                        },
+                        function(res){
+                            that.setData({
+                                field:res.data.field
+                            });
+                        });
+                    wx.showToast({
+                        title: '防区1保存成功',
+                        icon: 'success',
+                        duration: 2000
+                    });
+                })
         }
-        /**
+        /**有1没有2
          * 请求增加防区接口保存红色
          */
-       // if(that.data.dianlist.length>0){
-       //     console.log("测试",that.data.dianlist.length);
-       //     const x1 = that.data.dianlist[0][0];
-       //     const y1 = that.data.dianlist[0][1];
-       //     const x2 = that.data.dianlist[1][0];
-       //     const y2 = that.data.dianlist[1][1];
-       //     const x3 = that.data.dianlist[3][0];
-       //     const y3 = that.data.dianlist[3][1];
-       //     const x4 = that.data.dianlist[5][0];
-       //     const y4 = that.data.dianlist[5][1];
-       //     const field = [[ [x1,y1],[x2,y2],[x3,y3],[x4,y4] ]];
-       //     console.log("field",field);
-       //     request.postReq("/api/camera/fieldadd",
-       //         {
-       //             code:'1000082',
-       //             key:'2',
-       //             field:field
-       //         },
-       //         function(res){
-       //             wx.showToast({
-       //                 title: '防区2保存成功',
-       //                 icon: 'success',
-       //                 duration: 2000
-       //             });
-       //             that.setData({
-       //                 bluedisplay:'block'
-       //             });
-       //         })
-       // }
+       if(that.data.field[1] !== undefined && that.data.field[2] === undefined){
+           console.log("有1没有2保存红色");
+           console.log("测试pointlist有1没有2",that.data.pointlist.length);
+           console.log("测试dianlist有1没有2",that.data.dianlist.length);
+           const x1 = that.data.dianlist[0][0];
+           const y1 = that.data.dianlist[0][1];
+           const x2 = that.data.dianlist[1][0];
+           const y2 = that.data.dianlist[1][1];
+           const x3 = that.data.dianlist[3][0];
+           const y3 = that.data.dianlist[3][1];
+           const x4 = that.data.dianlist[5][0];
+           const y4 = that.data.dianlist[5][1];
+           const field = [[ [x1,y1],[x2,y2],[x3,y3],[x4,y4] ]];
+           console.log("field",field);
+           request.postReq("/api/camera/fieldadd",
+               {
+                   code:'1000082',
+                   key:'2',
+                   field:field
+               },
+               function(res){
+
+                   that.setData({
+                       bluedisplay:'block'
+                   });
+                   /**
+                    * 请求设备详情接口
+                    */
+                   request.postReq("/api/camera/getone",
+                       {
+                           code:that.data.currentcode
+                       },
+                       function(res){
+                           that.setData({
+                               field:res.data.field
+                           });
+                           if(that.data.field[1] !== undefined && that.data.field[2] !== undefined){
+                               that.setData({
+                                   addfield:false,
+                                   savebtn:false
+                               });
+                           }
+                       });
+                   wx.showToast({
+                       title: '防区2保存成功',
+                       icon: 'success',
+                       duration: 2000
+                   });
+               })
+       }
+        /**
+         * 有2没有1保存蓝色
+         */
+        if(that.data.field[1] === undefined && that.data.field[2] !== undefined){
+            console.log("有2没有1保存蓝色");
+            console.log("测试pointlist",that.data.pointlist.length);
+            console.log("测试dianlist",that.data.dianlist.length);
+            const bx1 = that.data.pointlist[0][0];
+            const by1 = that.data.pointlist[0][1];
+            const bx2 = that.data.pointlist[1][0];
+            const by2 = that.data.pointlist[1][1];
+            const bx3 = that.data.pointlist[3][0];
+            const by3 = that.data.pointlist[3][1];
+            const bx4 = that.data.pointlist[5][0];
+            const by4 = that.data.pointlist[5][1];
+            const bfield = [[ [bx1,by1],[bx2,by2],[bx3,by3],[bx4,by4] ]];
+            console.log("field",bfield);
+            request.postReq("/api/camera/fieldadd",
+                {
+                    code:that.data.currentcode,
+                    key:'1',
+                    field:bfield
+                },
+                function(res){
+                    that.setData({
+                        addfield:!that.data.addfield,
+                        savebtn:false
+                    });
+                    /**
+                     * 请求设备详情接口
+                     */
+                    request.postReq("/api/camera/getone",
+                        {
+                            code:that.data.currentcode
+                        },
+                        function(res){
+                            that.setData({
+                                field:res.data.field
+                            });
+                            if(that.data.field[1] !== undefined && that.data.field[2] !== undefined){
+                                that.setData({
+                                    addfield:false,
+                                    savebtn:false,
+                                    reddisplay:'block'
+                                });
+                            }
+                        });
+                    wx.showToast({
+                        title: '防区1保存成功',
+                        icon: 'success',
+                        duration: 2000
+                    });
+                })
+        }
     },
 //     /**
 //      * 点进来加载蓝色防区

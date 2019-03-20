@@ -6,7 +6,7 @@
     </view>
     <view class="defencearea-top">
         <view class="defencearea-img-inner" style="background-image: url(http://pic01.aokecloud.cn/alarm/1000004/pic/20190114/1000004_20190114093241_640X480.jpg)">
-            <canvas class='myredCanvas' canvas-id="myredCanvas" bindtouchstart='EventHandleStart' bindtouchend='EventHandle' binderror="canvasIdErrorCallback" />
+            <canvas class='myredCanvas' canvas-id="myredCanvas" style="display: {{ reddisplay }}" bindtouchstart='EventHandleStart' bindtouchend='EventHandle' binderror="canvasIdErrorCallback" />
             <canvas class='myblueCanvas' canvas-id="myblueCanvas" style="display: {{ bluedisplay }}" bindtouchstart='EventHandleStartblue' bindtouchend='EventHandleblue' binderror="canvasIdErrorCallbackblue" />
             <!--<image class="defencearelua-img" src="http://pic01.aokecloud.cn/alarm/1000004/pic/20190114/1000004_20190114093241_640X480.jpg"></image>-->
         </view>
@@ -14,11 +14,11 @@
     <view class="defencearea-btn">
         <view class="defencearea-btn-left">
             <button wx:if="{{ addfield === true }}" style="background-color: #00a0e9;color: white;" class="weui-btn" bindtap="addfield">增加防区</button>
-            <button wx:else class="weui-btn" bindtap="addfield">增加防区</button>
+            <button wx:else class="weui-btn" disabled="disabled">增加防区</button>
         </view>
         <view class="defencearea-btn-right">
-            <button wx:if="{{ addfield === false }}" style="background-color: #00a0e9;color: white;" class="weui-btn" bindtap="save">保存</button>
-            <button wx:else class="weui-btn" bindtap="save">保存</button>
+            <button wx:if="{{ savebtn === true }}" style="background-color: #00a0e9;color: white;" class="weui-btn" bindtap="save">保存</button>
+            <button wx:else class="weui-btn" disabled="disabled">保存</button>
         </view>
     </view>
     <view class="defenceareainfo">
