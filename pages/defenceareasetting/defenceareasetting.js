@@ -1,9 +1,7 @@
-// pages/defenceareasetting/defenceareasetting.js
 var my_carvas,strat_x,strat_y,end_x,end_y,myblue_carvas,strat_xblue,strat_yblue,end_xblue,end_yblue;
 const app = getApp();
 var request = require('../../utils/request.js');
 Page({
-
     /**
      * 页面的初始数据
      */
@@ -18,7 +16,6 @@ Page({
         pointlist:[],
         addfield:true,
         savebtn:true,
-        // reddisplay:'none',
         addone:false,
         bluedisplay:'block',
         reddisplay:'block',
@@ -47,17 +44,11 @@ Page({
         query.select('#defenceareainfor').boundingClientRect();
         query.selectViewport().scrollOffset();
         query.exec(function (res) {
-            console.log('打印demo的元素的信息', res);
-            console.log('打印高度', res[0].height);
-            console.log('打印高度', res[0].width);
             that.setData({
                 defenceareaHeight:res[0].height,
                 defenceareaWidth:res[0].width
             });
         });
-
-
-
         /**
          * 请求设备详情接口
          */
@@ -69,10 +60,6 @@ Page({
                 that.setData({
                     field:res.data.field
                 });
-                // JSON.parse(
-                console.log("自己的",that.data.field);
-                console.log("自己的1",that.data.field[1]);
-                console.log("自己的2",that.data.field[2]);
                 /**
                  * 两个都有
                  */
@@ -127,10 +114,6 @@ Page({
                     const y3 = JSON.parse(that.data.field[1])[0][2][1];
                     const x4 = JSON.parse(that.data.field[1])[0][3][0];
                     const y4 = JSON.parse(that.data.field[1])[0][3][1];
-                    console.log("换算x",x1*(that.data.defenceareaWidth/704));
-                    console.log("换算y",y1*(that.data.defenceareaHeight/576));
-                    // defenceareaHeight:res[0].height,
-                    //     defenceareaWidth:res[0].width
                     myblue_carvas = wx.createCanvasContext('myblueCanvas', this);//1.创建carvas实例对象，方便后续使用。
                     myblue_carvas.beginPath(); //创建一条路径
                     myblue_carvas.setStrokeStyle('blue');  //设置边框为红色myblueCanvas
@@ -174,17 +157,14 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady:function(){
-
         my_carvas = wx.createCanvasContext('myredCanvas', this); //1.创建carvas实例对象，方便后续使用。
         myblue_carvas = wx.createCanvasContext('myblueCanvas', this);
-
     },
     // 手指触摸事件红色
     EventHandleStart:function(e){
         var that = this;
         strat_x = Math.round(e.touches[0].x) ; // 手指开始触摸时的x轴 x轴--->相对于画布左边的距离
         strat_y = Math.round(e.touches[0].y) ;// 手指开始触摸时的y轴 y轴--->相对于画布顶部的距离strat_xblue
-        console.log("strat_xstrat_y",strat_x,strat_y);
     },
     /**
      *手指触摸事件蓝色
@@ -193,9 +173,6 @@ Page({
         var that = this;
         strat_xblue = Math.round(e.touches[0].x); // 手指开始触摸时的x轴 x轴--->相对于画布左边的距离
         strat_yblue = Math.round(e.touches[0].y);// 手指开始触摸时的y轴 y轴--->相对于画布顶部的距离
-        // strat_yblue = Math.round(e.touches[0].y)
-        console.log("e",e);
-        console.log("strat_xblue",strat_xblue,strat_yblue);
     },
     /**
      *手指触摸结束时的事件蓝色
@@ -204,7 +181,6 @@ Page({
         var that = this;
         end_xblue = Math.round(e.changedTouches[0].x); // 手指结束触摸时的x轴 x轴--->相对于画布左边的距离
         end_yblue = Math.round(e.changedTouches[0].y);// 手指结束触摸时的y轴 y轴--->相对于画布顶部的距离
-
         /**
          * 两个防区都没有
          */
@@ -219,7 +195,6 @@ Page({
                 that.setData({
                     pointlist:datapoint
                 });
-                console.log("kaishi蓝色哈哈哈哈",that.data.pointlist);
                 myblue_carvas.beginPath(); //创建一条路径
                 myblue_carvas.setStrokeStyle('blue');  //设置边框为蓝色
                 myblue_carvas.setLineWidth(3);
@@ -251,7 +226,6 @@ Page({
                 that.setData({
                     pointlist:datapoint
                 });
-                console.log("kaishi蓝色哈哈哈哈",that.data.pointlist);
                 myblue_carvas.beginPath(); //创建一条路径
                 myblue_carvas.setStrokeStyle('blue');  //设置边框为蓝色
                 myblue_carvas.setLineWidth(3);
@@ -284,8 +258,6 @@ Page({
         that.setData({
             dianlist:data
         });
-        console.log("kaishi",that.data.dianlist);
-
         /**
          * 有1没有2
          */
@@ -297,7 +269,6 @@ Page({
             my_carvas.lineTo(that.data.dianlist[1][0],that.data.dianlist[1][1]);//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
             if(that.data.dianlist.length>2){
                 my_carvas.lineTo(that.data.dianlist[3][0],that.data.dianlist[3][1]);
-
             }
             if(that.data.dianlist.length>4){
                 my_carvas.lineTo(that.data.dianlist[5][0],that.data.dianlist[5][1]);
@@ -374,14 +345,7 @@ Page({
         /**
          * 两个都没有，保存蓝色防区
          */
-
-        console.log("that.data.pointlist",that.data.pointlist);
-        console.log("that.data.dianlist.length",that.data.dianlist.length);
         if(that.data.field[1] === undefined && that.data.field[2] === undefined){
-            console.log("两个都没有，保存蓝色防区");
-            console.log("测试pointlist",that.data.pointlist.length);
-            console.log("测试dianlist",that.data.dianlist.length);
-            // my_carvas.moveTo(x1*(that.data.defenceareaWidth/704),y1*(that.data.defenceareaHeight/576));
             const bx1 = that.data.pointlist[0][0]/(that.data.defenceareaWidth/704);
             const by1 = that.data.pointlist[0][1]/(that.data.defenceareaHeight/576);
             const bx2 = that.data.pointlist[1][0]/(that.data.defenceareaWidth/704);
@@ -391,8 +355,6 @@ Page({
             const bx4 = that.data.pointlist[5][0]/(that.data.defenceareaWidth/704);
             const by4 = that.data.pointlist[5][1]/(that.data.defenceareaHeight/576);
             const bfield = [[ [bx1,by1],[bx2,by2],[bx3,by3],[bx4,by4] ]];
-            console.log("field",bfield);
-            console.log("zfc",JSON.stringify(bfield));
             request.postReq("/api/camera/fieldadd",
                 {
                     code:that.data.currentcode,
@@ -428,9 +390,6 @@ Page({
          * 请求增加防区接口保存红色
          */
        if(that.data.field[1] !== undefined && that.data.field[2] === undefined){
-           console.log("有1没有2保存红色");
-           console.log("测试pointlist有1没有2",that.data.pointlist.length);
-           console.log("测试dianlist有1没有2",that.data.dianlist.length);
            const x1 = that.data.dianlist[0][0]/(that.data.defenceareaWidth/704);
            const y1 = that.data.dianlist[0][1]/(that.data.defenceareaHeight/576);
            const x2 = that.data.dianlist[1][0]/(that.data.defenceareaWidth/704);
@@ -440,8 +399,6 @@ Page({
            const x4 = that.data.dianlist[5][0]/(that.data.defenceareaWidth/704);
            const y4 = that.data.dianlist[5][1]/(that.data.defenceareaHeight/576);
            const field = [[ [x1,y1],[x2,y2],[x3,y3],[x4,y4] ]];
-           console.log("field",field);
-           console.log("zfc",JSON.stringify(field));
            request.postReq("/api/camera/fieldadd",
                {
                    code:'1000082',
@@ -449,7 +406,6 @@ Page({
                    field:JSON.stringify(field)
                },
                function(res){
-
                    that.setData({
                        bluedisplay:'block'
                    });
@@ -483,11 +439,6 @@ Page({
          * 有2没有1保存蓝色
          */
         if(that.data.field[1] === undefined && that.data.field[2] !== undefined){
-            console.log("有2没有1保存蓝色");
-            console.log("测试pointlist",that.data.pointlist.length);
-            console.log("测试dianlist",that.data.dianlist.length);
-            // const bx1 = that.data.pointlist[0][0]/(that.data.defenceareaWidth/704);
-            // const by1 = that.data.pointlist[0][1]/(that.data.defenceareaHeight/576);
             const bx1 = that.data.pointlist[0][0]/(that.data.defenceareaWidth/704);
             const by1 = that.data.pointlist[0][1]/(that.data.defenceareaHeight/576);
             const bx2 = that.data.pointlist[1][0]/(that.data.defenceareaWidth/704);
@@ -497,8 +448,6 @@ Page({
             const bx4 = that.data.pointlist[5][0]/(that.data.defenceareaWidth/704);
             const by4 = that.data.pointlist[5][1]/(that.data.defenceareaHeight/576);
             const bfield = [[ [bx1,by1],[bx2,by2],[bx3,by3],[bx4,by4] ]];
-            console.log("field",bfield);
-            console.log("zfc",JSON.stringify(bfield));
             request.postReq("/api/camera/fieldadd",
                 {
                     code:that.data.currentcode,
@@ -571,7 +520,6 @@ Page({
                                     });
                                         myblue_carvas.stroke();//画出当前路径的边框
                                         myblue_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
-                                        console.log("hou",that.data.pointlist);
                                 });
                             wx.showToast({
                                 title: '防区1删除成功',
@@ -580,7 +528,7 @@ Page({
                             });
                         })
                 } else if (res.cancel) {
-                    console.log('用户点击取消')
+
                 }
             }
         });
@@ -618,7 +566,6 @@ Page({
                                     });
                                     my_carvas.stroke();//画出当前路径的边框
                                     my_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
-                                    console.log("hou",that.data.dianlist);
                                 });
                             wx.showToast({
                                 title: '防区2删除成功',
@@ -627,16 +574,10 @@ Page({
                             });
                         })
                 } else if (res.cancel) {
-                    console.log('用户点击取消')
                 }
             }
         });
     },
-
-
-
-
-
     /**
      * 生命周期函数--监听页面显示
      */
@@ -678,4 +619,4 @@ Page({
     onShareAppMessage: function () {
 
     }
-})
+});
