@@ -5,7 +5,7 @@
 
     </view>
     <view class="defencearea-top">
-        <view class="defencearea-img-inner" style="background-image: url(http://pic01.aokecloud.cn/alarm/1000004/pic/20190114/1000004_20190114093241_640X480.jpg)">
+        <view id="defenceareainfor" class="defencearea-img-inner" style="background-image: url(http://pic01.aokecloud.cn/alarm/1000055/background/JTJL00001.jpg?t=1553153822)">
             <canvas class='myredCanvas' canvas-id="myredCanvas" style="display: {{ reddisplay }}" bindtouchstart='EventHandleStart' bindtouchend='EventHandle' binderror="canvasIdErrorCallback" />
             <canvas class='myblueCanvas' canvas-id="myblueCanvas" style="display: {{ bluedisplay }}" bindtouchstart='EventHandleStartblue' bindtouchend='EventHandleblue' binderror="canvasIdErrorCallbackblue" />
         </view>

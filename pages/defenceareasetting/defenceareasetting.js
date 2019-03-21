@@ -41,6 +41,38 @@ Page({
             currentcode:code
         });
         /**
+         * 获取设备信息
+         */
+        // wx.getSystemInfo({
+        //     success: function(res) {
+        //         console.log("设备信息",res);
+        //         console.log("设备高度",res.screenHeight);
+        //         console.log("设备宽度",res.screenWidth);
+        //         that.setData({
+        //             screenHeight:res.screenHeight,
+        //             screenWidth:res.screenWidth
+        //         });
+        //     }
+        // });
+        /**
+         * 获取防区的宽和高
+         */
+        const query = wx.createSelectorQuery();
+        query.select('#defenceareainfor').boundingClientRect();
+        query.selectViewport().scrollOffset();
+        query.exec(function (res) {
+            console.log('打印demo的元素的信息', res);
+            console.log('打印高度', res[0].height);
+            console.log('打印高度', res[0].width);
+            that.setData({
+                defenceareaHeight:res[0].height,
+                defenceareaWidth:res[0].width
+            });
+        });
+
+
+
+        /**
          * 请求设备详情接口
          */
         request.postReq("/api/camera/getone",
@@ -51,6 +83,7 @@ Page({
                 that.setData({
                     field:res.data.field
                 });
+                // JSON.parse(
                 console.log("自己的",that.data.field);
                 console.log("自己的1",that.data.field[1]);
                 console.log("自己的2",that.data.field[2]);
@@ -98,23 +131,69 @@ Page({
                 /**
                  * 点进来加载蓝色防区
                  */
+
                 if(that.data.field[1] !== undefined){
-                    const x1 = that.data.field[1][0][0][0];
-                    const y1 = that.data.field[1][0][0][1];
-                    const x2 = that.data.field[1][0][1][0];
-                    const y2 = that.data.field[1][0][1][1];
-                    const x3 = that.data.field[1][0][2][0];
-                    const y3 = that.data.field[1][0][2][1];
-                    const x4 = that.data.field[1][0][3][0];
-                    const y4 = that.data.field[1][0][3][1];
+                    // var str = that.data.field[1];
+                    // console.log("stry",str);
+                    // var num = str.replace(/[^0-9]/ig,",");
+                    // num.replace(/,,,,/, ",");
+                    // num = num.substr(1).substr(1).substr(1);
+                    // num = num.substr(0,num.length - 1);
+                    // num = num.substr(0,num.length - 1);
+                    // num = num.substr(0,num.length - 1);
+                    // var a = num.split(',,,,');
+                    // console.log("num",num);
+                    // console.log("a",a);
+                    // console.log("a",a[0]);
+                    // var a0 = a[0].split(',');
+                    // var a1 = a[1].split(',');
+                    // var a2 = a[2].split(',');
+                    // var a3 = a[3].split(',');
+                    // console.log("a0",a0);
+                    // console.log("a1",a1);
+                    // console.log("a2",a2);
+                    // console.log("a3",a3);
+                    // console.log("a00sz",parseInt(a0[0]));
+                    // console.log("a01sx",parseInt(a0[1]));
+                    // console.log("a10sz",parseInt(a1[0]));
+                    // console.log("a11sz",parseInt(a1[1]));
+                    //
+                    // console.log("a20sz",parseInt(a2[0]));
+                    // console.log("a21sz",parseInt(a2[1]));
+                    //
+                    // console.log("a30sz",parseInt(a3[0]));
+                    // console.log("a31sz",parseInt(a3[1]));
+                    //
+                    // const x1 = parseInt(a0[0]);
+                    // const y1 = parseInt(a0[1]);
+                    // const x2 = parseInt(a1[0]);
+                    // const y2 = parseInt(a1[1]);
+                    // const x3 = parseInt(a2[0]);
+                    // const y3 = parseInt(a2[1]);
+                    // const x4 = parseInt(a3[0]);
+                    // const y4 = parseInt(a3[1]);
+
+                    const x1 = JSON.parse(that.data.field[1])[0][0][0];
+                    const y1 = JSON.parse(that.data.field[1])[0][0][1];
+                    const x2 = JSON.parse(that.data.field[1])[0][1][0];
+                    const y2 = JSON.parse(that.data.field[1])[0][1][1];
+                    const x3 = JSON.parse(that.data.field[1])[0][2][0];
+                    const y3 = JSON.parse(that.data.field[1])[0][2][1];
+                    const x4 = JSON.parse(that.data.field[1])[0][3][0];
+                    const y4 = JSON.parse(that.data.field[1])[0][3][1];
+                    console.log("换算x",x1*(that.data.defenceareaWidth/704));
+                    console.log("换算y",y1*(that.data.defenceareaHeight/576));
+                    // defenceareaHeight:res[0].height,
+                    //     defenceareaWidth:res[0].width
                     myblue_carvas = wx.createCanvasContext('myblueCanvas', this);//1.创建carvas实例对象，方便后续使用。
                     myblue_carvas.beginPath(); //创建一条路径
                     myblue_carvas.setStrokeStyle('blue');  //设置边框为红色myblueCanvas
-                    myblue_carvas.moveTo(x1,y1); //描述路径的起点为手指触摸的x轴和y轴
-                    myblue_carvas.lineTo(x2,y2);//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
-                    myblue_carvas.lineTo(x3,y3);
-                    myblue_carvas.lineTo(x4,y4);
-                    myblue_carvas.lineTo(x1,y1);
+                    myblue_carvas.setLineWidth(3);
+                    myblue_carvas.moveTo(x1*(that.data.defenceareaWidth/704),y1*(that.data.defenceareaHeight/576)); //描述路径的起点为手指触摸的x轴和y轴
+                    myblue_carvas.lineTo(x2*(that.data.defenceareaWidth/704),y2*(that.data.defenceareaHeight/576));//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
+                    myblue_carvas.lineTo(x3*(that.data.defenceareaWidth/704),y3*(that.data.defenceareaHeight/576));
+                    myblue_carvas.lineTo(x4*(that.data.defenceareaWidth/704),y4*(that.data.defenceareaHeight/576));
+                    myblue_carvas.lineTo(x1*(that.data.defenceareaWidth/704),y1*(that.data.defenceareaHeight/576));
                     myblue_carvas.stroke();//画出当前路径的边框
                     myblue_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
                 }
@@ -122,22 +201,23 @@ Page({
                  * 点进来加载红色防区
                  */
                 if(that.data.field[2] !== undefined){
-                    const x1 = that.data.field[2][0][0][0];
-                    const y1 = that.data.field[2][0][0][1];
-                    const x2 = that.data.field[2][0][1][0];
-                    const y2 = that.data.field[2][0][1][1];
-                    const x3 = that.data.field[2][0][2][0];
-                    const y3 = that.data.field[2][0][2][1];
-                    const x4 = that.data.field[2][0][3][0];
-                    const y4 = that.data.field[2][0][3][1];
+                    const x1 = JSON.parse(that.data.field[2])[0][0][0];
+                    const y1 = JSON.parse(that.data.field[2])[0][0][1];
+                    const x2 = JSON.parse(that.data.field[2])[0][1][0];
+                    const y2 = JSON.parse(that.data.field[2])[0][1][1];
+                    const x3 = JSON.parse(that.data.field[2])[0][2][0];
+                    const y3 = JSON.parse(that.data.field[2])[0][2][1];
+                    const x4 = JSON.parse(that.data.field[2])[0][3][0];
+                    const y4 = JSON.parse(that.data.field[2])[0][3][1];
                     my_carvas = wx.createCanvasContext('myredCanvas', this);//1.创建carvas实例对象，方便后续使用。
                     my_carvas.beginPath(); //创建一条路径
                     my_carvas.setStrokeStyle('red');  //设置边框为红色myblueCanvas
-                    my_carvas.moveTo(x1,y1); //描述路径的起点为手指触摸的x轴和y轴
-                    my_carvas.lineTo(x2,y2);//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
-                    my_carvas.lineTo(x3,y3);
-                    my_carvas.lineTo(x4,y4);
-                    my_carvas.lineTo(x1,y1);
+                    my_carvas.setLineWidth(3);
+                    my_carvas.moveTo(x1*(that.data.defenceareaWidth/704),y1*(that.data.defenceareaHeight/576)); //描述路径的起点为手指触摸的x轴和y轴
+                    my_carvas.lineTo(x2*(that.data.defenceareaWidth/704),y2*(that.data.defenceareaHeight/576));//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
+                    my_carvas.lineTo(x3*(that.data.defenceareaWidth/704),y3*(that.data.defenceareaHeight/576));
+                    my_carvas.lineTo(x4*(that.data.defenceareaWidth/704),y4*(that.data.defenceareaHeight/576));
+                    my_carvas.lineTo(x1*(that.data.defenceareaWidth/704),y1*(that.data.defenceareaHeight/576));
                     my_carvas.stroke();//画出当前路径的边框
                     my_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
                 }
@@ -196,6 +276,7 @@ Page({
                 console.log("kaishi蓝色哈哈哈哈",that.data.pointlist);
                 myblue_carvas.beginPath(); //创建一条路径
                 myblue_carvas.setStrokeStyle('blue');  //设置边框为蓝色
+                myblue_carvas.setLineWidth(3);
                 myblue_carvas.moveTo(that.data.pointlist[0][0],that.data.pointlist[0][1]); //描述路径的起点为手指触摸的x轴和y轴
                 myblue_carvas.lineTo(that.data.pointlist[1][0],that.data.pointlist[1][1]);//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
                 if(that.data.pointlist.length>2){
@@ -227,6 +308,7 @@ Page({
                 console.log("kaishi蓝色哈哈哈哈",that.data.pointlist);
                 myblue_carvas.beginPath(); //创建一条路径
                 myblue_carvas.setStrokeStyle('blue');  //设置边框为蓝色
+                myblue_carvas.setLineWidth(3);
                 myblue_carvas.moveTo(that.data.pointlist[0][0],that.data.pointlist[0][1]); //描述路径的起点为手指触摸的x轴和y轴
                 myblue_carvas.lineTo(that.data.pointlist[1][0],that.data.pointlist[1][1]);//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
                 if(that.data.pointlist.length>2){
@@ -264,6 +346,7 @@ Page({
         if(that.data.field[1] !== undefined && that.data.field[2] === undefined){
             my_carvas.beginPath(); //创建一条路径
             my_carvas.setStrokeStyle('red');  //设置边框为红色
+            my_carvas.setLineWidth(3);
             my_carvas.moveTo(that.data.dianlist[0][0],that.data.dianlist[0][1]); //描述路径的起点为手指触摸的x轴和y轴
             my_carvas.lineTo(that.data.dianlist[1][0],that.data.dianlist[1][1]);//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
             if(that.data.dianlist.length>2){
@@ -362,11 +445,19 @@ Page({
             const by4 = that.data.pointlist[5][1];
             const bfield = [[ [bx1,by1],[bx2,by2],[bx3,by3],[bx4,by4] ]];
             console.log("field",bfield);
+            console.log("zfc",JSON.stringify(bfield));
+
+            // console.log("field2",bfield.join(''));
+            // var a = bfield.join('').split(',');
+            // console.log("a",a);
+            // console.log("a0",a[0]);
+            // var str = "[[["+a[0]+","+a[1]+"],["+a[2]+","+a[3]+"],["+a[4]+","+a[5]+"],["+a[6]+","+a[7]+"]]]";
+            // console.log("str",str);
             request.postReq("/api/camera/fieldadd",
                 {
                     code:that.data.currentcode,
                     key:'1',
-                    field:bfield
+                    field:JSON.stringify(bfield)
                 },
                 function(res){
                     that.setData({
@@ -410,11 +501,19 @@ Page({
            const y4 = that.data.dianlist[5][1];
            const field = [[ [x1,y1],[x2,y2],[x3,y3],[x4,y4] ]];
            console.log("field",field);
+
+           console.log("zfc",JSON.stringify(field));
+           // console.log("field2",bfield.join(''));
+           // var a = bfield.join('').split(',');
+           // console.log("a",a);
+           // console.log("a0",a[0]);
+           // var str = "[[["+a[0]+","+a[1]+"],["+a[2]+","+a[3]+"],["+a[4]+","+a[5]+"],["+a[6]+","+a[7]+"]]]";
+           // console.log("str",str);
            request.postReq("/api/camera/fieldadd",
                {
                    code:'1000082',
                    key:'2',
-                   field:field
+                   field:JSON.stringify(field)
                },
                function(res){
 
@@ -464,11 +563,12 @@ Page({
             const by4 = that.data.pointlist[5][1];
             const bfield = [[ [bx1,by1],[bx2,by2],[bx3,by3],[bx4,by4] ]];
             console.log("field",bfield);
+            console.log("zfc",JSON.stringify(bfield));
             request.postReq("/api/camera/fieldadd",
                 {
                     code:that.data.currentcode,
                     key:'1',
-                    field:bfield
+                    field:JSON.stringify(bfield)
                 },
                 function(res){
                     that.setData({
