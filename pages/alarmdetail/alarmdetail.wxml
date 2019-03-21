@@ -27,7 +27,11 @@
     <view class="alarmdetail">
         <!--报警图片-->
         <view class="alarmdetail-pic" hidden="{{currentTab!==0}}">
-            <image src="{{ alarmdetailData.picpath }}" bindtap="submit"></image>
+            <view id="alarmdetailimg" class="alarmdetail-pic-img" style="background-image: url({{ alarmdetailData.picpath }})">
+                <canvas class='redCanvas' canvas-id="redCanvas" style="display: {{ reddisplay }}" />
+                <canvas class='blueCanvas' canvas-id="blueCanvas" style="display: {{ bluedisplay }}" />
+            </view>
+            <!--<image src="{{ alarmdetailData.picpath }}" bindtap="submit"></image>-->
             <view class="alarmdetail-check">
                 <view class="alarmdetail-check-in">
                     <view class="alarmdetail-check-in-left" bindtap="surroundinfo" wx:if="{{ surround === true }}">
