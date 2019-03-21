@@ -41,20 +41,6 @@ Page({
             currentcode:code
         });
         /**
-         * 获取设备信息
-         */
-        // wx.getSystemInfo({
-        //     success: function(res) {
-        //         console.log("设备信息",res);
-        //         console.log("设备高度",res.screenHeight);
-        //         console.log("设备宽度",res.screenWidth);
-        //         that.setData({
-        //             screenHeight:res.screenHeight,
-        //             screenWidth:res.screenWidth
-        //         });
-        //     }
-        // });
-        /**
          * 获取防区的宽和高
          */
         const query = wx.createSelectorQuery();
@@ -133,46 +119,6 @@ Page({
                  */
 
                 if(that.data.field[1] !== undefined){
-                    // var str = that.data.field[1];
-                    // console.log("stry",str);
-                    // var num = str.replace(/[^0-9]/ig,",");
-                    // num.replace(/,,,,/, ",");
-                    // num = num.substr(1).substr(1).substr(1);
-                    // num = num.substr(0,num.length - 1);
-                    // num = num.substr(0,num.length - 1);
-                    // num = num.substr(0,num.length - 1);
-                    // var a = num.split(',,,,');
-                    // console.log("num",num);
-                    // console.log("a",a);
-                    // console.log("a",a[0]);
-                    // var a0 = a[0].split(',');
-                    // var a1 = a[1].split(',');
-                    // var a2 = a[2].split(',');
-                    // var a3 = a[3].split(',');
-                    // console.log("a0",a0);
-                    // console.log("a1",a1);
-                    // console.log("a2",a2);
-                    // console.log("a3",a3);
-                    // console.log("a00sz",parseInt(a0[0]));
-                    // console.log("a01sx",parseInt(a0[1]));
-                    // console.log("a10sz",parseInt(a1[0]));
-                    // console.log("a11sz",parseInt(a1[1]));
-                    //
-                    // console.log("a20sz",parseInt(a2[0]));
-                    // console.log("a21sz",parseInt(a2[1]));
-                    //
-                    // console.log("a30sz",parseInt(a3[0]));
-                    // console.log("a31sz",parseInt(a3[1]));
-                    //
-                    // const x1 = parseInt(a0[0]);
-                    // const y1 = parseInt(a0[1]);
-                    // const x2 = parseInt(a1[0]);
-                    // const y2 = parseInt(a1[1]);
-                    // const x3 = parseInt(a2[0]);
-                    // const y3 = parseInt(a2[1]);
-                    // const x4 = parseInt(a3[0]);
-                    // const y4 = parseInt(a3[1]);
-
                     const x1 = JSON.parse(that.data.field[1])[0][0][0];
                     const y1 = JSON.parse(that.data.field[1])[0][0][1];
                     const x2 = JSON.parse(that.data.field[1])[0][1][0];
@@ -435,24 +381,18 @@ Page({
             console.log("两个都没有，保存蓝色防区");
             console.log("测试pointlist",that.data.pointlist.length);
             console.log("测试dianlist",that.data.dianlist.length);
-            const bx1 = that.data.pointlist[0][0];
-            const by1 = that.data.pointlist[0][1];
-            const bx2 = that.data.pointlist[1][0];
-            const by2 = that.data.pointlist[1][1];
-            const bx3 = that.data.pointlist[3][0];
-            const by3 = that.data.pointlist[3][1];
-            const bx4 = that.data.pointlist[5][0];
-            const by4 = that.data.pointlist[5][1];
+            // my_carvas.moveTo(x1*(that.data.defenceareaWidth/704),y1*(that.data.defenceareaHeight/576));
+            const bx1 = that.data.pointlist[0][0]/(that.data.defenceareaWidth/704);
+            const by1 = that.data.pointlist[0][1]/(that.data.defenceareaHeight/576);
+            const bx2 = that.data.pointlist[1][0]/(that.data.defenceareaWidth/704);
+            const by2 = that.data.pointlist[1][1]/(that.data.defenceareaHeight/576);
+            const bx3 = that.data.pointlist[3][0]/(that.data.defenceareaWidth/704);
+            const by3 = that.data.pointlist[3][1]/(that.data.defenceareaHeight/576);
+            const bx4 = that.data.pointlist[5][0]/(that.data.defenceareaWidth/704);
+            const by4 = that.data.pointlist[5][1]/(that.data.defenceareaHeight/576);
             const bfield = [[ [bx1,by1],[bx2,by2],[bx3,by3],[bx4,by4] ]];
             console.log("field",bfield);
             console.log("zfc",JSON.stringify(bfield));
-
-            // console.log("field2",bfield.join(''));
-            // var a = bfield.join('').split(',');
-            // console.log("a",a);
-            // console.log("a0",a[0]);
-            // var str = "[[["+a[0]+","+a[1]+"],["+a[2]+","+a[3]+"],["+a[4]+","+a[5]+"],["+a[6]+","+a[7]+"]]]";
-            // console.log("str",str);
             request.postReq("/api/camera/fieldadd",
                 {
                     code:that.data.currentcode,
@@ -491,24 +431,17 @@ Page({
            console.log("有1没有2保存红色");
            console.log("测试pointlist有1没有2",that.data.pointlist.length);
            console.log("测试dianlist有1没有2",that.data.dianlist.length);
-           const x1 = that.data.dianlist[0][0];
-           const y1 = that.data.dianlist[0][1];
-           const x2 = that.data.dianlist[1][0];
-           const y2 = that.data.dianlist[1][1];
-           const x3 = that.data.dianlist[3][0];
-           const y3 = that.data.dianlist[3][1];
-           const x4 = that.data.dianlist[5][0];
-           const y4 = that.data.dianlist[5][1];
+           const x1 = that.data.dianlist[0][0]/(that.data.defenceareaWidth/704);
+           const y1 = that.data.dianlist[0][1]/(that.data.defenceareaHeight/576);
+           const x2 = that.data.dianlist[1][0]/(that.data.defenceareaWidth/704);
+           const y2 = that.data.dianlist[1][1]/(that.data.defenceareaHeight/576);
+           const x3 = that.data.dianlist[3][0]/(that.data.defenceareaWidth/704);
+           const y3 = that.data.dianlist[3][1]/(that.data.defenceareaHeight/576);
+           const x4 = that.data.dianlist[5][0]/(that.data.defenceareaWidth/704);
+           const y4 = that.data.dianlist[5][1]/(that.data.defenceareaHeight/576);
            const field = [[ [x1,y1],[x2,y2],[x3,y3],[x4,y4] ]];
            console.log("field",field);
-
            console.log("zfc",JSON.stringify(field));
-           // console.log("field2",bfield.join(''));
-           // var a = bfield.join('').split(',');
-           // console.log("a",a);
-           // console.log("a0",a[0]);
-           // var str = "[[["+a[0]+","+a[1]+"],["+a[2]+","+a[3]+"],["+a[4]+","+a[5]+"],["+a[6]+","+a[7]+"]]]";
-           // console.log("str",str);
            request.postReq("/api/camera/fieldadd",
                {
                    code:'1000082',
@@ -553,14 +486,16 @@ Page({
             console.log("有2没有1保存蓝色");
             console.log("测试pointlist",that.data.pointlist.length);
             console.log("测试dianlist",that.data.dianlist.length);
-            const bx1 = that.data.pointlist[0][0];
-            const by1 = that.data.pointlist[0][1];
-            const bx2 = that.data.pointlist[1][0];
-            const by2 = that.data.pointlist[1][1];
-            const bx3 = that.data.pointlist[3][0];
-            const by3 = that.data.pointlist[3][1];
-            const bx4 = that.data.pointlist[5][0];
-            const by4 = that.data.pointlist[5][1];
+            // const bx1 = that.data.pointlist[0][0]/(that.data.defenceareaWidth/704);
+            // const by1 = that.data.pointlist[0][1]/(that.data.defenceareaHeight/576);
+            const bx1 = that.data.pointlist[0][0]/(that.data.defenceareaWidth/704);
+            const by1 = that.data.pointlist[0][1]/(that.data.defenceareaHeight/576);
+            const bx2 = that.data.pointlist[1][0]/(that.data.defenceareaWidth/704);
+            const by2 = that.data.pointlist[1][1]/(that.data.defenceareaHeight/576);
+            const bx3 = that.data.pointlist[3][0]/(that.data.defenceareaWidth/704);
+            const by3 = that.data.pointlist[3][1]/(that.data.defenceareaHeight/576);
+            const bx4 = that.data.pointlist[5][0]/(that.data.defenceareaWidth/704);
+            const by4 = that.data.pointlist[5][1]/(that.data.defenceareaHeight/576);
             const bfield = [[ [bx1,by1],[bx2,by2],[bx3,by3],[bx4,by4] ]];
             console.log("field",bfield);
             console.log("zfc",JSON.stringify(bfield));
