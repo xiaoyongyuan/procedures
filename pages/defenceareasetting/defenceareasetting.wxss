@@ -15,13 +15,13 @@ page{
 }
 .myredCanvas{
     position: absolute;
-    border: 1px solid #f00;
+    /*border: 1px solid #f00;*/
     /*margin: 0 auto;*/
     width: 100%;
     height: 100%;
 }
 .myblueCanvas{
-    border: 1px solid blue;
+    /*border: 1px solid blue;*/
     position: absolute;
     /*margin: 0 auto;*/
     width: 100%;
@@ -74,7 +74,6 @@ page{
 .defenceareadelete{
     height: 80rpx;
     width: 100%;
-    margin-top: 40rpx;
 }
 .defenceareadelete-one{
     width: 280rpx;
@@ -147,7 +146,7 @@ page{
 .guide{
     width: 100%;
     height: 70rpx;
-    margin-top: 20rpx;
+    margin-top: 10rpx;
 }
 .guide text{
     font-size: 28rpx;

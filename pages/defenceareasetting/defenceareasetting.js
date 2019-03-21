@@ -504,25 +504,104 @@ Page({
         }
     },
     /**
-     * 删除防区
+     * 删除防区1
      */
     deleteone:function(){
         var that = this;
-        console.log("test");
-        request.postReq("/api/camera/fielddel",
-            {
-                code:that.data.currentcode,
-                key:'1'
-            },
-            function(res){
-                wx.showToast({
-                    title: '防区1删除成功',
-                    icon: 'success',
-                    duration: 2000
-                });
-            })
-
+        wx.showModal({
+            title: '提示',
+            content: '确定要删除吗？',
+            success(res) {
+                if (res.confirm) {
+                    request.postReq("/api/camera/fielddel",
+                        {
+                            code:that.data.currentcode,
+                            key:'1'
+                        },
+                        function(res){
+                            /**
+                             * 请求设备详情接口
+                             */
+                            request.postReq("/api/camera/getone",
+                                {
+                                    code:that.data.currentcode
+                                },
+                                function(res){
+                                    that.setData({
+                                        field:res.data.field,
+                                        deleone:false,
+                                        pointlist:[],
+                                        addone:false,
+                                        addfield:true
+                                    });
+                                        myblue_carvas.stroke();//画出当前路径的边框
+                                        myblue_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
+                                        console.log("hou",that.data.pointlist);
+                                });
+                            wx.showToast({
+                                title: '防区1删除成功',
+                                icon: 'success',
+                                duration: 2000
+                            });
+                        })
+                } else if (res.cancel) {
+                    console.log('用户点击取消')
+                }
+            }
+        });
     },
+    /**
+     * 删除防区2
+     */
+    deletetwo:function(){
+        var that = this;
+        wx.showModal({
+            title: '提示',
+            content: '确定要删除吗？',
+            success(res) {
+                if (res.confirm) {
+                    request.postReq("/api/camera/fielddel",
+                        {
+                            code:that.data.currentcode,
+                            key:'2'
+                        },
+                        function(res){
+                            /**
+                             * 请求设备详情接口
+                             */
+                            request.postReq("/api/camera/getone",
+                                {
+                                    code:that.data.currentcode
+                                },
+                                function(res){
+                                    that.setData({
+                                        field:res.data.field,
+                                        deletwo:false,
+                                        dianlist:[],
+                                        addone:false,
+                                        addfield:true
+                                    });
+                                    my_carvas.stroke();//画出当前路径的边框
+                                    my_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
+                                    console.log("hou",that.data.dianlist);
+                                });
+                            wx.showToast({
+                                title: '防区2删除成功',
+                                icon: 'success',
+                                duration: 2000
+                            });
+                        })
+                } else if (res.cancel) {
+                    console.log('用户点击取消')
+                }
+            }
+        });
+    },
+
+
+
+
+
     /**
      * 生命周期函数--监听页面显示
      */
