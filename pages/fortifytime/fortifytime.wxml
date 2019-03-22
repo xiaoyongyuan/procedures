@@ -5,33 +5,39 @@
         <!--占位view-->
     </view>
 
-    <view class="radio-list">
+    <view class="radio-list" style="display: {{ radiolist }}">
         <view class="radio-list-inner">
             <radio-group  bindchange="checkboxChange">
-                <label wx:for="{{items}}" class="radio-item">
+                <label wx:for="{{items}}" class="radio-item" wx:key="index">
                     <radio value="{{item.value}}"  color="#594d9c" checked="{{item.checked}}">{{item.name}}</radio>
                 </label>
             </radio-group>
         </view>
     </view>
-    <view class="start-end-time">
+    <view class="start-end-time" style="display: {{ selecttime }}">
         <view class="starttime">
             <view class="section">
-                <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-                    <view class="picker">
-                        开始时间{{array[index]}}
+                <picker class="selecttime" bindchange="bindPickerChangestrat" value="{{index}}" range="{{array}}">
+                    <view class="pickertitle">
+                        <text wx:if="{{ starttime === '' ||  starttime === undefined }}" style="color: #b0b0b0;font-size: 26rpx">开始时间</text>
+                        <text wx:else style="font-size: 24rpx">{{array[starttime]}}</text>
+                        <!--<text wx:else></text>-->
                     </view>
+                    <!--<view class="pickervalue">-->
+                        <!---->
+                    <!--</view>-->
                 </picker>
             </view>
         </view>
-        <view class="section">
+        <view class="sectioncenter">
             <text>~~</text>
         </view>
         <view class="endtime">
             <view class="section">
-                <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-                    <view class="picker">
-                        截止时间{{array[index]}}
+                <picker class="selecttime" bindchange="bindPickerChangeend" value="{{index}}" range="{{array}}">
+                    <view class="pickertitle">
+                        <text wx:if="{{ endtime === '' ||  endtime === undefined }}" style="color: #b0b0b0;font-size: 26rpx">截止时间</text>
+                        <text wx:else style="font-size: 24rpx">{{array[endtime]}}</text>
                     </view>
                 </picker>
             </view>
@@ -41,12 +47,15 @@
         </view>
     </view>
 
-    <view class="fortitytimelist">
+
+    <view class="fortitytimelist"  wx:for="{{workingtimelist}}" wx:key="index">
         <view class="fortitytimelist-left">
             <view class="fortitytimelist-left-top">
                 <view class="circle"></view>
                 <view class="day">
-                    <text>工作日</text>
+                    <text wx:if="{{ item.wtype === 'weekday' }}">工作日</text>
+                    <text wx:elif="{{ item.wtype === 'today' }}">每天</text>
+                    <text wx:else>周末</text>
                 </view>
             </view>
             <view class="fortitytimelist-left-bottom">
@@ -54,15 +63,12 @@
                     <image src="/images/timeqx.png"></image>
                 </view>
                 <view class="time">
-                    <text>0:00~23:00</text>
+                    <text>{{ item.starttime }}:00~{{ item.endtime }}:00</text>
                 </view>
             </view>
         </view>
         <view class="fortitytimelist-right">
             <switch class="switch" checked bindchange="switch1Change" />
         </view>
-
     </view>
-
-
 </view>

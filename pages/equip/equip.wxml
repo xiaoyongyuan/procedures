@@ -9,7 +9,8 @@
                     <view class="alarm-list-one-top-left">
                         <view class="alarm-list-one-top-left-bac">
                             <view class="alarm-list-one-top-img">
-                                <image src='{{ item.picpath }}'></image>
+                                <image wx:if="{{ item.picpath !== '' }}" src='{{ item.picpath }}'></image>
+                                <image wx:else src='/images/camera.png'></image>
                             </view>
                         </view>
                     </view>

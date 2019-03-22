@@ -71,7 +71,7 @@ Page({
         }
         if(that.data.ismist === "true"){
             wx.navigateTo({
-                url:'../fortifytime/fortifytime'
+                url:'../fortifytime/fortifytime?code=' + that.data.currentcode
             })
         }
     },

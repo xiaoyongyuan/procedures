@@ -25,8 +25,23 @@
 .section{
     height: 70rpx;
     line-height: 70rpx;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.selecttime{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 .section text{
+    margin-left: 20rpx;
+}
+.sectioncenter{
+    height: 70rpx;
+    line-height: 70rpx;
+}
+.sectioncenter text{
     margin-left: 20rpx;
 }
 .starttime{
@@ -35,6 +50,8 @@
     border: 1px solid #efefef;
     border-radius: 24rpx;
     margin-left: 20rpx;
+    display: flex;
+    justify-content: center;
 }
 .endtime{
     width: 30%;
@@ -42,10 +59,15 @@
     border: 1px solid #efefef;
     border-radius: 24rpx;
     margin-left: 20rpx;
+    display: flex;
+    justify-content: center;
 }
-.picker{
+.pickertitle{
     font-size: 26rpx;
-    /*color: #bbb;*/
+    margin: auto;
+}
+.pickervalue{
+    font-size: 24rpx;
     margin: auto;
 }
 .queryechart{
@@ -61,7 +83,7 @@
     border-radius: 24rpx;
     border: 1px solid #efefef;
     margin: auto;
-    margin-top: 40rpx;
+    margin-top: 20rpx;
 }
 .fortitytimelist-left{
     height: 100%;

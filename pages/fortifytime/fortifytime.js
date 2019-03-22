@@ -1,5 +1,5 @@
-// pages/fortifytime/fortifytime.js
 const app = getApp();
+var request = require('../../utils/request.js');
 Page({
 
     /**
@@ -17,17 +17,30 @@ Page({
             {name: '周末', value: '1'},
             {name: '每天', value: '2'}
         ],
+        workingtimelist:[],
         items: [
             { name: '工作日', value: '0' },
             { name: '周末', value: '1' },
             { name: '每天', value: '2' }
         ],
+        radiolist:'none',
+        selecttime:'none',
         array: ['0:00', '1:00', '2:00', '3:00','4:00', '5:00', '6:00', '7:00','8:00', '9:00', '10:00', '11:00','12:00', '13:00', '14:00', '15:00', '16:00','17:00', '18:00', '19:00', '20:00','21:00', '22:00', '23:00', '24:00'],
     },
-    bindPickerChange(e) {
-        console.log('picker发送选择改变，携带值为', e.detail.value)
+    bindPickerChangestrat(e) {
+        var that = this;
+        console.log('开始时间', e);
+        console.log('picker发送选择改变，携带值为', e.detail.value);
+        console.log("that.data.starttime",that.data.starttime);
         this.setData({
-            index: e.detail.value
+            starttime: e.detail.value
+        })
+        console.log("that.data.starttime",that.data.starttime);
+    },
+    bindPickerChangeend(e) {
+        console.log('picker发送选择改变，携带值为', e.detail.value);
+        this.setData({
+            endtime: e.detail.value
         })
     },
     checkboxChange: function (e) {
@@ -65,7 +78,23 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        var that = this;
+        var code = options.code;
+        that.setData({
+            currentcode:code
+        });
+        /**
+         * 请求列表接口
+         */
+        request.postReq("/api/workingtime/getlist",
+            {
+                cid:code,
+            },
+            function(res){
+                that.setData({
+                    workingtimelist:res.data
+                })
+            })
     },
 
     /**
