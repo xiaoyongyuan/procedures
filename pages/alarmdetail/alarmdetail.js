@@ -1,5 +1,5 @@
 var myred_carvas,myblue_carvas ;
-var app = getApp()
+var app = getApp();
 var request = require('../../utils/request.js');
 Page({
 
@@ -74,62 +74,37 @@ Page({
                     })
                 }
                 if(that.data.alarmdetailData.field.length > 0){
-                    console.log("that.data.alarmdetailData.field.length",that.data.alarmdetailData.field.length);
-                    console.log("that.data.alarmdetailData.field.length",that.data.alarmdetailData.field);
-                    console.log("that.data.alarmdetailData.field.length",that.data.alarmdetailData.field[0][0][0]);
-                    console.log("that.data.alarmdetailData.field.length",that.data.alarmdetailData.field[0][0][1]);
-
-                    console.log("that.data.alarmdetailData.field.length",that.data.alarmdetailData.field[0][1][0]);
-                    console.log("that.data.alarmdetailData.field.length",that.data.alarmdetailData.field[0][1][1]);
-
-                    console.log("that.data.alarmdetailData.field.length",that.data.alarmdetailData.field[0][2][0]);
-                    console.log("that.data.alarmdetailData.field.length",that.data.alarmdetailData.field[0][2][1]);
-
-                    console.log("that.data.alarmdetailData.field.length",that.data.alarmdetailData.field[0][3][0]);
-                    console.log("that.data.alarmdetailData.field.length",that.data.alarmdetailData.field[0][3][1]);
                     const x1 = that.data.alarmdetailData.field[0][0][0];
                     const y1 = that.data.alarmdetailData.field[0][0][1];
-
                     const x2 = that.data.alarmdetailData.field[0][1][0];
                     const y2 = that.data.alarmdetailData.field[0][1][1];
-
                     const x3 = that.data.alarmdetailData.field[0][2][0];
                     const y3 = that.data.alarmdetailData.field[0][2][1];
-
                     const x4 = that.data.alarmdetailData.field[0][3][0];
                     const y4 = that.data.alarmdetailData.field[0][3][1];
                     myred_carvas = wx.createCanvasContext('redCanvas', this);//1.创建carvas实例对象，方便后续使用。
                     myred_carvas.beginPath(); //创建一条路径
                     myred_carvas.setStrokeStyle('red');  //设置边框为红色myblueCanvas
-                    myred_carvas.setLineWidth(3);
-
-                    // alarmdetailimgWidth alarmdetailimgHeight
-
-                    myred_carvas.moveTo(x1*(that.data.alarmdetailimgWidth/1280),y1*(that.data.alarmdetailimgHeight/720)); //描述路径的起点为手指触摸的x轴和y轴
-                    myred_carvas.lineTo(x2*(that.data.alarmdetailimgWidth/1280),y2*(that.data.alarmdetailimgHeight/720));//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
-                    myred_carvas.lineTo(x3*(that.data.alarmdetailimgWidth/1280),y3*(that.data.alarmdetailimgHeight/720));
-                    myred_carvas.lineTo(x4*(that.data.alarmdetailimgWidth/1280),y4*(that.data.alarmdetailimgHeight/720));
-                    myred_carvas.lineTo(x1*(that.data.alarmdetailimgWidth/1280),y1*(that.data.alarmdetailimgHeight/720));
+                    myred_carvas.setLineWidth(2);
+                    myred_carvas.moveTo(x1*(that.data.alarmdetailimgWidth/704),y1*(that.data.alarmdetailimgHeight/576)); //描述路径的起点为手指触摸的x轴和y轴
+                    myred_carvas.lineTo(x2*(that.data.alarmdetailimgWidth/704),y2*(that.data.alarmdetailimgHeight/576));//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
+                    myred_carvas.lineTo(x3*(that.data.alarmdetailimgWidth/704),y3*(that.data.alarmdetailimgHeight/576));
+                    myred_carvas.lineTo(x4*(that.data.alarmdetailimgWidth/704),y4*(that.data.alarmdetailimgHeight/576));
+                    myred_carvas.lineTo(x1*(that.data.alarmdetailimgWidth/704),y1*(that.data.alarmdetailimgHeight/576));
                     myred_carvas.stroke();//画出当前路径的边框
                     myred_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
-
                 }
                 if(that.data.alarmdetailData.finalresult1.length > 0){
-                    console.log("高",that.data.alarmdetailData.finalresult1[0].h);
-                    console.log("宽",that.data.alarmdetailData.finalresult1[0].w);
-                    console.log("x",that.data.alarmdetailData.finalresult1[0].x);
-                    console.log("y",that.data.alarmdetailData.finalresult1[0].y);
-                    console.log("that.data.alarmdetailData.finalresult1.length",that.data.alarmdetailData.finalresult1.length);
-
                     const x = that.data.alarmdetailData.finalresult1[0].x;
                     const y = that.data.alarmdetailData.finalresult1[0].y;
                     const w = that.data.alarmdetailData.finalresult1[0].w;
                     const h = that.data.alarmdetailData.finalresult1[0].h;
+                    const percentx = that.data.alarmdetailimgWidth/that.data.alarmdetailData.pic_width;
+                    const percenty = that.data.alarmdetailimgHeight/that.data.alarmdetailData.pic_height;
                     myblue_carvas = wx.createCanvasContext('blueCanvas', this);//1.创建carvas实例对象，方便后续使用。
-                    // const ctx = wx.createCanvasContext(‘myCanvas‘) finalresult1
-                    // {p: 9937, w: 227, x: 393, h: 338, y: 198, tag: 0}
                     myblue_carvas.setStrokeStyle('#00e8e8');
-                    myblue_carvas.strokeRect(x, y, w, h);
+                    myblue_carvas.setLineWidth(2);
+                    myblue_carvas.strokeRect(x*percentx, y*percenty, w*percentx, h*percenty);
                     myblue_carvas.draw();
                 }
             })

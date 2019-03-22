@@ -27,7 +27,7 @@
     <view class="alarmdetail">
         <!--报警图片-->
         <view class="alarmdetail-pic" hidden="{{currentTab!==0}}">
-            <view id="alarmdetailimg" class="alarmdetail-pic-img" style="background-image: url({{ alarmdetailData.picpath }})">
+            <view id="alarmdetailimg" bindtap="submit" class="alarmdetail-pic-img" style="background-image: url({{ alarmdetailData.picpath }})">
                 <canvas class='redCanvas' canvas-id="redCanvas" style="display: {{ reddisplay }}" />
                 <canvas class='blueCanvas' canvas-id="blueCanvas" style="display: {{ bluedisplay }}" />
             </view>
