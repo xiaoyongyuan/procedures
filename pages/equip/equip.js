@@ -42,8 +42,8 @@ Page({
         var that = this;
         request.postReq("/api/camera/getlist_forAPP",
             {
-                // account:'17792542304'
-                account:'18210812953'
+                account:'17792542304'
+                // account:'18210812953'
             },
             function(res){
                 that.setData({

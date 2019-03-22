@@ -163,24 +163,24 @@ Page({
     // 手指触摸事件红色
     EventHandleStart:function(e){
         var that = this;
-        strat_x = Math.round(e.touches[0].x) ; // 手指开始触摸时的x轴 x轴--->相对于画布左边的距离
-        strat_y = Math.round(e.touches[0].y) ;// 手指开始触摸时的y轴 y轴--->相对于画布顶部的距离strat_xblue
+        strat_x = e.touches[0].x; // 手指开始触摸时的x轴 x轴--->相对于画布左边的距离
+        strat_y = e.touches[0].y;// 手指开始触摸时的y轴 y轴--->相对于画布顶部的距离strat_xblue
     },
     /**
      *手指触摸事件蓝色
      */
     EventHandleStartblue:function(e){
         var that = this;
-        strat_xblue = Math.round(e.touches[0].x); // 手指开始触摸时的x轴 x轴--->相对于画布左边的距离
-        strat_yblue = Math.round(e.touches[0].y);// 手指开始触摸时的y轴 y轴--->相对于画布顶部的距离
+        strat_xblue = e.touches[0].x; // 手指开始触摸时的x轴 x轴--->相对于画布左边的距离
+        strat_yblue = e.touches[0].y;// 手指开始触摸时的y轴 y轴--->相对于画布顶部的距离
     },
     /**
      *手指触摸结束时的事件蓝色
      */
     EventHandleblue:function(e){
         var that = this;
-        end_xblue = Math.round(e.changedTouches[0].x); // 手指结束触摸时的x轴 x轴--->相对于画布左边的距离
-        end_yblue = Math.round(e.changedTouches[0].y);// 手指结束触摸时的y轴 y轴--->相对于画布顶部的距离
+        end_xblue = e.changedTouches[0].x; // 手指结束触摸时的x轴 x轴--->相对于画布左边的距离
+        end_yblue = e.changedTouches[0].y;// 手指结束触摸时的y轴 y轴--->相对于画布顶部的距离
         /**
          * 两个防区都没有
          */
@@ -247,8 +247,8 @@ Page({
     //手指触摸结束时的事件红色
     EventHandle: function (e) {
         var that = this;
-        end_x = Math.round(e.changedTouches[0].x); // 手指结束触摸时的x轴 x轴--->相对于画布左边的距离
-        end_y = Math.round(e.changedTouches[0].y);// 手指结束触摸时的y轴 y轴--->相对于画布顶部的距离
+        end_x = e.changedTouches[0].x; // 手指结束触摸时的x轴 x轴--->相对于画布左边的距离
+        end_y = e.changedTouches[0].y;// 手指结束触摸时的y轴 y轴--->相对于画布顶部的距离
         const data=that.data.dianlist;
         var dian1 = [strat_x,strat_y];
         var dian2 = [end_x,end_y];
@@ -346,15 +346,17 @@ Page({
          * 两个都没有，保存蓝色防区
          */
         if(that.data.field[1] === undefined && that.data.field[2] === undefined){
-            const bx1 = that.data.pointlist[0][0]/(that.data.defenceareaWidth/704);
-            const by1 = that.data.pointlist[0][1]/(that.data.defenceareaHeight/576);
-            const bx2 = that.data.pointlist[1][0]/(that.data.defenceareaWidth/704);
-            const by2 = that.data.pointlist[1][1]/(that.data.defenceareaHeight/576);
-            const bx3 = that.data.pointlist[3][0]/(that.data.defenceareaWidth/704);
-            const by3 = that.data.pointlist[3][1]/(that.data.defenceareaHeight/576);
-            const bx4 = that.data.pointlist[5][0]/(that.data.defenceareaWidth/704);
-            const by4 = that.data.pointlist[5][1]/(that.data.defenceareaHeight/576);
+            // Math.round(e.touches[0].x)
+            const bx1 = Math.round(that.data.pointlist[0][0]/(that.data.defenceareaWidth/704));
+            const by1 = Math.round(that.data.pointlist[0][1]/(that.data.defenceareaHeight/576));
+            const bx2 = Math.round(that.data.pointlist[1][0]/(that.data.defenceareaWidth/704));
+            const by2 = Math.round(that.data.pointlist[1][1]/(that.data.defenceareaHeight/576));
+            const bx3 = Math.round(that.data.pointlist[3][0]/(that.data.defenceareaWidth/704));
+            const by3 = Math.round(that.data.pointlist[3][1]/(that.data.defenceareaHeight/576));
+            const bx4 = Math.round(that.data.pointlist[5][0]/(that.data.defenceareaWidth/704));
+            const by4 = Math.round(that.data.pointlist[5][1]/(that.data.defenceareaHeight/576));
             const bfield = [[ [bx1,by1],[bx2,by2],[bx3,by3],[bx4,by4] ]];
+            console.log("保存的点",bx1,by1,bx2,by2,bx3,by3,bx4,by4);
             request.postReq("/api/camera/fieldadd",
                 {
                     code:that.data.currentcode,
@@ -390,18 +392,18 @@ Page({
          * 请求增加防区接口保存红色
          */
        if(that.data.field[1] !== undefined && that.data.field[2] === undefined){
-           const x1 = that.data.dianlist[0][0]/(that.data.defenceareaWidth/704);
-           const y1 = that.data.dianlist[0][1]/(that.data.defenceareaHeight/576);
-           const x2 = that.data.dianlist[1][0]/(that.data.defenceareaWidth/704);
-           const y2 = that.data.dianlist[1][1]/(that.data.defenceareaHeight/576);
-           const x3 = that.data.dianlist[3][0]/(that.data.defenceareaWidth/704);
-           const y3 = that.data.dianlist[3][1]/(that.data.defenceareaHeight/576);
-           const x4 = that.data.dianlist[5][0]/(that.data.defenceareaWidth/704);
-           const y4 = that.data.dianlist[5][1]/(that.data.defenceareaHeight/576);
+           const x1 = Math.round(that.data.dianlist[0][0]/(that.data.defenceareaWidth/704));
+           const y1 = Math.round(that.data.dianlist[0][1]/(that.data.defenceareaHeight/576));
+           const x2 = Math.round(that.data.dianlist[1][0]/(that.data.defenceareaWidth/704));
+           const y2 = Math.round(that.data.dianlist[1][1]/(that.data.defenceareaHeight/576));
+           const x3 = Math.round(that.data.dianlist[3][0]/(that.data.defenceareaWidth/704));
+           const y3 = Math.round(that.data.dianlist[3][1]/(that.data.defenceareaHeight/576));
+           const x4 = Math.round(that.data.dianlist[5][0]/(that.data.defenceareaWidth/704));
+           const y4 = Math.round(that.data.dianlist[5][1]/(that.data.defenceareaHeight/576));
            const field = [[ [x1,y1],[x2,y2],[x3,y3],[x4,y4] ]];
            request.postReq("/api/camera/fieldadd",
                {
-                   code:'1000082',
+                   code:that.data.currentcode,
                    key:'2',
                    field:JSON.stringify(field)
                },
@@ -439,14 +441,14 @@ Page({
          * 有2没有1保存蓝色
          */
         if(that.data.field[1] === undefined && that.data.field[2] !== undefined){
-            const bx1 = that.data.pointlist[0][0]/(that.data.defenceareaWidth/704);
-            const by1 = that.data.pointlist[0][1]/(that.data.defenceareaHeight/576);
-            const bx2 = that.data.pointlist[1][0]/(that.data.defenceareaWidth/704);
-            const by2 = that.data.pointlist[1][1]/(that.data.defenceareaHeight/576);
-            const bx3 = that.data.pointlist[3][0]/(that.data.defenceareaWidth/704);
-            const by3 = that.data.pointlist[3][1]/(that.data.defenceareaHeight/576);
-            const bx4 = that.data.pointlist[5][0]/(that.data.defenceareaWidth/704);
-            const by4 = that.data.pointlist[5][1]/(that.data.defenceareaHeight/576);
+            const bx1 = Math.round(that.data.pointlist[0][0]/(that.data.defenceareaWidth/704));
+            const by1 = Math.round(that.data.pointlist[0][1]/(that.data.defenceareaHeight/576));
+            const bx2 = Math.round(that.data.pointlist[1][0]/(that.data.defenceareaWidth/704));
+            const by2 = Math.round(that.data.pointlist[1][1]/(that.data.defenceareaHeight/576));
+            const bx3 = Math.round(that.data.pointlist[3][0]/(that.data.defenceareaWidth/704));
+            const by3 = Math.round(that.data.pointlist[3][1]/(that.data.defenceareaHeight/576));
+            const bx4 = Math.round(that.data.pointlist[5][0]/(that.data.defenceareaWidth/704));
+            const by4 = Math.round(that.data.pointlist[5][1]/(that.data.defenceareaHeight/576));
             const bfield = [[ [bx1,by1],[bx2,by2],[bx3,by3],[bx4,by4] ]];
             request.postReq("/api/camera/fieldadd",
                 {
