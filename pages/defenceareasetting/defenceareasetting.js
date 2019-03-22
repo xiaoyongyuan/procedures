@@ -529,9 +529,9 @@ Page({
                                 duration: 2000
                             });
                         })
-                } else if (res.cancel) {
-
                 }
+                else if (res.cancel)
+                {}
             }
         });
     },

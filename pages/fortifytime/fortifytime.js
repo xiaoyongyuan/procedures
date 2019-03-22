@@ -26,6 +26,7 @@ Page({
         radiolist:'none',
         selecttime:'none',
         addlist:true,
+        notime:'none',
         array: ['0:00', '1:00', '2:00', '3:00','4:00', '5:00', '6:00', '7:00','8:00', '9:00', '10:00', '11:00','12:00', '13:00', '14:00', '15:00', '16:00','17:00', '18:00', '19:00', '20:00','21:00', '22:00', '23:00', '24:00'],
     },
     /**
@@ -60,7 +61,6 @@ Page({
         that.setData({
             wtype:e.detail.value
         });
-        // wtype
         console.log('checkbox发生chang事件', e.detail.value);
     },
     //页面跳转图表查看
@@ -120,50 +120,283 @@ Page({
             return;
         }
         console.log("danxuan",that.data.wtype);
-        if(that.data.starttime < 10){
-            var savestarttime = '0'+that.data.starttime;
-            console.log("starttime",savestarttime);
-        }else {
-            savestarttime = that.data.starttime;
-            console.log("starttime",savestarttime);
-        }
-        if(that.data.endtime < 10){
-            var saveendtime = '0'+that.data.endtime;
-            console.log("endtime",saveendtime);
-        }else {
-            saveendtime = that.data.endtime;
-            console.log("endtime",saveendtime);
-        }
         /**
-         * 请求添加接口
+         * 先查询每个状态记录多少条
          */
-        request.postReq("/api/workingtime/add",
+        request.postReq("/api/workingtime/getlist",
             {
                 cid:that.data.currentcode,
-                cwstatus:1,
-                endtime:saveendtime,
-                starttime:savestarttime,
-                wtype:that.data.wtype
             },
-            function(res) {
-                that.setData({
-                    addlist:true,
-                    radiolist:'none',
-                    selecttime:'none'
-                });
-                /**
-                 * 请求列表接口
-                 */
-                request.postReq("/api/workingtime/getlist",
-                    {
-                        cid:that.data.currentcode,
-                    },
-                    function(res){
-                        that.setData({
-                            workingtimelist:res.data
-                        })
-                    })
-            });
+            function(res){
+                console.log("res",res);
+                var todaychecklist = [];
+                var playdaychecklist = [];
+                var weekdaychecklist = [];
+                for(var i = 0;i<res.data.length;i++){
+                    console.log("res.data[i]",res.data[i].wtype);
+                    if(res.data[i].wtype === 'weekday'){
+                        weekdaychecklist.push(res.data[i].wtype);
+                    }
+                    if(res.data[i].wtype === 'playday'){
+                        playdaychecklist.push(res.data[i].wtype);
+                    }
+                    if(res.data[i].wtype === 'today'){
+                        todaychecklist.push(res.data[i].wtype);
+                    }
+                }
+                console.log("weekdaychecklist",weekdaychecklist);
+                console.log("playdaychecklist",playdaychecklist);
+                console.log("todaychecklist",todaychecklist);
+                if(that.data.wtype === 'weekday'){
+                    if(weekdaychecklist.length >= 3){
+                        wx.showToast({
+                            title: '工作日的设防已经上限！',
+                            icon: 'none',
+                            duration: 2000
+                        });
+                        return;
+                    }
+                    if(that.data.starttime < 10){
+                        var savestarttime = '0'+that.data.starttime;
+                        console.log("starttime",savestarttime);
+                    }else {
+                        savestarttime = that.data.starttime;
+                        console.log("starttime",savestarttime);
+                    }
+                    if(that.data.endtime < 10){
+                        var saveendtime = '0'+that.data.endtime;
+                        console.log("endtime",saveendtime);
+                    }else {
+                        saveendtime = that.data.endtime;
+                        console.log("endtime",saveendtime);
+                    }
+                    /**
+                     * 请求添加接口
+                     */
+                    request.postReq("/api/workingtime/add",
+                        {
+                            cid:that.data.currentcode,
+                            cwstatus:1,
+                            endtime:saveendtime,
+                            starttime:savestarttime,
+                            wtype:that.data.wtype
+                        },
+                        function(res) {
+                            that.setData({
+                                addlist:true,
+                                radiolist:'none',
+                                selecttime:'none'
+                            });
+                            /**
+                             * 请求列表接口
+                             */
+                            request.postReq("/api/workingtime/getlist",
+                                {
+                                    cid:that.data.currentcode,
+                                },
+                                function(res){
+                                    that.setData({
+                                        workingtimelist:res.data
+                                    });
+                                    if(that.data.workingtimelist.length > 0){
+                                        that.setData({
+                                            notime:'none'
+                                        });
+                                    }
+                                    wx.showToast({
+                                        title: '提交成功！',
+                                        icon: 'success',
+                                        duration: 2000
+                                    });
+                                })
+                        });
+                }
+                if(that.data.wtype === 'playday'){
+                    if(playdaychecklist.length >= 3){
+                        wx.showToast({
+                            title: '休息日的设防已经上限！',
+                            icon: 'none',
+                            duration: 2000
+                        });
+                        return;
+                    }
+                    if(that.data.starttime < 10){
+                        var savestarttime = '0'+that.data.starttime;
+                        console.log("starttime",savestarttime);
+                    }else {
+                        savestarttime = that.data.starttime;
+                        console.log("starttime",savestarttime);
+                    }
+                    if(that.data.endtime < 10){
+                        var saveendtime = '0'+that.data.endtime;
+                        console.log("endtime",saveendtime);
+                    }else {
+                        saveendtime = that.data.endtime;
+                        console.log("endtime",saveendtime);
+                    }
+                    /**
+                     * 请求添加接口
+                     */
+                    request.postReq("/api/workingtime/add",
+                        {
+                            cid:that.data.currentcode,
+                            cwstatus:1,
+                            endtime:saveendtime,
+                            starttime:savestarttime,
+                            wtype:that.data.wtype
+                        },
+                        function(res) {
+                            that.setData({
+                                addlist:true,
+                                radiolist:'none',
+                                selecttime:'none'
+                            });
+                            /**
+                             * 请求列表接口
+                             */
+                            request.postReq("/api/workingtime/getlist",
+                                {
+                                    cid:that.data.currentcode,
+                                },
+                                function(res){
+                                    that.setData({
+                                        workingtimelist:res.data
+                                    });
+                                    if(that.data.workingtimelist.length > 0){
+                                        that.setData({
+                                            notime:'none'
+                                        });
+                                    }
+                                    wx.showToast({
+                                        title: '提交成功！',
+                                        icon: 'success',
+                                        duration: 2000
+                                    });
+                                })
+                        });
+                }
+                if(that.data.wtype === 'today'){
+                    if(todaychecklist.length >= 3){
+                        wx.showToast({
+                            title: '当天的设防已经上限！',
+                            icon: 'none',
+                            duration: 2000
+                        });
+                        return;
+                    }
+                    if(that.data.starttime < 10){
+                        var savestarttime = '0'+that.data.starttime;
+                        console.log("starttime",savestarttime);
+                    }else {
+                        savestarttime = that.data.starttime;
+                        console.log("starttime",savestarttime);
+                    }
+                    if(that.data.endtime < 10){
+                        var saveendtime = '0'+that.data.endtime;
+                        console.log("endtime",saveendtime);
+                    }else {
+                        saveendtime = that.data.endtime;
+                        console.log("endtime",saveendtime);
+                    }
+                    /**
+                     * 请求添加接口
+                     */
+                    request.postReq("/api/workingtime/add",
+                        {
+                            cid:that.data.currentcode,
+                            cwstatus:1,
+                            endtime:saveendtime,
+                            starttime:savestarttime,
+                            wtype:that.data.wtype
+                        },
+                        function(res) {
+                            that.setData({
+                                addlist:true,
+                                radiolist:'none',
+                                selecttime:'none'
+                            });
+                            /**
+                             * 请求列表接口
+                             */
+                            request.postReq("/api/workingtime/getlist",
+                                {
+                                    cid:that.data.currentcode,
+                                },
+                                function(res){
+                                    that.setData({
+                                        workingtimelist:res.data
+                                    });
+                                    if(that.data.workingtimelist.length > 0){
+                                        that.setData({
+                                            notime:'none'
+                                        });
+                                    }
+                                    wx.showToast({
+                                        title: '提交成功！',
+                                        icon: 'success',
+                                        duration: 2000
+                                    });
+                                })
+                        });
+                }
+            })
+    },
+    /**
+     *布防时间删除
+     */
+    deleteworkingtime:function(e){
+        var that = this;
+        var that = this;
+        //获取当前点击元素的id(索引值)
+        var Id = e.currentTarget.id;
+        console.log("Id",Id);
+        //获取当前点击元素的属性值。
+        var code = that.data.workingtimelist[Id].code;
+        console.log("code",code);
+        console.log("删除",that.data.workingtimelist.code);
+        wx.showModal({
+            title: '提示',
+            content: '确定要删除吗？',
+            success(res) {
+                if (res.confirm) {
+                    /**
+                     * 请求删除
+                     */
+                    request.postReq("/api/workingtime/del",
+                        {
+                            code:code
+                        },
+                        function(res){
+                            /**
+                             * 请求列表接口
+                             */
+                            request.postReq("/api/workingtime/getlist",
+                                {
+                                    cid:that.data.currentcode,
+                                },
+                                function(res){
+                                    that.setData({
+                                        workingtimelist:res.data
+                                    });
+                                    if(that.data.workingtimelist.length === 0){
+                                        that.setData({
+                                            radiolist:'block',
+                                            selecttime:'block',
+                                            notime:'block'
+                                        });
+                                    }
+                                    wx.showToast({
+                                        title: '删除成功！',
+                                        icon: 'success',
+                                        duration: 2000
+                                    });
+                                })
+                        });
+                }
+                else if (res.cancel)
+                {}
+            }
+        });
     },
     switch1Change(e) {
         console.log('switch1 发生 change 事件，携带值为', e.detail.value)
@@ -188,6 +421,12 @@ Page({
         });
     },
     /**
+     * 阻止事件
+     */
+    prevent:function(){
+        console.log("阻止");
+    },
+    /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
@@ -206,7 +445,14 @@ Page({
             function(res){
                 that.setData({
                     workingtimelist:res.data
-                })
+                });
+                if(that.data.workingtimelist.length === 0){
+                    that.setData({
+                        radiolist:'block',
+                        selecttime:'block',
+                        notime:'block'
+                    });
+                }
             })
     },
 

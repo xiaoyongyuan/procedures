@@ -17,7 +17,7 @@
         <!--占位view-->
     </view>
 
-        <view class="radio-list" style="display: {{ radiolist }};">
+    <view class="radio-list" style="display: {{ radiolist }};">
             <view class="radio-list-inner">
                 <radio-group class="radio-list-inner-group"  bindchange="checkboxChange">
                     <label wx:for="{{RadioItems}}" class="radio-item" wx:key="index">
@@ -27,7 +27,7 @@
             </view>
         </view>
 
-        <view class="start-end-time" style="display: {{ selecttime }}">
+    <view class="start-end-time" style="display: {{ selecttime }}">
             <view class="starttime">
                 <view class="section">
                     <picker class="selecttime" bindchange="bindPickerChangestrat" value="{{index}}" range="{{array}}">
@@ -56,7 +56,11 @@
             </view>
         </view>
 
-    <view class="fortitytimelist"  wx:for="{{workingtimelist}}" wx:key="index">
+    <view class="notime" style="display: {{ notime }}">
+        <text>还没有布防时间！！！</text>
+    </view>
+
+    <view class="fortitytimelist"  wx:for="{{workingtimelist}}" wx:key="index" catchtap="deleteworkingtime" id='{{index}}'>
         <view class="fortitytimelist-left">
             <view class="fortitytimelist-left-top">
                 <view class="circle"></view>
@@ -76,7 +80,7 @@
             </view>
         </view>
         <view class="fortitytimelist-right">
-            <switch class="switch" checked bindchange="switch1Change" />
+                <switch class="switch" catchtap="prevent" checked bindchange="switch1Change" />
         </view>
     </view>
 </view>
