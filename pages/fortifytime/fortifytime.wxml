@@ -1,52 +1,60 @@
-<!--pages/fortifytime/fortifytime.wxml-->
 <view class="page">
-    <navbar back home text="{{navigationBarTitle}}"></navbar>
-    <view class="top" style="height: {{ someData.statusBarHeight+someData.titleBarHeight }}px">
+    <view class="navbar" style="{{'height: ' + navigationBarHeight}}">
+        <view style="{{'height: ' + statusBarHeight}}"></view>
+        <view class="status-bar" style="height:{{someData.statusBarHeight}}px"></view>
+        <view class='title-container' style="height:{{someData.titleBarHeight}}px">
+            <view class='capsule' wx:if="{{ back || home }}">
+                <view>
+                    <image src='/images/back.svg' bindtap='back' wx:if="{{back}}"></image>
+                    <text wx:if="{{ addlist === true }}" class="unlabeled" bindtap="addlist">添加</text>
+                    <text wx:else class="unlabeled" bindtap="savelist">提交</text>
+                </view>
+            </view>
+            <view class='title'>{{text}}</view>
+        </view>
+    </view>
+    <view class="top" style="height: {{ someData.statusBarHeight+someData.titleBarHeight }}px;">
         <!--占位view-->
     </view>
 
-    <view class="radio-list" style="display: {{ radiolist }}">
-        <view class="radio-list-inner">
-            <radio-group  bindchange="checkboxChange">
-                <label wx:for="{{items}}" class="radio-item" wx:key="index">
-                    <radio value="{{item.value}}"  color="#594d9c" checked="{{item.checked}}">{{item.name}}</radio>
-                </label>
-            </radio-group>
-        </view>
-    </view>
-    <view class="start-end-time" style="display: {{ selecttime }}">
-        <view class="starttime">
-            <view class="section">
-                <picker class="selecttime" bindchange="bindPickerChangestrat" value="{{index}}" range="{{array}}">
-                    <view class="pickertitle">
-                        <text wx:if="{{ starttime === '' ||  starttime === undefined }}" style="color: #b0b0b0;font-size: 26rpx">开始时间</text>
-                        <text wx:else style="font-size: 24rpx">{{array[starttime]}}</text>
-                        <!--<text wx:else></text>-->
-                    </view>
-                    <!--<view class="pickervalue">-->
-                        <!---->
-                    <!--</view>-->
-                </picker>
+        <view class="radio-list" style="display: {{ radiolist }};">
+            <view class="radio-list-inner">
+                <radio-group class="radio-list-inner-group"  bindchange="checkboxChange">
+                    <label wx:for="{{RadioItems}}" class="radio-item" wx:key="index">
+                        <radio value="{{item.value}}"  color="#594d9c" checked="{{item.checked}}">{{item.name}}</radio>
+                    </label>
+                </radio-group>
             </view>
         </view>
-        <view class="sectioncenter">
-            <text>~~</text>
-        </view>
-        <view class="endtime">
-            <view class="section">
-                <picker class="selecttime" bindchange="bindPickerChangeend" value="{{index}}" range="{{array}}">
-                    <view class="pickertitle">
-                        <text wx:if="{{ endtime === '' ||  endtime === undefined }}" style="color: #b0b0b0;font-size: 26rpx">截止时间</text>
-                        <text wx:else style="font-size: 24rpx">{{array[endtime]}}</text>
-                    </view>
-                </picker>
-            </view>
-        </view>
-        <view class="queryechart">
-            <text bindtap="changeTofortifytimeEchart">图表查看</text>
-        </view>
-    </view>
 
+        <view class="start-end-time" style="display: {{ selecttime }}">
+            <view class="starttime">
+                <view class="section">
+                    <picker class="selecttime" bindchange="bindPickerChangestrat" value="{{index}}" range="{{array}}">
+                        <view class="pickertitle">
+                            <text wx:if="{{ starttime === '' ||  starttime === undefined }}" style="color: #b0b0b0;font-size: 26rpx">开始时间</text>
+                            <text wx:else style="font-size: 24rpx">{{array[starttime]}}</text>
+                        </view>
+                    </picker>
+                </view>
+            </view>
+            <view class="sectioncenter">
+                <text>~~</text>
+            </view>
+            <view class="endtime">
+                <view class="section">
+                    <picker class="selecttime" bindchange="bindPickerChangeend" value="{{index}}" range="{{array}}">
+                        <view class="pickertitle">
+                            <text wx:if="{{ endtime === '' ||  endtime === undefined }}" style="color: #b0b0b0;font-size: 26rpx">截止时间</text>
+                            <text wx:else style="font-size: 24rpx">{{array[endtime]}}</text>
+                        </view>
+                    </picker>
+                </view>
+            </view>
+            <view class="queryechart">
+                <text bindtap="changeTofortifytimeEchart">图表查看</text>
+            </view>
+        </view>
 
     <view class="fortitytimelist"  wx:for="{{workingtimelist}}" wx:key="index">
         <view class="fortitytimelist-left">
