@@ -175,6 +175,13 @@ Page({
         strat_yblue = e.touches[0].y;// 手指开始触摸时的y轴 y轴--->相对于画布顶部的距离
     },
     /**
+     * 清除防区一
+     */
+    test:function(){
+        // myblue_carvas.clearRect();
+        myblue_carvas.draw();
+    },
+    /**
      *手指触摸结束时的事件蓝色
      */
     EventHandleblue:function(e){
