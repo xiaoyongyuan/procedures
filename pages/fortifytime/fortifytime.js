@@ -346,14 +346,10 @@ Page({
      */
     deleteworkingtime:function(e){
         var that = this;
-        var that = this;
         //获取当前点击元素的id(索引值)
         var Id = e.currentTarget.id;
-        console.log("Id",Id);
         //获取当前点击元素的属性值。
         var code = that.data.workingtimelist[Id].code;
-        console.log("code",code);
-        console.log("删除",that.data.workingtimelist.code);
         wx.showModal({
             title: '提示',
             content: '确定要删除吗？',
@@ -398,9 +394,42 @@ Page({
             }
         });
     },
+    /**
+     *切换状态
+     */
     switch1Change(e) {
-        console.log('switch1 发生 change 事件，携带值为', e.detail.value)
+        var that = this;
+        console.log('switch1 发生 change 事件，携带值为', e.detail.value);
+        console.log("var Id = e.currentTarget.id;",e);
+        var Id = e.currentTarget.id;
+        console.log("Idc",Id);
+        //获取当前点击元素的属性值。
+        var code = that.data.workingtimelist[Id].code;
+        console.log("codes",code);
+        if(e.detail.value === true){
+            var cwstatus = 1;
+        }else {
+            cwstatus = 0;
+        }
+        console.log("cwstatus",cwstatus);
+        /**
+         * 修改状态接口
+         */
+        request.postReq("/api/workingtime/update",
+            {
+                code:code,
+                cwstatus:cwstatus
+            },
+            function(res){
+                // that.setData({
+                //
+                // });
+            })
+
     },
+    /**
+     *单选按钮
+     */
     radioChange: function (e) {
         console.log('checkbox发生change事件，携带value值为：', e.detail.value);
 
@@ -424,7 +453,7 @@ Page({
      * 阻止事件
      */
     prevent:function(){
-        console.log("阻止");
+        // console.log("阻止");
     },
     /**
      * 生命周期函数--监听页面加载

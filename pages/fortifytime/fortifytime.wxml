@@ -80,7 +80,7 @@
             </view>
         </view>
         <view class="fortitytimelist-right">
-                <switch class="switch" catchtap="prevent" checked bindchange="switch1Change" />
+                <switch class="switch" id='{{index}}' catchtap="prevent" checked bindchange="switch1Change" />
         </view>
     </view>
 </view>
