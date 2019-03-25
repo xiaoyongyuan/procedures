@@ -18,6 +18,7 @@ Page({
         endYear: 2050,
         select: false,
         selected: '全部',
+        selectedvalue:'',
         showModal: false,
         text:'树莓派企业测试账户1',
         // 这里是一些组件内部数据
@@ -38,46 +39,66 @@ Page({
         console.log("e",e);
         var name = e.currentTarget.dataset.name;
         var value = e.currentTarget.dataset.value;
-        // if(name === that.data.selected){
-        //     that.setData({
-        //         isshow:'block'
-        //     });
-        // }else {
-        //     that.setData({
-        //         isshow:'none'
-        //     });
-        // }
         this.setData({
             selected: name,
             selectedvalue:value,
             select: false
         })
         console.log("value",that.data.selectedvalue);
-        /**
-         * 请求报警列表接口
-         */
+        if(value === 'sign'){
+            /**
+             * 请求报警列表接口
+             */
 
-        request.postReq("/api/alarm/getlist_forAPP",
-            {
-                // account:'17792542304',
-                account:'18210812953',
-                apptime:'2019-03-21 17:13',
-                cid:value
-            },
-            function(res){
-                that.setData({
-                    alarmListData:res.data
+            request.postReq("/api/alarm/getlist_forAPP",
+                {
+                    // account:'17792542304',
+                    account:'18210812953',
+                    apptime:'2019-03-21 17:13',
+                    ifdanger:1
+                },
+                function(res){
+                    that.setData({
+                        alarmListData:res.data
+                    });
+                    if(that.data.alarmListData.length > 0){
+                        that.setData({
+                            nodata:'none'
+                        });
+                    }else{
+                        that.setData({
+                            nodata:'block'
+                        });
+                    }
                 });
-                if(that.data.alarmListData.length > 0){
+        }else{
+            /**
+             * 请求报警列表接口
+             */
+
+            request.postReq("/api/alarm/getlist_forAPP",
+                {
+                    // account:'17792542304',
+                    account:'18210812953',
+                    apptime:'2019-03-21 17:13',
+                    cid:value,
+                },
+                function(res){
                     that.setData({
-                        nodata:'none'
+                        alarmListData:res.data
                     });
-                }else{
-                    that.setData({
-                        nodata:'block'
-                    });
-                }
-            });
+                    if(that.data.alarmListData.length > 0){
+                        that.setData({
+                            nodata:'none'
+                        });
+                    }else{
+                        that.setData({
+                            nodata:'block'
+                        });
+                    }
+                });
+        }
+
     },
     /**
      * 跳转报警详情页
@@ -200,15 +221,19 @@ Page({
                 // }
                 // that.data.equipList.unshift("全部","收藏列表");
 
+                var temp = res.data;
+                temp.unshift({code:'',name:'全部'},{code:'sign',name:'收藏列表'});
                 that.setData({
-                    equipList:res.data
+                    equipList:temp
                 });
+
                 console.log("equipList",that.data.equipList);
             });
     },
     bindShowMsg: function () {
+        var that = this;
         this.setData({
-            showModal: true
+            showModal: !that.data.showModal
         })
     },
     go: function () {

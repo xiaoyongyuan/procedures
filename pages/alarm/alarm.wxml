@@ -15,7 +15,7 @@
     </view>
 
     <!--<navbar back text="{{navigationBarTitle}}"></navbar>-->
-    <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}" bindtap="go"></view>
+    <view class="mask" catchtouchmove="true" wx:if="{{showModal}}" bindtap="go"></view>
 
     <view class="select-list">
         <view class='list-msg2' bindtap='bindShowMsg' style="position:fixed;top:{{ someData.statusBarHeight+someData.titleBarHeight+10 }}px">
@@ -87,10 +87,13 @@
         </view>
     </view>
     <!-- 下拉需要显示的列表 -->
-    <view class="select_box_center">
-        <view class="select_box" wx:if="{{showModal}}" bindtap="go" style="position:absolute;top:{{ someData.statusBarHeight+someData.titleBarHeight+41 }}px">
+    <view class="select_box_center" catchtouchmove="true">
+        <view class="select_box"  wx:if="{{showModal}}" bindtap="go" style="position:absolute;top:{{ someData.statusBarHeight+someData.titleBarHeight+41 }}px">
             <block wx:for="{{equipList}}" wx:key="index">
-                <view class="select_one"  bindtap="mySelect" data-name="{{ item.name }}" data-value="{{ item.code }}"><text>{{ item.name }}</text></view>
+                <view class="select_one"  bindtap="mySelect" data-name="{{ item.name }}" data-value="{{ item.code }}">
+                    <text>{{ item.name }}</text>
+                    <image src='/images/check1.png' wx:if="{{ item.code === selectedvalue }}"></image>
+                </view>
             </block>
         </view>
     </view>
