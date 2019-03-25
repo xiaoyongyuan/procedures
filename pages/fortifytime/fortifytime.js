@@ -482,6 +482,9 @@ Page({
                         notime:'block'
                     });
                 }
+                // if(that.data.workingtimelist){
+                //
+                // }
             })
     },
 
