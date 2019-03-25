@@ -421,9 +421,19 @@ Page({
                 cwstatus:cwstatus
             },
             function(res){
-                // that.setData({
-                //
-                // });
+                if(cwstatus === 0){
+                    wx.showToast({
+                        title: '已关闭',
+                        icon: 'success',
+                        duration: 2000
+                    });
+                }else {
+                    wx.showToast({
+                        title: '已打开',
+                        icon: 'success',
+                        duration: 2000
+                    });
+                }
             })
 
     },
