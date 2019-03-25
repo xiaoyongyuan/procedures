@@ -80,7 +80,38 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        var ctime = util.formatTime(new Date());
+        /**
+         * 请求列表接口
+         */
+        var that = this;
+        request.postReq("/api/camera/getlist_forAPP",
+            {
+                // account:'17792542304'
+                account:'18210812953'
+            },
+            function(res){
+                that.setData({
+                    equipListData:res.data
+                });
+                var currenttime = new Date(ctime);
+                for(var i=0;i<res.data.length;i++){
+                    //两个时间相差的分钟数
+                    var  mistiming =  parseInt(currenttime - new Date(that.data.equipListData[i].atime))/ 1000 / 60;
+                    var  mistlastheart = parseInt(currenttime - new Date(that.data.equipListData[i].herattime.time))/ 1000 / 60;
+                    if(mistiming > 1 && mistlastheart > 1){
+                        that.data.equipListData[i]['ismist']=false;
+                        that.setData({
+                            equipListData:that.data.equipListData
+                        })
+                    }else{
+                        that.data.equipListData[i]['ismist']=true;
+                        that.setData({
+                            equipListData:that.data.equipListData
+                        })
+                    }
+                }
+            })
     },
 
     /**

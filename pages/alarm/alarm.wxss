@@ -29,18 +29,34 @@ page {
     display: flex;
     justify-content: center;
     position: relative;
-    z-index: 998;
+    z-index: 9999;
 }
 .list-msg2 {
     height: 60rpx;
     display: flex;
-    z-index: 9999;
+    z-index: 9998;
     align-items: center;
     justify-content: space-between;
     padding: 0 10rpx;
     background-color: #fff;
     width: 90%;
     border-radius: 16rpx;
+    position: fixed;
+}
+.nodata{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 50%;
+}
+.nodata-one{
+    display: flex;
+    justify-content: center;
+    margin-top: 40rpx;
+    font-size: 30rpx;
 }
 .list-msg2 text{
     font-size: 28rpx;
@@ -75,6 +91,13 @@ page {
     line-height: 60rpx;
     border-bottom: 2rpx solid #ebebeb;
     margin-top: 20rpx;
+    display: flex;
+    justify-content: space-between;
+}
+.select_one image{
+    height:30rpx;
+    width:40rpx;
+    margin-right: 80rpx;
 }
 .select_one text{
     margin-left: 20rpx;

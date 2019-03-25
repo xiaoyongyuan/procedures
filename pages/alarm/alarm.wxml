@@ -14,15 +14,13 @@
         </view>
     </view>
 
-
-
     <!--<navbar back text="{{navigationBarTitle}}"></navbar>-->
     <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}" bindtap="go"></view>
 
     <view class="select-list">
-        <view class='list-msg2' bindtap='bindShowMsg' style="position:absolute;top:{{ someData.statusBarHeight+someData.titleBarHeight+10 }}px">
-            <text>{{tihuoWay}}</text>
-            <image style='height:24rpx;width:40rpx;' src='/images/below.png'></image>
+        <view class='list-msg2' bindtap='bindShowMsg' style="position:fixed;top:{{ someData.statusBarHeight+someData.titleBarHeight+10 }}px">
+            <text>{{selected}}</text>
+            <image style='height:20rpx;width:40rpx;' src='/images/below.png'></image>
         </view>
     </view>
 
@@ -80,16 +78,20 @@
             </view>
         </view>
     </view>
-
+    <view class="nodata" style="display: {{ nodata }}">
+        <view class="nodata-one">
+            <text>暂无数据</text>
+        </view>
+        <view class="nodata-one">
+            <text>手动试图刷新</text>
+        </view>
+    </view>
     <!-- 下拉需要显示的列表 -->
     <view class="select_box_center">
         <view class="select_box" wx:if="{{showModal}}" bindtap="go" style="position:absolute;top:{{ someData.statusBarHeight+someData.titleBarHeight+41 }}px">
-            <view class="select_one" bindtap="mySelect" data-name="全部"><text>全部</text></view>
-            <view class="select_one" bindtap="mySelect" data-name="收藏列表"><text>收藏列表</text></view>
-            <view class="select_one" bindtap="mySelect" data-name="测试一"><text>测试一</text></view>
-            <view class="select_one" bindtap="mySelect" data-name="yy"><text>yy</text></view>
-            <view class="select_one" bindtap="mySelect" data-name="60"><text>60</text></view>
-            <view class="select_one" bindtap="mySelect" data-name="西安"><text>西安</text></view>
+            <block wx:for="{{equipList}}" wx:key="index">
+                <view class="select_one"  bindtap="mySelect" data-name="{{ item.name }}" data-value="{{ item.code }}"><text>{{ item.name }}</text></view>
+            </block>
         </view>
     </view>
 </view>

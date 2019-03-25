@@ -17,7 +17,7 @@ Page({
         startYear: 2000,
         endYear: 2050,
         select: false,
-        tihuoWay: '门店自提',
+        selected: '全部',
         showModal: false,
         text:'树莓派企业测试账户1',
         // 这里是一些组件内部数据
@@ -26,7 +26,58 @@ Page({
             titleBarHeight: app.globalData.titleBarHeight
         },
         alarmListData: [],
-        scanresult:''
+        equipList:[],
+        scanresult:'',
+        nodata:'none'
+    },
+    /**
+     * 下拉框选择
+     */
+    mySelect(e) {
+        var that = this;
+        console.log("e",e);
+        var name = e.currentTarget.dataset.name;
+        var value = e.currentTarget.dataset.value;
+        // if(name === that.data.selected){
+        //     that.setData({
+        //         isshow:'block'
+        //     });
+        // }else {
+        //     that.setData({
+        //         isshow:'none'
+        //     });
+        // }
+        this.setData({
+            selected: name,
+            selectedvalue:value,
+            select: false
+        })
+        console.log("value",that.data.selectedvalue);
+        /**
+         * 请求报警列表接口
+         */
+
+        request.postReq("/api/alarm/getlist_forAPP",
+            {
+                // account:'17792542304',
+                account:'18210812953',
+                apptime:'2019-03-21 17:13',
+                cid:value
+            },
+            function(res){
+                that.setData({
+                    alarmListData:res.data
+                });
+                if(that.data.alarmListData.length > 0){
+                    that.setData({
+                        nodata:'none'
+                    });
+                }else{
+                    that.setData({
+                        nodata:'block'
+                    });
+                }
+            });
     },
     /**
      * 跳转报警详情页
@@ -47,7 +98,27 @@ Page({
         var that = this;
         this.setData({
             scanresult:''
-        })
+        });
+        request.postReq("/api/alarm/getlist_forAPP",
+            {
+                account:'18210812953',
+                // account:'17792542304',
+                apptime:'2019-03-21 17:13'
+            },
+            function(res){
+                that.setData({
+                    alarmListData:res.data
+                });
+                if(that.data.alarmListData.length > 0){
+                    that.setData({
+                        nodata:'none'
+                    });
+                }else{
+                    that.setData({
+                        nodata:'block'
+                    });
+                }
+            });
     },
 
     /**
@@ -102,9 +173,38 @@ Page({
             },
             function(res){
                 that.setData({
-                alarmListData:res.data
-            })
-        })
+                    alarmListData:res.data
+                });
+                if(that.data.alarmListData.length > 0){
+                    that.setData({
+                        nodata:'none'
+                    });
+                }else{
+                    that.setData({
+                        nodata:'block'
+                    });
+                }
+        });
+        /**
+         * 请求设备列表
+         */
+        request.postReq("/api/camera/getlist_forAPP",
+            {
+                // account:'17792542304',
+                account:'18210812953',
+            },
+            function(res){
+                console.log("res",res.data);
+                // for(var i = 0;i < res.data.length;i++){
+                //     that.data.equipList.push(res.data[i].name);
+                // }
+                // that.data.equipList.unshift("全部","收藏列表");
+
+                that.setData({
+                    equipList:res.data
+                });
+                console.log("equipList",that.data.equipList);
+            });
     },
     bindShowMsg: function () {
         this.setData({
@@ -129,18 +229,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        var that = this;
-        request.postReq("/api/alarm/getlist_forAPP",
-            {
-                account:'18210812953',
-                // account:'17792542304',
-                apptime:'2019-03-21 17:13'
-            },
-            function(res){
-                that.setData({
-                    alarmListData:res.data
-                })
-            })
+
     },
 
     /**
