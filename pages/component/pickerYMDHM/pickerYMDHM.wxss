@@ -1,1 +1,7 @@
 /* components/pickerYMDHM/pickerYMDHM.wxss */
+button{
+    opacity:0;
+    margin-top: -20rpx;
+    margin-left: 100rpx;
+    z-index: 9999;
+}

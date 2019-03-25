@@ -5,7 +5,10 @@
         <view class="status-bar" style="height:{{someData.statusBarHeight}}px"></view>
         <view class='title-container' style="height:{{someData.titleBarHeight}}px">
             <view class='capsule'>
-                <view bindtap='back'>
+                <view>
+                    <pickerYMDHM  bind:onPickerChange="onPickerChange" date="{{date}}">
+
+                    </pickerYMDHM>
                     <image class="calendar" src='/images/calendar.png'></image>
                     <image src='/images/saoyisao2.png' bindtap="clicks"></image>
                 </view>
@@ -14,7 +17,6 @@
         </view>
     </view>
 
-    <!--<navbar back text="{{navigationBarTitle}}"></navbar>-->
     <view class="mask" catchtouchmove="true" wx:if="{{showModal}}" bindtap="go"></view>
 
     <view class="select-list">
@@ -29,6 +31,17 @@
     </view>
 
     <input class="weui-input" placeholder="请输入设备ID" value="{{ scanresult }}" />
+
+    <!--<view>-->
+
+        <!--<pickerYMDHM disabled = "{{disabled}}" bind:onPickerChange="onPickerChange" date="{{date}}">-->
+            <!--<image class="calendar" src='/images/calendar.png'></image>-->
+        <!--</pickerYMDHM>-->
+    <!--</view>-->
+    <!--<pickerYMDHM  bind:onPickerChange="onPickerChange" date="{{date}}">-->
+
+    <!--</pickerYMDHM>-->
+    <!--<pickerYMDHM disabled = "{{disabled}}" bind:onPickerChange="onPickerChange" date="{{date}}" style="background-image: url('/images/below.png')"></pickerYMDHM>-->
 
     <view class='list-li mflex'  wx:for="{{alarmListData}}"  wx:key="index" >
         <view class="alarm-list">

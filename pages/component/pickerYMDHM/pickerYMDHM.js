@@ -158,7 +158,7 @@ Component({
       console.log("测试data12",data);
     },
     pickerCancel: function (e) {
-      // console.log("取消");
+      console.log("取消");
       this.setData({
         pickerIndex: this.data.chooseIndex,
         pickerArray: this.data.chooseArray
