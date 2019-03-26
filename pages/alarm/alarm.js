@@ -369,7 +369,6 @@ Page({
      */
     onShow: function () {
         var that = this;
-        console.log("我显示啦");
         if(that.data.selectedvalue === 'sign'){
             /**
              * 请求报警列表接口
