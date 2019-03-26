@@ -8,14 +8,6 @@ Page({
      */
     data: {
         navigationBarTitle:'树莓派企业测试账户1',
-        // date: '2018-10-01',
-        // time: '12:00',
-        // dateTimeArray: null,
-        // dateTime: null,
-        // dateTimeArray1: null,
-        // dateTime1: null,
-        // startYear: 2000,
-        // endYear: 2050,
         select: false,
         selected: '全部',
         selectedvalue:'',
@@ -30,8 +22,20 @@ Page({
         equipList:[],
         scanresult:'',
         nodata:'none',
-        date:'2019-03-25 17:39',
+        // date:'2019-03-25 17:39',
+        apptime:'',
+        isload:false
         // disabled:false//设置是否能点击 false可以 true不能点击
+    },
+    test:function(){
+        var that = this;
+        console.log("isload",that.data.isload);
+        that.setData({
+            isload:true
+        });
+    },
+    test2:function(){
+        console.log("222");
     },
     /**
      * 日历控件绑定函数
@@ -41,34 +45,36 @@ Page({
         var that = this;
         console.log("xxx",e.detail);
         this.setData({
-            date: e.detail.dateString
+            apptime: e.detail.dateString
         });
-        console.log("date",that.data.date);
+        console.log("apptime",that.data.apptime);
         /**
          * 请求报警列表接口
          */
-
-        request.postReq("/api/alarm/getlist_forAPP",
-            {
-                // account:'17792542304',
-                account:'18210812953',
-                apptime:that.data.date,
-                // ifdanger:1
-            },
-            function(res){
-                that.setData({
-                    alarmListData:res.data
+        if(that.data.isload === true){
+            request.postReq("/api/alarm/getlist_forAPP",
+                {
+                    // account:'17792542304',
+                    account:'18210812953',
+                    apptime:that.data.apptime,
+                    // ifdanger:1
+                },
+                function(res){
+                    console.log("44");
+                    that.setData({
+                        alarmListData:res.data
+                    });
+                    if(that.data.alarmListData.length > 0){
+                        that.setData({
+                            nodata:'none'
+                        });
+                    }else{
+                        that.setData({
+                            nodata:'block'
+                        });
+                    }
                 });
-                if(that.data.alarmListData.length > 0){
-                    that.setData({
-                        nodata:'none'
-                    });
-                }else{
-                    that.setData({
-                        nodata:'block'
-                    });
-                }
-            });
+        }
     },
     /**
      * 下拉框选择
@@ -93,10 +99,11 @@ Page({
                 {
                     // account:'17792542304',
                     account:'18210812953',
-                    apptime:'2019-03-21 17:13',
+                    apptime:that.data.apptime,
                     ifdanger:1
                 },
                 function(res){
+                    console.log("86");
                     that.setData({
                         alarmListData:res.data
                     });
@@ -119,10 +126,11 @@ Page({
                 {
                     // account:'17792542304',2019-03-25 18:39
                     account:'18210812953',
-                    apptime:'2019-03-21 17:13',
+                    apptime:that.data.apptime,
                     cid:value,
                 },
                 function(res){
+                    console.log("113");
                     that.setData({
                         alarmListData:res.data
                     });
@@ -159,26 +167,27 @@ Page({
         this.setData({
             scanresult:''
         });
-        request.postReq("/api/alarm/getlist_forAPP",
-            {
-                account:'18210812953',
-                // account:'17792542304',
-                apptime:'2019-03-21 17:13'
-            },
-            function(res){
-                that.setData({
-                    alarmListData:res.data
-                });
-                if(that.data.alarmListData.length > 0){
-                    that.setData({
-                        nodata:'none'
-                    });
-                }else{
-                    that.setData({
-                        nodata:'block'
-                    });
-                }
-            });
+        // request.postReq("/api/alarm/getlist_forAPP",
+        //     {
+        //         account:'18210812953',
+        //         // account:'17792542304',
+        //         apptime:that.data.apptime
+        //     },
+        //     function(res){
+        //         console.log("158");
+        //         that.setData({
+        //             alarmListData:res.data
+        //         });
+        //         if(that.data.alarmListData.length > 0){
+        //             that.setData({
+        //                 nodata:'none'
+        //             });
+        //         }else{
+        //             that.setData({
+        //                 nodata:'block'
+        //             });
+        //         }
+        //     });
     },
 
     /**
@@ -220,30 +229,6 @@ Page({
                     screenHeight:res.screenHeight
                 })
             }
-        })
-        /**
-         * 请求列表接口
-         */
-
-        request.postReq("/api/alarm/getlist_forAPP",
-            {
-                // account:'17792542304',
-                account:'18210812953',
-                apptime:'2019-03-21 17:13'
-            },
-            function(res){
-                that.setData({
-                    alarmListData:res.data
-                });
-                if(that.data.alarmListData.length > 0){
-                    that.setData({
-                        nodata:'none'
-                    });
-                }else{
-                    that.setData({
-                        nodata:'block'
-                    });
-                }
         });
         /**
          * 请求设备列表
@@ -268,6 +253,31 @@ Page({
 
                 console.log("equipList",that.data.equipList);
             });
+        /**
+         * 请求列表接口
+         */
+
+        request.postReq("/api/alarm/getlist_forAPP",
+            {
+                // account:'17792542304',
+                account:'18210812953',
+                apptime:'2019-03-21 17:13'
+            },
+            function(res){
+                console.log("248");
+                that.setData({
+                    alarmListData:res.data
+                });
+                if(that.data.alarmListData.length > 0){
+                    that.setData({
+                        nodata:'none'
+                    });
+                }else{
+                    that.setData({
+                        nodata:'block'
+                    });
+                }
+        });
     },
     bindShowMsg: function () {
         var that = this;

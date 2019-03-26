@@ -13,7 +13,7 @@ var rootDocment = 'http://api.aokecloud.cn';
 function postReq(url,data,cb) {
     wx.showLoading({
         title: '加载中',
-    })
+    });
     wx.request({
         url: rootDocment + url,
         data: Object.assign(
@@ -50,7 +50,7 @@ function postReq(url,data,cb) {
                 title: '网络错误',
                 content: '网络出错，请刷新重试',
                 showCancel: false
-            })
+            });
             return typeof cb === "function" && cb(false)
         }
     })
