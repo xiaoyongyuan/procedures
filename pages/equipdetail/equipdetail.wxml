@@ -51,13 +51,14 @@
         <view class="equipinfo-item-first">
             <text>设备信息</text>
         </view>
-        <view class="equipinfo-item">
+        <view class="equipinfo-item" bindlongpress="longTap">
             <view class="equipinfo-item-left">
                 <text>设备</text>
             </view>
-            <view class="equipinfo-item-right">
+            <view class="equipinfo-item-right-equip">
                 <text>{{ equipdetailData.eid }}</text>
             </view>
+            <view wx:if="{{ querybtn === true }}" class="queryequipinfo-btn">查看设备信息</view>
         </view>
         <view class="equipinfo-item">
             <view class="equipinfo-item-left">

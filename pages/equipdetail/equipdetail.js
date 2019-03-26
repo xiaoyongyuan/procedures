@@ -17,7 +17,16 @@ Page({
         // list传过来的详情
         equipdetailData:{},
         logintime:'',
-
+        querybtn:false
+    },
+    /**
+     * 长按事件
+     */
+    longTap:function(e){
+        var that = this;
+        that.setData({
+            querybtn:true
+        });
     },
     /**
      * 页面跳转设置信息
@@ -155,7 +164,10 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        var that = this;
+        that.setData({
+            querybtn:false
+        });
     },
 
     /**
