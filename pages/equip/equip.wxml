@@ -29,7 +29,8 @@
                             <text>报警类型:{{ item.alarmtype }}</text>
                         </view>
                         <view class="alarm-list-one-top-right-B">
-                            <text>报警时间:{{ item.atime }}</text>
+                            <text wx:if="{{ item.atime === '' }}">报警时间:无</text>
+                            <text wx:else>报警时间:{{ item.atime }}</text>
                         </view>
                     </view>
                 </view>

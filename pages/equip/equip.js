@@ -51,22 +51,71 @@ Page({
                 });
                 var currenttime = new Date(ctime);
                 for(var i=0;i<res.data.length;i++){
-                 //两个时间相差的分钟数
-                 var  mistiming =  parseInt(currenttime - new Date(that.data.equipListData[i].atime))/ 1000 / 60;
-                 var  mistlastheart = parseInt(currenttime - new Date(that.data.equipListData[i].herattime.time))/ 1000 / 60;
-                 if(mistiming > 1 && mistlastheart > 1){
-                     that.data.equipListData[i]['ismist']=false;
-                     that.setData({
-                         equipListData:that.data.equipListData
-                     })
-                 }else{
-                     that.data.equipListData[i]['ismist']=true;
-                     that.setData({
-                         equipListData:that.data.equipListData
-                     })
-                 }
+                    /**
+                     *两个时间都有
+                     */
+                    if(that.data.equipListData[i].atime !== '' && that.data.equipListData[i].herattime.time !== ''){
+                        //两个时间相差的分钟数
+                        var  mistiming =  parseInt(currenttime - new Date(that.data.equipListData[i].atime))/ 1000 / 60;
+                        var  mistlastheart = parseInt(currenttime - new Date(that.data.equipListData[i].herattime.time))/ 1000 / 60;
+                        if(mistiming > 1 && mistlastheart > 1){
+                            that.data.equipListData[i]['ismist']=false;
+                            that.setData({
+                                equipListData:that.data.equipListData
+                            })
+                        }else{
+                            that.data.equipListData[i]['ismist']=true;
+                            that.setData({
+                                equipListData:that.data.equipListData
+                            })
+                        }
+                    }
+                    /**
+                     * 两个时间都没有
+                     */
+                    if(that.data.equipListData[i].atime === '' && that.data.equipListData[i].herattime.time === ''){
+                        that.data.equipListData[i]['ismist']=false;
+                        that.setData({
+                            equipListData:that.data.equipListData
+                        })
+                    }
+                    /**
+                     * 有报警没心跳
+                     */
+                    if(that.data.equipListData[i].atime !== '' && that.data.equipListData[i].herattime.time === ''){
+                        //两个时间相差的分钟数
+                        var  mistiming =  parseInt(currenttime - new Date(that.data.equipListData[i].atime))/ 1000 / 60;
+                        if(mistiming > 1){
+                            that.data.equipListData[i]['ismist']=false;
+                            that.setData({
+                                equipListData:that.data.equipListData
+                            })
+                        }else{
+                            that.data.equipListData[i]['ismist']=true;
+                            that.setData({
+                                equipListData:that.data.equipListData
+                            })
+                        }
+                    }
+                    /**
+                     * 有心跳没报警
+                     */
+                    if(that.data.equipListData[i].atime === '' && that.data.equipListData[i].herattime.time !== ''){
+                        var  mistlastheart = parseInt(currenttime - new Date(that.data.equipListData[i].herattime.time))/ 1000 / 60;
+                        if(mistlastheart > 1){
+                            that.data.equipListData[i]['ismist']=false;
+                            that.setData({
+                                equipListData:that.data.equipListData
+                            })
+                        }else{
+                            that.data.equipListData[i]['ismist']=true;
+                            that.setData({
+                                equipListData:that.data.equipListData
+                            })
+                        }
+                    }
                 }
-            })
+            });
     },
 
     /**
@@ -96,22 +145,71 @@ Page({
                 });
                 var currenttime = new Date(ctime);
                 for(var i=0;i<res.data.length;i++){
-                    //两个时间相差的分钟数
-                    var  mistiming =  parseInt(currenttime - new Date(that.data.equipListData[i].atime))/ 1000 / 60;
-                    var  mistlastheart = parseInt(currenttime - new Date(that.data.equipListData[i].herattime.time))/ 1000 / 60;
-                    if(mistiming > 1 && mistlastheart > 1){
+                    /**
+                     *两个时间都有
+                     */
+                    if(that.data.equipListData[i].atime !== '' && that.data.equipListData[i].herattime.time !== ''){
+                        //两个时间相差的分钟数
+                        var  mistiming =  parseInt(currenttime - new Date(that.data.equipListData[i].atime))/ 1000 / 60;
+                        var  mistlastheart = parseInt(currenttime - new Date(that.data.equipListData[i].herattime.time))/ 1000 / 60;
+                        if(mistiming > 1 && mistlastheart > 1){
+                            that.data.equipListData[i]['ismist']=false;
+                            that.setData({
+                                equipListData:that.data.equipListData
+                            })
+                        }else{
+                            that.data.equipListData[i]['ismist']=true;
+                            that.setData({
+                                equipListData:that.data.equipListData
+                            })
+                        }
+                    }
+                    /**
+                     * 两个时间都没有
+                     */
+                    if(that.data.equipListData[i].atime === '' && that.data.equipListData[i].herattime.time === ''){
                         that.data.equipListData[i]['ismist']=false;
                         that.setData({
                             equipListData:that.data.equipListData
                         })
-                    }else{
-                        that.data.equipListData[i]['ismist']=true;
-                        that.setData({
-                            equipListData:that.data.equipListData
-                        })
+                    }
+                    /**
+                     * 有报警没心跳
+                     */
+                    if(that.data.equipListData[i].atime !== '' && that.data.equipListData[i].herattime.time === ''){
+                        //两个时间相差的分钟数
+                        var  mistiming =  parseInt(currenttime - new Date(that.data.equipListData[i].atime))/ 1000 / 60;
+                        if(mistiming > 1){
+                            that.data.equipListData[i]['ismist']=false;
+                            that.setData({
+                                equipListData:that.data.equipListData
+                            })
+                        }else{
+                            that.data.equipListData[i]['ismist']=true;
+                            that.setData({
+                                equipListData:that.data.equipListData
+                            })
+                        }
+                    }
+                    /**
+                     * 有心跳没报警
+                     */
+                    if(that.data.equipListData[i].atime === '' && that.data.equipListData[i].herattime.time !== ''){
+                        var  mistlastheart = parseInt(currenttime - new Date(that.data.equipListData[i].herattime.time))/ 1000 / 60;
+                        if(mistlastheart > 1){
+                            that.data.equipListData[i]['ismist']=false;
+                            that.setData({
+                                equipListData:that.data.equipListData
+                            })
+                        }else{
+                            that.data.equipListData[i]['ismist']=true;
+                            that.setData({
+                                equipListData:that.data.equipListData
+                            })
+                        }
                     }
                 }
-            })
+            });
     },
 
     /**
