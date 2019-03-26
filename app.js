@@ -32,11 +32,11 @@ App({
     wx.login({
         success: res => {
             console.log('loginCode:', res.code);
-            // 发送 res.code 到后台换取 openId, sessionKey, unionId
+            // 发送 res.code 到后台换取 用户的唯一标识（openid）, 本次登录的会话密钥（session_key）等, unionId
             // ------ 获取凭证 ------
             var code = res.code;
             if (code) {
-                // console.log('获取用户登录凭证：' + code);
+                console.log('获取用户登录凭证：' + code);
                 // ------ 发送凭证 ------
                 wx.request({
                     // url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wxdf00c800a21aff71&secret=e1ebe24ca1e431d2447c4cc92dfded8a&js_code=JSCODE&grant_type=authorization_code',
@@ -59,7 +59,7 @@ App({
                 console.log('获取用户登录失败：' + res.errMsg);
             }
         }
-    })
+    });
     // 获取用户信息
     wx.getSetting({
       success: res => {

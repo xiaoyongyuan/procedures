@@ -22,11 +22,9 @@ Page({
         equipList:[],
         scanresult:'',
         nodata:'none',
-        // date:'2019-03-25 17:39',
         apptime:'',
         isload:false,
         reset:false
-        // disabled:false//设置是否能点击 false可以 true不能点击
     },
     /**
      * 重置查询时间
@@ -34,99 +32,13 @@ Page({
     reset:function(){
         var that = this;
         that.setData({
-            reset:false
+            reset:false,
+            apptime:''
         });
-        request.postReq("/api/alarm/getlist_forAPP",
-            {
-                // account:'17792542304',
-                account:'18210812953',
-                apptime:'',
-                // ifdanger:1
-            },
-            function(res){
-                console.log("重置");
-                that.setData({
-                    alarmListData:res.data
-                });
-                if(that.data.alarmListData.length > 0){
-                    that.setData({
-                        nodata:'none'
-                    });
-                }else{
-                    that.setData({
-                        nodata:'block'
-                    });
-                }
-            });
-    },
-    isload:function(){
-        var that = this;
-        console.log("isload",that.data.isload);
-        that.setData({
-            isload:true
-        });
-    },
-    /**
-     * 日历控件绑定函数
-     * 点击日期返回
-     */
-    onPickerChange: function (e) {
-        var that = this;
-        console.log("xxx",e.detail);
-        this.setData({
-            apptime: e.detail.dateString
-        });
-        console.log("apptime",that.data.apptime);
-        /**
-         * 请求报警列表接口
-         */
-        if(that.data.isload === true){
-            that.setData({
-                reset:true
-            });
-            request.postReq("/api/alarm/getlist_forAPP",
-                {
-                    // account:'17792542304',
-                    account:'18210812953',
-                    apptime:that.data.apptime,
-                    // ifdanger:1
-                },
-                function(res){
-                    console.log("44");
-                    that.setData({
-                        alarmListData:res.data
-                    });
-                    if(that.data.alarmListData.length > 0){
-                        that.setData({
-                            nodata:'none'
-                        });
-                    }else{
-                        that.setData({
-                            nodata:'block'
-                        });
-                    }
-                });
-        }
-    },
-    /**
-     * 下拉框选择
-     */
-    mySelect(e) {
-        var that = this;
-        console.log("e",e);
-        var name = e.currentTarget.dataset.name;
-        var value = e.currentTarget.dataset.value;
-        this.setData({
-            selected: name,
-            selectedvalue:value,
-            select: false
-        })
-        console.log("value",that.data.selectedvalue);
-        if(value === 'sign'){
+        if(that.data.selectedvalue === 'sign'){
             /**
              * 请求报警列表接口
              */
-
             request.postReq("/api/alarm/getlist_forAPP",
                 {
                     // account:'17792542304',
@@ -135,7 +47,6 @@ Page({
                     ifdanger:1
                 },
                 function(res){
-                    console.log("86");
                     that.setData({
                         alarmListData:res.data
                     });
@@ -153,16 +64,14 @@ Page({
             /**
              * 请求报警列表接口
              */
-
             request.postReq("/api/alarm/getlist_forAPP",
                 {
                     // account:'17792542304',2019-03-25 18:39
                     account:'18210812953',
                     apptime:that.data.apptime,
-                    cid:value,
+                    cid:that.data.selectedvalue,
                 },
                 function(res){
-                    console.log("113");
                     that.setData({
                         alarmListData:res.data
                     });
@@ -177,7 +86,145 @@ Page({
                     }
                 });
         }
-
+    },
+    isload:function(){
+        var that = this;
+        that.setData({
+            isload:true
+        });
+    },
+    /**
+     * 日历控件绑定函数
+     * 点击日期返回
+     */
+    onPickerChange: function (e) {
+        var that = this;
+        this.setData({
+            apptime: e.detail.dateString
+        });
+        /**
+         * 请求报警列表接口
+         */
+        if(that.data.isload === true){
+            that.setData({
+                reset:true
+            });
+            if(that.data.selectedvalue === 'sign'){
+                /**
+                 * 请求报警列表接口
+                 */
+                request.postReq("/api/alarm/getlist_forAPP",
+                    {
+                        // account:'17792542304',
+                        account:'18210812953',
+                        apptime:that.data.apptime,
+                        ifdanger:1
+                    },
+                    function(res){
+                        that.setData({
+                            alarmListData:res.data
+                        });
+                        if(that.data.alarmListData.length > 0){
+                            that.setData({
+                                nodata:'none'
+                            });
+                        }else{
+                            that.setData({
+                                nodata:'block'
+                            });
+                        }
+                    });
+            }else{
+                /**
+                 * 请求报警列表接口
+                 */
+                request.postReq("/api/alarm/getlist_forAPP",
+                    {
+                        // account:'17792542304',2019-03-25 18:39
+                        account:'18210812953',
+                        apptime:that.data.apptime,
+                        cid:that.data.selectedvalue,
+                    },
+                    function(res){
+                        that.setData({
+                            alarmListData:res.data
+                        });
+                        if(that.data.alarmListData.length > 0){
+                            that.setData({
+                                nodata:'none'
+                            });
+                        }else{
+                            that.setData({
+                                nodata:'block'
+                            });
+                        }
+                    });
+            }
+        }
+    },
+    /**
+     * 下拉框选择
+     */
+    mySelect(e) {
+        var that = this;
+        var name = e.currentTarget.dataset.name;
+        var value = e.currentTarget.dataset.value;
+        this.setData({
+            selected: name,
+            selectedvalue:value,
+            select: false
+        });
+        if(value === 'sign'){
+            /**
+             * 请求报警列表接口
+             */
+            request.postReq("/api/alarm/getlist_forAPP",
+                {
+                    // account:'17792542304',
+                    account:'18210812953',
+                    apptime:that.data.apptime,
+                    ifdanger:1
+                },
+                function(res){
+                    that.setData({
+                        alarmListData:res.data
+                    });
+                    if(that.data.alarmListData.length > 0){
+                        that.setData({
+                            nodata:'none'
+                        });
+                    }else{
+                        that.setData({
+                            nodata:'block'
+                        });
+                    }
+                });
+        }else{
+            /**
+             * 请求报警列表接口
+             */
+            request.postReq("/api/alarm/getlist_forAPP",
+                {
+                    // account:'17792542304',2019-03-25 18:39
+                    account:'18210812953',
+                    apptime:that.data.apptime,
+                    cid:value,
+                },
+                function(res){
+                    that.setData({
+                        alarmListData:res.data
+                    });
+                    if(that.data.alarmListData.length > 0){
+                        that.setData({
+                            nodata:'none'
+                        });
+                    }else{
+                        that.setData({
+                            nodata:'block'
+                        });
+                    }
+                });
+        }
     },
     /**
      * 跳转报警详情页
@@ -199,29 +246,27 @@ Page({
         this.setData({
             scanresult:''
         });
-        // request.postReq("/api/alarm/getlist_forAPP",
-        //     {
-        //         account:'18210812953',
-        //         // account:'17792542304',
-        //         apptime:that.data.apptime
-        //     },
-        //     function(res){
-        //         console.log("158");
-        //         that.setData({
-        //             alarmListData:res.data
-        //         });
-        //         if(that.data.alarmListData.length > 0){
-        //             that.setData({
-        //                 nodata:'none'
-        //             });
-        //         }else{
-        //             that.setData({
-        //                 nodata:'block'
-        //             });
-        //         }
-        //     });
+        request.postReq("/api/alarm/getlist_forAPP",
+            {
+                account:'18210812953',
+                // account:'17792542304',
+                apptime:that.data.apptime
+            },
+            function(res){
+                that.setData({
+                    alarmListData:res.data
+                });
+                if(that.data.alarmListData.length > 0){
+                    that.setData({
+                        nodata:'none'
+                    });
+                }else{
+                    that.setData({
+                        nodata:'block'
+                    });
+                }
+            });
     },
-
     /**
      * 扫一扫
      */
@@ -271,24 +316,15 @@ Page({
                 account:'18210812953',
             },
             function(res){
-                console.log("res",res.data);
-                // for(var i = 0;i < res.data.length;i++){
-                //     that.data.equipList.push(res.data[i].name);
-                // }
-                // that.data.equipList.unshift("全部","收藏列表");
-
                 var temp = res.data;
                 temp.unshift({code:'',name:'全部'},{code:'sign',name:'收藏列表'});
                 that.setData({
                     equipList:temp
                 });
-
-                console.log("equipList",that.data.equipList);
             });
         /**
          * 请求列表接口
          */
-
         request.postReq("/api/alarm/getlist_forAPP",
             {
                 // account:'17792542304',
@@ -296,7 +332,6 @@ Page({
                 apptime:'2019-03-21 17:13'
             },
             function(res){
-                console.log("248");
                 that.setData({
                     alarmListData:res.data
                 });
@@ -323,14 +358,12 @@ Page({
             select:!this.data.select
         })
     },
-
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
 
     },
-
     /**
      * 生命周期函数--监听页面显示
      */
@@ -372,4 +405,4 @@ Page({
     onShareAppMessage: function () {
 
     }
-})
+});

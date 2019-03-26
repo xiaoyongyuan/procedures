@@ -37,24 +37,20 @@ Component({
         date = new Date(str);
       }
       let pickerArray = this.data.pickerArray;
-      // console.log(date.getFullYear());
       //默认选择3年内
       let year = [];
       for (let i = date.getFullYear() - 30; i <= date.getFullYear() + 70; i++) {
         year.push({ id: i, name: i + "年" });
       }
-      console.log("year",year);
       let month = [];
       for (let i = 1; i <= 12; i++) {
         month.push({ id: i, name: i + "月" });
       }
-      // console.log(month);
       let dayNum = this._getNumOfDays(date.getFullYear(), date.getMonth() + 1);
       let day = [];
       for (let i = 1; i <= dayNum; i++) {
         day.push({ id: i, name: i + "日" });
       }
-      // console.log(day);
       let time = [];
       for (let i = 0; i <= 23; i++) {
         if (i < 10) {
@@ -63,7 +59,6 @@ Component({
           time.push({ id: i, name: i + "时" });
         }
       }
-      // console.log(time);
       let division = [];
       for (let i = 0; i <= 59; i++) {
         if (i < 10) {
@@ -72,7 +67,6 @@ Component({
           division.push({ id: i, name: i + "分" });
         }
       }
-      // console.log(division);
       pickerArray[0] = year;
       pickerArray[1] = month;
       pickerArray[2] = day;
@@ -94,10 +88,7 @@ Component({
         chooseArray: pickerArray,
         dateString: mdate.dateString
       });
-      console.log("ttt",date);
       this.triggerEvent('onPickerChange', mdate);
-      // console.log(this.data.pickerArray);
-      // console.log(this._getNumOfDays(2018, 10));
     },
     /**
 	 * 
@@ -111,9 +102,7 @@ Component({
       return new Date(year, month, day).getDate()
     },
     pickerChange: function (e) {
-      // console.log('picker发送选择改变，携带值为', e.detail.value)
       let indexArr = e.detail.value;
-      // console.log(this.data.pickerArray[0][indexArr[0]].id + "\n" + this.data.pickerArray[1][indexArr[1]].id + "\n" + this.data.pickerArray[2][indexArr[2]].id);
       const year = this.data.pickerArray[0][indexArr[0]].id;
       const month = this.data.pickerArray[1][indexArr[1]].id;
       const day = this.data.pickerArray[2][indexArr[2]].id;
@@ -128,7 +117,6 @@ Component({
         division: division < 10 ? '0' + division : division + ''
       }
       date.dateString = date.year + '-' + date.month + '-' + date.day + ' ' + date.time + ':' + date.division;
-      // console.log(date);
       this.setData({
         chooseIndex: e.detail.value,
         chooseArray: this.data.pickerArray,
@@ -137,7 +125,6 @@ Component({
       this.triggerEvent('onPickerChange', date);
     },
     pickerColumnChange: function (e) {
-      console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
       var data = {
         pickerArray: this.data.pickerArray,
         pickerIndex: this.data.pickerIndex
@@ -155,10 +142,8 @@ Component({
         data.pickerArray[2] = day;
       }
       this.setData(data);
-      console.log("测试data12",data);
     },
     pickerCancel: function (e) {
-      console.log("取消");
       this.setData({
         pickerIndex: this.data.chooseIndex,
         pickerArray: this.data.chooseArray
@@ -172,7 +157,6 @@ Component({
     // this._onInit();
   },
   ready() {
-    console.log('进入ready外层节点=', this.data.date);
     this._onInit();
   },
   // 以下为新方法 >=2.2.3
@@ -185,7 +169,6 @@ Component({
       // 在组件实例被从页面节点树移除时执行
     },
     ready() {
-      console.log('进入ready节点=', this.data.date);
       this._onInit();
     }
   }
