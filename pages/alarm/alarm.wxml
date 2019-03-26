@@ -6,7 +6,7 @@
         <view class='title-container' style="height:{{someData.titleBarHeight}}px">
             <view class='capsule'>
                 <view>
-                    <pickerYMDHM bindtap="test" bindchange="test2" bind:onPickerChange="onPickerChange"></pickerYMDHM>
+                    <pickerYMDHM bindtap="isload" bind:onPickerChange="onPickerChange"></pickerYMDHM>
                     <image class="calendar" src='/images/calendar.png'></image>
                     <image src='/images/saoyisao2.png' bindtap="clicks"></image>
                 </view>
@@ -17,27 +17,28 @@
 
     <view class="mask" catchtouchmove="true" wx:if="{{showModal}}" bindtap="go"></view>
 
-    <view class="select-list" style="margin-top:{{ someData.statusBarHeight+someData.titleBarHeight }}px">
-        <!--<view class="test" style="position:fixed;top:{{ someData.statusBarHeight+someData.titleBarHeight+10 }}px"></view>-->
-        <view class='list-msg2' bindtap='bindShowMsg' style="position:fixed;top:{{ someData.statusBarHeight+someData.titleBarHeight+10 }}px">
-            <text>{{selected}}</text>
-            <image style='height:20rpx;width:40rpx;' src='/images/below.png'></image>
+    <view wx:if="{{ reset === false }}" class="select-list" style="margin-top:{{ someData.statusBarHeight+someData.titleBarHeight }}px">
+        <view class="float" style="position:fixed;top:{{ someData.statusBarHeight+someData.titleBarHeight }}px">
+            <view class='list-msg2' bindtap='bindShowMsg' style="position:fixed;top:{{ someData.statusBarHeight+someData.titleBarHeight+10 }}px">
+                <text>{{selected}}</text>
+                <image style='height:20rpx;width:40rpx;' src='/images/below.png'></image>
+            </view>
         </view>
     </view>
 
-    <!--<view class="select-list2" style="margin-top:{{ someData.statusBarHeight+someData.titleBarHeight }}px">-->
-        <!--<view class="float2" style="position:fixed;top:{{ someData.statusBarHeight+someData.titleBarHeight }}px">-->
-            <!--<view class="apptime" style="position:fixed;top:{{ someData.statusBarHeight+someData.titleBarHeight }}px">-->
-                <!--<text>报警时间截止到2019-3-25 10:28</text><view class="btn">重置</view>-->
+    <view wx:else class="select-list2" style="margin-top:{{ someData.statusBarHeight+someData.titleBarHeight }}px">
+        <view class="float2" style="position:fixed;top:{{ someData.statusBarHeight+someData.titleBarHeight }}px">
+            <view class="apptime" style="position:fixed;top:{{ someData.statusBarHeight+someData.titleBarHeight }}px">
+                <text>报警时间截止到2019-3-25 10:28</text><view class="btn" bindtap="reset">重置</view>
+            </view>
+            <!--<view  class='list-msg2-count'>-->
+            <view class='list-msg2' bindtap='bindShowMsg' style="position:fixed;top:{{ someData.statusBarHeight+someData.titleBarHeight+40 }}px">
+                <text>{{selected}}</text>
+                <image style='height:20rpx;width:40rpx;' src='/images/below.png'></image>
+            </view>
             <!--</view>-->
-            <!--&lt;!&ndash;<view  class='list-msg2-count'>&ndash;&gt;-->
-            <!--<view class='list-msg2' bindtap='bindShowMsg' style="position:fixed;top:{{ someData.statusBarHeight+someData.titleBarHeight+40 }}px">-->
-                <!--<text>{{selected}}</text>-->
-                <!--<image style='height:20rpx;width:40rpx;' src='/images/below.png'></image>-->
-            <!--</view>-->
-            <!--&lt;!&ndash;</view>&ndash;&gt;-->
-        <!--</view>-->
-    <!--</view>-->
+        </view>
+    </view>
 
     <!--<view class="top" style="height: {{ someData.statusBarHeight+someData.titleBarHeight +40 }}px">-->
         <!--&lt;!&ndash;占位view&ndash;&gt;-->

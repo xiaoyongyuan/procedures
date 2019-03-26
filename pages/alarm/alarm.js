@@ -24,18 +24,47 @@ Page({
         nodata:'none',
         // date:'2019-03-25 17:39',
         apptime:'',
-        isload:false
+        isload:false,
+        reset:false
         // disabled:false//设置是否能点击 false可以 true不能点击
     },
-    test:function(){
+    /**
+     * 重置查询时间
+     */
+    reset:function(){
+        var that = this;
+        that.setData({
+            reset:false
+        });
+        request.postReq("/api/alarm/getlist_forAPP",
+            {
+                // account:'17792542304',
+                account:'18210812953',
+                apptime:'',
+                // ifdanger:1
+            },
+            function(res){
+                console.log("重置");
+                that.setData({
+                    alarmListData:res.data
+                });
+                if(that.data.alarmListData.length > 0){
+                    that.setData({
+                        nodata:'none'
+                    });
+                }else{
+                    that.setData({
+                        nodata:'block'
+                    });
+                }
+            });
+    },
+    isload:function(){
         var that = this;
         console.log("isload",that.data.isload);
         that.setData({
             isload:true
         });
-    },
-    test2:function(){
-        console.log("222");
     },
     /**
      * 日历控件绑定函数
@@ -52,6 +81,9 @@ Page({
          * 请求报警列表接口
          */
         if(that.data.isload === true){
+            that.setData({
+                reset:true
+            });
             request.postReq("/api/alarm/getlist_forAPP",
                 {
                     // account:'17792542304',
