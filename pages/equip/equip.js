@@ -69,6 +69,7 @@ Page({
                                 equipListData:that.data.equipListData
                             })
                         }
+                        console.log("xxt",that.data.equipListData[i]['ismist']);
                     }
                     /**
                      * 两个时间都没有
@@ -77,7 +78,8 @@ Page({
                         that.data.equipListData[i]['ismist']=false;
                         that.setData({
                             equipListData:that.data.equipListData
-                        })
+                        });
+                        console.log("xxt",that.data.equipListData[i]['ismist']);
                     }
                     /**
                      * 有报警没心跳
@@ -96,6 +98,7 @@ Page({
                                 equipListData:that.data.equipListData
                             })
                         }
+                        console.log("xxt",that.data.equipListData[i]['ismist']);
                     }
                     /**
                      * 有心跳没报警
@@ -113,6 +116,7 @@ Page({
                                 equipListData:that.data.equipListData
                             })
                         }
+                        console.log("xxt",that.data.equipListData[i]['ismist']);
                     }
                 }
             });
