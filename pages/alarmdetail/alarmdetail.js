@@ -2,7 +2,6 @@ var myred_carvas,myblue_carvas ;
 var app = getApp();
 var request = require('../../utils/request.js');
 Page({
-
     /**
      * 页面的初始数据
      */
@@ -71,6 +70,7 @@ Page({
                         sign:false
                     })
                 }
+                //一个围界信息
                 if(that.data.alarmdetailData.field.length > 0){
                     const x1 = that.data.alarmdetailData.field[0][0][0];
                     const y1 = that.data.alarmdetailData.field[0][0][1];
@@ -92,6 +92,45 @@ Page({
                     myred_carvas.stroke();//画出当前路径的边框
                     myred_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
                 }
+                //两个围界信息
+                if(that.data.alarmdetailData.field.length > 1){
+                    //第一个围界的点
+                    const x1 = that.data.alarmdetailData.field[0][0][0];
+                    const y1 = that.data.alarmdetailData.field[0][0][1];
+                    const x2 = that.data.alarmdetailData.field[0][1][0];
+                    const y2 = that.data.alarmdetailData.field[0][1][1];
+                    const x3 = that.data.alarmdetailData.field[0][2][0];
+                    const y3 = that.data.alarmdetailData.field[0][2][1];
+                    const x4 = that.data.alarmdetailData.field[0][3][0];
+                    const y4 = that.data.alarmdetailData.field[0][3][1];
+                    //第二个围界的点
+                    const x11 = that.data.alarmdetailData.field[1][0][0];
+                    const y11 = that.data.alarmdetailData.field[1][0][1];
+                    const x21 = that.data.alarmdetailData.field[1][1][0];
+                    const y21 = that.data.alarmdetailData.field[1][1][1];
+                    const x31 = that.data.alarmdetailData.field[1][2][0];
+                    const y31 = that.data.alarmdetailData.field[1][2][1];
+                    const x41 = that.data.alarmdetailData.field[1][3][0];
+                    const y41 = that.data.alarmdetailData.field[1][3][1];
+                    myred_carvas = wx.createCanvasContext('redCanvas', this);//1.创建carvas实例对象，方便后续使用。
+                    myred_carvas.beginPath(); //创建一条路径
+                    myred_carvas.setStrokeStyle('red');  //设置边框为红色myblueCanvas
+                    myred_carvas.setLineWidth(2);
+                    //第一个
+                    myred_carvas.moveTo(x1*(that.data.alarmdetailimgWidth/704),y1*(that.data.alarmdetailimgHeight/576)); //描述路径的起点为手指触摸的x轴和y轴
+                    myred_carvas.lineTo(x2*(that.data.alarmdetailimgWidth/704),y2*(that.data.alarmdetailimgHeight/576));//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
+                    myred_carvas.lineTo(x3*(that.data.alarmdetailimgWidth/704),y3*(that.data.alarmdetailimgHeight/576));
+                    myred_carvas.lineTo(x4*(that.data.alarmdetailimgWidth/704),y4*(that.data.alarmdetailimgHeight/576));
+                    myred_carvas.lineTo(x1*(that.data.alarmdetailimgWidth/704),y1*(that.data.alarmdetailimgHeight/576));
+                    //第二个
+                    myred_carvas.moveTo(x11*(that.data.alarmdetailimgWidth/704),y11*(that.data.alarmdetailimgHeight/576)); //描述路径的起点为手指触摸的x轴和y轴
+                    myred_carvas.lineTo(x21*(that.data.alarmdetailimgWidth/704),y21*(that.data.alarmdetailimgHeight/576));//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
+                    myred_carvas.lineTo(x31*(that.data.alarmdetailimgWidth/704),y31*(that.data.alarmdetailimgHeight/576));
+                    myred_carvas.lineTo(x41*(that.data.alarmdetailimgWidth/704),y41*(that.data.alarmdetailimgHeight/576));
+                    myred_carvas.lineTo(x11*(that.data.alarmdetailimgWidth/704),y11*(that.data.alarmdetailimgHeight/576));
+                    myred_carvas.stroke();//画出当前路径的边框
+                    myred_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
+                }
                 if(that.data.alarmdetailData.finalresult1.length > 0){
                     const x = that.data.alarmdetailData.finalresult1[0].x;
                     const y = that.data.alarmdetailData.finalresult1[0].y;
@@ -106,7 +145,6 @@ Page({
                     myblue_carvas.draw();
                 }
             })
-
     },
 
     /**
