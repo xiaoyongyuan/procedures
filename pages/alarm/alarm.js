@@ -235,12 +235,8 @@ Page({
         var Id = e.currentTarget.id;
         //获取当前点击元素的属性值。selectedvalue apptime
         var code = that.data.alarmListData[Id].code;
-        //获取报警截止时间
-        var apptime = that.data.apptime;
-        //获取下拉框的值
-        var selectedvalue = that.data.selectedvalue;
         wx.navigateTo({
-            url:'../alarmdetail/alarmdetail?code=' + code + '&apptime=' + apptime + '&selectedvalue=' + selectedvalue
+            url:'../alarmdetail/alarmdetail?code=' + code
         });
     },
 

@@ -36,15 +36,9 @@ Page({
         var that= this
         // 字符串转json
         const code = options.code;
-        const apptime = options.apptime;
-        const selectedvalue = options.selectedvalue;
         that.setData({
-            currentcode:code,
-            apptime:apptime,
-            selectedvalue:selectedvalue
+            currentcode:code
         });
-        console.log("selectedvalue",selectedvalue);
-        console.log("apptime",apptime);
         /**
          * 获取防区的宽和高
          */
