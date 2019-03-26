@@ -88,7 +88,8 @@
                         <text>设备:{{ item.name }}</text>
                     </view>
                     <view class="alarm-list-one-bottom-right">
-                        <text>报警对象:{{ item.tags }}</text>
+                        <text wx:if="{{ item.tags === '' }}">无</text>
+                        <text wx:else>报警对象:{{ item.tags }}</text>
                     </view>
                 </view>
             </view>

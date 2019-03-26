@@ -233,11 +233,15 @@ Page({
         var that = this;
         //获取当前点击元素的id(索引值)
         var Id = e.currentTarget.id;
-        //获取当前点击元素的属性值。
+        //获取当前点击元素的属性值。selectedvalue apptime
         var code = that.data.alarmListData[Id].code;
+        //获取报警截止时间
+        var apptime = that.data.apptime;
+        //获取下拉框的值
+        var selectedvalue = that.data.selectedvalue;
         wx.navigateTo({
-            url:'../alarmdetail/alarmdetail?code=' + code
-        })
+            url:'../alarmdetail/alarmdetail?code=' + code + '&apptime=' + apptime + '&selectedvalue=' + selectedvalue
+        });
     },
 
     /** 监听tab切换 */
@@ -321,30 +325,30 @@ Page({
                 that.setData({
                     equipList:temp
                 });
+                /**
+                 * 请求报警列表接口
+                 */
+                request.postReq("/api/alarm/getlist_forAPP",
+                    {
+                        // account:'17792542304',
+                        account:'18210812953',
+                        apptime:''
+                    },
+                    function(res){
+                        that.setData({
+                            alarmListData:res.data
+                        });
+                        if(that.data.alarmListData.length > 0){
+                            that.setData({
+                                nodata:'none'
+                            });
+                        }else{
+                            that.setData({
+                                nodata:'block'
+                            });
+                        }
+                    });
             });
-        /**
-         * 请求列表接口
-         */
-        request.postReq("/api/alarm/getlist_forAPP",
-            {
-                // account:'17792542304',
-                account:'18210812953',
-                apptime:'2019-03-21 17:13'
-            },
-            function(res){
-                that.setData({
-                    alarmListData:res.data
-                });
-                if(that.data.alarmListData.length > 0){
-                    that.setData({
-                        nodata:'none'
-                    });
-                }else{
-                    that.setData({
-                        nodata:'block'
-                    });
-                }
-        });
     },
     bindShowMsg: function () {
         var that = this;
@@ -368,7 +372,59 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        var that = this;
+        console.log("我显示啦");
+        if(that.data.selectedvalue === 'sign'){
+            /**
+             * 请求报警列表接口
+             */
+            request.postReq("/api/alarm/getlist_forAPP",
+                {
+                    // account:'17792542304',
+                    account:'18210812953',
+                    apptime:that.data.apptime,
+                    ifdanger:1
+                },
+                function(res){
+                    that.setData({
+                        alarmListData:res.data
+                    });
+                    if(that.data.alarmListData.length > 0){
+                        that.setData({
+                            nodata:'none'
+                        });
+                    }else{
+                        that.setData({
+                            nodata:'block'
+                        });
+                    }
+                });
+        }else{
+            /**
+             * 请求报警列表接口
+             */
+            request.postReq("/api/alarm/getlist_forAPP",
+                {
+                    // account:'17792542304',2019-03-25 18:39
+                    account:'18210812953',
+                    apptime:that.data.apptime,
+                    cid:that.data.selectedvalue,
+                },
+                function(res){
+                    that.setData({
+                        alarmListData:res.data
+                    });
+                    if(that.data.alarmListData.length > 0){
+                        that.setData({
+                            nodata:'none'
+                        });
+                    }else{
+                        that.setData({
+                            nodata:'block'
+                        });
+                    }
+                });
+        }
     },
 
     /**

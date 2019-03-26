@@ -36,9 +36,15 @@ Page({
         var that= this
         // 字符串转json
         const code = options.code;
+        const apptime = options.apptime;
+        const selectedvalue = options.selectedvalue;
         that.setData({
-            currentcode:code
+            currentcode:code,
+            apptime:apptime,
+            selectedvalue:selectedvalue
         });
+        console.log("selectedvalue",selectedvalue);
+        console.log("apptime",apptime);
         /**
          * 获取防区的宽和高
          */
@@ -50,8 +56,6 @@ Page({
                 alarmdetailimgHeight:res[0].height,
                 alarmdetailimgWidth:res[0].width
             });
-            console.log("宽度",that.data.alarmdetailimgWidth);
-            console.log("高度",that.data.alarmdetailimgHeight);
         });
         /**
          * 请求报警详情接口
@@ -174,9 +178,14 @@ Page({
         var that = this;
         wx.navigateBack({
             delta: 1
-        })
+        });
+
     },
+    /**
+     *切换图片视频页签
+     */
     navbarTap: function(e){
+        console.log("e",e);
         this.setData({
             currentTab: e.currentTarget.dataset.idx
         })
@@ -337,4 +346,4 @@ Page({
     onShareAppMessage: function () {
 
     }
-})
+});
