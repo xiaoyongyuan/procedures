@@ -28,7 +28,10 @@
                     <button class='codeBtn' wx:if="{{!isGetCode}}" catchtap='getPhoneCode'>{{btnTxt}}</button>
                     <text class='code_toast' wx:else>{{countDown}}s</text>
                 </view>
-                <button class="btn-register" formType="submit">
+                <button wx:if="{{ formData.code === '' }}" class="btn-register" style="background-color: #7fcff4">
+                    注册
+                </button>
+                <button wx:else class="btn-register" formType="submit" bindtap="register">
                     注册
                 </button>
                 <button class="btn-bindingphone" bindtap="openbindingphone">
@@ -37,5 +40,10 @@
             </form>
         </view>
     </view>
+
+
+    <!--modal控件-->
+    <modal hidden="{{hiddenmodalput}}" no-cancel="true" title="验证码不正确，请重新输入"  confirm-text="确定" confirmColor="#00a0e9"  bindconfirm="confirmM">
+    </modal>
 </view>
 

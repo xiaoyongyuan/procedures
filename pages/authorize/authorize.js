@@ -24,7 +24,6 @@ Page({
             success: function (res) {
               //从数据库获取用户信息
               that.queryUsreInfo();
-              console.log("测试王永康");
               //用户已经授权过
                 wx.navigateTo({
                     url: '/pages/register/register'

@@ -50,17 +50,17 @@ App({
                             method: 'POST',
                             dataType:'json',
                             success(res) {
-                                console.log("res.data",res.data);
-                                if(res.data.success === 1){
-                                    wx.switchTab({
-                                        url: '/pages/index/index'
-                                    })
-                                }
-                                if(res.data.success === 0){
-                                    wx.navigateTo({
-                                        url: '/pages/register/register'
-                                    })
-                                }
+                                // console.log("res.data",res.data);
+                                // if(res.data.success === 1){
+                                //     wx.switchTab({
+                                //         url: '/pages/index/index'
+                                //     })
+                                // }
+                                // if(res.data.success === 0){
+                                //     wx.navigateTo({
+                                //         url: '/pages/register/register'
+                                //     })
+                                // }
                             }
                         });
                     }

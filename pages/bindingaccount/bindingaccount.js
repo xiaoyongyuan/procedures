@@ -172,11 +172,14 @@ Page({
             }
         });
     },
-    timer() {//验证码倒计时
+    /**
+     * 验证码倒计时
+     */
+    timer() {
         let that = this,
             countDown = that.data.countDown;
         let clock = setInterval(() => {
-            countDown--
+            countDown--;
             if (countDown >= 0) {
                 that.setData({
                     countDown: countDown

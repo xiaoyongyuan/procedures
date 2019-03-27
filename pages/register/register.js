@@ -19,6 +19,7 @@ Page({
             phone: '',
             code: ''
         },
+        hiddenmodalput:true,
         // 这里是一些组件内部数据
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
@@ -34,7 +35,7 @@ Page({
             this.setData({
                 userInfo: app.globalData.userInfo,
                 hasUserInfo: true
-            })
+            });
         } else if (this.data.canIUse){
             // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
             // 所以此处加入 callback 以防止这种情况
@@ -42,13 +43,13 @@ Page({
                 this.setData({
                     userInfo: res.userInfo,
                     hasUserInfo: true
-                })
+                });
             }
         } else {
             // 在没有 open-type=getUserInfo 版本的兼容处理
             wx.getUserInfo({
                 success: res => {
-                    app.globalData.userInfo = res.userInfo
+                    app.globalData.userInfo = res.userInfo;
                     this.setData({
                         userInfo: res.userInfo,
                         hasUserInfo: true
@@ -56,35 +57,38 @@ Page({
                 }
             })
         }
-
     },
     openbindingphone:function(){
         wx.navigateTo({
             url:'../bindingaccount/bindingaccount'
         })
     },
-    // changeToindex:function(){
-    //     wx.switchTab({
-    //         url: '/pages/index/index'
-    //     })
-    // },
+    confirmM:function(){
+        var that = this;
+        that.setData({
+            hiddenmodalput:true
+        });
+    },
     formSubmit(e) {
         let that = this,
             formData = e.detail.value,
             errMsg = '';
         that.setData({
             Loading: true
-        })
+        });
         if (!formData.phone){
             errMsg = '手机号不能为空！';
+            return;
         }
         if (!formData.code){
             errMsg = '验证码不能为空！';
-        }else {
-            wx.switchTab({
-                url: '/pages/index/index'
-            })
+            return;
         }
+        // else {
+        //     // wx.switchTab({
+        //     //     url: '/pages/index/index'
+        //     // })
+        // }
         if (formData.phone){
             if (!phoneRexp.test(formData.phone)) {
                 errMsg = '手机号格式有误！';
@@ -93,7 +97,7 @@ Page({
         if (errMsg){
             that.setData({
                 Loading: false
-            })
+            });
             PublicFun._showToast(errMsg);
             return false
         }
@@ -101,7 +105,7 @@ Page({
         setTimeout(()=>{
             that.setData({
                 Loading: false
-            })
+            });
         },1500)
     },
     /**
@@ -118,7 +122,6 @@ Page({
             return false
         }
         console.log("手机号",formData.phone);
-        that.timer();
         //注册发送验证码
         wx.request({
             url: 'http://api.aokecloud.cn/api/autocode/auto',
@@ -127,14 +130,80 @@ Page({
             },
             method: 'POST',
             success(res) {
-                console.log(res);
+                console.log("注册情况",res);
+                if(res.data.auth !== undefined){
+                    that.setData({
+                        auth:res.data.auth
+                    });
+                }
+                if(res.data.success === 0){
+                    console.log("当前手机号已被注册，请绑定");
+                    errMsg = '当前手机号已被注册，请绑定';
+                    wx.showToast({
+                        title: '该手机号已注册',
+                        icon: 'none',
+                        duration: 2000
+                    });
+                }
+                if(res.data.success === 1){
+                    that.timer();
+                    that.setData({
+                        isGetCode: true
+                    });
+                }
             }
         });
-        that.setData({
-            isGetCode: true
-        })
     },
-    //验证码倒计时
+    /**
+     * 注册
+     */
+    register:function(){
+        var that = this;
+        let formData = that.data.formData;
+        // formData.code
+        console.log("表单数据",formData);
+        console.log("表单数据1",that.data.auth);
+        console.log("表单数据2",parseInt(formData.code));
+        if(parseInt(formData.code) !== that.data.auth || that.data.auth === undefined ){
+            that.setData({
+                hiddenmodalput:false,
+            });
+        }
+        if(parseInt(formData.code) === that.data.auth){
+            wx.login({
+                success: res => {
+                    console.log('loginCode:', res.code);
+                    var code = res.code;
+                    if(code){
+                        console.log('获取用户登录凭证：' + code);
+                        //调绑定接口
+                        wx.request({
+                            url: 'http://api.aokecloud.cn/api/Wxuser/add',
+                            data: {
+                                account:formData.phone,
+                                xcode:code,
+                                auth:formData.code
+                            },
+                            method: 'POST',
+                            success(res) {
+                                console.log("res.data注册",res.data);
+                                //success为0时，该微信号已被绑定
+                                //success为1时，注册成功，跳到我的首页
+                                if(1 === 1){
+                                    wx.switchTab({
+                                        url: '/pages/index/index'
+                                    })
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    },
+    /**
+     * 验证码倒计时
+     */
     timer() {
         let that = this,
             countDown = that.data.countDown;
@@ -163,7 +232,7 @@ Page({
             formData.phone = inputValue : formData.code = inputValue;
         that.setData({
             formData
-        })
+        });
     },
 
     /**
@@ -214,4 +283,4 @@ Page({
     onShareAppMessage: function () {
 
     }
-})
+});
