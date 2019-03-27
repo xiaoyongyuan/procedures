@@ -95,6 +95,9 @@ Page({
             })
         },1500)
     },
+    /**
+     *绑定发送验证码
+     */
     getPhoneCode() {
         let that = this,
             formData = that.data.formData,
@@ -107,10 +110,67 @@ Page({
             return false
         }
         that.timer();
-        //连接服务器进行获取验证码操作
+        //绑定发送验证码
+        // 登录
+        wx.login({
+            success: res => {
+                console.log('loginCode:', res.code);
+                // 发送 res.code 到后台换取 用户的唯一标识（openid）, 本次登录的会话密钥（session_key）等, unionId
+                // ------ 获取凭证 ------
+                var code = res.code;
+                if (code) {
+                    console.log('获取用户登录凭证：' + code);
+                    // ------ 发送凭证 ------
+                    wx.request({
+                        url: 'http://api.aokecloud.cn/api/Wxuser/bidding_back',
+                        data: {
+                            account:formData.phone,
+                            xcode:code
+                        },
+                        method: 'POST',
+                        success(res) {
+                            console.log(res.data);
+                        }
+                    });
+                } else {
+                    console.log('获取用户登录失败：' + res.errMsg);
+                }
+            }
+        });
         that.setData({
             isGetCode: true
         })
+    },
+    /**
+     * 绑定
+     */
+    binding:function(){
+        var that = this;
+        let formData = that.data.formData;
+        // formData.code
+        console.log("表单数据",formData);
+        wx.login({
+            success: res => {
+                console.log('loginCode:', res.code);
+                var code = res.code;
+                if(code){
+                    console.log('获取用户登录凭证：' + code);
+                    //调绑定接口
+                        wx.request({
+                        url: 'http://api.aokecloud.cn/api/Wxuser/add',
+                        data: {
+                            account:formData.phone,
+                            xcode:code,
+                            auth:formData.code
+                        },
+                        method: 'POST',
+                        success(res) {
+                            console.log(res.data);
+                        }
+                    });
+                }
+            }
+        });
     },
     timer() {//验证码倒计时
         let that = this,
@@ -122,7 +182,7 @@ Page({
                     countDown: countDown
                 })
             } else {
-                clearInterval(clock)
+                clearInterval(clock);
                 that.setData({
                     countDown: 60,
                     isGetCode: false,

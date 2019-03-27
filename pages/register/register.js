@@ -1,5 +1,5 @@
 // pages/register/register.js
-
+var request = require('../../utils/request.js');
 import PublicFun from '../../utils/PublicFun.js';
 const  phoneRexp = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
 const app = getApp();
@@ -104,34 +104,48 @@ Page({
             })
         },1500)
     },
+    /**
+     *获取验收及验证码
+     */
     getPhoneCode() {
         let that = this,
             formData = that.data.formData,
             errMsg = '' ;
-        errMsg = !formData.phone ? '手机号不能为空！' :
-            formData.phone && !phoneRexp.test(formData.phone) ? '手机号格式有误！' :
-                '' ;
+            errMsg = !formData.phone ? '手机号不能为空！' :
+            formData.phone && !phoneRexp.test(formData.phone) ? '手机号格式有误！' : '' ;
         if (errMsg){
             PublicFun._showToast(errMsg);
             return false
         }
+        console.log("手机号",formData.phone);
         that.timer();
-        //连接服务器进行获取验证码操作
+        //注册发送验证码
+        wx.request({
+            url: 'http://api.aokecloud.cn/api/autocode/auto',
+            data: {
+                tel:formData.phone
+            },
+            method: 'POST',
+            success(res) {
+                console.log(res);
+            }
+        });
         that.setData({
             isGetCode: true
         })
     },
-    timer() {//验证码倒计时
+    //验证码倒计时
+    timer() {
         let that = this,
             countDown = that.data.countDown;
         let clock = setInterval(() => {
-            countDown--
+            countDown--;
             if (countDown >= 0) {
                 that.setData({
                     countDown: countDown
                 })
             } else {
-                clearInterval(clock)
+                clearInterval(clock);
                 that.setData({
                     countDown: 60,
                     isGetCode: false,
@@ -145,12 +159,11 @@ Page({
             formData = that.data.formData,
             inputType = e.currentTarget.dataset.id,
             inputValue = e.detail.value;
-        inputType === 'phone' ?
+            inputType === 'phone' ?
             formData.phone = inputValue : formData.code = inputValue;
         that.setData({
             formData
         })
-
     },
 
     /**

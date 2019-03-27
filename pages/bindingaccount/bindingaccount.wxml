@@ -29,7 +29,7 @@
                             catchtap='getPhoneCode'>{{btnTxt}}</button>
                     <text class='code_toast' wx:else>{{countDown}}s</text>
                 </view>
-                <button class="btn-register" formType="submit">
+                <button class="btn-register" formType="submit" bindtap="binding">
                     绑定
                 </button>
             </form>
