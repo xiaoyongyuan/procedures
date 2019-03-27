@@ -138,7 +138,6 @@ Page({
                 }
                 if(res.data.success === 0){
                     console.log("当前手机号已被注册，请绑定");
-                    errMsg = '当前手机号已被注册，请绑定';
                     wx.showToast({
                         title: '该手机号已注册',
                         icon: 'none',
@@ -186,6 +185,7 @@ Page({
                             },
                             method: 'POST',
                             success(res) {
+                                //接口疑似有问题
                                 console.log("res.data注册",res.data);
                                 //success为0时，该微信号已被绑定
                                 //success为1时，注册成功，跳到我的首页

@@ -129,7 +129,11 @@ Page({
                         },
                         method: 'POST',
                         success(res) {
-                            console.log(res.data);
+                            //接口疑似有问题
+                            //1、注册了没绑定
+                            //2、注册了也绑定了
+                            //3、没注册
+                            console.log(res);
                         }
                     });
                 } else {

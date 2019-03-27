@@ -25,11 +25,13 @@
                     <label>验证码</label>
                     <input name="code" placeholder="请输入验证码" data-id="code"
                            placeholder-class='inputClass' bindinput='Input' />
-                    <button class='codeBtn' wx:if="{{!isGetCode}}"
-                            catchtap='getPhoneCode'>{{btnTxt}}</button>
+                    <button class='codeBtn' wx:if="{{!isGetCode}}" catchtap='getPhoneCode'>{{btnTxt}}</button>
                     <text class='code_toast' wx:else>{{countDown}}s</text>
                 </view>
-                <button class="btn-register" formType="submit" bindtap="binding">
+                <button wx:if="{{ formData.code === '' }}" class="btn-register" style="background-color: #7fcff4">
+                    绑定
+                </button>
+                <button wx:else class="btn-register" formType="submit" bindtap="binding">
                     绑定
                 </button>
             </form>
