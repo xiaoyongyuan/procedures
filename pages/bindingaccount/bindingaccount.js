@@ -58,12 +58,6 @@ Page({
         }
 
     },
-    testxx:function(){
-        var that = this;
-        that.setData({
-            hidden:false
-        });
-    },
     confirmM:function(){
         var that = this;
         that.setData({
