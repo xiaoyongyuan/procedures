@@ -14,7 +14,7 @@
     </view>
     <view class="page-addequip-button">
         <view class="addequip-weui-btn">
-            <button class="weui-btn">提交</button>
+            <button class="weui-btn" bindtap="testdel">提交</button>
         </view>
     </view>
 </view>

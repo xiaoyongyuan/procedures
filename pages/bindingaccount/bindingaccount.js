@@ -18,6 +18,7 @@ Page({
             phone: '',
             code: ''
         },
+        hidden:true,
         // 这里是一些组件内部数据
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
@@ -57,6 +58,18 @@ Page({
         }
 
     },
+    testxx:function(){
+        var that = this;
+        that.setData({
+            hidden:false
+        });
+    },
+    confirmM:function(){
+        var that = this;
+        that.setData({
+            hidden:true
+        });
+    },
     formSubmit(e) {
         let that = this,
             formData = e.detail.value,
@@ -69,12 +82,6 @@ Page({
         }
         if (!formData.code){
             errMsg = '验证码不能为空！';
-        }else{
-            {
-                wx.switchTab({
-                    url: '/pages/index/index'
-                })
-            }
         }
         if (formData.phone){
             if (!phoneRexp.test(formData.phone)) {
@@ -109,7 +116,7 @@ Page({
             PublicFun._showToast(errMsg);
             return false
         }
-        that.timer();
+
         //绑定发送验证码
         // 登录
         wx.login({
@@ -133,7 +140,25 @@ Page({
                             //1、注册了没绑定
                             //2、注册了也绑定了
                             //3、没注册
-                            console.log(res);
+                            console.log(res.data);
+                            if(res.data.auth !== undefined){
+                                that.setData({
+                                    auth:res.data.auth
+                                });
+                            }
+                            if(res.data.success === 0){
+                                wx.showToast({
+                                    title: '请先注册',
+                                    icon: 'none',
+                                    duration: 2000
+                                });
+                            }
+                            if(res.data.success === 1){
+                                that.setData({
+                                    isGetCode: true
+                                });
+                                that.timer();
+                            }
                         }
                     });
                 } else {
@@ -141,9 +166,6 @@ Page({
                 }
             }
         });
-        that.setData({
-            isGetCode: true
-        })
     },
     /**
      * 绑定
@@ -152,29 +174,44 @@ Page({
         var that = this;
         let formData = that.data.formData;
         // formData.code
-        console.log("表单数据",formData);
-        wx.login({
-            success: res => {
-                console.log('loginCode:', res.code);
-                var code = res.code;
-                if(code){
-                    console.log('获取用户登录凭证：' + code);
-                    //调绑定接口
+        console.log("填写的手机号码",formData.phone);
+        console.log("填写的验证码",parseInt(formData.code));
+        console.log("手机发送的验证码",that.data.auth);
+        if(parseInt(formData.code) !== that.data.auth || that.data.auth === undefined ){
+            that.setData({
+                hidden:false,
+            });
+        }
+        if(parseInt(formData.code) === that.data.auth){
+            wx.login({
+                success: res => {
+                    console.log('loginCode:', res.code);
+                    var code = res.code;
+                    if(code){
+                        console.log('获取用户登录凭证：' + code);
+                        //调绑定接口
                         wx.request({
-                        url: 'http://api.aokecloud.cn/api/Wxuser/add',
-                        data: {
-                            account:formData.phone,
-                            xcode:code,
-                            auth:formData.code
-                        },
-                        method: 'POST',
-                        success(res) {
-                            console.log(res.data);
-                        }
-                    });
+                            url: 'http://api.aokecloud.cn/api/Wxuser/add',
+                            data: {
+                                account:formData.phone,
+                                xcode:code,
+                                auth:formData.code
+                            },
+                            method: 'POST',
+                            success(res) {
+                                console.log(res.data);
+                                //success为1时，注册成功，跳到我的首页
+                                if(res.data.success === 1){
+                                    wx.switchTab({
+                                        url: '/pages/index/index'
+                                    })
+                                }
+                            }
+                        });
+                    }
                 }
-            }
-        });
+            });
+        }
     },
     /**
      * 验证码倒计时

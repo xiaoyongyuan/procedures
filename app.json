@@ -1,9 +1,8 @@
 {
   "pages":[
-    "pages/register/register",
     "pages/welcome/welcome",
     "pages/index/index",
-
+    "pages/register/register",
     "pages/equip/equip",
     "pages/alarm/alarm",
     "pages/business/business",

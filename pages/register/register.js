@@ -84,11 +84,6 @@ Page({
             errMsg = '验证码不能为空！';
             return;
         }
-        // else {
-        //     // wx.switchTab({
-        //     //     url: '/pages/index/index'
-        //     // })
-        // }
         if (formData.phone){
             if (!phoneRexp.test(formData.phone)) {
                 errMsg = '手机号格式有误！';
@@ -160,9 +155,9 @@ Page({
         var that = this;
         let formData = that.data.formData;
         // formData.code
-        console.log("表单数据",formData);
-        console.log("表单数据1",that.data.auth);
-        console.log("表单数据2",parseInt(formData.code));
+        console.log("填写的手机号码",formData.phone);
+        console.log("填写的验证码",parseInt(formData.code));
+        console.log("手机发送的验证码",that.data.auth);
         if(parseInt(formData.code) !== that.data.auth || that.data.auth === undefined ){
             that.setData({
                 hiddenmodalput:false,
@@ -189,7 +184,7 @@ Page({
                                 console.log("res.data注册",res.data);
                                 //success为0时，该微信号已被绑定
                                 //success为1时，注册成功，跳到我的首页
-                                if(1 === 1){
+                                if(res.data.success === 1){
                                     wx.switchTab({
                                         url: '/pages/index/index'
                                     })

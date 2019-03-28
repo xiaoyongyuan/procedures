@@ -51,9 +51,40 @@ Page({
       // wx.switchTab({
       //   url: '/pages/index/index'
       // })
-        wx.navigateTo({
-            url: '/pages/register/register'
-        })
+      //   wx.navigateTo({
+      //       url: '/pages/register/register'
+      //   })
+        wx.login({
+            success: res => {
+                console.log('loginCode:', res.code);
+                var code = res.code;
+                if(code){
+                    console.log('获取用户登录凭证：' + code);
+                    //调登录接口
+                    wx.request({
+                        url: 'http://login.aokecloud.cn/login/verifyforWX',
+                        data: {
+                            xcode :code
+                        },
+                        method: 'POST',
+                        dataType:'json',
+                        success(res) {
+                            console.log("res.data",res.data);
+                            if(res.data.success === 1){
+                                wx.switchTab({
+                                    url: '/pages/index/index'
+                                })
+                            }
+                            if(res.data.success === 0){
+                                wx.navigateTo({
+                                    url: '/pages/register/register'
+                                })
+                            }
+                        }
+                    });
+                }
+            }
+        });
     }
     else {
       //用户按了拒绝按钮
