@@ -31,19 +31,12 @@
             <view class="apptime" style="position:fixed;top:{{ someData.statusBarHeight+someData.titleBarHeight }}px">
                 <text>报警时间截止到{{ apptime }}</text><view class="btn" bindtap="reset">重置</view>
             </view>
-            <!--<view  class='list-msg2-count'>2019-3-25 10:28-->
             <view class='list-msg2' bindtap='bindShowMsg' style="position:fixed;top:{{ someData.statusBarHeight+someData.titleBarHeight+40 }}px">
                 <text>{{selected}}</text>
                 <image style='height:20rpx;width:40rpx;' src='/images/below.png'></image>
             </view>
-            <!--</view>-->
         </view>
     </view>
-
-    <!--<view class="top" style="height: {{ someData.statusBarHeight+someData.titleBarHeight +40 }}px">-->
-        <!--&lt;!&ndash;占位view&ndash;&gt;-->
-    <!--</view>-->
-
     <input class="weui-input" placeholder="请输入设备ID" value="{{ scanresult }}" />
 
     <view class='list-li mflex'  wx:for="{{alarmListData}}"  wx:key="index" >

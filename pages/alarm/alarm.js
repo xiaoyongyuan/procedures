@@ -39,6 +39,7 @@ Page({
     //     //访问网络
     //     request.postReq(searchPageNum, callbackcount,"/api/alarm/getlist_forAPP",
     //         {
+    //             // account:'17792542304',
     //             apptime:''
     //         },
     //         function (res) {
@@ -332,13 +333,12 @@ Page({
         /**
          * 请求设备列表
          */
-        request.postReq("/api/camera/getlist_forAPP",
-            {
-
-            },
+        request.postReq("/api/camera/getlist_forAPP", {},
             function(res){
                 var temp = res.data;
-                temp.unshift({code:'',name:'全部'},{code:'sign',name:'收藏列表'});
+                temp.splice(0, 0, {code:'sign',name:'收藏列表'});
+                temp.splice(0, 0, {code:'',name:'全部'});
+                console.log("temp",temp);
                 that.setData({
                     equipList:temp
                 });
@@ -462,7 +462,7 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-
+        console.log("到底部了");
     },
 
     /**
