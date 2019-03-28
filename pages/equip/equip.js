@@ -39,13 +39,8 @@ Page({
         /**
          * 请求列表接口
          */
-        console.log(".globalData.user",app.globalData.user);
         var that = this;
-        request.postReq("/api/camera/getlist_forAPP",
-            {
-                // account:'17792542304'
-                account:app.globalData.account
-            },
+        request.postReq("/api/camera/getlist_forAPP", {},
             function(res){
                 that.setData({
                     equipListData:res.data
@@ -70,7 +65,6 @@ Page({
                                 equipListData:that.data.equipListData
                             })
                         }
-                        console.log("xxt",that.data.equipListData[i]['ismist']);
                     }
                     /**
                      * 两个时间都没有
@@ -80,7 +74,6 @@ Page({
                         that.setData({
                             equipListData:that.data.equipListData
                         });
-                        console.log("xxt",that.data.equipListData[i]['ismist']);
                     }
                     /**
                      * 有报警没心跳
@@ -99,7 +92,6 @@ Page({
                                 equipListData:that.data.equipListData
                             })
                         }
-                        console.log("xxt",that.data.equipListData[i]['ismist']);
                     }
                     /**
                      * 有心跳没报警
@@ -117,7 +109,6 @@ Page({
                                 equipListData:that.data.equipListData
                             })
                         }
-                        console.log("xxt",that.data.equipListData[i]['ismist']);
                     }
                 }
             });
@@ -141,8 +132,7 @@ Page({
         var that = this;
         request.postReq("/api/camera/getlist_forAPP",
             {
-                // account:'17792542304'
-                account:app.globalData.account
+
             },
             function(res){
                 that.setData({
@@ -251,4 +241,4 @@ Page({
     onShareAppMessage: function () {
 
     }
-})
+});

@@ -16,27 +16,16 @@ function postReq(url,data,callback) {
         title: '加载中',
     });
     var user = wx.getStorageSync('user');
-    console.log("user",user);
+    var account = wx.getStorageSync('account');
     wx.request({
         url: rootDocment + url,
         data: Object.assign(
             {
                 wxaccount: '123456',
-                // user: '17792542304',
                 user:user,
+                account:account,
                 wxtype:'1',
-                comid:'1000055',
-                // comid:'1000004',
-                // pagesize: callbackcount,//返回数据的个数
-                // pageindex: pageindex,//返回第几页
-                // wxaccount: '123456',
-                // user: '18992844855',
-                // wxtype:'1',
-                // comid:'1000021',
-                // wxaccount: '123456',
-                // user: '17792542304',
-                // wxtype:'1',
-                // comid:'1000055',
+                comid:'1000004',
             },data
         ),
         method: 'POST',

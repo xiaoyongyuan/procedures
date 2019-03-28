@@ -4,7 +4,6 @@ const  phoneRexp = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[8
 
 const app = getApp();
 Page({
-
     /**
      * 页面的初始数据
      */
@@ -110,17 +109,14 @@ Page({
             PublicFun._showToast(errMsg);
             return false
         }
-
         //绑定发送验证码
         // 登录
         wx.login({
             success: res => {
-                console.log('loginCode:', res.code);
                 // 发送 res.code 到后台换取 用户的唯一标识（openid）, 本次登录的会话密钥（session_key）等, unionId
                 // ------ 获取凭证 ------
                 var code = res.code;
                 if (code) {
-                    console.log('获取用户登录凭证：' + code);
                     // ------ 发送凭证 ------
                     wx.request({
                         url: 'http://api.aokecloud.cn/api/Wxuser/bidding_back',
@@ -130,11 +126,6 @@ Page({
                         },
                         method: 'POST',
                         success(res) {
-                            //接口疑似有问题
-                            //1、注册了没绑定
-                            //2、注册了也绑定了
-                            //3、没注册
-                            console.log(res.data);
                             if(res.data.auth !== undefined){
                                 that.setData({
                                     auth:res.data.auth
@@ -167,10 +158,6 @@ Page({
     binding:function(){
         var that = this;
         let formData = that.data.formData;
-        // formData.code
-        console.log("填写的手机号码",formData.phone);
-        console.log("填写的验证码",parseInt(formData.code));
-        console.log("手机发送的验证码",that.data.auth);
         if(parseInt(formData.code) !== that.data.auth || that.data.auth === undefined ){
             that.setData({
                 hidden:false,
@@ -179,10 +166,9 @@ Page({
         if(parseInt(formData.code) === that.data.auth){
             wx.login({
                 success: res => {
-                    console.log('loginCode:', res.code);
                     var code = res.code;
                     if(code){
-                        console.log('获取用户登录凭证：' + code);
+
                         //调绑定接口
                         wx.request({
                             url: 'http://api.aokecloud.cn/api/Wxuser/add',
@@ -193,11 +179,9 @@ Page({
                             },
                             method: 'POST',
                             success(res) {
-                                console.log("不知道",res.data);
                                 if(res.data.account !== '' && res.data.account !== undefined){
-                                    console.log("111444");
                                     wx.setStorageSync('user', res.data.account);
-                                    console.log("222444");
+                                    wx.setStorageSync('account', res.data.account);
                                 }
                                 //success为1时，注册成功，跳到我的首页
                                 if(res.data.success === 1){
@@ -295,4 +279,4 @@ Page({
     onShareAppMessage: function () {
 
     }
-})
+});

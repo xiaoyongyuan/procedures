@@ -31,16 +31,11 @@ App({
     // 获取用户的当前设置。返回值中只会出现小程序已经向用户请求过的权限
     wx.getSetting({
       success: res => {
-          //scope.userInfo : true
-          console.log("res第一次",res);
         if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
             wx.login({
                 success: res => {
-                    console.log('loginCode:', res);
                     var code = res.code;
                     if(code){
-                        console.log('获取用户登录凭证：' + code);
                         //调登录接口
                         wx.request({
                             url: 'http://login.aokecloud.cn/login/verifyforWX',
@@ -50,14 +45,11 @@ App({
                             method: 'POST',
                             dataType:'json',
                             success(res) {
-                                console.log("res.datadsdflksdj哈哈",res.data);
                                 if(res.data.success === 1){
-                                    console.log("res.data.data.account测试哈哈哈哈哈哈多多多",res.data.data.account);
                                     if(res.data.data.account !== '' && res.data.data.account !== undefined){
                                         that.globalData.account = res.data.data.account;
-                                        console.log("111");
                                         wx.setStorageSync('user', res.data.data.account);
-                                        console.log("222");
+                                        wx.setStorageSync('account', res.data.data.account);
                                     }
                                     wx.switchTab({
                                         url: '/pages/index/index'

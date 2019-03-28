@@ -39,7 +39,6 @@ Page({
     //     //访问网络
     //     request.postReq(searchPageNum, callbackcount,"/api/alarm/getlist_forAPP",
     //         {
-    //             // account:'17792542304',
     //             apptime:''
     //         },
     //         function (res) {
@@ -78,8 +77,6 @@ Page({
              */
             request.postReq("/api/alarm/getlist_forAPP",
                 {
-                    account:'17792542304',
-                    // account:app.globalData.account,
                     apptime:that.data.apptime,
                     ifdanger:1
                 },
@@ -103,8 +100,6 @@ Page({
              */
             request.postReq("/api/alarm/getlist_forAPP",
                 {
-                    account:'17792542304',
-                    // account:app.globalData.account,
                     apptime:that.data.apptime,
                     cid:that.data.selectedvalue,
                 },
@@ -152,8 +147,6 @@ Page({
                  */
                 request.postReq("/api/alarm/getlist_forAPP",
                     {
-                        // account:'17792542304',
-                        account:app.globalData.account,
                         apptime:that.data.apptime,
                         ifdanger:1
                     },
@@ -177,8 +170,6 @@ Page({
                  */
                 request.postReq("/api/alarm/getlist_forAPP",
                     {
-                        // account:'17792542304',
-                        account:app.globalData.account,
                         apptime:that.data.apptime,
                         cid:that.data.selectedvalue,
                     },
@@ -217,8 +208,6 @@ Page({
              */
             request.postReq("/api/alarm/getlist_forAPP",
                 {
-                    // account:'17792542304',
-                    account:app.globalData.account,
                     apptime:that.data.apptime,
                     ifdanger:1
                 },
@@ -242,8 +231,6 @@ Page({
              */
             request.postReq("/api/alarm/getlist_forAPP",
                 {
-                    // account:'17792542304',
-                    account:app.globalData.account,
                     apptime:that.data.apptime,
                     cid:value,
                 },
@@ -285,8 +272,6 @@ Page({
         });
         request.postReq("/api/alarm/getlist_forAPP",
             {
-                // account:app.globalData.account,
-                account:'17792542304',
                 apptime:that.data.apptime
             },
             function(res){
@@ -349,8 +334,7 @@ Page({
          */
         request.postReq("/api/camera/getlist_forAPP",
             {
-                account:'17792542304',
-                // account:app.globalData.account,
+
             },
             function(res){
                 var temp = res.data;
@@ -363,8 +347,6 @@ Page({
                  */
                 request.postReq("/api/alarm/getlist_forAPP",
                     {
-                        account:'17792542304',
-                        // account:app.globalData.account,
                         apptime:''
                     },
                     function(res){
@@ -412,8 +394,6 @@ Page({
              */
             request.postReq("/api/alarm/getlist_forAPP",
                 {
-                    account:'17792542304',
-                    // account:app.globalData.account,
                     apptime:that.data.apptime,
                     ifdanger:1
                 },
@@ -437,8 +417,6 @@ Page({
              */
             request.postReq("/api/alarm/getlist_forAPP",
                 {
-                    account:'17792542304',
-                    // account:app.globalData.account,
                     apptime:that.data.apptime,
                     cid:that.data.selectedvalue,
                 },

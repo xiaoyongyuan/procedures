@@ -4,7 +4,6 @@ import PublicFun from '../../utils/PublicFun.js';
 const  phoneRexp = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
 const app = getApp();
 Page({
-
     /**
      * 页面的初始数据
      */
@@ -26,7 +25,6 @@ Page({
             titleBarHeight: app.globalData.titleBarHeight
         }
     },
-
     /**
      * 生命周期函数--监听页面加载
      */
@@ -58,17 +56,26 @@ Page({
             })
         }
     },
+    /**
+     * 跳转绑定页
+     */
     openbindingphone:function(){
         wx.navigateTo({
             url:'../bindingaccount/bindingaccount'
         })
     },
+    /**
+     * 验证码错误弹框
+     */
     confirmM:function(){
         var that = this;
         that.setData({
             hiddenmodalput:true
         });
     },
+    /**
+     *获取表单数据
+     */
     formSubmit(e) {
         let that = this,
             formData = e.detail.value,
@@ -116,7 +123,6 @@ Page({
             PublicFun._showToast(errMsg);
             return false
         }
-        console.log("手机号",formData.phone);
         //注册发送验证码
         wx.request({
             url: 'http://api.aokecloud.cn/api/autocode/auto',
@@ -126,7 +132,6 @@ Page({
             method: 'POST',
             success(res) {
                 if(res.data.success === 0){
-                    console.log("当前手机号已被注册，请绑定");
                     wx.showToast({
                         title: '该手机号已注册',
                         icon: 'none',
@@ -149,10 +154,6 @@ Page({
     register:function(){
         var that = this;
         let formData = that.data.formData;
-        // formData.code
-        console.log("填写的手机号码",formData.phone);
-        console.log("填写的验证码",parseInt(formData.code));
-        console.log("手机发送的验证码",that.data.auth);
         if(parseInt(formData.code) !== that.data.auth || that.data.auth === undefined ){
             that.setData({
                 hiddenmodalput:false,
@@ -161,10 +162,8 @@ Page({
         if(parseInt(formData.code) === that.data.auth){
             wx.login({
                 success: res => {
-                    console.log('loginCode:', res.code);
                     var code = res.code;
                     if(code){
-                        console.log('获取用户登录凭证：' + code);
                         //调绑定接口
                         wx.request({
                             url: 'http://api.aokecloud.cn/api/Wxuser/add',
@@ -175,14 +174,10 @@ Page({
                             },
                             method: 'POST',
                             success(res) {
-                                //接口疑似有问题
-                                console.log("res.data注册",res.data);
                                 if(res.data.account !== '' && res.data.account !== undefined){
-                                    console.log("11144466");
                                     wx.setStorageSync('user', res.data.account);
-                                    console.log("22244466");
+                                    wx.setStorageSync('account', res.data.data.account);
                                 }
-                                //success为0时，该微信号已被绑定
                                 //success为1时，注册成功，跳到我的首页
                                 if(res.data.success === 1){
                                     wx.switchTab({
@@ -218,7 +213,10 @@ Page({
             }
         }, 1000)
     },
-    Input(e) {//输入检索
+    /**
+     *输入检索
+     */
+    Input(e) {
         let that = this,
             formData = that.data.formData,
             inputType = e.currentTarget.dataset.id,
@@ -229,7 +227,6 @@ Page({
             formData
         });
     },
-
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
