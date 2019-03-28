@@ -3,6 +3,7 @@
  * 服务器域名
  */
 var rootDocment = 'http://api.aokecloud.cn';
+const app = getApp();
 
 /**
  * 封装post请求
@@ -14,14 +15,18 @@ function postReq(url,data,callback) {
     wx.showLoading({
         title: '加载中',
     });
+    var user = wx.getStorageSync('user');
+    console.log("user",user);
     wx.request({
         url: rootDocment + url,
         data: Object.assign(
             {
                 wxaccount: '123456',
-                user: '18210812953',
+                // user: '17792542304',
+                user:user,
                 wxtype:'1',
-                comid:'1000004',
+                comid:'1000055',
+                // comid:'1000004',
                 // pagesize: callbackcount,//返回数据的个数
                 // pageindex: pageindex,//返回第几页
                 // wxaccount: '123456',

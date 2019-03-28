@@ -39,11 +39,12 @@ Page({
         /**
          * 请求列表接口
          */
+        console.log(".globalData.user",app.globalData.user);
         var that = this;
         request.postReq("/api/camera/getlist_forAPP",
             {
                 // account:'17792542304'
-                account:'18210812953'
+                account:app.globalData.account
             },
             function(res){
                 that.setData({
@@ -141,7 +142,7 @@ Page({
         request.postReq("/api/camera/getlist_forAPP",
             {
                 // account:'17792542304'
-                account:'18210812953'
+                account:app.globalData.account
             },
             function(res){
                 that.setData({

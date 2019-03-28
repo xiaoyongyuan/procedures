@@ -48,7 +48,7 @@ Page({
             // 在没有 open-type=getUserInfo 版本的兼容处理
             wx.getUserInfo({
                 success: res => {
-                    app.globalData.userInfo = res.userInfo
+                    app.globalData.userInfo = res.userInfo;
                     this.setData({
                         userInfo: res.userInfo,
                         hasUserInfo: true
@@ -193,7 +193,12 @@ Page({
                             },
                             method: 'POST',
                             success(res) {
-                                console.log(res.data);
+                                console.log("不知道",res.data);
+                                if(res.data.account !== '' && res.data.account !== undefined){
+                                    console.log("111444");
+                                    wx.setStorageSync('user', res.data.account);
+                                    console.log("222444");
+                                }
                                 //success为1时，注册成功，跳到我的首页
                                 if(res.data.success === 1){
                                     wx.switchTab({

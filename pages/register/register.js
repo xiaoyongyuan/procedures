@@ -125,12 +125,6 @@ Page({
             },
             method: 'POST',
             success(res) {
-                console.log("注册情况",res);
-                if(res.data.auth !== undefined){
-                    that.setData({
-                        auth:res.data.auth
-                    });
-                }
                 if(res.data.success === 0){
                     console.log("当前手机号已被注册，请绑定");
                     wx.showToast({
@@ -142,7 +136,8 @@ Page({
                 if(res.data.success === 1){
                     that.timer();
                     that.setData({
-                        isGetCode: true
+                        isGetCode: true,
+                        auth:res.data.auth
                     });
                 }
             }
@@ -182,6 +177,11 @@ Page({
                             success(res) {
                                 //接口疑似有问题
                                 console.log("res.data注册",res.data);
+                                if(res.data.account !== '' && res.data.account !== undefined){
+                                    console.log("11144466");
+                                    wx.setStorageSync('user', res.data.account);
+                                    console.log("22244466");
+                                }
                                 //success为0时，该微信号已被绑定
                                 //success为1时，注册成功，跳到我的首页
                                 if(res.data.success === 1){

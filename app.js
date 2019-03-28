@@ -37,7 +37,7 @@ App({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
             wx.login({
                 success: res => {
-                    console.log('loginCode:', res.code);
+                    console.log('loginCode:', res);
                     var code = res.code;
                     if(code){
                         console.log('获取用户登录凭证：' + code);
@@ -50,11 +50,18 @@ App({
                             method: 'POST',
                             dataType:'json',
                             success(res) {
-                                console.log("res.data",res.data);
+                                console.log("res.datadsdflksdj哈哈",res.data);
                                 if(res.data.success === 1){
+                                    console.log("res.data.data.account测试哈哈哈哈哈哈多多多",res.data.data.account);
+                                    if(res.data.data.account !== '' && res.data.data.account !== undefined){
+                                        that.globalData.account = res.data.data.account;
+                                        console.log("111");
+                                        wx.setStorageSync('user', res.data.data.account);
+                                        console.log("222");
+                                    }
                                     wx.switchTab({
                                         url: '/pages/index/index'
-                                    })
+                                    });
                                 }
                                 if(res.data.success === 0){
                                     wx.navigateTo({
