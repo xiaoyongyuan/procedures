@@ -11,7 +11,7 @@ const app = getApp();
  * @param data
  */
 
-function postReq(url,data,callback) {
+function postReq(searchPageNum,callbackcount,url,data,callback) {
     wx.showLoading({
         title: '加载中',
     });
@@ -21,6 +21,8 @@ function postReq(url,data,callback) {
         url: rootDocment + url,
         data: Object.assign(
             {
+                pageindex:searchPageNum,
+                pagesize:callbackcount,
                 wxaccount: '123456',
                 user:user,
                 account:account,

@@ -27,13 +27,13 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        var that= this
+        var that= this;
         //字符串转json
         var currentcode = options.currentcode;
         /**
          *  获取查看设备信息
          */
-        request.postReq("/api/camera/camerainfo",
+        request.postReq('','',"/api/camera/camerainfo",
             {
                 code:currentcode
             },

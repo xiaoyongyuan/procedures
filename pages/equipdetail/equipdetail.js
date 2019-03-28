@@ -103,7 +103,7 @@ Page({
          * 请求设备详情接口
          */
 
-        request.postReq("/api/camera/getone",
+        request.postReq('','',"/api/camera/getone",
             {
                 code:code
             },
@@ -140,7 +140,7 @@ Page({
     equiplight:function(options){
         var that = this;
         console.log("eid",that.data.equipdetailData.eid)
-        request.postReq("/api/equipment/FlashLampV1",
+        request.postReq('','',"/api/equipment/FlashLampV1",
             {
                 eid:that.data.equipdetailData.eid
             },

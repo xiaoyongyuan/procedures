@@ -53,7 +53,7 @@ Page({
         /**
          * 请求报警详情接口
          */
-        request.postReq("/api/alarm/getone",
+        request.postReq('','',"/api/alarm/getone",
             {
                 code:code
             },
@@ -236,7 +236,7 @@ Page({
         }else {
             updateifdanger = 0
         }
-        request.postReq("/api/alarm/update",
+        request.postReq('','',"/api/alarm/update",
             {
                 code:that.data.alarmdetailData.code,
                 ifdanger:updateifdanger
@@ -274,7 +274,7 @@ Page({
             });
             return;
         }
-        request.postReq("/api/alarm/getone",
+        request.postReq('','',"/api/alarm/getone",
             {
                 code:that.data.alarmdetailData.next
             },
@@ -308,7 +308,7 @@ Page({
             return;
         }
 
-        request.postReq("/api/alarm/getone",
+        request.postReq('','',"/api/alarm/getone",
             {
                 code:that.data.alarmdetailData.last
             },

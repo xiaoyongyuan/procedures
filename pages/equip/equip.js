@@ -14,7 +14,12 @@ Page({
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
         },
-        equipListData: []
+        equipListData: [],
+        isFromSearch: true,   // 用于判断equipListData数组是不是空数组，默认true，空的数组
+        searchPageNum: 1,   // 设置加载的第几次，默认是第一次
+        callbackcount: 8,      //返回数据的个数
+        searchLoading: false, //"上拉加载"的变量，默认false，隐藏
+        searchLoadingComplete: false,  //“没有数据”的变量，默认false，隐藏
     },
     /**
      * 跳转设备详情页
@@ -40,7 +45,9 @@ Page({
          * 请求列表接口
          */
         var that = this;
-        request.postReq("/api/camera/getlist_forAPP", {},
+        let searchPageNum = that.data.searchPageNum,//把第几次加载次数作为参数
+            callbackcount =that.data.callbackcount; //返回数据的个数
+        request.postReq(searchPageNum,callbackcount,"/api/camera/getlist_forAPP", {},
             function(res){
                 that.setData({
                     equipListData:res.data
@@ -130,7 +137,9 @@ Page({
          * 请求列表接口
          */
         var that = this;
-        request.postReq("/api/camera/getlist_forAPP",
+        let searchPageNum = that.data.searchPageNum,//把第几次加载次数作为参数
+            callbackcount =that.data.callbackcount; //返回数据的个数
+        request.postReq(searchPageNum,callbackcount,"/api/camera/getlist_forAPP",
             {
 
             },

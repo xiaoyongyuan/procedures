@@ -123,7 +123,7 @@ Page({
         /**
          * 先查询每个状态记录多少条
          */
-        request.postReq("/api/workingtime/getlist",
+        request.postReq('','',"/api/workingtime/getlist",
             {
                 cid:that.data.currentcode,
             },
@@ -173,7 +173,7 @@ Page({
                     /**
                      * 请求添加接口
                      */
-                    request.postReq("/api/workingtime/add",
+                    request.postReq('','',"/api/workingtime/add",
                         {
                             cid:that.data.currentcode,
                             cwstatus:1,
@@ -190,7 +190,7 @@ Page({
                             /**
                              * 请求列表接口
                              */
-                            request.postReq("/api/workingtime/getlist",
+                            request.postReq('','',"/api/workingtime/getlist",
                                 {
                                     cid:that.data.currentcode,
                                 },
@@ -237,7 +237,7 @@ Page({
                     /**
                      * 请求添加接口
                      */
-                    request.postReq("/api/workingtime/add",
+                    request.postReq('','',"/api/workingtime/add",
                         {
                             cid:that.data.currentcode,
                             cwstatus:1,
@@ -254,7 +254,7 @@ Page({
                             /**
                              * 请求列表接口
                              */
-                            request.postReq("/api/workingtime/getlist",
+                            request.postReq('','',"/api/workingtime/getlist",
                                 {
                                     cid:that.data.currentcode,
                                 },
@@ -301,7 +301,7 @@ Page({
                     /**
                      * 请求添加接口
                      */
-                    request.postReq("/api/workingtime/add",
+                    request.postReq('','',"/api/workingtime/add",
                         {
                             cid:that.data.currentcode,
                             cwstatus:1,
@@ -318,7 +318,7 @@ Page({
                             /**
                              * 请求列表接口
                              */
-                            request.postReq("/api/workingtime/getlist",
+                            request.postReq('','',"/api/workingtime/getlist",
                                 {
                                     cid:that.data.currentcode,
                                 },
@@ -358,7 +358,7 @@ Page({
                     /**
                      * 请求删除
                      */
-                    request.postReq("/api/workingtime/del",
+                    request.postReq('','',"/api/workingtime/del",
                         {
                             code:code
                         },
@@ -366,7 +366,7 @@ Page({
                             /**
                              * 请求列表接口
                              */
-                            request.postReq("/api/workingtime/getlist",
+                            request.postReq('','',"/api/workingtime/getlist",
                                 {
                                     cid:that.data.currentcode,
                                 },
@@ -415,7 +415,7 @@ Page({
         /**
          * 修改状态接口
          */
-        request.postReq("/api/workingtime/update",
+        request.postReq('','',"/api/workingtime/update",
             {
                 code:code,
                 cwstatus:cwstatus
@@ -477,7 +477,7 @@ Page({
         /**
          * 请求列表接口
          */
-        request.postReq("/api/workingtime/getlist",
+        request.postReq('','',"/api/workingtime/getlist",
             {
                 cid:code,
             },

@@ -52,7 +52,7 @@ Page({
         /**
          * 请求设备详情接口
          */
-        request.postReq("/api/camera/getone",
+        request.postReq('','',"/api/camera/getone",
             {
                 code:code
             },
@@ -364,7 +364,7 @@ Page({
             const by4 = Math.round(that.data.pointlist[5][1]/(that.data.defenceareaHeight/576));
             const bfield = [[ [bx1,by1],[bx2,by2],[bx3,by3],[bx4,by4] ]];
             console.log("保存的点",bx1,by1,bx2,by2,bx3,by3,bx4,by4);
-            request.postReq("/api/camera/fieldadd",
+            request.postReq('','',"/api/camera/fieldadd",
                 {
                     code:that.data.currentcode,
                     key:'1',
@@ -378,7 +378,7 @@ Page({
                     /**
                      * 请求设备详情接口
                      */
-                    request.postReq("/api/camera/getone",
+                    request.postReq('','',"/api/camera/getone",
                         {
                             code:that.data.currentcode
                         },
@@ -408,7 +408,7 @@ Page({
            const x4 = Math.round(that.data.dianlist[5][0]/(that.data.defenceareaWidth/704));
            const y4 = Math.round(that.data.dianlist[5][1]/(that.data.defenceareaHeight/576));
            const field = [[ [x1,y1],[x2,y2],[x3,y3],[x4,y4] ]];
-           request.postReq("/api/camera/fieldadd",
+           request.postReq('','',"/api/camera/fieldadd",
                {
                    code:that.data.currentcode,
                    key:'2',
@@ -421,7 +421,7 @@ Page({
                    /**
                     * 请求设备详情接口
                     */
-                   request.postReq("/api/camera/getone",
+                   request.postReq('','',"/api/camera/getone",
                        {
                            code:that.data.currentcode
                        },
@@ -457,7 +457,7 @@ Page({
             const bx4 = Math.round(that.data.pointlist[5][0]/(that.data.defenceareaWidth/704));
             const by4 = Math.round(that.data.pointlist[5][1]/(that.data.defenceareaHeight/576));
             const bfield = [[ [bx1,by1],[bx2,by2],[bx3,by3],[bx4,by4] ]];
-            request.postReq("/api/camera/fieldadd",
+            request.postReq('','',"/api/camera/fieldadd",
                 {
                     code:that.data.currentcode,
                     key:'1',
@@ -471,7 +471,7 @@ Page({
                     /**
                      * 请求设备详情接口
                      */
-                    request.postReq("/api/camera/getone",
+                    request.postReq('','',"/api/camera/getone",
                         {
                             code:that.data.currentcode
                         },
@@ -506,7 +506,7 @@ Page({
             content: '确定要删除吗？',
             success(res) {
                 if (res.confirm) {
-                    request.postReq("/api/camera/fielddel",
+                    request.postReq('','',"/api/camera/fielddel",
                         {
                             code:that.data.currentcode,
                             key:'1'
@@ -515,7 +515,7 @@ Page({
                             /**
                              * 请求设备详情接口
                              */
-                            request.postReq("/api/camera/getone",
+                            request.postReq('','',"/api/camera/getone",
                                 {
                                     code:that.data.currentcode
                                 },
@@ -552,7 +552,7 @@ Page({
             content: '确定要删除吗？',
             success(res) {
                 if (res.confirm) {
-                    request.postReq("/api/camera/fielddel",
+                    request.postReq('','',"/api/camera/fielddel",
                         {
                             code:that.data.currentcode,
                             key:'2'
@@ -561,7 +561,7 @@ Page({
                             /**
                              * 请求设备详情接口
                              */
-                            request.postReq("/api/camera/getone",
+                            request.postReq('','',"/api/camera/getone",
                                 {
                                     code:that.data.currentcode
                                 },
