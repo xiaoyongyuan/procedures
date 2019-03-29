@@ -183,6 +183,11 @@ Page({
             select: false,
             searchPageNum:1
         });
+        if(that.data.reset === false){
+            that.setData({
+                apptime:''
+            });
+        }
         let searchPageNum = that.data.searchPageNum,//把第几次加载次数作为参数
             callbackcount =that.data.callbackcount; //返回数据的个数
         if(value === 'sign'){

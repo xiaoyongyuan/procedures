@@ -140,9 +140,7 @@ Page({
         let searchPageNum = that.data.searchPageNum,//把第几次加载次数作为参数
             callbackcount =that.data.callbackcount; //返回数据的个数
         request.postReq(searchPageNum,callbackcount,"/api/camera/getlist_forAPP",
-            {
-
-            },
+            {},
             function(res){
                 that.setData({
                     equipListData:res.data
