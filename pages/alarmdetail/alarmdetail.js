@@ -132,20 +132,17 @@ Page({
                     myred_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
                 }
                 if(that.data.alarmdetailData.finalresult1.length > 0){
-                    // for(var i = 0;i < that.data.alarmdetailData.finalresult1.length;i++){
-                        const x = that.data.alarmdetailData.finalresult1[0].x;
-                        const y = that.data.alarmdetailData.finalresult1[0].y;
-                        const w = that.data.alarmdetailData.finalresult1[0].w;
-                        const h = that.data.alarmdetailData.finalresult1[0].h;
-                        console.log("x,y,w,h",x,y,w,h);
-                        const percentx = that.data.alarmdetailimgWidth/that.data.alarmdetailData.pic_width;
-                        const percenty = that.data.alarmdetailimgHeight/that.data.alarmdetailData.pic_height;
-                        myblue_carvas = wx.createCanvasContext('blueCanvas', this);//1.创建carvas实例对象，方便后续使用。
-                        myblue_carvas.setStrokeStyle('#00e8e8');
-                        myblue_carvas.setLineWidth(2);
-                        myblue_carvas.strokeRect(x*percentx, y*percenty, w*percentx, h*percenty);
-                        myblue_carvas.draw();
-                    // }
+                    const x = that.data.alarmdetailData.finalresult1[0].x;
+                    const y = that.data.alarmdetailData.finalresult1[0].y;
+                    const w = that.data.alarmdetailData.finalresult1[0].w;
+                    const h = that.data.alarmdetailData.finalresult1[0].h;
+                    const percentx = that.data.alarmdetailimgWidth/that.data.alarmdetailData.pic_width;
+                    const percenty = that.data.alarmdetailimgHeight/that.data.alarmdetailData.pic_height;
+                    myblue_carvas = wx.createCanvasContext('blueCanvas', this);//1.创建carvas实例对象，方便后续使用。
+                    myblue_carvas.setStrokeStyle('#00e8e8');
+                    myblue_carvas.setLineWidth(2);
+                    myblue_carvas.strokeRect(x*percentx, y*percenty, w*percentx, h*percenty);
+                    myblue_carvas.draw();
                 }
             })
     },
