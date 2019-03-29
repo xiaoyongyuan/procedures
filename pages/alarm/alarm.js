@@ -21,7 +21,7 @@ Page({
         alarmListData: [],//放置返回数据的数组
         isFromSearch: true,   // 用于判断alarmListData数组是不是空数组，默认true，空的数组
         searchPageNum: 1,   // 设置加载的第几次，默认是第一次
-        callbackcount: 8,      //返回数据的个数
+        callbackcount: 6,      //返回数据的个数
         searchLoading: false, //"上拉加载"的变量，默认false，隐藏
         searchLoadingComplete: false,  //“没有数据”的变量，默认false，隐藏
         equipList:[],
@@ -52,6 +52,7 @@ Page({
                     ifdanger:1
                 },
                 function(res){
+                console.log("重置查询时间标记报警列表");
                     that.setData({
                         alarmListData:res.data
                     });
@@ -75,6 +76,7 @@ Page({
                     cid:that.data.selectedvalue,
                 },
                 function(res){
+                    console.log("重置查询时间没有标记报警列表");
                     that.setData({
                         alarmListData:res.data
                     });
@@ -102,11 +104,13 @@ Page({
      */
     onPickerChange: function (e) {
         var that = this;
+        this.setData({
+            apptime: e.detail.dateString,
+            searchPageNum:1
+        });
         let searchPageNum = that.data.searchPageNum,//把第几次加载次数作为参数
             callbackcount =that.data.callbackcount; //返回数据的个数
-        this.setData({
-            apptime: e.detail.dateString
-        });
+
         /**
          * 请求报警列表接口
          */
@@ -124,6 +128,7 @@ Page({
                         ifdanger:1
                     },
                     function(res){
+                        console.log("日历时间标记报警列表");
                         that.setData({
                             alarmListData:res.data
                         });
@@ -147,6 +152,7 @@ Page({
                         cid:that.data.selectedvalue,
                     },
                     function(res){
+                        console.log("日历时间没有标记报警列表");
                         that.setData({
                             alarmListData:res.data
                         });
@@ -168,15 +174,16 @@ Page({
      */
     mySelect(e) {
         var that = this;
-        let searchPageNum = that.data.searchPageNum,//把第几次加载次数作为参数
-            callbackcount =that.data.callbackcount; //返回数据的个数
         var name = e.currentTarget.dataset.name;
         var value = e.currentTarget.dataset.value;
-        this.setData({
+        that.setData({
             selected: name,
             selectedvalue:value,
-            select: false
+            select: false,
+            searchPageNum:1
         });
+        let searchPageNum = that.data.searchPageNum,//把第几次加载次数作为参数
+            callbackcount =that.data.callbackcount; //返回数据的个数
         if(value === 'sign'){
             /**
              * 请求报警列表接口
@@ -187,12 +194,14 @@ Page({
                     ifdanger:1
                 },
                 function(res){
+                    console.log("下拉框标记报警列表");
                     that.setData({
                         alarmListData:res.data
                     });
                     if(that.data.alarmListData.length > 0){
                         that.setData({
-                            nodata:'none'
+                            nodata:'none',
+                            searchLoadingComplete:false
                         });
                     }else{
                         that.setData({
@@ -210,12 +219,14 @@ Page({
                     cid:value,
                 },
                 function(res){
+                    console.log("下拉框没有标记报警列表");
                     that.setData({
                         alarmListData:res.data
                     });
                     if(that.data.alarmListData.length > 0){
                         that.setData({
-                            nodata:'none'
+                            nodata:'none',
+                            searchLoadingComplete:false
                         });
                     }else{
                         that.setData({
@@ -238,34 +249,6 @@ Page({
             url:'../alarmdetail/alarmdetail?code=' + code
         });
     },
-
-    /** 监听tab切换 */
-    onTabItemTap(item){
-        var that = this;
-        let searchPageNum = that.data.searchPageNum,//把第几次加载次数作为参数
-            callbackcount =that.data.callbackcount; //返回数据的个数
-        this.setData({
-            scanresult:''
-        });
-        request.postReq(searchPageNum,callbackcount,"/api/alarm/getlist_forAPP",
-            {
-                apptime:that.data.apptime
-            },
-            function(res){
-                that.setData({
-                    alarmListData:res.data
-                });
-                if(that.data.alarmListData.length > 0){
-                    that.setData({
-                        nodata:'none'
-                    });
-                }else{
-                    that.setData({
-                        nodata:'block'
-                    });
-                }
-            });
-    },
     /**
      * 扫一扫
      */
@@ -275,19 +258,19 @@ Page({
             success: (res) => {
                 that.setData({
                     scanresult:res.result
-                })
+                });
                 wx.showToast({
                     title: '扫描成功',
                     icon: 'success',
                     duration: 2000
-                })
+                });
             },
             fail: (res) => {
                 wx.showToast({
                     title: '扫描失败',
                     icon: 'success',
                     duration: 2000
-                })
+                });
             },
             complete: (res) => {
             }
@@ -313,6 +296,7 @@ Page({
          */
         request.postReq(searchPageNum,callbackcount,"/api/camera/getlist_forAPP", {},
             function(res){
+                console.log("首次进来设备列表");
                 var temp = res.data;
                 temp.splice(0, 0, {code:'sign',name:'收藏列表'});
                 temp.splice(0, 0, {code:'',name:'全部'});
@@ -328,33 +312,17 @@ Page({
                         apptime:''
                     },
                     function(res){
-                        // that.setData({
-                        //     alarmListData:res.data
-                        // });
-                        // if(that.data.alarmListData.length > 0){
-                        //     that.setData({
-                        //         nodata:'none'
-                        //     });
-                        // }else{
-                        //     that.setData({
-                        //         nodata:'block'
-                        //     });
-                        // }
-                        //判断是否有数据，有则取数据
-                        if(res.data.length !== 0){
-                            let searchList = [];
-                            //如果isFromSearch是true从data中取出数据，否则先从原来的数据继续添加
-                            console.log("isFromSearch",that.data.isFromSearch);
-                            that.data.isFromSearch ? searchList=res.data : searchList=that.data.alarmListData.concat(res.data);
+                        console.log("首次进来报警列表");
+                        that.setData({
+                            alarmListData:res.data
+                        });
+                        if(that.data.alarmListData.length > 0){
                             that.setData({
-                                alarmListData: searchList, //获取数据数组
-                                searchLoading: false   //把"上拉加载"的变量设为false，显示
+                                nodata:'none'
                             });
-                            //没有数据了，把“没有数据”显示，把“上拉加载”隐藏
                         }else{
                             that.setData({
-                                searchLoadingComplete: true, //把“没有数据”设为true，显示
-                                searchLoading: false  //把"上拉加载"的变量设为false，隐藏
+                                nodata:'block'
                             });
                         }
                     });
@@ -395,6 +363,7 @@ Page({
                     ifdanger:1
                 },
                 function(res){
+                    console.log("监听显示标记报警列表");
                     that.setData({
                         alarmListData:res.data
                     });
@@ -418,6 +387,7 @@ Page({
                     cid:that.data.selectedvalue,
                 },
                 function(res){
+                    console.log("监听显示没有标记报警列表");
                     that.setData({
                         alarmListData:res.data
                     });
@@ -456,21 +426,157 @@ Page({
     },
 
     /**
+     * 下拉加载
+     */
+    BottomLoad: function (condition) {
+        var that = this;
+        let searchPageNum = that.data.searchPageNum,//把第几次加载次数作为参数
+            callbackcount =that.data.callbackcount; //返回数据的个数
+        wx.getSystemInfo({
+            success:function (res) {
+                that.setData({
+                    screenHeight:res.screenHeight
+                })
+            }
+        });
+        /**
+         * 请求报警列表接口
+         */
+        if(condition === 'sign'){
+            request.postReq(searchPageNum,callbackcount,"/api/alarm/getlist_forAPP",
+                {
+                    apptime:'',
+                    ifdanger:1
+                },
+                function(res){
+                    //判断是否有数据，有则取数据
+                    if(res.data.length !== 0){
+                        let searchList = [];
+                        //如果isFromSearch是true从data中取出数据，否则先从原来的数据继续添加
+                        console.log("isFromSearch",that.data.isFromSearch);
+                        that.data.isFromSearch ? searchList=res.data : searchList=that.data.alarmListData.concat(res.data);
+                        that.setData({
+                            alarmListData: searchList, //获取数据数组
+                            searchLoading: false   //把"上拉加载"的变量设为false，显示
+                        });
+                        //没有数据了，把“没有数据”显示，把“上拉加载”隐藏
+                    }else{
+                        that.setData({
+                            searchLoadingComplete: true, //把“没有数据”设为true，显示
+                            searchLoading: false  //把"上拉加载"的变量设为false，隐藏
+                        });
+                    }
+                });
+        }else{
+            request.postReq(searchPageNum,callbackcount,"/api/alarm/getlist_forAPP",
+                {
+                    apptime:'',
+                    cid:that.data.selectedvalue,
+                },
+                function(res){
+                    //判断是否有数据，有则取数据
+                    if(res.data.length !== 0){
+                        let searchList = [];
+                        //如果isFromSearch是true从data中取出数据，否则先从原来的数据继续添加
+                        console.log("isFromSearch",that.data.isFromSearch);
+                        that.data.isFromSearch ? searchList=res.data : searchList=that.data.alarmListData.concat(res.data);
+                        that.setData({
+                            alarmListData: searchList, //获取数据数组
+                            searchLoading: false   //把"上拉加载"的变量设为false，显示
+                        });
+                        //没有数据了，把“没有数据”显示，把“上拉加载”隐藏
+                    }else{
+                        that.setData({
+                            searchLoadingComplete: true, //把“没有数据”设为true，显示
+                            searchLoading: false  //把"上拉加载"的变量设为false，隐藏
+                        });
+                    }
+                });
+        }
+    },
+
+    /**
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-        console.log("到底部了");
         let that = this;
-        that.setData({
-            searchLoading: true   //把"上拉加载"的变量设为false，显示
-        });
-
+        let searchPageNum = that.data.searchPageNum,//把第几次加载次数作为参数
+            callbackcount =that.data.callbackcount; //返回数据的个数
+        console.log("到底部了");
+        if(that.data.searchLoadingComplete === false){
+            that.setData({
+                searchLoading: true
+            });
+        }
+        console.log("加载数据",that.data.searchLoading);
+        console.log("加载完成",that.data.searchLoadingComplete);
         if(that.data.searchLoading && !that.data.searchLoadingComplete){
             that.setData({
                 searchPageNum: that.data.searchPageNum+1,  //每次触发上拉事件，把searchPageNum+1
                 isFromSearch: false,  //触发到上拉事件，把isFromSearch设为为false
             });
-            that.onLoad();
+            if(that.data.apptime === ''){
+                if(that.data.selectedvalue === 'sign'){
+                    var condition = 'sign';
+                    that.BottomLoad(condition);
+                }else{
+                    that.BottomLoad();
+                }
+            }
+            if(that.data.apptime !== ''){
+                if(that.data.selectedvalue === 'sign'){
+                    request.postReq(searchPageNum,callbackcount,"/api/alarm/getlist_forAPP",
+                        {
+                            apptime:that.data.apptime,
+                            ifdanger:1
+                        },
+                        function(res){
+                            //判断是否有数据，有则取数据
+                            if(res.data.length !== 0){
+                                let searchList = [];
+                                //如果isFromSearch是true从data中取出数据，否则先从原来的数据继续添加
+                                console.log("isFromSearch",that.data.isFromSearch);
+                                that.data.isFromSearch ? searchList=res.data : searchList=that.data.alarmListData.concat(res.data);
+                                that.setData({
+                                    alarmListData: searchList, //获取数据数组
+                                    searchLoading: false   //把"上拉加载"的变量设为false，显示
+                                });
+                                //没有数据了，把“没有数据”显示，把“上拉加载”隐藏
+                            }else{
+                                that.setData({
+                                    searchLoadingComplete: true, //把“没有数据”设为true，显示
+                                    searchLoading: false  //把"上拉加载"的变量设为false，隐藏
+                                });
+                            }
+                        });
+                }
+                else {
+                    request.postReq(searchPageNum,callbackcount,"/api/alarm/getlist_forAPP",
+                        {
+                            apptime:that.data.apptime,
+                            cid:that.data.selectedvalue,
+                        },
+                        function(res){
+                            //判断是否有数据，有则取数据
+                            if(res.data.length !== 0){
+                                let searchList = [];
+                                //如果isFromSearch是true从data中取出数据，否则先从原来的数据继续添加
+                                console.log("isFromSearch",that.data.isFromSearch);
+                                that.data.isFromSearch ? searchList=res.data : searchList=that.data.alarmListData.concat(res.data);
+                                that.setData({
+                                    alarmListData: searchList, //获取数据数组
+                                    searchLoading: false   //把"上拉加载"的变量设为false，显示
+                                });
+                                //没有数据了，把“没有数据”显示，把“上拉加载”隐藏
+                            }else{
+                                that.setData({
+                                    searchLoadingComplete: true, //把“没有数据”设为true，显示
+                                    searchLoading: false  //把"上拉加载"的变量设为false，隐藏
+                                });
+                            }
+                        });
+                }
+            }
             console.log("that.data.searchPageNum",that.data.searchPageNum);
             console.log("wojiu看看",that.data.searchLoading);
         }
