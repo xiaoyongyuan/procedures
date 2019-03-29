@@ -69,6 +69,8 @@ Page({
                         success(res) {
                             console.log("res.data",res.data);
                             if(res.data.success === 1){
+                                wx.setStorageSync('user', res.data.data.account);
+                                wx.setStorageSync('account', res.data.data.account);
                                 wx.switchTab({
                                     url: '/pages/index/index'
                                 })

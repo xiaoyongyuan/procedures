@@ -36,12 +36,13 @@ Page({
      */
     reset:function(){
         var that = this;
-        let searchPageNum = that.data.searchPageNum,//把第几次加载次数作为参数
-            callbackcount =that.data.callbackcount; //返回数据的个数
         that.setData({
             reset:false,
-            apptime:''
+            apptime:'',
+            searchPageNum:1
         });
+        let searchPageNum = that.data.searchPageNum,//把第几次加载次数作为参数
+            callbackcount =that.data.callbackcount; //返回数据的个数
         if(that.data.selectedvalue === 'sign'){
             /**
              * 请求报警列表接口
@@ -500,7 +501,7 @@ Page({
      */
     onReachBottom: function () {
         let that = this;
-        let searchPageNum = that.data.searchPageNum,//把第几次加载次数作为参数
+        let searchPageNum = that.data.searchPageNum+1,//把第几次加载次数作为参数
             callbackcount =that.data.callbackcount; //返回数据的个数
         console.log("到底部了");
         if(that.data.searchLoadingComplete === false){
