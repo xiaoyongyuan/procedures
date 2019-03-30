@@ -1,6 +1,8 @@
 {
   "pages":[
     "pages/welcome/welcome",
+    "pages/newcomid/newcomid",
+    "pages/newcomidaddequip/newcomidaddequip",
     "pages/index/index",
     "pages/register/register",
     "pages/equip/equip",

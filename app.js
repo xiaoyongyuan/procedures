@@ -56,10 +56,18 @@ App({
                                         wx.setStorageSync('AUTHORIZATION', res.data.token);
                                         wx.setStorageSync('companyuser', res.data.data.companyuser.cname);
                                         console.log("woleigerqu",res.data.data.companyuser.cname)
+                                        wx.setStorageSync('realname', res.data.data.realname);
+                                        // realname
                                     }
-                                    wx.switchTab({
-                                        url: '/pages/index/index'
-                                    });
+                                    if(res.data.data.comid === ''){
+                                        wx.navigateTo({
+                                            url: '/pages/newcomid/newcomid'
+                                        })
+                                    }else {
+                                        wx.switchTab({
+                                            url: '/pages/index/index'
+                                        });
+                                    }
                                 }
                                 if(res.data.success === 0){
                                     wx.navigateTo({

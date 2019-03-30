@@ -1,0 +1,8 @@
+<!--<view class="page">-->
+
+<!--</view>-->
+<!--pages/equipdetail/equipdetail.wxml-->
+<view class="page">
+    <navbar back home text="{{navigationBarTitle}}"></navbar>
+    <text>当前还没有开通椒图云服务的企业添加您的手机号码围查看用户，请联系企业添加或扫码椒图精灵设备二维码识别添加</text>
+</view>
