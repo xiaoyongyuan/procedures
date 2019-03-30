@@ -14,6 +14,10 @@
             <view class='title'>{{text}}</view>
         </view>
     </view>
+    <view class="weui-loadmore" wx:if='{{isRefreshing}}'>
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore-tips">正在刷新...</view>
+    </view>
 
     <view class="mask" catchtouchmove="true" wx:if="{{showModal}}" bindtap="go"></view>
 

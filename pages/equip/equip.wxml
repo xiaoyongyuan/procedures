@@ -2,6 +2,11 @@
 <view class="page">
     <component-topnav inner-title="{{ title }}" is-show-back="false"></component-topnav>
 
+    <view class="weui-loadmore" wx:if='{{isRefreshing}}'>
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore-tips">正在刷新...</view>
+    </view>
+
     <view class='list-li mflex'  wx:for="{{equipListData}}"  wx:key="index" >
         <view class="alarm-list">
             <view class="alarm-list-one" bindtap="changeToequipdetail" id='{{index}}'>
@@ -26,7 +31,21 @@
                                 </view>
                                 <text>在线</text>
                             </view>
-                            <text>报警类型:{{ item.alarmtype }}</text>
+                            <!--<text>报警类型:{{ item.alarmtype }}</text>-->
+                            <text wx:if="{{ item.atype === 1 }}">报警类型:围界入侵</text>
+                            <text wx:elif="{{ item.atype === 12 }}">报警类型:整点打卡</text>
+                            <text wx:elif="{{ item.atype === 119 }}">报警类型:火警</text>
+                            <text wx:elif="{{ item.atype === 110 }}">报警类型:匪警</text>
+                            <text wx:elif="{{ item.atype === 7001 }}">报警类型:围界新增</text>
+                            <text wx:elif="{{ item.atype === 7002 }}">报警类型:围界删除</text>
+                            <text wx:elif="{{ item.atype === 7003 }}">报警类型:摄像头绑定</text>
+                            <text wx:elif="{{ item.atype === 7004 }}">报警类型:摄像头ip修改</text>
+                            <text wx:elif="{{ item.atype === 7005 }}">报警类型:布防时间修改</text>
+                            <text wx:elif="{{ item.atype === 7006 }}">报警类型:一键布防</text>
+                            <text wx:elif="{{ item.atype === 7007 }}">报警类型:一键撤防</text>
+                            <text wx:elif="{{ item.atype === 7008 }}">报警类型:设备解绑</text>
+                            <text wx:elif="{{ item.atype === 7009 }}">报警类型:异常登录</text>
+                            <text wx:else>报警类型:设备绑定</text>
                         </view>
                         <view class="alarm-list-one-top-right-B">
                             <text wx:if="{{ item.atime === '' }}">报警时间:无</text>

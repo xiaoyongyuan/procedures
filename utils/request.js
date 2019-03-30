@@ -27,7 +27,8 @@ function postReq(searchPageNum,callbackcount,url,data,callback) {
                 user:user,
                 account:account,
                 wxtype:'1',
-                comid:'1000004',
+                // comid:'1000004',
+                comid:'1000020'
             },data
         ),
         method: 'POST',

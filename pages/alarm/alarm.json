@@ -3,5 +3,6 @@
   "navigationBarTextStyle":"white",
   "usingComponents": {
     "pickerYMDHM": "../component/pickerYMDHM/pickerYMDHM"
-  }
+  },
+  "enablePullDownRefresh": true
 }

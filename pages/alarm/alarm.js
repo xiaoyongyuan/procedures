@@ -30,6 +30,7 @@ Page({
         apptime:'',
         isload:false,
         reset:false,
+        isRefreshing: false,
     },
     /**
      * 重置查询时间
@@ -406,6 +407,10 @@ Page({
                             nodata:'block'
                         });
                     }
+                    that.setData({
+                        isRefreshing: false,
+                    });
+                    wx.stopPullDownRefresh();
                 });
         }
     },
@@ -428,11 +433,18 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-
+        var that = this;
+        if (that.data.isRefreshing) {
+            return
+        }
+        that.setData({
+            isRefreshing: true,
+        });
+        that.onShow();//数据请求
     },
 
     /**
-     * 下拉加载
+     * 上滑加载
      */
     BottomLoad: function (condition) {
         var that = this;

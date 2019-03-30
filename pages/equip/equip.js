@@ -20,6 +20,7 @@ Page({
         callbackcount: 15,      //返回数据的个数
         searchLoading: false, //"上拉加载"的变量，默认false，隐藏
         searchLoadingComplete: false,  //“没有数据”的变量，默认false，隐藏
+        isRefreshing: false,
     },
     /**
      * 跳转设备详情页
@@ -211,6 +212,10 @@ Page({
                         }
                     }
                 }
+                that.setData({
+                    isRefreshing: false,
+                });
+                wx.stopPullDownRefresh();
             });
     },
 
@@ -232,11 +237,18 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-
+        var that = this;
+        if (that.data.isRefreshing) {
+            return
+        }
+        that.setData({
+            isRefreshing: true,
+        });
+        that.onShow();//数据请求
     },
 
     /**
-     * 下拉加载
+     * 上滑加载
      */
     BottomLoad: function (condition) {
         var ctime = util.formatTime(new Date());
@@ -338,26 +350,26 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-        let that = this;
-        let searchPageNum = that.data.searchPageNum+1,//把第几次加载次数作为参数
-            callbackcount =that.data.callbackcount; //返回数据的个数
-        console.log("到底部了");
-        if(that.data.searchLoadingComplete === false){
-            that.setData({
-                searchLoading: true
-            });
-        }
-        console.log("加载数据",that.data.searchLoading);
-        console.log("加载完成",that.data.searchLoadingComplete);
-        if(that.data.searchLoading && !that.data.searchLoadingComplete){
-            that.setData({
-                searchPageNum: that.data.searchPageNum+1,  //每次触发上拉事件，把searchPageNum+1
-                isFromSearch: false,  //触发到上拉事件，把isFromSearch设为为false
-            });
-            that.BottomLoad();
-            console.log("that.data.searchPageNum",that.data.searchPageNum);
-            console.log("wojiu看看",that.data.searchLoading);
-        }
+        // let that = this;
+        // let searchPageNum = that.data.searchPageNum+1,//把第几次加载次数作为参数
+        //     callbackcount =that.data.callbackcount; //返回数据的个数
+        // console.log("到底部了");
+        // if(that.data.searchLoadingComplete === false){
+        //     that.setData({
+        //         searchLoading: true
+        //     });
+        // }
+        // console.log("加载数据",that.data.searchLoading);
+        // console.log("加载完成",that.data.searchLoadingComplete);
+        // if(that.data.searchLoading && !that.data.searchLoadingComplete){
+        //     that.setData({
+        //         searchPageNum: that.data.searchPageNum+1,  //每次触发上拉事件，把searchPageNum+1
+        //         isFromSearch: false,  //触发到上拉事件，把isFromSearch设为为false
+        //     });
+        //     that.BottomLoad();
+        //     console.log("that.data.searchPageNum",that.data.searchPageNum);
+        //     console.log("wojiu看看",that.data.searchLoading);
+        // }
     },
 
     /**

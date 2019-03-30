@@ -3,5 +3,6 @@
     "component-topnav": "/pages/component/topnav"
   },
   "navigationBarBackgroundColor": "#3891f8",
-  "navigationBarTextStyle":"white"
+  "navigationBarTextStyle":"white",
+  "enablePullDownRefresh": true
 }
