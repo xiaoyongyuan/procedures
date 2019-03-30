@@ -7,7 +7,7 @@ Page({
      */
     data: {
         navigationBarTitle:'报警详情',
-        navbar: ['报警图片', '报警视频'],
+        navbar: ['报警图片'],
         currentTab: 0,
         // 这里是一些组件内部数据
         someData: {
@@ -58,18 +58,23 @@ Page({
                 code:code
             },
             function(res){
-                that.setData({
-                    alarmdetailData:res.data,
-                });
-                if(that.data.alarmdetailData.ifdanger === 1){
+                if(res.data.ifdanger === 1){
                     that.setData({
                         sign:true
-                    })
+                    });
                 }else {
                     that.setData({
                         sign:false
-                    })
+                    });
                 }
+                if(res.data.videopath !== ''){
+                    that.setData({
+                        navbar: ['报警图片', '报警视频'],
+                    });
+                }
+                that.setData({
+                    alarmdetailData:res.data,
+                });
                 //一个围界信息
                 if(that.data.alarmdetailData.field.length > 0){
                     const x1 = that.data.alarmdetailData.field[0][0][0];
@@ -228,10 +233,9 @@ Page({
      *切换图片视频页签
      */
     navbarTap: function(e){
-        console.log("e",e);
         this.setData({
             currentTab: e.currentTarget.dataset.idx
-        })
+        });
     },
     /**
      * 标记和取消标记
