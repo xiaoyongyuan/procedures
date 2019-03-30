@@ -151,7 +151,7 @@ Page({
                        myblue_carvas.strokeRect(x*percentx, y*percenty, w*percentx, h*percenty);
                        // myblue_carvas.strokeRect(x*percentx, y*percenty, w*percentx, h*percenty);
                        // myblue_carvas.strokeRect(x1*percentx, y1*percenty, w1*percentx, h1*percenty);
-                       myblue_carvas.strokeRect(that.data.alarmdetailData.finalresult1[i].x*percentx, that.data.alarmdetailData.finalresult1[i].y*percenty, that.data.alarmdetailData.finalresult1[i].w*percentx, that.data.alarmdetailData.finalresult1[i].h*percenty);
+                       // myblue_carvas.strokeRect(that.data.alarmdetailData.finalresult1[i].x*percentx, that.data.alarmdetailData.finalresult1[i].y*percenty, that.data.alarmdetailData.finalresult1[i].w*percentx, that.data.alarmdetailData.finalresult1[i].h*percenty);
                        myblue_carvas.draw();
                    // }
                 }
