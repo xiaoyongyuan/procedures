@@ -38,7 +38,7 @@ page {
     background-color: #fff;
     padding: 0 10rpx;
     width: 92%;
-    overflow: hidden;
+    overflow: visible;
     font-size: 28rpx;
     border-radius: 24rpx;
     z-index: 9999;
@@ -53,6 +53,8 @@ page {
 .select_box_center{
     display: flex;
     justify-content: center;
+    overflow: visible;
+    z-index: 9999;
 }
 .apptime{
     display: flex;

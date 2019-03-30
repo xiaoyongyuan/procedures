@@ -178,10 +178,45 @@ Page({
                                 auth:formData.code
                             },
                             method: 'POST',
-                            success(res) {
-                                if(res.data.account !== '' && res.data.account !== undefined){
+                            success: function (res) {
+                                if (res.data.account !== '' && res.data.account !== undefined) {
                                     wx.setStorageSync('user', res.data.account);
                                     wx.setStorageSync('account', res.data.account);
+                                    // wx.login({
+                                    //     success: res => {
+                                    //         var code = res.code;
+                                    //         if (code) {
+                                    //             //调登录接口
+                                    //             wx.request({
+                                    //                 url: 'http://login.aokecloud.cn/login/verifyforWX',
+                                    //                 data: {
+                                    //                     xcode: code
+                                    //                 },
+                                    //                 method: 'POST',
+                                    //                 dataType: 'json',
+                                    //                 success(res) {
+                                    //                     console.log("绑定res", res);
+                                    //                     if (res.data.success === 1) {
+                                    //                         console.log("hh")
+                                    //                         // if (res.data.data.account !== '' && res.data.data.account !== undefined) {
+                                    //                         //     that.globalData.account = res.data.data.account;
+                                    //                         //     wx.setStorageSync('user', res.data.data.account);
+                                    //                         //     wx.setStorageSync('account', res.data.data.account);
+                                    //                         // }
+                                    //                         // wx.switchTab({
+                                    //                         //     url: '/pages/index/index'
+                                    //                         // });
+                                    //                     }
+                                    //                     if (res.data.success === 0) {
+                                    //                         wx.navigateTo({
+                                    //                             url: '/pages/register/register'
+                                    //                         })
+                                    //                     }
+                                    //                 }
+                                    //             });
+                                    //         }
+                                    //     }
+                                    // });
                                 }
                                 //success为1时，注册成功，跳到我的首页
                                 if(res.data.success === 1){

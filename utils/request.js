@@ -17,6 +17,9 @@ function postReq(searchPageNum,callbackcount,url,data,callback) {
     });
     var user = wx.getStorageSync('user');
     var account = wx.getStorageSync('account');
+    var AUTHORIZATION = wx.getStorageSync('AUTHORIZATION');
+    console.log("requestAUTHORIZATION",AUTHORIZATION);
+    console.log("account",account);
     wx.request({
         url: rootDocment + url,
         data: Object.assign(
@@ -27,10 +30,13 @@ function postReq(searchPageNum,callbackcount,url,data,callback) {
                 user:user,
                 account:account,
                 wxtype:'1',
-                // comid:'1000004',
-                comid:'1000020'
+                comid:'1000004',
+                // comid:'1000020'
             },data
         ),
+        header: {
+            'AUTHORIZATION': AUTHORIZATION // 默认值
+        },
         method: 'POST',
         success: function (res) {
             wx.hideLoading();
