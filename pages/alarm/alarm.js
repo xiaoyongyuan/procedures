@@ -7,12 +7,12 @@ Page({
      * 页面的初始数据
      */
     data: {
-        navigationBarTitle:'树莓派企业测试账户1',
+        navigationBarTitle:wx.getStorageSync('companyuser'),
         select: false,
         selected: '全部',
         selectedvalue:'',
         showModal: false,
-        text:'树莓派企业测试账户1',
+        text:wx.getStorageSync('companyuser'),
         // 这里是一些组件内部数据
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,

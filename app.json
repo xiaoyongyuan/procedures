@@ -34,12 +34,6 @@
     "backgroundColor": "#fff",
     "list": [
       {
-        "pagePath": "pages/business/business",
-        "iconPath": "images/business.png",
-        "selectedIconPath": "images/business_solid.png",
-        "text": "业务"
-      },
-      {
         "pagePath": "pages/alarm/alarm",
         "iconPath": "images/alarm.png",
         "selectedIconPath": "images/alarm_solid.png",

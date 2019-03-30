@@ -8,7 +8,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        title:'树莓派企业测试账户1',
+        title:wx.getStorageSync('companyuser'),
         // 这里是一些组件内部数据
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
@@ -41,6 +41,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        console.log("wx.getStorageSync('companyuser')",wx.getStorageSync('companyuser'));
         var ctime = util.formatTime(new Date());
         /**
          * 请求列表接口

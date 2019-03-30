@@ -71,6 +71,9 @@ Page({
                             if(res.data.success === 1){
                                 wx.setStorageSync('user', res.data.data.account);
                                 wx.setStorageSync('account', res.data.data.account);
+                                wx.setStorageSync('comid', res.data.data.comid);
+                                wx.setStorageSync('AUTHORIZATION', res.data.token);
+                                wx.setStorageSync('companyuser', res.data.data.companyuser.cname);
                                 wx.switchTab({
                                     url: '/pages/index/index'
                                 })

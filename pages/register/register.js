@@ -174,16 +174,55 @@ Page({
                             },
                             method: 'POST',
                             success(res) {
-                                if(res.data.account !== '' && res.data.account !== undefined){
-                                    wx.setStorageSync('user', res.data.account);
-                                    wx.setStorageSync('account', res.data.data.account);
+                                if (res.data.account !== '' && res.data.account !== undefined) {
+                                    wx.login({
+                                        success: res => {
+                                            var code = res.code;
+                                            if (code) {
+                                                //调登录接口
+                                                wx.request({
+                                                    url: 'http://login.aokecloud.cn/login/verifyforWX',
+                                                    data: {
+                                                        xcode: code
+                                                    },
+                                                    method: 'POST',
+                                                    dataType: 'json',
+                                                    success(res) {
+                                                        console.log("绑定res", res);
+                                                        if (res.data.success === 1) {
+                                                            console.log("hh");
+                                                            if (res.data.data.account !== '' && res.data.data.account !== undefined) {
+                                                                wx.setStorageSync('user', res.data.data.account);
+                                                                wx.setStorageSync('account', res.data.data.account);
+                                                                wx.setStorageSync('comid', res.data.data.comid);
+                                                                wx.setStorageSync('AUTHORIZATION', res.data.token);
+                                                                wx.setStorageSync('companyuser', res.data.data.companyuser.cname);
+                                                                wx.switchTab({
+                                                                    url: '/pages/index/index'
+                                                                });
+                                                            }
+                                                        }
+                                                        if (res.data.success === 0) {
+                                                            wx.navigateTo({
+                                                                url: '/pages/register/register'
+                                                            })
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    });
                                 }
-                                //success为1时，注册成功，跳到我的首页
-                                if(res.data.success === 1){
-                                    wx.switchTab({
-                                        url: '/pages/index/index'
-                                    })
-                                }
+                                // if(res.data.account !== '' && res.data.account !== undefined){
+                                //     wx.setStorageSync('user', res.data.account);
+                                //     wx.setStorageSync('account', res.data.data.account);
+                                // }
+                                // //success为1时，注册成功，跳到我的首页
+                                // if(res.data.success === 1){
+                                //     wx.switchTab({
+                                //         url: '/pages/index/index'
+                                //     })
+                                // }
                             }
                         });
                     }

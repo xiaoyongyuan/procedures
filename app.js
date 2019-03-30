@@ -36,6 +36,7 @@ App({
                 success: res => {
                     var code = res.code;
                     if(code){
+                        console.log("code",code);
                         //调登录接口
                         wx.request({
                             url: 'http://login.aokecloud.cn/login/verifyforWX',
@@ -45,12 +46,16 @@ App({
                             method: 'POST',
                             dataType:'json',
                             success(res) {
+                                console.log("登录",res);
                                 if(res.data.success === 1){
                                     if(res.data.data.account !== '' && res.data.data.account !== undefined){
                                         that.globalData.account = res.data.data.account;
                                         wx.setStorageSync('user', res.data.data.account);
                                         wx.setStorageSync('account', res.data.data.account);
+                                        wx.setStorageSync('comid', res.data.data.comid);
                                         wx.setStorageSync('AUTHORIZATION', res.data.token);
+                                        wx.setStorageSync('companyuser', res.data.data.companyuser.cname);
+                                        console.log("woleigerqu",res.data.data.companyuser.cname)
                                     }
                                     wx.switchTab({
                                         url: '/pages/index/index'
@@ -76,6 +81,6 @@ App({
     });
   },
     globalData: {
-        userInfo: null
+        userInfo: null,
     },
 });

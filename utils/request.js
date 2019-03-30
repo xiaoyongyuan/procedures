@@ -18,20 +18,17 @@ function postReq(searchPageNum,callbackcount,url,data,callback) {
     var user = wx.getStorageSync('user');
     var account = wx.getStorageSync('account');
     var AUTHORIZATION = wx.getStorageSync('AUTHORIZATION');
-    console.log("requestAUTHORIZATION",AUTHORIZATION);
-    console.log("account",account);
+    var comid = wx.getStorageSync('comid');
     wx.request({
         url: rootDocment + url,
         data: Object.assign(
             {
                 pageindex:searchPageNum,
                 pagesize:callbackcount,
-                wxaccount: '123456',
                 user:user,
                 account:account,
                 wxtype:'1',
-                comid:'1000004',
-                // comid:'1000020'
+                comid:comid,
             },data
         ),
         header: {
