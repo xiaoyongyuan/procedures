@@ -21,7 +21,7 @@ Page({
         alarmListData: [],//放置返回数据的数组
         isFromSearch: true,   // 用于判断alarmListData数组是不是空数组，默认true，空的数组
         searchPageNum: 1,   // 设置加载的第几次，默认是第一次
-        callbackcount: 6,      //返回数据的个数
+        callbackcount: 15,      //返回数据的个数
         searchLoading: false, //"上拉加载"的变量，默认false，隐藏
         searchLoadingComplete: false,  //“没有数据”的变量，默认false，隐藏
         equipList:[],
