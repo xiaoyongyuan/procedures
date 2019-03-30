@@ -52,7 +52,20 @@
                     </view>
                     <view class="alarm-list-one-top-right">
                         <view class="alarm-list-one-top-right-T">
-                            <text>报警类型:{{ item.alarmtype }}</text>
+                            <text wx:if="{{ item.atype === 1 }}">报警类型:围界入侵</text>
+                            <text wx:elif="{{ item.atype === 12 }}">报警类型:整点打卡</text>
+                            <text wx:elif="{{ item.atype === 119 }}">报警类型:火警</text>
+                            <text wx:elif="{{ item.atype === 110 }}">报警类型:匪警</text>
+                            <text wx:elif="{{ item.atype === 7001 }}">报警类型:围界新增</text>
+                            <text wx:elif="{{ item.atype === 7002 }}">报警类型:围界删除</text>
+                            <text wx:elif="{{ item.atype === 7003 }}">报警类型:摄像头绑定</text>
+                            <text wx:elif="{{ item.atype === 7004 }}">报警类型:摄像头ip修改</text>
+                            <text wx:elif="{{ item.atype === 7005 }}">报警类型:布防时间修改</text>
+                            <text wx:elif="{{ item.atype === 7006 }}">报警类型:一键布防</text>
+                            <text wx:elif="{{ item.atype === 7007 }}">报警类型:一键撤防</text>
+                            <text wx:elif="{{ item.atype === 7008 }}">报警类型:设备解绑</text>
+                            <text wx:elif="{{ item.atype === 7009 }}">报警类型:异常登录</text>
+                            <text wx:else>报警类型:设备绑定</text>
                         </view>
                         <view class="alarm-list-one-top-right-B">
                             <text>报警时间:{{ item.atime }}</text>
@@ -69,7 +82,20 @@
                     </view>
                     <view class="alarm-list-one-top-right">
                         <view class="alarm-list-one-top-right-T">
-                            <text>报警类型:{{ item.alarmtype }}</text>
+                            <text wx:if="{{ item.atype === 1 }}">报警类型:围界入侵</text>
+                            <text wx:elif="{{ item.atype === 12 }}">报警类型:整点打卡</text>
+                            <text wx:elif="{{ item.atype === 119 }}">报警类型:火警</text>
+                            <text wx:elif="{{ item.atype === 110 }}">报警类型:匪警</text>
+                            <text wx:elif="{{ item.atype === 7001 }}">报警类型:围界新增</text>
+                            <text wx:elif="{{ item.atype === 7002 }}">报警类型:围界删除</text>
+                            <text wx:elif="{{ item.atype === 7003 }}">报警类型:摄像头绑定</text>
+                            <text wx:elif="{{ item.atype === 7004 }}">报警类型:摄像头ip修改</text>
+                            <text wx:elif="{{ item.atype === 7005 }}">报警类型:布防时间修改</text>
+                            <text wx:elif="{{ item.atype === 7006 }}">报警类型:一键布防</text>
+                            <text wx:elif="{{ item.atype === 7007 }}">报警类型:一键撤防</text>
+                            <text wx:elif="{{ item.atype === 7008 }}">报警类型:设备解绑</text>
+                            <text wx:elif="{{ item.atype === 7009 }}">报警类型:异常登录</text>
+                            <text wx:else>报警类型:设备绑定</text>
                         </view>
                         <view class="alarm-list-one-top-right-B">
                             <text>报警时间:{{ item.atime }}</text>
