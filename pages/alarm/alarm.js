@@ -303,6 +303,7 @@ Page({
          */
         request.postReq(searchPageNum,callbackcount,"/api/camera/getlist_forAPP", {},
             function(res){
+            if(res.success === 1){
                 console.log("首次进来设备列表");
                 var temp = res.data;
                 temp.splice(0, 0, {code:'sign',name:'收藏列表'});
@@ -333,6 +334,7 @@ Page({
                             });
                         }
                     });
+            }
             });
     },
     bindShowMsg: function () {

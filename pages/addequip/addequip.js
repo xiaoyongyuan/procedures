@@ -48,6 +48,20 @@ Page({
                 }
             }
         });
+        // wx.request({
+        //     url: 'http://api.aokecloud.cn/api/equipment/e_initialize',
+        //     data: {
+        //         ecode:'EFGABC026'
+        //     },
+        //     method: 'POST',
+        //     success(res) {
+        //         //接口疑似有问题
+        //         //1、注册了没绑定
+        //         //2、注册了也绑定了
+        //         //3、没注册
+        //         console.log("解绑",res);
+        //     }
+        // });
     },
     //扫一扫
     click: function (event) {
