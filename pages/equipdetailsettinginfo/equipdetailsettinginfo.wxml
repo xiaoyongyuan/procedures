@@ -1,5 +1,17 @@
 <view class="page">
-    <navbar back home text="{{navigationBarTitle}}"></navbar>
+    <view class="navbar" style="{{'height: ' + navigationBarHeight}}">
+        <view style="{{'height: ' + statusBarHeight}}"></view>
+        <view class="status-bar" style="height:{{someData.statusBarHeight}}px"></view>
+        <view class='title-container' style="height:{{someData.titleBarHeight}}px">
+            <view class='capsule' wx:if="{{ back || home }}">
+                <view bindtap='backequipdetail' wx:if="{{back}}">
+                    <image src='/images/back.svg'></image>
+                </view>
+            </view>
+            <view class='title'>{{text}}</view>
+        </view>
+    </view>
+    <!--<navbar back home text="{{navigationBarTitle}}"></navbar>-->
     <view class="top" style="height: {{ someData.statusBarHeight+someData.titleBarHeight+10 }}px">
         <!--占位view-->
     </view>
@@ -12,7 +24,8 @@
                 <text>IP:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>{{ camerainfo.cameraip }}</text>
+                <text wx:if="{{ camerainfo.cameraip === '' || camerainfo.cameraip === undefined}}">无</text>
+                <text wx:else>{{ camerainfo.cameraip }}</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -20,7 +33,8 @@
                 <text>端口号:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>{{ camerainfo.authport }}</text>
+                <text wx:if="{{ camerainfo.authport === '' || camerainfo.authport === undefined}}">无</text>
+                <text wx:else>{{ camerainfo.authport }}</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -28,7 +42,8 @@
                 <text>用户名:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>{{ camerainfo.ausername }}</text>
+                <text wx:if="{{ camerainfo.ausername === '' || camerainfo.ausername === undefined}}">无</text>
+                <text wx:else>{{ camerainfo.ausername }}</text>
             </view>
         </view>
         <view class="equipinfo-item-last">
@@ -36,7 +51,8 @@
                 <text>用户密码:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>{{ camerainfo.camerapasswd }}</text>
+                <text wx:if="{{ camerainfo.camerapasswd === '' || camerainfo.camerapasswd === undefined}}"></text>
+                <text wx:else>{{ camerainfo.camerapasswd }}</text>
             </view>
         </view>
 
@@ -88,7 +104,7 @@
                 <text>设置状态:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text wx:if="{{ camerainfo.echange === 0 }}">未提交</text>
+                <text wx:if="{{ camerainfo.echange === 0 }}" style="color: #00a0e9">未提交</text>
                 <text wx:elif="{{ camerainfo.echange === 1 }}" style="color: #00a0e9">设置成功</text>
                 <text wx:elif="{{ camerainfo.echange === 2 }}">设置失败</text>
                 <text wx:else>提交中</text>

@@ -1,5 +1,6 @@
 // pages/addequip/addequip.js
 const app = getApp();
+var request = require('../../utils/request.js');
 Page({
 
     /**
@@ -14,54 +15,48 @@ Page({
         },
         scanresult:''
     },
-    /**
-     *临时解绑微信号
-     */
-    testdel:function(){
-        wx.login({
-            success: res => {
-                console.log('loginCode:', res.code);
-                // 发送 res.code 到后台换取 用户的唯一标识（openid）, 本次登录的会话密钥（session_key）等, unionId
-                // ------ 获取凭证 ------
-                var code = res.code;
-                if (code) {
-                    console.log('获取用户登录凭证：' + code);
-                    /**
-                     * 临时解绑微信号
-                     */
-                    wx.request({
-                        url: 'http://api.aokecloud.cn/api/wxuser/del',
-                        data: {
-                            xcode:code
-                        },
-                        method: 'POST',
-                        success(res) {
-                            //接口疑似有问题
-                            //1、注册了没绑定
-                            //2、注册了也绑定了
-                            //3、没注册
-                            console.log("解绑",res);
-                        }
-                    });
-                } else {
-                    console.log('获取用户登录失败：' + res.errMsg);
-                }
-            }
+    locationInput:function(e){
+        var that = this;
+        that.setData({
+            location:e.detail.value
         });
-        // wx.request({
-        //     url: 'http://api.aokecloud.cn/api/equipment/e_initialize',
-        //     data: {
-        //         ecode:'EFGABC026'
-        //     },
-        //     method: 'POST',
-        //     success(res) {
-        //         //接口疑似有问题
-        //         //1、注册了没绑定
-        //         //2、注册了也绑定了
-        //         //3、没注册
-        //         console.log("解绑",res);
-        //     }
-        // });
+        console.log("location",that.data.location);
+    },
+    equipIDInput:function(e){
+        var that = this;
+        that.setData({
+            ecode:e.detail.value
+        });
+        console.log("ecode",that.data.ecode);
+    },
+    /**
+     *绑定设备
+     */
+    biddingequip:function(){
+        var that = this;
+        /**
+         * 请求绑定设备接口
+         */
+        request.postReq('','',"/api/equipment/bidding",
+            {
+                location:that.data.location,
+                ecode:that.data.ecode
+            },
+            function(res){
+                console.log("绑定设备res",res);
+                if(res.success === 0){
+                    wx.showToast({
+                        title: '该设备已被绑定或者设备不存在',
+                        icon: 'none',
+                        duration: 2000
+                    });
+                }
+                if(res.success === 1){
+                    wx.navigateTo({
+                        url:'../equipdetailsettinginfo/equipdetailsettinginfo'
+                    })
+                }
+            });
     },
     //扫一扫
     click: function (event) {
@@ -70,19 +65,19 @@ Page({
             success: (res) => {
                 that.setData({
                     scanresult:res.result
-                })
+                });
                 wx.showToast({
                     title: '扫描成功',
                     icon: 'success',
                     duration: 2000
-                })
+                });
             },
             fail: (res) => {
                 wx.showToast({
                     title: '扫描失败',
                     icon: 'success',
                     duration: 2000
-                })
+                });
             },
             complete: (res) => {
             }

@@ -13,6 +13,19 @@ Page({
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
         },
+        text:'设置信息',
+        back: {
+            type: Boolean,
+            value: false
+        }
+    },
+    backequipdetail: function () {
+        wx.navigateBack({
+            delta: 1
+        })
+        // wx.navigateTo({
+        //     url:'../equipdetail/equipdetail'
+        // });
     },
     //页面跳转
     changeTosettingequipinfo:function(){
@@ -21,7 +34,7 @@ Page({
         var port = that.data.camerainfo.cameraportno;
         wx.navigateTo({
             url:'../settingequipinfo/settingequipinfo?IP=' + IP + '&port=' + port
-        })
+        });
     },
     /**
      * 生命周期函数--监听页面加载
@@ -97,4 +110,4 @@ Page({
     onShareAppMessage: function () {
 
     }
-})
+});

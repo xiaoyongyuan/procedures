@@ -32,15 +32,18 @@ Component({
         backHome: function () {
             wx.reLaunch({
                 url: '../index/index',
-            })
+            });
         },
         back: function () {
             wx.navigateBack({
                 delta: 1
-            })
+            });
+            // wx.navigateTo({
+            //     url:'/equip/equip'
+            // });
         },
         aa: function(){
             console.log("123");
         },
     }
-})
+});

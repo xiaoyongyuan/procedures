@@ -1,4 +1,4 @@
-const app = getApp()
+const app = getApp();
 
 Component({
 
@@ -35,4 +35,4 @@ Component({
       })
     }
   }
-})
+});

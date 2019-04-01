@@ -17,13 +17,13 @@
     <view class="infodisplay">
       <view class="infodisplay-top">
         <view  style="flex:1">
-          <text class="infodisplay-top-num serve">70</text><text class="infodisplay-top-chinese">天</text>
+          <text class="infodisplay-top-num serve">{{ workdate }}</text><text class="infodisplay-top-chinese">天</text>
         </view>
         <view  style="flex:1">
-          <text class="infodisplay-top-num equip">4</text><text class="infodisplay-top-chinese">个</text>
+          <text class="infodisplay-top-num equip">{{ ecount }}</text><text class="infodisplay-top-chinese">个</text>
         </view>
         <view  style="flex:1">
-          <text class="infodisplay-top-num alarm">{{ alarm }}</text><text class="infodisplay-top-chinese">次</text>
+          <text class="infodisplay-top-num alarm">{{ acount }}</text><text class="infodisplay-top-chinese">次</text>
         </view>
       </view>
       <view class="infodisplay-bottom">
@@ -46,7 +46,8 @@
               hover-class="weui-cell_active"
       >
         <view class="weui-cell__bd weui-cell_primary">
-          <view>选择企业</view>
+          <view class="selectcompany">选择企业</view>
+          <view class="account-equip">{{ cname }} 设备：{{ ecount }}个</view>
         </view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </navigator>
@@ -61,12 +62,12 @@
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </navigator>
 
-      <navigator url="/pages/logs/logs" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <view class="weui-cell__bd weui-cell_primary">
-          <view>修改密码</view>
-        </view>
-        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-      </navigator>
+      <!--<navigator url="/pages/logs/logs" class="weui-cell weui-cell_access" hover-class="weui-cell_active">-->
+        <!--<view class="weui-cell__bd weui-cell_primary">-->
+          <!--<view>修改密码</view>-->
+        <!--</view>-->
+        <!--<view class="weui-cell__ft weui-cell__ft_in-access"></view>-->
+      <!--</navigator>-->
       <view
               class="weui-cell weui-cell_access"
               hover-class="weui-cell_active"

@@ -63,7 +63,7 @@ page {
   line-height: 48rpx;
 }
 .my-list{
-  height: 500rpx;
+  height: auto;
   width: 94%;
   background-color: #fff;
   border-radius: 24rpx;
@@ -166,4 +166,18 @@ page {
   font-size: 26rpx;
   color: #7b7b7b;
   margin-right: 40rpx;
+}
+.weui-cell_primary{
+  display: flex;
+  align-items: center;
+}
+.selectcompany{
+  width: 30%;
+  float: left;
+}
+.account-equip{
+  width: 70%;
+  float: left;
+  font-size: 24rpx;
+  color: #009ee8;
 }

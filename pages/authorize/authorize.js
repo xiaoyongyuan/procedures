@@ -60,7 +60,7 @@ Page({
                     console.log('获取用户登录凭证：' + code);
                     //调登录接口
                     wx.request({
-                        url: 'http://login.aokecloud.cn/login/verifyforWX',
+                        url: 'http://api.aokecloud.cn/login/verifyforWX',
                         data: {
                             xcode :code
                         },

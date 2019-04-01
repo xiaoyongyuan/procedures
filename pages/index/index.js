@@ -1,5 +1,5 @@
 const app = getApp();
-
+var request = require('../../utils/request.js');
 Page({
     /**
      * 页面的初始数据
@@ -8,7 +8,8 @@ Page({
         userInfo: null,
         title:'个人中心',
         showModal: false,
-        cache:93.45
+        cache:93.45,
+        cname:wx.getStorageSync('companyuser'),
     },
     submit: function () {
         this.setData({
@@ -28,7 +29,7 @@ Page({
         this.setData({
             showModal: false,
             cache:0.0,
-        })
+        });
         wx.showToast({
             title: '清除成功！',
             icon: 'success',
@@ -40,6 +41,21 @@ Page({
      */
     onLoad: function (options) {
         var that = this;
+        /**
+         * 请求设备列表接口
+         */
+        request.postReq('','',"/api/user/getone",
+            {},
+            function(res){
+              console.log("设备",res);
+              that.setData({
+                  workdate:res.data.workdate,
+                  acount:res.data.acount,
+                  ecount:res.data.ecount
+              });
+            });
+
+
         if (app.globalData.userInfo) {
             this.setData({
                 userInfo: app.globalData.userInfo,
@@ -58,7 +74,7 @@ Page({
             // 在没有 open-type=getUserInfo 版本的兼容处理
             wx.getUserInfo({
                 success: res => {
-                    app.globalData.userInfo = res.userInfo
+                    app.globalData.userInfo = res.userInfo;
                     this.setData({
                         userInfo: res.userInfo,
                         hasUserInfo: true

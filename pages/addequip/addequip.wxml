@@ -4,17 +4,17 @@
     <view class="page-addequip-input">
         <view class="addequip-input" style="position:absolute;top:{{ someData.statusBarHeight+someData.titleBarHeight+15 }}px">
             <view class="view-input">
-                <input class="weui-input" placeholder="请输入设备安装地址" />
+                <input class="weui-input" bindinput ="locationInput" placeholder="请输入设备安装地址" />
             </view>
             <view class="view-input">
-                <input class="weui-input" placeholder="请输入设备ID" value="{{ scanresult }}" />
+                <input class="weui-input" bindinput ="equipIDInput" placeholder="请输入设备ID" value="{{ scanresult }}" />
                 <image src='../../images/saoyisao.png' class="scancode" style='display:inline' mode="aspectFit" bindtap="click"></image>
             </view>
         </view>
     </view>
     <view class="page-addequip-button">
         <view class="addequip-weui-btn">
-            <button class="weui-btn" bindtap="testdel">提交</button>
+            <button class="weui-btn" bindtap="biddingequip">提交</button>
         </view>
     </view>
 </view>
