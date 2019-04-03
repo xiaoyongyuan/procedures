@@ -34,14 +34,15 @@ Component({
                 url: '../index/index',
             });
         },
-        back: function () {
-            wx.navigateBack({
-                delta: 1
-            });
-            // wx.navigateTo({
-            //     url:'/equip/equip'
-            // });
-        },
+        // back: function () {
+        //     // wx.navigateBack({
+        //     //     delta: 1
+        //     // });
+        //     console.log("hh");
+        //     wx.navigateTo({
+        //         url:'../../../pages/equip/equip'
+        //     });
+        // },
         aa: function(){
             console.log("123");
         },

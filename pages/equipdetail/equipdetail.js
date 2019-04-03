@@ -47,6 +47,11 @@ Page({
                     })
         }
     },
+    back: function () {
+        wx.switchTab({
+            url: '../equip/equip',   //注意switchTab只能跳转到带有tab的页面，不能跳转到不带tab的页面
+        })
+    },
     /**
      * 页面跳转防区设置
      */
@@ -88,7 +93,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        var that= this
+        var that= this;
         //当前时间
         var ctime = util.formatTime(new Date());
         //接收code
@@ -204,4 +209,4 @@ Page({
     onShareAppMessage: function () {
 
     }
-})
+});

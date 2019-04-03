@@ -20,12 +20,14 @@ Page({
         }
     },
     backequipdetail: function () {
-        wx.navigateBack({
-            delta: 1
-        })
-        // wx.navigateTo({
-        //     url:'../equipdetail/equipdetail'
-        // });
+        // wx.navigateBack({
+        //     delta: 1
+        // })
+        var that = this;
+        let currentcode = that.data.currentcode;
+        wx.navigateTo({
+            url:'../equipdetail/equipdetail?code=' + currentcode
+        });
     },
     //页面跳转
     changeTosettingequipinfo:function(){
@@ -43,6 +45,9 @@ Page({
         var that= this;
         //字符串转json
         var currentcode = options.currentcode;
+        that.setData({
+            currentcode:currentcode
+        });
         /**
          *  获取查看设备信息
          */

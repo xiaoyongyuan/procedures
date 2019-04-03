@@ -8,7 +8,6 @@ Page({
         userInfo: null,
         title:'个人中心',
         showModal: false,
-        cache:93.45,
         cname:wx.getStorageSync('companyuser'),
     },
     submit: function () {
@@ -26,9 +25,11 @@ Page({
         })
     },
     openToast: function () {
+        wx.clearStorageSync();
+        wx.clearStorage();
         this.setData({
             showModal: false,
-            cache:0.0,
+            currentSize:0,
         });
         wx.showToast({
             title: '清除成功！',
@@ -47,15 +48,12 @@ Page({
         request.postReq('','',"/api/user/getone",
             {},
             function(res){
-              console.log("设备",res);
               that.setData({
                   workdate:res.data.workdate,
                   acount:res.data.acount,
                   ecount:res.data.ecount
               });
             });
-
-
         if (app.globalData.userInfo) {
             this.setData({
                 userInfo: app.globalData.userInfo,
@@ -82,33 +80,31 @@ Page({
                 }
             })
         }
-
-        // wx.request({
-        //     url: 'http://api.aokecloud.cn/api/camera/getlist_forAPP', //这里填写你的接口路径
-        //     header: { //这里写你借口返回的数据是什么类型，这里就体现了微信小程序的强大，直接给你解析数据，再也不用去寻找各种方法去解析json，xml等数据了
-        //         'Content-Type': 'application/json'
-        //     },
-        //     method:"POST",
-        //     data: {//这里写你要请求的参数
-        //         x: '' ,
-        //         y: ''
-        //     },
-        //     success: function(res) {
-        //         //这里就是请求成功后，进行一些函数操作
-        //         that.setData({
-        //             alarm:res.data.stories[0].ga_prefix
-        //         })
-        //         console.log(res.data.stories[0].ga_prefix)
-        //     },
-        //     fail: function (res) {
-        //         console.log(res);
-        //     }
-        // })
     },
     onShow: function () {
         wx.setNavigationBarTitle({
             title: '个人中心'
         });
+        var that = this;
+        /**
+         * 请求设备列表接口
+         */
+        request.postReq('','',"/api/user/getone",
+            {},
+            function(res){
+                that.setData({
+                    workdate:res.data.workdate,
+                    acount:res.data.acount,
+                    ecount:res.data.ecount
+                });
+            });
+        wx.getStorageInfo({
+            success(res) {
+                that.setData({
+                    currentSize: res.currentSize
+                });
+            }
+        })
     },
     about: function (e) {
         wx.showModal({

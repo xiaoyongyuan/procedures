@@ -12,7 +12,7 @@
             </view>
         </view>
     </view>
-    <view class="page-addequip-button">
+    <view class="newpage-addequip-button">
         <view class="addequip-weui-btn">
             <button class="weui-btn" bindtap="addequip">提交</button>
         </view>

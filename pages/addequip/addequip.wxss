@@ -15,11 +15,13 @@ page{
     font-size: 32rpx;
 }
 .page-addequip-button{
-    margin-top: 600rpx;
+    position: absolute;
+    top: 600rpx;
     align-items: center;
     display: flex;
     flex-direction: column;
     font-size: 24rpx;
+    width: 100%;
 }
 .addequip-weui-btn{
     width: 90%;
@@ -30,6 +32,12 @@ page{
     border-radius: 24rpx;
     font-size: 36rpx;
 }
+/*.test{*/
+    /*height: 80rpx;*/
+    /*background-color: #df1737;*/
+    /*position: absolute;*/
+    /*top: 600rpx;*/
+/*}*/
 .addequip-input{
     height: 340rpx;
     background-color: #fff;

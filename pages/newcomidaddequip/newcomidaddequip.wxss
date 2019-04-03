@@ -14,7 +14,7 @@ page{
     flex-direction: column;
     font-size: 32rpx;
 }
-.page-addequip-button{
+.newpage-addequip-button{
     margin-top: 600rpx;
     align-items: center;
     display: flex;

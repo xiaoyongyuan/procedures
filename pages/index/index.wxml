@@ -77,7 +77,7 @@
           <view>清除缓存</view>
         </view>
         <view class="cache">
-          <text>{{ cache }}KB</text>
+          <text>{{ currentSize }}KB</text>
         </view>
       </view>
       <navigator

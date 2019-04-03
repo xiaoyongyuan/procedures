@@ -34,29 +34,52 @@ Page({
      */
     biddingequip:function(){
         var that = this;
-        /**
-         * 请求绑定设备接口
-         */
-        request.postReq('','',"/api/equipment/bidding",
-            {
-                location:that.data.location,
-                ecode:that.data.ecode
-            },
-            function(res){
-                console.log("绑定设备res",res);
-                if(res.success === 0){
-                    wx.showToast({
-                        title: '该设备已被绑定或者设备不存在',
-                        icon: 'none',
-                        duration: 2000
-                    });
-                }
-                if(res.success === 1){
-                    wx.navigateTo({
-                        url:'../equipdetailsettinginfo/equipdetailsettinginfo'
-                    })
-                }
+        let location = that.data.location;
+        let ecode = that.data.ecode;
+        console.log("location",location);
+        console.log("ecode",ecode);
+        if(ecode === '' || ecode === undefined){
+            wx.showToast({
+                title: '设备ID不能为空',
+                icon: 'none',
+                duration: 2000
             });
+            return;
+        }
+        if(location === '' || location === undefined){
+            wx.showToast({
+                title: '设备安装地址不能为空',
+                icon: 'none',
+                duration: 2000
+            });
+            return;
+        }
+        if(ecode !== undefined && location !== undefined){
+            console.log("ceshi");
+            /**
+             * 请求绑定设备接口
+             */
+            request.postReq('','',"/api/equipment/bidding",
+                {
+                    location:location,
+                    ecode:ecode
+                },
+                function(res){
+                    console.log("绑定设备res",res);
+                    if(res.success === 0){
+                        wx.showToast({
+                            title: '该设备已被绑定或者设备不存在',
+                            icon: 'none',
+                            duration: 2000
+                        });
+                    }
+                    if(res.success === 1){
+                        wx.navigateTo({
+                            url:'../equipdetailsettinginfo/equipdetailsettinginfo'
+                        })
+                    }
+                });
+        }
     },
     /**
      *消息推送

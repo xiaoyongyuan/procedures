@@ -12,6 +12,10 @@
             </view>
         </view>
     </view>
+
+    <!--<view class="test">提交</view>-->
+
+
     <view class="page-addequip-button">
         <view class="addequip-weui-btn">
             <button class="weui-btn" bindtap="biddingequip">提交</button>

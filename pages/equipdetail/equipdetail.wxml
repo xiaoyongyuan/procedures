@@ -1,6 +1,6 @@
 <!--pages/equipdetail/equipdetail.wxml-->
 <view class="page">
-    <navbar back home text="{{navigationBarTitle}}"></navbar>
+    <navbar bindtap='back' back home text="{{navigationBarTitle}}"></navbar>
     <view class="top" style="height: {{ someData.statusBarHeight+someData.titleBarHeight }}px">
         <!--占位view-->
     </view>
