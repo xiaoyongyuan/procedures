@@ -119,7 +119,7 @@ Page({
                 if (code) {
                     // ------ 发送凭证 ------
                     wx.request({
-                        url: 'http://api.aokecloud.cn/api/Wxuser/bidding_back',
+                        url: 'https://api.aokecloud.cn/api/Wxuser/bidding_back',
                         data: {
                             account:formData.phone,
                             xcode:code
@@ -170,7 +170,7 @@ Page({
                     if(code){
                         //调绑定接口
                         wx.request({
-                            url: 'http://api.aokecloud.cn/api/Wxuser/add',
+                            url: 'https://api.aokecloud.cn/api/Wxuser/add',
                             data: {
                                 account:formData.phone,
                                 xcode:code,
@@ -185,7 +185,7 @@ Page({
                                             if (code) {
                                                 //调登录接口
                                                 wx.request({
-                                                    url: 'http://api.aokecloud.cn/login/verifyforWX',
+                                                    url: 'https://api.aokecloud.cn/login/verifyforWX',
                                                     data: {
                                                         xcode: code
                                                     },

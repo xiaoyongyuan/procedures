@@ -2,7 +2,7 @@
  *
  * 服务器域名
  */
-var rootDocment = 'http://api.aokecloud.cn';
+var rootDocment = 'https://api.aokecloud.cn';
 const app = getApp();
 
 /**

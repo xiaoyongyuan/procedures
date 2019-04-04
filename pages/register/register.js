@@ -125,7 +125,7 @@ Page({
         }
         //注册发送验证码
         wx.request({
-            url: 'http://api.aokecloud.cn/api/autocode/auto',
+            url: 'https://api.aokecloud.cn/api/autocode/auto',
             data: {
                 tel:formData.phone
             },
@@ -166,7 +166,7 @@ Page({
                     if(code){
                         //调绑定接口
                         wx.request({
-                            url: 'http://api.aokecloud.cn/api/Wxuser/add',
+                            url: 'https://api.aokecloud.cn/api/Wxuser/add',
                             data: {
                                 account:formData.phone,
                                 xcode:code,
@@ -181,7 +181,7 @@ Page({
                                             if (code) {
                                                 //调登录接口
                                                 wx.request({
-                                                    url: 'http://api.aokecloud.cn/login/verifyforWX',
+                                                    url: 'https://api.aokecloud.cn/login/verifyforWX',
                                                     data: {
                                                         xcode: code
                                                     },

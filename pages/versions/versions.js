@@ -23,7 +23,7 @@ Page({
                      * 临时解绑微信号
                      */
                     wx.request({
-                        url: 'http://api.aokecloud.cn/api/wxuser/del',
+                        url: 'https://api.aokecloud.cn/api/wxuser/del',
                         data: {
                             xcode:code
                         },
