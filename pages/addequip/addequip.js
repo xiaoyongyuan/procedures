@@ -85,46 +85,46 @@ Page({
      *消息推送
      */
     testSubmit:function(e){
-        console.log("e",e);
-        var self= this;
-        let _access_token = wx.getStorageSync('access_token');
-        let openid = wx.getStorageSync('openid');
-        console.log("点击_access_token",_access_token);
-        console.log("点击openid",openid);
-        let url='https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token='+_access_token;
-        let _jsonData = {
-            access_token: _access_token,
-            touser: openid,
-            template_id: 'EU2DJS8nELQMuZ78CSIqppuSjzjnb3t3jwbJ62NONoQ',
-            form_id: e.detail.formId,
-            page: "pages/index/index",
-            data: {
-                "keyword1": { "value": "测试数据一", "color": "#173177" },
-                "keyword2": { "value": "测试数据二", "color": "#173177" },
-                "keyword3": { "value": "测试数据三", "color": "#173177" },
-                "keyword4": { "value": "测试数据四", "color": "#173177" },
-                "keyword5": { "value": "测试数据五", "color": "#173177" },
-                "keyword6": { "value": "测试数据六", "color": "#173177" },
-                "keyword7": { "value": "测试数据七", "color": "#173177" },
-            }
-        };
-        wx.request({
-            url: url,
-            data: {
-                value: _jsonData, access_token: _access_token
-            },
-            method: 'POST',
-            success: function (res) {
-                console.log("哈哈哈",res);
-            },
-            fail: function (err) {
-                console.log('request fail ', err);
-            },
-            complete: function (res) {
-                console.log("request completed!");
-            }
-
-        });
+        // console.log("e",e);
+        // var self= this;
+        // let _access_token = wx.getStorageSync('access_token');
+        // let openid = wx.getStorageSync('openid');
+        // console.log("点击_access_token",_access_token);
+        // console.log("点击openid",openid);
+        // let url='https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token='+_access_token;
+        // let _jsonData = {
+        //     access_token: _access_token,
+        //     touser: openid,
+        //     template_id: 'EU2DJS8nELQMuZ78CSIqppuSjzjnb3t3jwbJ62NONoQ',
+        //     form_id: e.detail.formId,
+        //     page: "pages/index/index",
+        //     data: {
+        //         "keyword1": { "value": "测试数据一", "color": "#173177" },
+        //         "keyword2": { "value": "测试数据二", "color": "#173177" },
+        //         "keyword3": { "value": "测试数据三", "color": "#173177" },
+        //         "keyword4": { "value": "测试数据四", "color": "#173177" },
+        //         "keyword5": { "value": "测试数据五", "color": "#173177" },
+        //         "keyword6": { "value": "测试数据六", "color": "#173177" },
+        //         "keyword7": { "value": "测试数据七", "color": "#173177" },
+        //     }
+        // };
+        // wx.request({
+        //     url: url,
+        //     data: {
+        //         value: _jsonData, access_token: _access_token
+        //     },
+        //     method: 'POST',
+        //     success: function (res) {
+        //         console.log("哈哈哈",res);
+        //     },
+        //     fail: function (err) {
+        //         console.log('request fail ', err);
+        //     },
+        //     complete: function (res) {
+        //         console.log("request completed!");
+        //     }
+        //
+        // });
     },
     //扫一扫
     click: function (event) {

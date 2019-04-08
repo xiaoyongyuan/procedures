@@ -1,4 +1,3 @@
-<!--pages/alarmdetail/alarmdetail.wxml-->
 <view class="page">
     <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}" bindtap="go"></view>
     <view class="navbar" style="{{'height: ' + navigationBarHeight}}">
@@ -17,13 +16,9 @@
             <view class='title'>{{text}}</view>
         </view>
     </view>
-
-    <!--<navbar back home text="{{navigationBarTitle}}"></navbar>-->
-
     <view class="navbars" style="margin-top: {{ someData.statusBarHeight+someData.titleBarHeight }}px">
         <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
     </view>
-
     <view class="alarmdetail">
         <!--报警图片-->
         <view class="alarmdetail-pic" hidden="{{currentTab!==0}}">
@@ -31,7 +26,6 @@
                 <canvas class='redCanvas' canvas-id="redCanvas" style="display: {{ reddisplay }}" />
                 <canvas class='blueCanvas' canvas-id="blueCanvas" style="display: {{ bluedisplay }}" />
             </view>
-            <!--<image src="{{ alarmdetailData.picpath }}" bindtap="submit"></image>-->
             <view class="alarmdetail-check">
                 <view class="alarmdetail-check-in">
                     <view class="alarmdetail-check-in-left" bindtap="surroundinfo" wx:if="{{ surround === true }}">
@@ -46,8 +40,6 @@
                         </view>
                         <text >围界信息</text>
                     </view>
-
-
                     <view class="alarmdetail-check-in-right" bindtap="alarminfo" wx:if="{{ alarminfo === true }}">
                         <view class="img-checkin">
                             <image src="/images/xuanze.png"></image>
@@ -68,7 +60,8 @@
                         <text>报警类型： {{ alarmdetailData.alarmtype }}</text>
                     </view>
                     <view class="alarmdetail-info-item-right">
-                        <text>报警对象： {{ alarmdetailData.tags }}</text>
+                        <text wx:if="{{ alarmdetailData.tags === '' }}">报警对象： 无</text>
+                        <text wx:else>报警对象： {{ alarmdetailData.tags }}</text>
                     </view>
                 </view>
                 <view class="alarmdetail-info-item">
