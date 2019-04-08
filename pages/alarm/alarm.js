@@ -444,6 +444,7 @@ Page({
         }
         that.setData({
             isRefreshing: true,
+            apptime:''
         });
         that.onShow();//数据请求
     },
