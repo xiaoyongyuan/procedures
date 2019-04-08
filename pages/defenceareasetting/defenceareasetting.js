@@ -58,7 +58,8 @@ Page({
             },
             function(res){
                 that.setData({
-                    field:res.data.field
+                    field:res.data.field,
+                    picpath:res.data.picpath
                 });
                 /**
                  * 两个都有
