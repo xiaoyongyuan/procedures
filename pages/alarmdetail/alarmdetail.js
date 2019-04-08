@@ -107,9 +107,14 @@ Page({
                     var percentx = that.data.alarmdetailimgWidth/that.data.alarmdetailData.pic_width;
                     var percenty = that.data.alarmdetailimgHeight/that.data.alarmdetailData.pic_height;
                     myblue_carvas = wx.createCanvasContext('blueCanvas', this);//1.创建carvas实例对象，方便后续使用。
-                    myblue_carvas.setStrokeStyle('#00e8e8');
+
                     myblue_carvas.setLineWidth(2);
                     for(var i = 0;i < that.data.alarmdetailData.finalresult1.length; i++){
+                        if(that.data.alarmdetailData.finalresult1[i].tag === 0){
+                            myblue_carvas.setStrokeStyle('#00e8e8');
+                        }else{
+                            myblue_carvas.setStrokeStyle('#bebf17');
+                        }
                         var x = that.data.alarmdetailData.finalresult1[i].x;
                         var y = that.data.alarmdetailData.finalresult1[i].y;
                         var w = that.data.alarmdetailData.finalresult1[i].w;
