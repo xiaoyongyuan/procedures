@@ -1,4 +1,3 @@
-var dateTimePicker = require('../../utils/dateTimePicker.js');
 const app = getApp();
 var request = require('../../utils/request.js');
 Page({
