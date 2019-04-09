@@ -53,7 +53,6 @@ Page({
                     ifdanger:1
                 },
                 function(res){
-                console.log("重置查询时间标记报警列表");
                     that.setData({
                         alarmListData:res.data
                     });
@@ -77,7 +76,6 @@ Page({
                     cid:that.data.selectedvalue,
                 },
                 function(res){
-                    console.log("重置查询时间没有标记报警列表");
                     that.setData({
                         alarmListData:res.data
                     });
@@ -129,7 +127,6 @@ Page({
                         ifdanger:1
                     },
                     function(res){
-                        console.log("日历时间标记报警列表");
                         that.setData({
                             alarmListData:res.data
                         });
@@ -153,7 +150,6 @@ Page({
                         cid:that.data.selectedvalue,
                     },
                     function(res){
-                        console.log("日历时间没有标记报警列表");
                         that.setData({
                             alarmListData:res.data
                         });
@@ -200,7 +196,6 @@ Page({
                     ifdanger:1
                 },
                 function(res){
-                    console.log("下拉框标记报警列表");
                     that.setData({
                         alarmListData:res.data
                     });
@@ -225,7 +220,6 @@ Page({
                     cid:value,
                 },
                 function(res){
-                    console.log("下拉框没有标记报警列表");
                     that.setData({
                         alarmListData:res.data
                     });
@@ -256,7 +250,6 @@ Page({
                 url:'../alarmdetail/alarmdetail?code=' + code +'&ifdanger=1'
             });
         }else {
-            //cid:that.data.selectedvalue,
             wx.navigateTo({
                 url:'../alarmdetail/alarmdetail?code=' + code +'&cid=' + that.data.selectedvalue
             });
@@ -310,11 +303,9 @@ Page({
         request.postReq(searchPageNum,callbackcount,"/api/camera/getlist_forAPP", {},
             function(res){
             if(res.success === 1){
-                console.log("首次进来设备列表");
                 var temp = res.data;
                 temp.splice(0, 0, {code:'sign',name:'收藏列表'});
                 temp.splice(0, 0, {code:'',name:'全部'});
-                console.log("temp",temp);
                 that.setData({
                     equipList:temp
                 });
@@ -326,7 +317,6 @@ Page({
                         apptime:''
                     },
                     function(res){
-                        console.log("首次进来报警列表");
                         that.setData({
                             alarmListData:res.data
                         });
@@ -378,7 +368,6 @@ Page({
                     ifdanger:1
                 },
                 function(res){
-                    console.log("监听显示标记报警列表");
                     that.setData({
                         alarmListData:res.data
                     });
@@ -402,7 +391,6 @@ Page({
                     cid:that.data.selectedvalue,
                 },
                 function(res){
-                    console.log("监听显示没有标记报警列表");
                     that.setData({
                         alarmListData:res.data
                     });
@@ -483,7 +471,6 @@ Page({
                     if(res.data.length !== 0){
                         let searchList = [];
                         //如果isFromSearch是true从data中取出数据，否则先从原来的数据继续添加
-                        console.log("isFromSearch",that.data.isFromSearch);
                         that.data.isFromSearch ? searchList=res.data : searchList=that.data.alarmListData.concat(res.data);
                         that.setData({
                             alarmListData: searchList, //获取数据数组
@@ -508,7 +495,6 @@ Page({
                     if(res.data.length !== 0){
                         let searchList = [];
                         //如果isFromSearch是true从data中取出数据，否则先从原来的数据继续添加
-                        console.log("isFromSearch",that.data.isFromSearch);
                         that.data.isFromSearch ? searchList=res.data : searchList=that.data.alarmListData.concat(res.data);
                         that.setData({
                             alarmListData: searchList, //获取数据数组
@@ -532,14 +518,11 @@ Page({
         let that = this;
         let searchPageNum = that.data.searchPageNum+1,//把第几次加载次数作为参数
             callbackcount =that.data.callbackcount; //返回数据的个数
-        console.log("到底部了");
         if(that.data.searchLoadingComplete === false){
             that.setData({
                 searchLoading: true
             });
         }
-        console.log("加载数据",that.data.searchLoading);
-        console.log("加载完成",that.data.searchLoadingComplete);
         if(that.data.searchLoading && !that.data.searchLoadingComplete){
             that.setData({
                 searchPageNum: that.data.searchPageNum+1,  //每次触发上拉事件，把searchPageNum+1
@@ -565,7 +548,6 @@ Page({
                             if(res.data.length !== 0){
                                 let searchList = [];
                                 //如果isFromSearch是true从data中取出数据，否则先从原来的数据继续添加
-                                console.log("isFromSearch",that.data.isFromSearch);
                                 that.data.isFromSearch ? searchList=res.data : searchList=that.data.alarmListData.concat(res.data);
                                 that.setData({
                                     alarmListData: searchList, //获取数据数组
@@ -591,7 +573,6 @@ Page({
                             if(res.data.length !== 0){
                                 let searchList = [];
                                 //如果isFromSearch是true从data中取出数据，否则先从原来的数据继续添加
-                                console.log("isFromSearch",that.data.isFromSearch);
                                 that.data.isFromSearch ? searchList=res.data : searchList=that.data.alarmListData.concat(res.data);
                                 that.setData({
                                     alarmListData: searchList, //获取数据数组
@@ -607,8 +588,6 @@ Page({
                         });
                 }
             }
-            console.log("that.data.searchPageNum",that.data.searchPageNum);
-            console.log("wojiu看看",that.data.searchLoading);
         }
     },
 

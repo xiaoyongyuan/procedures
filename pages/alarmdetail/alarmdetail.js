@@ -32,15 +32,11 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log("ceshi");
         var that= this;
         // 字符串转json
         const code = options.code;
         const ifdanger = options.ifdanger;
         const cid = options.cid;
-        console.log("ifdanger",ifdanger);
-        console.log("cid",cid);
-
         that.setData({
             currentcode:code
         });
@@ -139,7 +135,6 @@ Page({
     next:function(){
         var that = this;
         var nextcode = that.data.alarmdetailData.next;
-        console.log("nextcode",nextcode);
         if(that.data.alarmdetailData.next === ""){
             wx.showToast({
                 title: '已是最后一条报警',
@@ -343,7 +338,6 @@ Page({
                 reddisplay:'none'
             });
         }
-        console.log("surround",that.data.surround);
     },
     /**
      * 报警信息
@@ -388,7 +382,7 @@ Page({
         var that = this;
            that.setData({
                sign:!that.data.sign
-           })
+           });
         var updateifdanger ;
         if(that.data.sign){
             updateifdanger = 1
@@ -401,8 +395,6 @@ Page({
                 ifdanger:updateifdanger
             },
             function (res) {
-
-               console.log("res",res.data[0].ifdanger);
                if(res.data[0].ifdanger === 1){
                    wx.showToast({
                        title: '标记成功！',
