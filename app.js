@@ -28,27 +28,6 @@ App({
     logs.unshift(Date.now());
     wx.setStorageSync('logs', logs);
 
-    // 登录
-    //  wx.login({
-    //         success: res => {
-    //             // 发送 res.code 到后台换取 openId, sessionKey, unionId
-    //             var code = res.code;
-    //             console.log("code",res.code);
-    //             wx.request({
-    //                 url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wxdf00c800a21aff71&secret=53bddca18ba4dbceb9026176b2cacc05&js_code='+ code +'&grant_type=authorization_code',
-    //                 data: {},
-    //                 header: {
-    //                     'content-type': 'application/json'
-    //                 },
-    //                 success: function(res) {
-    //                     // openid = res.data.openid //返回openid
-    //                     console.log("openid",res);
-    //                     wx.setStorageSync('openid', res.data.openid);
-    //                 }
-    //             })
-    //         }
-    //     });
-
     // 获取用户的当前设置。返回值中只会出现小程序已经向用户请求过的权限
     wx.getSetting({
       success: res => {
@@ -89,15 +68,6 @@ App({
                                             url: '/pages/index/index'
                                         });
                                     }
-                                    // wx.request({
-                                    //     url:'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxdf00c800a21aff71&secret=53bddca18ba4dbceb9026176b2cacc05',
-                                    //     method: 'POST',
-                                    //     dataType:'json',
-                                    //     success(res) {
-                                    //         console.log("access_token ",res.data.access_token);
-                                    //         wx.setStorageSync('access_token', res.data.access_token);
-                                    //     }
-                                    // });
                                 }
                                 if(res.data.success === 0){
                                     wx.navigateTo({
@@ -106,6 +76,7 @@ App({
                                 }
                             }
                         });
+
                     }
                 }
             });
