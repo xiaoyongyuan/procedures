@@ -70,6 +70,7 @@
                             <text wx:elif="{{ item.atype === 7008 }}">报警类型:设备解绑</text>
                             <text wx:elif="{{ item.atype === 7009 }}">报警类型:异常登录</text>
                             <text wx:else>报警类型:设备绑定</text>
+                            <image wx:if="{{ item.atype === 12 }}" class="zhengdian" src='/images/zhengdain.png'></image>
                         </view>
                         <view class="alarm-list-one-top-right-B">
                             <text>报警时间:{{ item.atime }}</text>
@@ -100,6 +101,7 @@
                             <text wx:elif="{{ item.atype === 7008 }}">报警类型:设备解绑</text>
                             <text wx:elif="{{ item.atype === 7009 }}">报警类型:异常登录</text>
                             <text wx:else>报警类型:设备绑定</text>
+                            <image wx:if="{{ item.atype === 12 }}" class="zhengdian" src='/images/zhengdain.png'></image>
                         </view>
                         <view class="alarm-list-one-top-right-B">
                             <text>报警时间:{{ item.atime }}</text>

@@ -128,6 +128,11 @@ page {
 .list-msg2 text{
     font-size: 28rpx;
 }
+.zhengdian{
+    height:40rpx;
+    width:40rpx;
+    margin-left: 30rpx;
+}
 
 
 @keyframes myfirst {
