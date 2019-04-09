@@ -251,9 +251,16 @@ Page({
         var Id = e.currentTarget.id;
         //获取当前点击元素的属性值。selectedvalue apptime
         var code = that.data.alarmListData[Id].code;
-        wx.navigateTo({
-            url:'../alarmdetail/alarmdetail?code=' + code
-        });
+        if(that.data.selectedvalue === 'sign'){
+            wx.navigateTo({
+                url:'../alarmdetail/alarmdetail?code=' + code +'&ifdanger=1'
+            });
+        }else {
+            //cid:that.data.selectedvalue,
+            wx.navigateTo({
+                url:'../alarmdetail/alarmdetail?code=' + code +'&cid=' + that.data.selectedvalue
+            });
+        }
     },
     /**
      * 扫一扫
