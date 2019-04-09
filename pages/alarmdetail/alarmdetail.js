@@ -395,19 +395,21 @@ Page({
                 ifdanger:updateifdanger
             },
             function (res) {
-               if(res.data[0].ifdanger === 1){
-                   wx.showToast({
-                       title: '标记成功！',
-                       icon: 'none',
-                       duration: 2000
-                   });
-               }else {
-                   wx.showToast({
-                       title: '您已取消标记！',
-                       icon: 'none',
-                       duration: 2000
-                   });
-               }
+                if(res.success === 1){
+                    if(res.data[0].ifdanger === 1){
+                        wx.showToast({
+                            title: '标记成功！',
+                            icon: 'none',
+                            duration: 2000
+                        });
+                    }else {
+                        wx.showToast({
+                            title: '您已取消标记！',
+                            icon: 'none',
+                            duration: 2000
+                        });
+                    }
+                }
             }
         )
 
