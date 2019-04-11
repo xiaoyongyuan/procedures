@@ -116,15 +116,22 @@ Page({
                 that.setData({
                     equipdetailData:res.data,
                     workingtime:res.workingtime.length,
-                    lastheart:res.heartdata.time,
-                    temp:res.heartdata.temp,
-                    softversion:res.login.version,
                     upgrade:res.upgrade,
-                    logintime:res.login.time,
-                    status:res.heartdata.status,
                     field:res.data.field,
-                    // atype:res.data.atype
                 });
+                if(res.heartdata !== ''){
+                    that.setData({
+                        lastheart:res.heartdata.time,
+                        temp:res.heartdata.temp,
+                        status:res.heartdata.status,
+                    })
+                }
+                if(res.login.length !== 0){
+                    that.setData({
+                        logintime:res.login.time,
+                        softversion:res.login.version,
+                    })
+                }
                 var currenttime = new Date(ctime);
                 //两个时间相差的分钟数
                 var  mislastheart =  parseInt(currenttime - new Date(that.data.lastheart))/ 1000 / 60;
