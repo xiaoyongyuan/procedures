@@ -100,5 +100,6 @@ App({
   },
     globalData: {
         userInfo: null,
+        cname:null
     },
 });

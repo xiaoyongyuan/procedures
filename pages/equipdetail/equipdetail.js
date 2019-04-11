@@ -122,7 +122,8 @@ Page({
                     upgrade:res.upgrade,
                     logintime:res.login.time,
                     status:res.heartdata.status,
-                    field:res.data.field
+                    field:res.data.field,
+                    // atype:res.data.atype
                 });
                 var currenttime = new Date(ctime);
                 //两个时间相差的分钟数

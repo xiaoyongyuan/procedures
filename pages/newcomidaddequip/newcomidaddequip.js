@@ -30,7 +30,7 @@ Page({
         console.log("ecode",that.data.ecode);
     },
     /**
-     *临时解绑微信号
+     *绑定设备
      */
     addequip:function(e){
         var that = this;
@@ -48,6 +48,37 @@ Page({
             },
             function (res) {
                 console.log("res",res);
+                if(res.success === 0){
+                    wx.showToast({
+                        title: '该设备已被绑定或者设备不存在',
+                        icon: 'none',
+                        duration: 2000
+                    });
+                }
+                if(res.success === 1){
+                    wx.showToast({
+                        title: '设备绑定成功',
+                        icon: 'none',
+                        duration: 2000
+                    });
+                    var that = this;
+                    /**
+                     * 请求设备列表接口
+                     */
+                    request.postReq('','',"/api/user/getone",
+                        {},
+                        function(res){
+                            // that.setData({
+                            //     workdate:res.data.workdate,
+                            //     acount:res.data.acount,
+                            //     ecount:res.data.ecount
+                            // });
+                            wx.setStorageSync('workdate');
+                            wx.switchTab({
+                                url: '/pages/index/index'
+                            });
+                        });
+                }
             });
     },
     //扫一扫
@@ -57,12 +88,12 @@ Page({
             success: (res) => {
                 that.setData({
                     scanresult:res.result
-                })
+                });
                 wx.showToast({
                     title: '扫描成功',
                     icon: 'success',
                     duration: 2000
-                })
+                });
             },
             fail: (res) => {
                 wx.showToast({

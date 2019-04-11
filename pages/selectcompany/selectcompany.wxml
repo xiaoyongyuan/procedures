@@ -6,15 +6,9 @@
     </view>
     <view class="view-list-bac" style="height: {{ screenHeight - someData.statusBarHeight - someData.titleBarHeight }}px">
         <view class="view-list">
-            <navigator url="#" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="selectcompany">
+            <navigator url="/pages/index/index" class="weui-cell weui-cell_access" wx:for="{{ companylist }}"  wx:key="index" id="{{ index }}" hover-class="weui-cell_active" bindtap="selectcompany">
                 <view class="weui-cell__bd weui-cell_primary">
-                    <view>西安文物监控系统</view>
-                </view>
-                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-            </navigator>
-            <navigator url="#" class="weui-cell weui-cell_access test" hover-class="weui-cell_active" bindtap="changeToaddequip">
-                <view class="weui-cell__bd weui-cell_primary">
-                    <view>树莓派企业测试账户1</view>
+                    <view>{{ item.cname }}</view>
                 </view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator>

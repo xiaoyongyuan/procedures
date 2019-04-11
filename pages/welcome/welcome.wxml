@@ -1,3 +1,4 @@
 <view class="page">
-    <text>欢迎进入智能围界系统</text>
+    <!--<text>欢迎进入智能围界系统</text>-->
+    <image class="welcome" src="../../images/zu.png"></image>
 </view>

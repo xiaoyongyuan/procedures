@@ -39,7 +39,7 @@ Page({
         console.log("that.data.starttime",that.data.starttime);
         this.setData({
             starttime: e.detail.value
-        })
+        });
         console.log("that.data.starttime",that.data.starttime);
     },
     /**

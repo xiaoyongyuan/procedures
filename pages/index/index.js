@@ -8,7 +8,6 @@ Page({
         userInfo: null,
         title:'个人中心',
         showModal: false,
-        cname:wx.getStorageSync('companyuser'),
     },
     submit: function () {
         this.setData({
@@ -82,6 +81,14 @@ Page({
         }
     },
     onShow: function () {
+        var that = this;
+        that.setData({
+           cname:wx.getStorageSync('companyuser'),
+            workdate:wx.getStorageSync("workdate")
+        });
+        // console.log("workdate",workdate);
+        // var cname = app.globalData.cname;
+        // console.log("cname",cname);
         wx.setNavigationBarTitle({
             title: '个人中心'
         });

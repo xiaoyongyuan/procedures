@@ -193,6 +193,11 @@ Page({
                                                         if (res.data.success === 1) {
                                                             console.log("hh");
                                                             if (res.data.data.account !== '' && res.data.data.account !== undefined) {
+                                                                wx.showToast({
+                                                                    title: '注册成功！',
+                                                                    icon: 'none',
+                                                                    duration: 2000
+                                                                });
                                                                 wx.setStorageSync('user', res.data.data.account);
                                                                 wx.setStorageSync('account', res.data.data.account);
                                                                 wx.setStorageSync('comid', res.data.data.comid);

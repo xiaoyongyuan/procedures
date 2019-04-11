@@ -4,7 +4,7 @@
   <view class='title-container' style="height:{{someData.titleBarHeight}}px">
     <view class='capsule' wx:if="{{ back || home }}">
       <view>
-        <image src='img/back.svg' bindtap='back' wx:if="{{back}}"></image>
+        <!--<image src='img/back.svg' bindtap='back' wx:if="{{back}}"></image>-->
         <text class="unlabeled" bindtap="addequip">添加设备</text>
       </view>
     </view>

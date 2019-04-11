@@ -25,7 +25,7 @@
 .capsule .unlabeled{
   width: 120rpx;
   position: absolute;
-  left: 100rpx;
+  /*left: 100rpx;*/
   color: white;
   font-size: 24rpx;
   margin-top: 6rpx;

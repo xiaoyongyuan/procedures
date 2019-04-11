@@ -65,7 +65,9 @@
                 <text>报警类型</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>{{ equipdetailData.alarmtype }}</text>
+                <text wx:if="{{ equipdetailData.atype === 110 }}">匪警</text>
+                <text wx:elif="{{ equipdetailData.atype === 119 }}">火警</text>
+                <text wx:else>入侵报警</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -81,7 +83,8 @@
                 <text>最后报警时间</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>{{ equipdetailData.lasttime }}</text>
+                <text wx:if="{{ equipdetailData.lasttime === '' }}">无</text>
+                <text wx:else>{{ equipdetailData.lasttime }}</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -98,7 +101,8 @@
                 <text>设防时间</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>{{ workingtime }}段</text>
+                <text wx:if="{{ workingtime === 0 }}" style="color: #df1737">未设定</text>
+                <text wx:else>{{ workingtime }}段</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -106,7 +110,8 @@
                 <text>上次心跳</text>
             </view>
             <view class="equipinfo-item-right">
-                <text>{{ lastheart }}</text>
+                <text wx:if="{{ lastheart === '' || lastheart ===undefined }}">无</text>
+                <text wx:else>{{ lastheart }}</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -114,7 +119,8 @@
                 <text>设备温度</text>
             </view>
             <view class="equipinfo-item-right">
-                <text wx:if="{{temp > 50}}" style="color: #df1737">{{ temp }}℃</text>
+                <text wx:if="{{ temp === '' || temp ===undefined }}">无</text>
+                <text wx:elif="{{temp > 50}}" style="color: #df1737">{{ temp }}℃</text>
                 <text wx:else style="color: #00a0e9">{{ temp }}℃</text>
             </view>
         </view>
@@ -155,9 +161,9 @@
                     <text>设备离线</text>
                 </view>
                 <view class="camera-item-right-online" wx:else>
-                    <text wx:if="{{ status === 'run' }}">运行中</text>
-                    <text wx:elif="{{ status === 'stop' }}">不在布防时间内</text>
-                    <text wx:else>摄像头未绑定</text>
+                    <text style="color: #df1737" wx:if="{{ status === 'run' }}">运行中</text>
+                    <text style="color: #df1737" wx:elif="{{ status === 'stop' }}">不在布防时间内</text>
+                    <text style="color: #df1737" wx:else>摄像头未绑定</text>
                 </view>
             </view>
         </view>
@@ -166,7 +172,8 @@
                 <text>设备软件版本</text>
             </view>
             <view class="camera-item-right">
-                <text>{{ softversion }}</text>
+                <text wx:if="{{ softversion === '' || softversion === undefined }}">无</text>
+                <text wx:else>{{ softversion }}</text>
             </view>
         </view>
         <view class="camera-item">
@@ -174,7 +181,8 @@
                 <text>设备硬件版本</text>
             </view>
             <view class="camera-item-right">
-                <text>{{ softversion }}</text>
+                <text wx:if="{{ softversion === '' || softversion === undefined}}">无</text>
+                <text wx:else>{{ softversion }}</text>
             </view>
         </view>
         <view class="camera-item">
@@ -182,7 +190,7 @@
                 <text>升级时间</text>
             </view>
             <view class="camera-item-right">
-                <text wx:if="{{ upgrade.length === 0 }}">无</text>
+                <text wx:if="{{ upgrade.length === 0}}">无</text>
                 <text wx:else>{{ detail.upgradetime }}</text>
             </view>
         </view>

@@ -74,6 +74,11 @@ Page({
                         });
                     }
                     if(res.success === 1){
+                        wx.showToast({
+                            title: '设备绑定成功',
+                            icon: 'none',
+                            duration: 2000
+                        });
                         wx.navigateTo({
                             url:'../equipdetailsettinginfo/equipdetailsettinginfo'
                         })

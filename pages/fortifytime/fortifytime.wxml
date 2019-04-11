@@ -52,10 +52,9 @@
                 </view>
             </view>
             <view class="queryechart">
-                <text bindtap="changeTofortifytimeEchart">图表查看</text>
+                <text wx:if="{{ 1 === 2 }}" bindtap="changeTofortifytimeEchart">图表查看</text>
             </view>
         </view>
-
     <view class="notime" style="display: {{ notime }}">
         <text>还没有布防时间！！！</text>
     </view>
