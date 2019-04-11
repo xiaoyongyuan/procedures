@@ -202,8 +202,8 @@ Page({
                                                                 console.log("res.data.data.list.length",res.data.data.list.length);
                                                                 if(res.data.data.list.length > 0){
                                                                     for(var i = 0;i < res.data.data.list.length;i++ ){
-                                                                        companylist.push(res.data.data.list[i].cname);
-                                                                        console.log("cnam",res.data.data.list[i].cname);
+                                                                        companylist.push(res.data.data.list[i]);
+                                                                        console.log("cnam",res.data.data.list[i]);
                                                                     }
                                                                 }
                                                                 console.log("companylist",companylist);
