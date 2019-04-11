@@ -48,8 +48,9 @@ page{
     display: flex;
 }
 .weui-input{
-    width: 85%;
+    width: 82%;
     display:inline-block;
+    margin-left: 20rpx;
 }
 .scancode{
     width: 50rpx;

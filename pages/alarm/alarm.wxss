@@ -189,12 +189,13 @@ page {
 .alarm-list-one-bottom{
     display: flex;
     margin: auto;
-    height: 25%;
+    /*height: 25%;*/
     background-color: #f4f4f4;
+    /*background-color: #df1737;*/
     width: 80%;
     border-bottom-left-radius: 16rpx;
     border-bottom-right-radius: 16rpx;
-    font-size: 28rpx;
+    font-size: 24rpx;
 }
 .alarm-list-one-bottom-left{
     width: 50%;

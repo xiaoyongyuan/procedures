@@ -79,7 +79,7 @@
         </view>
         <view class="guideinfo-middle">
             <text>
-                2、删除防区：按钮的颜色和防区的颜色一一对应，最多可绘制两个防区，要想绘制防区必须删除一个防区
+                2、删除防区：按钮的颜色和防区的颜色一一对应，最多可绘制两个防区，如需绘制其他区域防区必须删除原有防区进行绘制
             </text>
         </view>
         <view class="guideinfo-bottom">

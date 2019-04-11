@@ -20,14 +20,14 @@ Page({
         }
     },
     backequipdetail: function () {
-        // wx.navigateBack({
-        //     delta: 1
-        // })
-        var that = this;
-        let currentcode = that.data.currentcode;
-        wx.navigateTo({
-            url:'../equipdetail/equipdetail?code=' + currentcode
-        });
+        wx.navigateBack({
+            delta: 1
+        })
+        // var that = this;
+        // let currentcode = that.data.currentcode;
+        // wx.navigateTo({
+        //     url:'../equipdetail/equipdetail?code=' + currentcode
+        // });
     },
     //页面跳转
     changeTosettingequipinfo:function(){
@@ -45,6 +45,7 @@ Page({
         var that= this;
         //字符串转json
         var currentcode = options.currentcode;
+        console.log("currentcode",currentcode);
         that.setData({
             currentcode:currentcode
         });
@@ -59,10 +60,21 @@ Page({
                 console.log("res.data",res.data);
                that.setData({
                    camerainfo:res.data,
-                   version:res.login.version,
-                   temp:res.heartdata.temp,
-                   status:res.heartdata.status
+                   // version:res.login.version,
+                   // temp:res.heartdata.temp,
+                   // status:res.heartdata.status
                })
+                if(res.heartdata !== '' || res.heartdata !== null){
+                    // that.setData({
+                    //     temp:res.heartdata.temp,
+                    //     status:res.heartdata.status,
+                    // })
+                }
+                if(res.login.length !== 0){
+                    that.setData({
+                        softversion:res.login.version,
+                    })
+                }
             })
 
     },

@@ -8,7 +8,7 @@
                 <view>
                     <pickerYMDHM bindtap="isload" bind:onPickerChange="onPickerChange"></pickerYMDHM>
                     <image class="calendar" src='/images/calendar.png'></image>
-                    <image src='/images/saoyisao2.png' bindtap="clicks"></image>
+                    <image wx:if="{{ 1 === 2}}" src='/images/saoyisao2.png' bindtap="clicks"></image>
                 </view>
             </view>
             <view class='title'>{{text}}</view>

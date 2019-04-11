@@ -51,7 +51,7 @@
                 <text>用户密码:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text wx:if="{{ camerainfo.camerapasswd === '' || camerainfo.camerapasswd === undefined}}"></text>
+                <text wx:if="{{ camerainfo.camerapasswd === '' || camerainfo.camerapasswd === undefined}}">无</text>
                 <text wx:else>{{ camerainfo.camerapasswd }}</text>
             </view>
         </view>
@@ -99,7 +99,7 @@
                 <text wx:else>摄像头未绑定</text>
             </view>
         </view>
-        <view class="equipinfo-item-last">
+        <view class="equipinfo-item">
             <view class="equipinfo-item-left">
                 <text>设置状态:</text>
             </view>
@@ -110,8 +110,44 @@
                 <text wx:else>提交中</text>
             </view>
         </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>设备类型:</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>{{ camerainfo.ipctype }}</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>设备场距:</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>{{ camerainfo.fielddistance }}</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>设备场景:</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>{{ camerainfo.scene }}</text>
+            </view>
+        </view>
+        <view class="equipinfo-item-last">
+            <view class="equipinfo-item-left">
+                <text>报警类型:</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>{{ camerainfo.alarmtype }}</text>
+            </view>
+        </view>
     </view>
+
+
+
     <view class="settinginfo-btn">
         <button class="weui-btn" bindtap="changeTosettingequipinfo">设置</button>
     </view>
+    <view style="height: 48rpx"></view>
 </view>

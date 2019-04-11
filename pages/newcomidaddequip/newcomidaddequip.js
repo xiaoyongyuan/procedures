@@ -62,22 +62,9 @@ Page({
                         duration: 2000
                     });
                     var that = this;
-                    /**
-                     * 请求设备列表接口
-                     */
-                    request.postReq('','',"/api/user/getone",
-                        {},
-                        function(res){
-                            // that.setData({
-                            //     workdate:res.data.workdate,
-                            //     acount:res.data.acount,
-                            //     ecount:res.data.ecount
-                            // });
-                            wx.setStorageSync('workdate');
-                            wx.switchTab({
-                                url: '/pages/index/index'
-                            });
-                        });
+                    wx.navigateTo({
+                        url:'../equipdetailsettinginfo/equipdetailsettinginfo'
+                    });
                 }
             });
     },
