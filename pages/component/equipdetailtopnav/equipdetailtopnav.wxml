@@ -4,7 +4,7 @@
   <view class='title-container' style="height:{{someData.titleBarHeight}}px">
     <view class='capsule' wx:if="{{ back || home }}">
       <view>
-        <image src='img/back.svg' wx:if="{{back}}"></image>
+        <image bindtap="back" src='img/back.svg' wx:if="{{back}}"></image>
         <text class="unlabeled" bindtap="aa">刷新</text>
       </view>
     </view>

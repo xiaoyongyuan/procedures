@@ -47,11 +47,11 @@ Page({
                     })
         }
     },
-    back: function () {
-        wx.switchTab({
-            url: '../equip/equip',   //注意switchTab只能跳转到带有tab的页面，不能跳转到不带tab的页面
-        })
-    },
+    // back: function () {
+    //     wx.switchTab({
+    //         url: '../equip/equip',   //注意switchTab只能跳转到带有tab的页面，不能跳转到不带tab的页面
+    //     })
+    // },
     /**
      * 页面跳转防区设置
      */
@@ -98,6 +98,7 @@ Page({
         var ctime = util.formatTime(new Date());
         //接收code
         var code = options.code;
+        wx.setStorageSync("flushcode",code);
         //接收设备是否离线
         var ismist = options.mist;
         that.setData({
