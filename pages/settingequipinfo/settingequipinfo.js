@@ -1,5 +1,6 @@
 // pages/settingequipinfo/settingequipinfo.js
 const app = getApp();
+var request = require('../../utils/request.js');
 Page({
 
     /**
@@ -21,12 +22,64 @@ Page({
         var that = this;
         var IP = options.IP;
         var port = options.port;
+        var currentcode = options.currentcode;
         that.setData({
-            IP:IP,
-            port:port
+            IP:IP === 'undefined' ? '' : IP,
+            port:port === 'undefined' ? '' : port,
+            currentcode:currentcode
         })
+        console.log("IP",that.data.IP);
     },
-
+    /**
+     * 修改设备信息
+     */
+    formBindsubmit:function(){
+        var that = this;
+        // wxaccount(微信号)  wxtype=1
+        // code,ip,authport,ausername,apassword,user,comid
+        request.postReq('','',"/api/camera/camerareset",
+            {
+                code:that.data.currentcode,
+                ip:that.data.IP,
+                authport:that.data.port,
+                ausername:that.data.userName,
+                apassword:that.data.passWd
+            },
+            function(res){
+                console.log("res",res);
+                wx.navigateTo({
+                    url:'../equipdetailsettinginfo/equipdetailsettinginfo?currentcode=' + that.data.currentcode
+                })
+            })
+    },
+    cameraipInput:function(e){
+        var that = this;
+        that.setData({
+            cameraip:e.detail.value
+        });
+        console.log("cameraip",that.data.cameraip);
+    },
+    cameraportnoInput:function(e){
+        var that = this;
+        that.setData({
+            cameraport:e.detail.value
+        });
+        console.log("cameraport",that.data.cameraport);
+    },
+    userNameInput:function(e){
+        var that = this;
+        that.setData({
+            userName:e.detail.value
+        });
+        console.log("userName",that.data.userName);
+    },
+    passWdInput:function(e){
+        var that = this;
+        that.setData({
+            passWd:e.detail.value
+        });
+        console.log("passWd",that.data.passWd);
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

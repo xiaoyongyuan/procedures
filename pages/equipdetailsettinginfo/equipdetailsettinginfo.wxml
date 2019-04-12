@@ -60,7 +60,7 @@
     <view class="equipdetail">
         <view class="equipinfo-item-first">
             <text>设备详情</text>
-            <view class="equipinfo-flush">
+            <view class="equipinfo-flush" bindtap="flush">
                 <image class="equipinfo-flush-img" src="/images/flush.png"></image>
             </view>
         </view>
@@ -69,6 +69,7 @@
                 <text>软件版本号:</text>
             </view>
             <view class="equipinfo-item-right">
+                <text wx:if="{{ softversion === '' || softversion === undefined}}">无</text>
                 <text>{{ version }}</text>
             </view>
         </view>
@@ -77,6 +78,7 @@
                 <text>硬件版本号:</text>
             </view>
             <view class="equipinfo-item-right">
+                <text wx:if="{{ softversion === '' || softversion === undefined}}">无</text>
                 <text>{{ version }}</text>
             </view>
         </view>
@@ -106,8 +108,8 @@
             <view class="equipinfo-item-right">
                 <text wx:if="{{ camerainfo.echange === 0 }}" style="color: #00a0e9">未提交</text>
                 <text wx:elif="{{ camerainfo.echange === 1 }}" style="color: #00a0e9">设置成功</text>
-                <text wx:elif="{{ camerainfo.echange === 2 }}">设置失败</text>
-                <text wx:else>提交中</text>
+                <text wx:elif="{{ camerainfo.echange === 2 }}" style="color: #00a0e9">设置失败</text>
+                <text wx:else style="color: #00a0e9">提交中</text>
             </view>
         </view>
         <view class="equipinfo-item">

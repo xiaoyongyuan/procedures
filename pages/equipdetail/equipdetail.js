@@ -34,14 +34,15 @@ Page({
     changeTosettinginfo:function(){
         var that = this;
         var currentcode = that.data.currentcode;
-        if(that.data.ismist === "false"){
-            wx.showToast({
-                title: '设备离线，无法操作！',
-                icon: 'none',
-                duration: 2000
-            });
-        }
-        if(that.data.ismist === "true"){
+        // if(that.data.ismist === "false"){
+        //     wx.showToast({
+        //         title: '设备离线，无法操作！',
+        //         icon: 'none',
+        //         duration: 2000
+        //     });
+        // }
+        // if(that.data.ismist === "false"){
+        if(1 === 1){
             wx.navigateTo({
                         url:'../equipdetailsettinginfo/equipdetailsettinginfo?currentcode=' + currentcode
                     })
@@ -58,14 +59,15 @@ Page({
     changeTodefenceareasetting:function(){
         var that = this;
         const fieldStr = JSON.stringify(that.data.field);
-        if(that.data.ismist === "false"){
-            wx.showToast({
-                title: '设备离线，无法操作！',
-                icon: 'none',
-                duration: 2000
-            });
-        }
-        if(that.data.ismist === "true"){
+        // if(that.data.ismist === "false"){
+        //     wx.showToast({
+        //         title: '设备离线，无法操作！',
+        //         icon: 'none',
+        //         duration: 2000
+        //     });
+        // }
+        // if(that.data.ismist === "true"){
+        if(1 === 1){
             wx.navigateTo({
                 url:'../defenceareasetting/defenceareasetting?fieldStr=' + fieldStr + '&currentcode=' + that.data.currentcode
             })
@@ -77,14 +79,15 @@ Page({
      */
     changeTofortifytime:function(){
         var that = this;
-        if(that.data.ismist === "false"){
-            wx.showToast({
-                title: '设备离线，无法操作！',
-                icon: 'none',
-                duration: 2000
-            });
-        }
-        if(that.data.ismist === "true"){
+        // if(that.data.ismist === "false"){
+        //     wx.showToast({
+        //         title: '设备离线，无法操作！',
+        //         icon: 'none',
+        //         duration: 2000
+        //     });
+        // }
+        // if(that.data.ismist === "true"){
+        if(1 === 1){
             wx.navigateTo({
                 url:'../fortifytime/fortifytime?code=' + that.data.currentcode
             })
@@ -238,6 +241,59 @@ Page({
         that.setData({
             querybtn:false
         });
+        //当前时间
+        var ctime = util.formatTime(new Date());
+        // //接收code
+        // var code = options.code;
+        // wx.setStorageSync("flushcode",code);
+        // //接收设备是否离线
+        // var ismist = options.mist;
+        // that.setData({
+        //     currentcode:code,
+        //     ismist:ismist
+        // });
+        /**
+         * 请求设备详情接口
+         */
+
+        request.postReq('','',"/api/camera/getone",
+            {
+                code:that.data.currentcode
+            },
+            function(res){
+                that.setData({
+                    equipdetailData:res.data,
+                    workingtime:res.workingtime.length,
+                    upgrade:res.upgrade,
+                    field:res.data.field,
+                });
+                if(res.heartdata !== ''){
+                    that.setData({
+                        lastheart:res.heartdata.time,
+                        temp:res.heartdata.temp,
+                        status:res.heartdata.status,
+                    })
+                }
+                if(res.login.length !== 0){
+                    that.setData({
+                        logintime:res.login.time,
+                        softversion:res.login.version,
+                    })
+                }
+                var currenttime = new Date(ctime);
+                //两个时间相差的分钟数
+                var  mislastheart =  parseInt(currenttime - new Date(that.data.lastheart))/ 1000 / 60;
+                var  mislasttime = parseInt(currenttime - new Date(that.data.equipdetailData.lasttime))/ 1000 / 60;
+                if(mislastheart > 1 && mislasttime > 1){
+                    that.setData({
+                        isonline:false
+                    })
+                }else {
+                    that.setData({
+                        isonline:true
+                    })
+                }
+            })
     },
 
     /**

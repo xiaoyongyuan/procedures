@@ -29,13 +29,45 @@ Page({
         //     url:'../equipdetail/equipdetail?code=' + currentcode
         // });
     },
+    /**
+     * 设备详情刷新
+     */
+    flush:function(){
+        var that = this;
+        const currentcode = that.data.currentcode;
+        /**
+         *  获取查看设备信息
+         */
+        request.postReq('','',"/api/camera/camerainfo",
+            {
+                code:currentcode
+            },
+            function(res){
+                console.log("res.data",res.data);
+                that.setData({
+                    camerainfo:res.data,
+                });
+                if(res.heartdata !== '' || res.heartdata !== null){
+                    that.setData({
+                        temp:res.heartdata.temp,
+                        status:res.heartdata.status,
+                    })
+                }
+                if(res.login.length !== 0){
+                    that.setData({
+                        version:res.login.version,
+                    })
+                }
+            })
+    },
     //页面跳转
     changeTosettingequipinfo:function(){
         var that = this;
         var IP = that.data.camerainfo.cameraip;
         var port = that.data.camerainfo.cameraportno;
+        var currentcode = that.data.currentcode;
         wx.navigateTo({
-            url:'../settingequipinfo/settingequipinfo?IP=' + IP + '&port=' + port
+            url:'../settingequipinfo/settingequipinfo?IP=' + IP + '&port=' + port +'&currentcode=' +currentcode
         });
     },
     /**
@@ -67,13 +99,12 @@ Page({
                         status:res.heartdata.status,
                     })
                 }
-                if(res.login !== ''){
+                if(res.login.length !== 0){
                     that.setData({
                         version:res.login.version,
                     })
                 }
             })
-
     },
 
     /**
@@ -87,7 +118,32 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        // var that= this;
+        // console.log("qisiren",that.data.currentcode);
+        // /**
+        //  *  获取查看设备信息
+        //  */
+        // request.postReq('','',"/api/camera/camerainfo",
+        //     {
+        //         code:that.data.currentcode
+        //     },
+        //     function(res){
+        //         console.log("res.data",res.data);
+        //         that.setData({
+        //             camerainfo:res.data,
+        //         });
+        //         if(res.heartdata !== '' || res.heartdata !== null){
+        //             that.setData({
+        //                 temp:res.heartdata.temp,
+        //                 status:res.heartdata.status,
+        //             })
+        //         }
+        //         if(res.login.length !== 0){
+        //             that.setData({
+        //                 version:res.login.version,
+        //             })
+        //         }
+        //     })
     },
 
     /**
