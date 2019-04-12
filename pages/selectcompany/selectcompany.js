@@ -60,6 +60,7 @@ Page({
                     wx.setStorageSync('account', res.data.data.account);
                     wx.setStorageSync('comid', res.data.data.comid);
                     wx.setStorageSync('companyuser', res.data.data.companyuser.cname);
+                    console.log("wocaotama",res.data.data.companyuser.cname);
                     wx.switchTab({
                         url: '/pages/index/index'
                     });

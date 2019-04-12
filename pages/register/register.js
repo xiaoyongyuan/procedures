@@ -193,17 +193,12 @@ Page({
                                                         if (res.data.success === 1) {
                                                             console.log("hh");
                                                             if (res.data.data.account !== '' && res.data.data.account !== undefined) {
-                                                                wx.showToast({
-                                                                    title: '注册成功！',
-                                                                    icon: 'none',
-                                                                    duration: 2000
-                                                                });
                                                                 wx.setStorageSync('user', res.data.data.account);
                                                                 wx.setStorageSync('account', res.data.data.account);
                                                                 wx.setStorageSync('comid', res.data.data.comid);
                                                                 wx.setStorageSync('AUTHORIZATION', res.data.token);
                                                                 wx.setStorageSync('companyuser', res.data.data.companyuser.cname);
-                                                                // wx.setStorageSync('realname', res.data.data.realname);
+                                                                wx.setStorageSync('realname', res.data.data.realname);
                                                                 console.log("res.data.data.list.length",res.data.data.list.length);
                                                                 if(res.data.data.list.length > 0){
                                                                     for(var i = 0;i < res.data.data.list.length;i++ ){
@@ -217,6 +212,13 @@ Page({
                                                                     wx.navigateTo({
                                                                         url: '/pages/newcomid/newcomid'
                                                                     })
+                                                                    setTimeout(function () {
+                                                                        wx.showToast({
+                                                                            title: '注册成功！',
+                                                                            icon: 'success',
+                                                                            duration: 2000
+                                                                        });
+                                                                    }, 500) ;//延迟时间 这里是1秒
                                                                 }else {
                                                                     wx.switchTab({
                                                                         url: '/pages/index/index'

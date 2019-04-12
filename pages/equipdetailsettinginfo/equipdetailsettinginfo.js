@@ -48,7 +48,7 @@ Page({
                 that.setData({
                     camerainfo:res.data,
                 });
-                if(res.heartdata !== '' || res.heartdata !== null){
+                if(res.heartdata !== null){
                     that.setData({
                         temp:res.heartdata.temp,
                         status:res.heartdata.status,
@@ -75,6 +75,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        console.log("onLoad",undefined);
         var that= this;
         //字符串转json
         var currentcode = options.currentcode;
@@ -94,7 +95,7 @@ Page({
                that.setData({
                    camerainfo:res.data,
                });
-                if(res.heartdata !== '' || res.heartdata !== null){
+                if(res.heartdata !== null){
                     that.setData({
                         temp:res.heartdata.temp,
                         status:res.heartdata.status,
@@ -119,7 +120,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        console.log("wocoa")
+        console.log("onShow");
         var that= this;
         console.log("code",that.data.currentcode);
         /**
@@ -134,7 +135,7 @@ Page({
                 that.setData({
                     camerainfo:res.data,
                 });
-                if(res.heartdata !== '' || res.heartdata !== null){
+                if(res.heartdata !== null){
                     that.setData({
                         temp:res.heartdata.temp,
                         status:res.heartdata.status,

@@ -17,7 +17,7 @@ Page({
         equipListData: [],
         isFromSearch: true,   // 用于判断equipListData数组是不是空数组，默认true，空的数组
         searchPageNum: 1,   // 设置加载的第几次，默认是第一次
-        callbackcount: 15,      //返回数据的个数
+        callbackcount: 20,      //返回数据的个数
         searchLoading: false, //"上拉加载"的变量，默认false，隐藏
         searchLoadingComplete: false,  //“没有数据”的变量，默认false，隐藏
         isRefreshing: false,
@@ -61,7 +61,8 @@ Page({
                         /**
                          *两个时间都有
                          */
-                        if(that.data.equipListData[i].atime !== '' && that.data.equipListData[i].herattime.time !== ''){
+                        console.log("hhhh",that.data.equipListData[i].herattime.time);
+                        if(that.data.equipListData[i].atime !== '' && (that.data.equipListData[i].herattime.time !== '' || that.data.equipListData[i].herattime.time !== undefined)){
                             //两个时间相差的分钟数
                             var  mistiming =  parseInt(currenttime - new Date(that.data.equipListData[i].atime))/ 1000 / 60;
                             var  mistlastheart = parseInt(currenttime - new Date(that.data.equipListData[i].herattime.time))/ 1000 / 60;
@@ -80,7 +81,7 @@ Page({
                         /**
                          * 两个时间都没有
                          */
-                        if(that.data.equipListData[i].atime === '' && that.data.equipListData[i].herattime.time === ''){
+                        if(that.data.equipListData[i].atime === '' && (that.data.equipListData[i].herattime.time === '' ||  that.data.equipListData[i].herattime.time === undefined)){
                             that.data.equipListData[i]['ismist']=false;
                             that.setData({
                                 equipListData:that.data.equipListData
@@ -89,7 +90,7 @@ Page({
                         /**
                          * 有报警没心跳
                          */
-                        if(that.data.equipListData[i].atime !== '' && that.data.equipListData[i].herattime.time === ''){
+                        if(that.data.equipListData[i].atime !== '' && (that.data.equipListData[i].herattime.time === '' ||  that.data.equipListData[i].herattime.time === undefined)){
                             //两个时间相差的分钟数
                             var  mistiming =  parseInt(currenttime - new Date(that.data.equipListData[i].atime))/ 1000 / 60;
                             if(mistiming > 1){
@@ -107,7 +108,7 @@ Page({
                         /**
                          * 有心跳没报警
                          */
-                        if(that.data.equipListData[i].atime === '' && that.data.equipListData[i].herattime.time !== ''){
+                        if(that.data.equipListData[i].atime === '' && (that.data.equipListData[i].herattime.time !== '' ||  that.data.equipListData[i].herattime.time !== undefined)){
                             var  mistlastheart = parseInt(currenttime - new Date(that.data.equipListData[i].herattime.time))/ 1000 / 60;
                             if(mistlastheart > 1){
                                 that.data.equipListData[i]['ismist']=false;

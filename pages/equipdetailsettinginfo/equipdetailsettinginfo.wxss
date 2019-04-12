@@ -36,6 +36,9 @@ page{
     background-color: #00a0e9;
     color: white;
     font-size: 24rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .equipinfo-item-first{
     width: 100%;

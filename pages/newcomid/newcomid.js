@@ -1,7 +1,7 @@
 Page({
-    // /**
-    //  * 临时解绑
-    //  */
+    /**
+     * 临时解绑
+     */
     // delwx:function(){
     //     wx.login({
     //         success: res => {

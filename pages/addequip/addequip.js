@@ -74,14 +74,19 @@ Page({
                         });
                     }
                     if(res.success === 1){
-                        wx.showToast({
-                            title: '设备绑定成功',
-                            icon: 'none',
-                            duration: 2000
+                        wx.switchTab({
+                            url: '/pages/equip/equip'
                         });
-                        wx.navigateTo({
-                            url:'../equipdetailsettinginfo/equipdetailsettinginfo'
-                        })
+                        setTimeout(function () {
+                            wx.showToast({
+                                title: '设备绑定成功',
+                                icon: 'success',
+                                duration: 2000
+                            });
+                        }, 500) ;//延迟时间 这里是1秒
+                        // wx.navigateTo({
+                        //     url:'../equipdetailsettinginfo/equipdetailsettinginfo'
+                        // })
                     }
                 });
         }

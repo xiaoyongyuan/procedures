@@ -88,6 +88,7 @@
             </view>
             <view class="equipinfo-item-right">
                 <text wx:if="{{ temp > 50 }}" style="color: #df1737">{{ temp }}℃</text>
+                <text wx:elif="{{ temp === undefined }}">无</text>
                 <text wx:else >{{ temp }}℃</text>
             </view>
         </view>
@@ -149,7 +150,8 @@
 
 
     <view class="settinginfo-btn">
-        <button class="weui-btn" bindtap="changeTosettingequipinfo">设置</button>
+        <view class="weui-btn" bindtap="changeTosettingequipinfo">设置</view>
+        <!--<button class="weui-btn" bindtap="changeTosettingequipinfo">设置</button>-->
     </view>
     <view style="height: 48rpx"></view>
 </view>

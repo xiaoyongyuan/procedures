@@ -15,7 +15,9 @@ Page({
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
-        }
+        },
+        userName:'',
+        passWd:''
     },
 
     /**
@@ -30,7 +32,7 @@ Page({
             IP:IP === 'undefined' ? '' : IP,
             port:port === 'undefined' ? '' : port,
             currentcode:currentcode
-        })
+        });
         console.log("IP",that.data.IP);
     },
     /**
@@ -40,48 +42,65 @@ Page({
         var that = this;
         // wxaccount(微信号)  wxtype=1
         // code,ip,authport,ausername,apassword,user,comid
-        request.postReq('','',"/api/camera/camerareset",
-            {
-                code:that.data.currentcode,
-                ip:that.data.IP,
-                authport:that.data.port,
-                ausername:that.data.userName,
-                apassword:that.data.passWd
-            },
-            function(res){
-                console.log("res",res);
-                // prevPage.setData({
-                //     "currentcode":that.data.currentcode
-                // });
-                wx.navigateBack({
-                    delta: 1
-                });
-                // wx.setStorageSync("setcurrentcode",that.data.currentcode);
-                // wx.navigateTo({
-                //     url:'../equipdetailsettinginfo/equipdetailsettinginfo?currentcode=' + that.data.currentcode
-                // });
-                setTimeout(function () {
-                    wx.showToast({
-                        title: '设置成功,设备信息正在设置中,请稍后... ...',
-                        icon: 'none',
-                        duration: 2000
+        const IP = that.data.IP;
+        console.log("ip",IP === '');
+        const port = that.data.port;
+        console.log("port",port);
+        const userName = that.data.userName;
+        console.log("userName",userName);
+        const passWd = that.data.passWd;
+        console.log("passWd",passWd);
+        if(IP === '' || port === '' || userName === '' || passWd === ''){
+            wx.showToast({
+                title: '请确认每项内容都不为空',
+                icon: 'none',
+                duration: 2000
+            });
+            return;
+        }else {
+            request.postReq('','',"/api/camera/camerareset",
+                {
+                    code:that.data.currentcode,
+                    ip:that.data.IP,
+                    authport:that.data.port,
+                    ausername:that.data.userName,
+                    apassword:that.data.passWd
+                },
+                function(res){
+                    console.log("res",res);
+                    // prevPage.setData({
+                    //     "currentcode":that.data.currentcode
+                    // });
+                    wx.navigateBack({
+                        delta: 1
                     });
-                }, 500) //延迟时间 这里是1秒
-            })
+                    // wx.setStorageSync("setcurrentcode",that.data.currentcode);
+                    // wx.navigateTo({
+                    //     url:'../equipdetailsettinginfo/equipdetailsettinginfo?currentcode=' + that.data.currentcode
+                    // });
+                    setTimeout(function () {
+                        wx.showToast({
+                            title: '设置成功,设备信息正在设置中,请稍后... ...',
+                            icon: 'none',
+                            duration: 2000
+                        });
+                    }, 500) //延迟时间 这里是1秒
+                })
+        }
     },
     cameraipInput:function(e){
         var that = this;
         that.setData({
-            cameraip:e.detail.value
+            IP:e.detail.value
         });
-        console.log("cameraip",that.data.cameraip);
+        console.log("cameraip",that.data.IP);
     },
     cameraportnoInput:function(e){
         var that = this;
         that.setData({
-            cameraport:e.detail.value
+            port:e.detail.value
         });
-        console.log("cameraport",that.data.cameraport);
+        console.log("cameraport",that.data.port);
     },
     userNameInput:function(e){
         var that = this;

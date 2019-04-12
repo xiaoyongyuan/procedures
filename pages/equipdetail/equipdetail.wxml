@@ -84,7 +84,7 @@
             </view>
             <view class="equipinfo-item-right">
                 <text wx:if="{{ equipdetailData.lasttime === '' }}">无</text>
-                <text wx:else>{{ equipdetailData.lasttime }}</text>
+                <text wx:else>{{ equipdetailData.atime }}</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -167,7 +167,7 @@
             </view>
             <view class="equipinfo-item-right">
                 <text wx:if="{{ equipdetailData.lasttime === '' }}">无</text>
-                <text wx:else>{{ equipdetailData.lasttime }}</text>
+                <text wx:else>{{ equipdetailData.atime }}</text>
             </view>
         </view>
         <view class="equipinfo-item">
