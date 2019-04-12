@@ -589,6 +589,132 @@ Page({
         });
     },
     /**
+     * 刷新
+     */
+    flushimage:function(){
+        var that = this;
+        console.log("ceshi");
+        // var code = options.currentcode;
+        // that.setData({
+        //     currentcode:code
+        // });
+        /**
+         * 获取防区的宽和高
+         */
+        const query = wx.createSelectorQuery();
+        query.select('#defenceareainfor').boundingClientRect();
+        query.selectViewport().scrollOffset();
+        query.exec(function (res) {
+            that.setData({
+                defenceareaHeight:res[0].height,
+                defenceareaWidth:res[0].width
+            });
+        });
+        /**
+         * 请求设备详情接口
+         */
+        request.postReq('','',"/api/camera/getone",
+            {
+                code:that.data.currentcode
+            },
+            function(res){
+                that.setData({
+                    field:res.data.field,
+                    picpath:res.data.picpath
+                });
+                /**
+                 * 两个都有
+                 */
+                if(that.data.field[1] !== undefined && that.data.field[2] !== undefined){
+                    that.setData({
+                        addfield:false,
+                        savebtn:false,
+                        deleone:true,
+                        deletwo:true
+                    });
+                }
+                /**
+                 * 两个都没有
+                 */
+                if(that.data.field[1] === undefined && that.data.field[2] === undefined){
+                    that.setData({
+                        savebtn:false,
+                        deleone:false,
+                        deletwo:false
+                    });
+                }
+                /**
+                 * 有2无1
+                 */
+                if(that.data.field[1] === undefined && that.data.field[2] !== undefined){
+                    that.setData({
+                        deleone:false,
+                        deletwo:true,
+                        savebtn:false,
+                    });
+                }
+                /**
+                 * 有1无2
+                 */
+                if(that.data.field[1] !== undefined && that.data.field[2] === undefined){
+                    that.setData({
+                        deleone:true,
+                        deletwo:false,
+                        savebtn:false,
+                    });
+                }
+                /**
+                 * 点进来加载蓝色防区
+                 */
+
+                if(that.data.field[1] !== undefined){
+                    const x1 = JSON.parse(that.data.field[1])[0][0][0];
+                    const y1 = JSON.parse(that.data.field[1])[0][0][1];
+                    const x2 = JSON.parse(that.data.field[1])[0][1][0];
+                    const y2 = JSON.parse(that.data.field[1])[0][1][1];
+                    const x3 = JSON.parse(that.data.field[1])[0][2][0];
+                    const y3 = JSON.parse(that.data.field[1])[0][2][1];
+                    const x4 = JSON.parse(that.data.field[1])[0][3][0];
+                    const y4 = JSON.parse(that.data.field[1])[0][3][1];
+                    myblue_carvas = wx.createCanvasContext('myblueCanvas', this);//1.创建carvas实例对象，方便后续使用。
+                    myblue_carvas.beginPath(); //创建一条路径
+                    myblue_carvas.setStrokeStyle('blue');  //设置边框为红色myblueCanvas
+                    myblue_carvas.setLineWidth(3);
+                    myblue_carvas.moveTo(x1*(that.data.defenceareaWidth/704),y1*(that.data.defenceareaHeight/576)); //描述路径的起点为手指触摸的x轴和y轴
+                    myblue_carvas.lineTo(x2*(that.data.defenceareaWidth/704),y2*(that.data.defenceareaHeight/576));//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
+                    myblue_carvas.lineTo(x3*(that.data.defenceareaWidth/704),y3*(that.data.defenceareaHeight/576));
+                    myblue_carvas.lineTo(x4*(that.data.defenceareaWidth/704),y4*(that.data.defenceareaHeight/576));
+                    myblue_carvas.lineTo(x1*(that.data.defenceareaWidth/704),y1*(that.data.defenceareaHeight/576));
+                    myblue_carvas.stroke();//画出当前路径的边框
+                    myblue_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
+                }
+                /**
+                 * 点进来加载红色防区
+                 */
+                if(that.data.field[2] !== undefined){
+                    const x1 = JSON.parse(that.data.field[2])[0][0][0];
+                    const y1 = JSON.parse(that.data.field[2])[0][0][1];
+                    const x2 = JSON.parse(that.data.field[2])[0][1][0];
+                    const y2 = JSON.parse(that.data.field[2])[0][1][1];
+                    const x3 = JSON.parse(that.data.field[2])[0][2][0];
+                    const y3 = JSON.parse(that.data.field[2])[0][2][1];
+                    const x4 = JSON.parse(that.data.field[2])[0][3][0];
+                    const y4 = JSON.parse(that.data.field[2])[0][3][1];
+                    my_carvas = wx.createCanvasContext('myredCanvas', this);//1.创建carvas实例对象，方便后续使用。
+                    my_carvas.beginPath(); //创建一条路径
+                    my_carvas.setStrokeStyle('red');  //设置边框为红色myblueCanvas
+                    my_carvas.setLineWidth(3);
+                    my_carvas.moveTo(x1*(that.data.defenceareaWidth/704),y1*(that.data.defenceareaHeight/576)); //描述路径的起点为手指触摸的x轴和y轴
+                    my_carvas.lineTo(x2*(that.data.defenceareaWidth/704),y2*(that.data.defenceareaHeight/576));//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
+                    my_carvas.lineTo(x3*(that.data.defenceareaWidth/704),y3*(that.data.defenceareaHeight/576));
+                    my_carvas.lineTo(x4*(that.data.defenceareaWidth/704),y4*(that.data.defenceareaHeight/576));
+                    my_carvas.lineTo(x1*(that.data.defenceareaWidth/704),y1*(that.data.defenceareaHeight/576));
+                    my_carvas.stroke();//画出当前路径的边框
+                    my_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
+                }
+            });
+    },
+    /**
      * 生命周期函数--监听页面显示
      */
     onShow: function () {

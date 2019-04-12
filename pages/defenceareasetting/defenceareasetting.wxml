@@ -5,7 +5,10 @@
 
     </view>
     <view class="defencearea-top">
-        <view id="defenceareainfor" class="defencearea-img-inner" style="background-image: url({{ picpath }})">
+        <view id="defenceareainfor" bindtap="flushimage" class="defencearea-img-inner" style="background-image: url({{ picpath }})">
+            <view class="flush">
+                <image src="/images/flushfq.png"></image>
+            </view>
             <canvas class='myredCanvas' canvas-id="myredCanvas" style="display: {{ reddisplay }}" bindtouchstart='EventHandleStart' bindtouchend='EventHandle' binderror="canvasIdErrorCallback" />
             <canvas class='myblueCanvas' canvas-id="myblueCanvas" style="display: {{ bluedisplay }}" bindtouchstart='EventHandleStartblue' bindtouchend='EventHandleblue' binderror="canvasIdErrorCallbackblue" />
         </view>
