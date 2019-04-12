@@ -71,6 +71,7 @@ Page({
             })
         }
     },
+
     /**
      * 页面跳转设防时间
      */
@@ -153,7 +154,7 @@ Page({
      */
     equiplight:function(options){
         var that = this;
-        console.log("eid",that.data.equipdetailData.eid)
+        console.log("eid",that.data.equipdetailData.eid);
         request.postReq('','',"/api/equipment/FlashLampV1",
             {
                 eid:that.data.equipdetailData.eid
@@ -166,7 +167,62 @@ Page({
                 })
             })
     },
-
+    /**
+     * 恢复出厂设置
+     */
+    restore:function(){
+        var that = this;
+        console.log("eid",that.data.equipdetailData.eid);
+        wx.showModal({
+            title: '提示',
+            content: '确认恢复出厂设置吗？',
+            success(res) {
+                if(res.confirm){
+                    request.postReq('','',"/api/equipment/restore_e",
+                        {
+                            eid:that.data.equipdetailData.eid
+                        },
+                        function(res){
+                            wx.showToast({
+                                title: '重置成功',
+                                icon: 'success',
+                                duration: 2000
+                            })
+                        })
+                }
+                else if (res.cancel)
+                {}
+            }
+        });
+    },
+    /**
+     * 重启设备
+     */
+    deviceEquip:function(){
+        var that = this;
+        console.log("eid",that.data.equipdetailData.eid);
+        wx.showModal({
+            title: '提示',
+            content: '确认重启设备吗？',
+            success(res) {
+                if(res.confirm){
+                    request.postReq('','',"/api/equipment/restart_e",
+                        {
+                            eid:that.data.equipdetailData.eid
+                        },
+                        function(res){
+                            wx.showToast({
+                                title: '恢复成功',
+                                icon: 'success',
+                                duration: 2000
+                            })
+                        })
+                }
+                else if (res.cancel)
+                {}
+            }
+        });
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

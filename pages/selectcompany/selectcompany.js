@@ -42,7 +42,7 @@ Page({
         // var code = that.data.alarmListData[Id].code;
         const account  = that.data.companylist[Id].account;
         const comid = that.data.companylist[Id].companycode;
-        const cname = that.data.companylist[Id].cname;
+        // const cname = that.data.companylist[Id].cname;
         console.log("account",account);
         console.log("comid",comid);
         //调登录接口
@@ -57,12 +57,19 @@ Page({
             success(res) {
                 console.log("切换公司",res);
                 if(res.data.success === 1){
-                    app.globalData.cname = cname;
                     wx.setStorageSync('account', res.data.data.account);
                     wx.setStorageSync('comid', res.data.data.comid);
+                    wx.setStorageSync('companyuser', res.data.data.companyuser.cname);
                     wx.switchTab({
                         url: '/pages/index/index'
                     });
+                    setTimeout(function () {
+                        wx.showToast({
+                            title: '切换公司成功！',
+                            icon: 'success',
+                            duration: 2000
+                        });
+                    }, 500) //延迟时间 这里是1秒
                 }
             }
         });

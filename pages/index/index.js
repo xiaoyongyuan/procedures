@@ -83,12 +83,10 @@ Page({
     onShow: function () {
         var that = this;
         that.setData({
-           cname:wx.getStorageSync('companyuser'),
-            workdate:wx.getStorageSync("workdate")
+            workdate:wx.getStorageSync("workdate"),
+            realname:wx.getStorageSync("companyuser")
         });
-        // console.log("workdate",workdate);
-        // var cname = app.globalData.cname;
-        // console.log("cname",cname);
+        // console.log("测试切换公司2",that.data.realname);
         wx.setNavigationBarTitle({
             title: '个人中心'
         });

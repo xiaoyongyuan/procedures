@@ -47,7 +47,6 @@ page{
     margin: auto;
 }
 .equipinfo{
-    height: 900rpx;
     width: 94%;
     background-color: white;
     margin: auto;
@@ -194,14 +193,26 @@ page{
 .equipinfo-item-last{
     height: 89rpx;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 .equipinfo-item-last-btn{
+     height: 56rpx;
+     width: 160rpx;
+ }
+.equipinfo-item-last-btn .weui-btn{
+    height: 100%;
+    width: 100%;
+    color: white;
+    background-color: #00a0e9;
+    font-size: 24rpx;
+}
+.equipinfo-item-last-btnw{
+    margin-left: 35rpx;
     height: 56rpx;
     width: 160rpx;
 }
-.equipinfo-item-last-btn .weui-btn{
+.equipinfo-item-last-btnw .weui-btn{
     height: 100%;
     width: 100%;
     color: white;

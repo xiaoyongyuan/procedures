@@ -47,7 +47,8 @@
         </view>
 
     </view>
-    <view class="equipinfo">
+
+    <view class="equipinfo" style="height: 900rpx;" wx:if="{{ querybtn === false }}">
         <view class="equipinfo-item-first">
             <text>设备信息</text>
         </view>
@@ -58,7 +59,6 @@
             <view class="equipinfo-item-right-equip">
                 <text>{{ equipdetailData.eid }}</text>
             </view>
-            <view wx:if="{{ querybtn === true }}" class="queryequipinfo-btn">查看设备信息</view>
         </view>
         <view class="equipinfo-item">
             <view class="equipinfo-item-left">
@@ -124,12 +124,108 @@
                 <text wx:else style="color: #00a0e9">{{ temp }}℃</text>
             </view>
         </view>
-        <view class="equipinfo-item-last">
-            <view class="equipinfo-item-last-btn">
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-last-btnw">
                 <button class="weui-btn" bindtap="equiplight">设备闪灯</button>
             </view>
         </view>
     </view>
+
+    <view class="equipinfo" style="height: 990rpx;" wx:if="{{ querybtn === true }}">
+        <view class="equipinfo-item-first">
+            <text>设备信息</text>
+        </view>
+        <view class="equipinfo-item" bindlongpress="longTap">
+            <view class="equipinfo-item-left">
+                <text>设备</text>
+            </view>
+            <view class="equipinfo-item-right-equip">
+                <text>{{ equipdetailData.eid }}</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>报警类型</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text wx:if="{{ equipdetailData.atype === 110 }}">匪警</text>
+                <text wx:elif="{{ equipdetailData.atype === 119 }}">火警</text>
+                <text wx:else>入侵报警</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>所在位置</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text>{{ equipdetailData.location }}</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>最后报警时间</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text wx:if="{{ equipdetailData.lasttime === '' }}">无</text>
+                <text wx:else>{{ equipdetailData.lasttime }}</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>防区设置</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text wx:if="{{ equipdetailData.fieldnum === 0 }}" style="color: #df1737">未设定</text>
+                <text wx:else>{{ equipdetailData.fieldnum }}个</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>设防时间</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text wx:if="{{ workingtime === 0 }}" style="color: #df1737">未设定</text>
+                <text wx:else>{{ workingtime }}段</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>上次心跳</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text wx:if="{{ lastheart === '' || lastheart ===undefined }}">无</text>
+                <text wx:else>{{ lastheart }}</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-left">
+                <text>设备温度</text>
+            </view>
+            <view class="equipinfo-item-right">
+                <text wx:if="{{ temp === '' || temp ===undefined }}">无</text>
+                <text wx:elif="{{temp > 50}}" style="color: #df1737">{{ temp }}℃</text>
+                <text wx:else style="color: #00a0e9">{{ temp }}℃</text>
+            </view>
+        </view>
+        <view class="equipinfo-item">
+            <view class="equipinfo-item-last-btnw">
+                <button class="weui-btn" bindtap="equiplight">设备闪灯</button>
+            </view>
+        </view>
+        <view class="equipinfo-item-last">
+            <view class="equipinfo-item-last-btn">
+                <button class="weui-btn" bindtap="equipdetail">设备详情</button>
+            </view>
+            <view class="equipinfo-item-last-btn" style="width: 200rpx">
+                <button class="weui-btn" bindtap="restore">恢复出厂设置</button>
+            </view>
+            <view class="equipinfo-item-last-btn">
+                <button class="weui-btn" catchtap="deviceEquip">重启设备</button>
+            </view>
+        </view>
+    </view>
+
+
     <view class="camera">
         <view class="equipinfo-item-first">
             <text>摄像头信息</text>
@@ -212,5 +308,4 @@
             </view>
         </view>
     </view>
-
 </view>

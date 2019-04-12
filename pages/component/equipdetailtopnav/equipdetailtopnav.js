@@ -31,11 +31,12 @@ Component({
 
     methods: {
         back: function () {
+            console.log("退回");
             wx.navigateBack({
                 delta: 1
             });
         },
-        aa: function(){
+        flush: function(){
             var that = this;
             var flushcode = wx.getStorageSync("flushcode");
             console.log("flushcode",flushcode);
@@ -67,6 +68,11 @@ Component({
                             softversion:res.login.version,
                         })
                     }
+                    wx.showToast({
+                        title: '刷新成功',
+                        icon: 'success',
+                        duration: 2000
+                    });
                     // var currenttime = new Date(ctime);
                     //两个时间相差的分钟数
                     // var  mislastheart =  parseInt(currenttime - new Date(that.data.lastheart))/ 1000 / 60;
