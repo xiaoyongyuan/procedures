@@ -68,12 +68,27 @@ Page({
                         dataType:'json',
                         success(res) {
                             console.log("res.data",res.data);
+                            var companylist = [];
                             if(res.data.success === 1){
-                                wx.setStorageSync('user', res.data.data.account);
-                                wx.setStorageSync('account', res.data.data.account);
-                                wx.setStorageSync('comid', res.data.data.comid);
-                                wx.setStorageSync('AUTHORIZATION', res.data.token);
-                                wx.setStorageSync('companyuser', res.data.data.companyuser.cname);
+                                if(res.data.data.account !== '' && res.data.data.account !== undefined){
+                                    wx.setStorageSync('user', res.data.data.account);
+                                    wx.setStorageSync('account', res.data.data.account);
+                                    wx.setStorageSync('comid', res.data.data.comid);
+                                    wx.setStorageSync('AUTHORIZATION', res.data.token);
+                                    wx.setStorageSync('companyuser', res.data.data.companyuser.cname);
+                                    // console.log("woleigerqu",res.data.data.companyuser.cname);
+                                    app.globalData.cname = res.data.data.companyuser.cname;
+                                    wx.setStorageSync('realname', res.data.data.realname);
+                                    console.log("res.data.data.list.length",res.data.data.list.length);
+                                    if(res.data.data.list.length > 0){
+                                        for(var i = 0;i < res.data.data.list.length;i++ ){
+                                            companylist.push(res.data.data.list[i]);
+                                            console.log("cnam",res.data.data.list[i]);
+                                        }
+                                    }
+                                    console.log("companylist",companylist);
+                                    wx.setStorageSync('companylist', companylist);
+                                }
                                 if(res.data.data.comid === ''){
                                     wx.navigateTo({
                                         url: '/pages/newcomid/newcomid'
