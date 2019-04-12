@@ -56,8 +56,8 @@ App({
                                         wx.setStorageSync('comid', res.data.data.comid);
                                         wx.setStorageSync('AUTHORIZATION', res.data.token);
                                         wx.setStorageSync('companyuser', res.data.data.companyuser.cname);
-                                        console.log("woleigerqu",res.data.data.companyuser.cname);
-                                        // wx.setStorageSync('realname', res.data.data.realname);
+                                        // console.log("woleigerqu",res.data.data.companyuser.cname);
+                                        wx.setStorageSync('realname', res.data.data.realname);
                                         console.log("res.data.data.list.length",res.data.data.list.length);
                                         if(res.data.data.list.length > 0){
                                             for(var i = 0;i < res.data.data.list.length;i++ ){
