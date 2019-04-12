@@ -61,7 +61,8 @@ Page({
                         /**
                          *两个时间都有
                          */
-                        console.log("hhhh",that.data.equipListData[i].herattime.time);
+                        console.log("herattime",that.data.equipListData[i].herattime.time);
+                        console.log("atime",that.data.equipListData[i].atime);
                         if(that.data.equipListData[i].atime !== '' && (that.data.equipListData[i].herattime.time !== '' || that.data.equipListData[i].herattime.time !== undefined)){
                             //两个时间相差的分钟数
                             var  mistiming =  parseInt(currenttime - new Date(that.data.equipListData[i].atime))/ 1000 / 60;
@@ -108,7 +109,7 @@ Page({
                         /**
                          * 有心跳没报警
                          */
-                        if(that.data.equipListData[i].atime === '' && (that.data.equipListData[i].herattime.time !== '' ||  that.data.equipListData[i].herattime.time !== undefined)){
+                        if(that.data.equipListData[i].atime === '' && (that.data.equipListData[i].herattime.time !== '' &&  that.data.equipListData[i].herattime.time !== undefined)){
                             var  mistlastheart = parseInt(currenttime - new Date(that.data.equipListData[i].herattime.time))/ 1000 / 60;
                             if(mistlastheart > 1){
                                 that.data.equipListData[i]['ismist']=false;
@@ -156,7 +157,9 @@ Page({
                     /**
                      *两个时间都有
                      */
-                    if(that.data.equipListData[i].atime !== '' && that.data.equipListData[i].herattime.time !== ''){
+                    console.log("herattime",that.data.equipListData[i].herattime.time);
+                    console.log("atime",that.data.equipListData[i].atime);
+                    if(that.data.equipListData[i].atime !== '' && (that.data.equipListData[i].herattime.time !== '' || that.data.equipListData[i].herattime.time !== undefined)){
                         //两个时间相差的分钟数
                         var  mistiming =  parseInt(currenttime - new Date(that.data.equipListData[i].atime))/ 1000 / 60;
                         var  mistlastheart = parseInt(currenttime - new Date(that.data.equipListData[i].herattime.time))/ 1000 / 60;
@@ -175,16 +178,16 @@ Page({
                     /**
                      * 两个时间都没有
                      */
-                    if(that.data.equipListData[i].atime === '' && that.data.equipListData[i].herattime.time === ''){
+                    if(that.data.equipListData[i].atime === '' && (that.data.equipListData[i].herattime.time === '' ||  that.data.equipListData[i].herattime.time === undefined)){
                         that.data.equipListData[i]['ismist']=false;
                         that.setData({
                             equipListData:that.data.equipListData
-                        })
+                        });
                     }
                     /**
                      * 有报警没心跳
                      */
-                    if(that.data.equipListData[i].atime !== '' && that.data.equipListData[i].herattime.time === ''){
+                    if(that.data.equipListData[i].atime !== '' && (that.data.equipListData[i].herattime.time === '' ||  that.data.equipListData[i].herattime.time === undefined)){
                         //两个时间相差的分钟数
                         var  mistiming =  parseInt(currenttime - new Date(that.data.equipListData[i].atime))/ 1000 / 60;
                         if(mistiming > 1){
@@ -202,7 +205,7 @@ Page({
                     /**
                      * 有心跳没报警
                      */
-                    if(that.data.equipListData[i].atime === '' && that.data.equipListData[i].herattime.time !== ''){
+                    if(that.data.equipListData[i].atime === '' && (that.data.equipListData[i].herattime.time !== '' &&  that.data.equipListData[i].herattime.time !== undefined)){
                         var  mistlastheart = parseInt(currenttime - new Date(that.data.equipListData[i].herattime.time))/ 1000 / 60;
                         if(mistlastheart > 1){
                             that.data.equipListData[i]['ismist']=false;
