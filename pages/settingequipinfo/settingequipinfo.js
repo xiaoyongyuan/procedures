@@ -1,6 +1,9 @@
 // pages/settingequipinfo/settingequipinfo.js
 const app = getApp();
 var request = require('../../utils/request.js');
+var pages = getCurrentPages();
+var currPage = pages[pages.length - 1];   //当前页面
+var prevPage = pages[pages.length - 2];  //上一个页面
 Page({
 
     /**
@@ -47,9 +50,23 @@ Page({
             },
             function(res){
                 console.log("res",res);
-                wx.navigateTo({
-                    url:'../equipdetailsettinginfo/equipdetailsettinginfo?currentcode=' + that.data.currentcode
-                })
+                // prevPage.setData({
+                //     "currentcode":that.data.currentcode
+                // });
+                wx.navigateBack({
+                    delta: 1
+                });
+                // wx.setStorageSync("setcurrentcode",that.data.currentcode);
+                // wx.navigateTo({
+                //     url:'../equipdetailsettinginfo/equipdetailsettinginfo?currentcode=' + that.data.currentcode
+                // });
+                setTimeout(function () {
+                    wx.showToast({
+                        title: '设置成功,设备信息正在设置中,请稍后... ...',
+                        icon: 'none',
+                        duration: 2000
+                    });
+                }, 500) //延迟时间 这里是1秒
             })
     },
     cameraipInput:function(e){

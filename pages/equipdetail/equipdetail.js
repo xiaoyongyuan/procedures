@@ -34,15 +34,14 @@ Page({
     changeTosettinginfo:function(){
         var that = this;
         var currentcode = that.data.currentcode;
-        // if(that.data.ismist === "false"){
-        //     wx.showToast({
-        //         title: '设备离线，无法操作！',
-        //         icon: 'none',
-        //         duration: 2000
-        //     });
-        // }
-        // if(that.data.ismist === "false"){
-        if(1 === 1){
+        if(that.data.ismist === "false"){
+            wx.showToast({
+                title: '设备离线，无法操作！',
+                icon: 'none',
+                duration: 2000
+            });
+        }
+        if(that.data.ismist === "true"){
             wx.navigateTo({
                         url:'../equipdetailsettinginfo/equipdetailsettinginfo?currentcode=' + currentcode
                     })
@@ -59,15 +58,14 @@ Page({
     changeTodefenceareasetting:function(){
         var that = this;
         const fieldStr = JSON.stringify(that.data.field);
-        // if(that.data.ismist === "false"){
-        //     wx.showToast({
-        //         title: '设备离线，无法操作！',
-        //         icon: 'none',
-        //         duration: 2000
-        //     });
-        // }
-        // if(that.data.ismist === "true"){
-        if(1 === 1){
+        if(that.data.ismist === "false"){
+            wx.showToast({
+                title: '设备离线，无法操作！',
+                icon: 'none',
+                duration: 2000
+            });
+        }
+        if(that.data.ismist === "true"){
             wx.navigateTo({
                 url:'../defenceareasetting/defenceareasetting?fieldStr=' + fieldStr + '&currentcode=' + that.data.currentcode
             })
@@ -79,15 +77,14 @@ Page({
      */
     changeTofortifytime:function(){
         var that = this;
-        // if(that.data.ismist === "false"){
-        //     wx.showToast({
-        //         title: '设备离线，无法操作！',
-        //         icon: 'none',
-        //         duration: 2000
-        //     });
-        // }
-        // if(that.data.ismist === "true"){
-        if(1 === 1){
+        if(that.data.ismist === "false"){
+            wx.showToast({
+                title: '设备离线，无法操作！',
+                icon: 'none',
+                duration: 2000
+            });
+        }
+        if(that.data.ismist === "true"){
             wx.navigateTo({
                 url:'../fortifytime/fortifytime?code=' + that.data.currentcode
             })
@@ -243,15 +240,6 @@ Page({
         });
         //当前时间
         var ctime = util.formatTime(new Date());
-        // //接收code
-        // var code = options.code;
-        // wx.setStorageSync("flushcode",code);
-        // //接收设备是否离线
-        // var ismist = options.mist;
-        // that.setData({
-        //     currentcode:code,
-        //     ismist:ismist
-        // });
         /**
          * 请求设备详情接口
          */

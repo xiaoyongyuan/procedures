@@ -1,6 +1,7 @@
 // pages/equipdetailsettinginfo/equipdetailsettinginfo.js
 const app = getApp();
 var request = require('../../utils/request.js');
+
 Page({
 
     /**
@@ -86,7 +87,7 @@ Page({
          */
         request.postReq('','',"/api/camera/camerainfo",
             {
-                code:currentcode
+                code:that.data.currentcode
             },
             function(res){
                 console.log("res.data",res.data);
@@ -118,32 +119,33 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        // var that= this;
-        // console.log("qisiren",that.data.currentcode);
-        // /**
-        //  *  获取查看设备信息
-        //  */
-        // request.postReq('','',"/api/camera/camerainfo",
-        //     {
-        //         code:that.data.currentcode
-        //     },
-        //     function(res){
-        //         console.log("res.data",res.data);
-        //         that.setData({
-        //             camerainfo:res.data,
-        //         });
-        //         if(res.heartdata !== '' || res.heartdata !== null){
-        //             that.setData({
-        //                 temp:res.heartdata.temp,
-        //                 status:res.heartdata.status,
-        //             })
-        //         }
-        //         if(res.login.length !== 0){
-        //             that.setData({
-        //                 version:res.login.version,
-        //             })
-        //         }
-        //     })
+        console.log("wocoa")
+        var that= this;
+        console.log("code",that.data.currentcode);
+        /**
+         *  获取查看设备信息
+         */
+        request.postReq('','',"/api/camera/camerainfo",
+            {
+                code:that.data.currentcode
+            },
+            function(res){
+                console.log("res.data",res.data);
+                that.setData({
+                    camerainfo:res.data,
+                });
+                if(res.heartdata !== '' || res.heartdata !== null){
+                    that.setData({
+                        temp:res.heartdata.temp,
+                        status:res.heartdata.status,
+                    })
+                }
+                if(res.login.length !== 0){
+                    that.setData({
+                        version:res.login.version,
+                    })
+                }
+            })
     },
 
     /**
