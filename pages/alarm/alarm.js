@@ -356,6 +356,20 @@ Page({
      */
     onShow: function () {
         var that = this;
+        /**
+         * 请求设备列表
+         */
+        request.postReq('','',"/api/camera/getlist_forAPP", {},
+            function(res){
+                if(res.success === 1){
+                    var temp = res.data;
+                    temp.splice(0, 0, {code:'sign',name:'收藏列表'});
+                    temp.splice(0, 0, {code:'',name:'全部'});
+                    that.setData({
+                        equipList:temp
+                    });
+                }
+            });
         that.setData({
             text:wx.getStorageSync('companyuser')
         });
@@ -420,9 +434,9 @@ Page({
     onHide: function () {
 
     },
-    catchtouchmove:function(){
-        return;
-    },
+    // catchtouchmove:function(){
+    //     return;
+    // },
 
     /**
      * 生命周期函数--监听页面卸载
