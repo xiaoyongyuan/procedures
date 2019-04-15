@@ -11,7 +11,7 @@ Page({
         selected: '全部',
         selectedvalue:'',
         showModal: false,
-        text:wx.getStorageSync('companyuser'),
+        text:'',
         // 这里是一些组件内部数据
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
@@ -356,6 +356,10 @@ Page({
      */
     onShow: function () {
         var that = this;
+        //
+        that.setData({
+            text:wx.getStorageSync('companyuser')
+        });
         let searchPageNum = that.data.searchPageNum,//把第几次加载次数作为参数
             callbackcount =that.data.callbackcount; //返回数据的个数
         if(that.data.selectedvalue === 'sign'){

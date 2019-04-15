@@ -8,7 +8,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        title:wx.getStorageSync('companyuser'),
+        title:'',
         // title:app.globalData.cname,
         // 这里是一些组件内部数据
         someData: {
@@ -145,6 +145,9 @@ Page({
          * 请求列表接口
          */
         var that = this;
+        that.setData({
+            title:wx.getStorageSync('companyuser')
+        });
         let searchPageNum = that.data.searchPageNum,//把第几次加载次数作为参数
             callbackcount =that.data.callbackcount; //返回数据的个数
         request.postReq(searchPageNum,callbackcount,"/api/camera/getlist_forAPP",
