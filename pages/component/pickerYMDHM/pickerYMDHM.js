@@ -31,6 +31,7 @@ Component({
   methods: {
     _onInit() {
       let date = new Date();
+      var that = this;
       if (this.data.date !== "") {
         let str = this.data.date;
         str = str.replace(/-/g, "/");
@@ -79,11 +80,11 @@ Component({
         day: date.getDate() < 10 ? '0' + date.getDate() : date.getDate() + '',
         time: date.getHours() < 10 ? '0' + date.getHours() : date.getHours() + '',
         division: date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes() + ''
-      }
+      };
       mdate.dateString = mdate.year + '-' + mdate.month + '-' + mdate.day + ' ' + mdate.time + ':' + mdate.division;
       this.setData({
         pickerArray,
-        pickerIndex: [30, date.getMonth(), date.getDate() - 1, date.getHours(), date.getMinutes()],
+        pickerIndex: that.data.pickerIndex,
         chooseIndex: [30, date.getMonth(), date.getDate() - 1, date.getHours(), date.getMinutes()],
         chooseArray: pickerArray,
         dateString: mdate.dateString
@@ -115,13 +116,13 @@ Component({
         day: day < 10 ? '0' + day : day + '',
         time: time < 10 ? '0' + time : time + '',
         division: division < 10 ? '0' + division : division + ''
-      }
+      };
       date.dateString = date.year + '-' + date.month + '-' + date.day + ' ' + date.time + ':' + date.division;
       this.setData({
         chooseIndex: e.detail.value,
         chooseArray: this.data.pickerArray,
         dateString: date.dateString
-      })
+      });
       this.triggerEvent('onPickerChange', date);
     },
     pickerColumnChange: function (e) {
@@ -143,6 +144,13 @@ Component({
       }
       this.setData(data);
     },
+      selsectdate:function(){
+          var that = this;
+          let date = new Date();
+          that.setData({
+              pickerIndex: [30, date.getMonth(), date.getDate() - 1, date.getHours(), date.getMinutes()],
+          });
+      },
     pickerCancel: function (e) {
       this.setData({
         pickerIndex: this.data.chooseIndex,
@@ -172,4 +180,4 @@ Component({
       this._onInit();
     }
   }
-})
+});
