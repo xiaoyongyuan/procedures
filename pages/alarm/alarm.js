@@ -8,6 +8,7 @@ Page({
     data: {
         navigationBarTitle:wx.getStorageSync('companyuser'),
         select: false,
+        tihuoWay: '门店自提',
         selected: '全部',
         selectedvalue:'',
         showModal: false,
@@ -434,9 +435,9 @@ Page({
     onHide: function () {
 
     },
-    // catchtouchmove:function(){
-    //     return;
-    // },
+    catchtouchmove:function(){
+        return;
+    },
 
     /**
      * 生命周期函数--监听页面卸载

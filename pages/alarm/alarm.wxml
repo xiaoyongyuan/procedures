@@ -1,6 +1,6 @@
 <!--pages/alarm/alarm.wxml-->
 <view class="page">
-    <view class="navbar" style="{{'height: ' + navigationBarHeight}}">
+    <view class="navbar" bindtap="go" style="{{'height: ' + navigationBarHeight}}">
         <view style="{{'height: ' + statusBarHeight}}"></view>
         <view class="status-bar" style="height:{{someData.statusBarHeight}}px"></view>
         <view class='title-container' style="height:{{someData.titleBarHeight}}px">
@@ -19,8 +19,7 @@
         <view class="weui-loadmore-tips">正在刷新...</view>
     </view>
 
-    <view class="mask" catchtouchmove="true" wx:if="{{showModal}}" bindtap="go"></view>
-
+    <view class="mask" wx:if="{{showModal}}" bindtap="go" catchtouchmove="catchtouchmove"></view>
     <view wx:if="{{ reset === false }}" class="select-list" style="margin-top:{{ someData.statusBarHeight+someData.titleBarHeight }}px">
         <view class="float" style="position:fixed;top:{{ someData.statusBarHeight+someData.titleBarHeight }}px">
             <view class='list-msg2' bindtap='bindShowMsg' style="position:fixed;top:{{ someData.statusBarHeight+someData.titleBarHeight+10 }}px">
@@ -131,8 +130,8 @@
         </view>
     </view>
     <!-- 下拉需要显示的列表 -->
-    <view class="select_box_center" catchtouchmove="catchtouchmove">
-        <view class="select_box"  wx:if="{{showModal}}" bindtap="go" style="position:fixed;top:{{ someData.statusBarHeight+someData.titleBarHeight+41 }}px">
+    <view class="select_box_center">
+        <view class="select_box"  wx:if="{{showModal}}" bindtap="go" style="position:absolute;top:{{ someData.statusBarHeight+someData.titleBarHeight+41 }}px">
             <block wx:for="{{equipList}}" wx:key="index">
                 <view class="select_one"  bindtap="mySelect" data-name="{{ item.name }}" data-value="{{ item.code }}">
                     <text>{{ item.name }}</text>

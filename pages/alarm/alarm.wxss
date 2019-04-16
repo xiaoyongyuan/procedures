@@ -41,6 +41,10 @@ page {
     overflow: visible;
     font-size: 28rpx;
     border-radius: 24rpx;
+    z-index: 9001;
+    /*background-color: #237af5;*/
+}
+.navbar{
     z-index: 9999;
 }
 .float{
@@ -327,9 +331,6 @@ page {
     display: inline-block;
     vertical-align: middle;
 }
-
-
-
 
 
 
