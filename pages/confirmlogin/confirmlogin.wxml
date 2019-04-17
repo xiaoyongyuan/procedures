@@ -1,0 +1,18 @@
+<view class="page">
+    <navbar back home text="{{navigationBarTitle}}"></navbar>
+
+    <view class="PC" style="position:absolute;top:{{ someData.statusBarHeight+someData.titleBarHeight+50 }}px">
+        <view class="PC-image">
+            <image src='../../images/confirmlogin.jpg'></image>
+        </view>
+    </view>
+    <view class="confirm-word">
+        <text>将你的信息同步到网页端</text>
+    </view>
+
+    <view class="page-addequip-button">
+        <view class="addequip-weui-btn">
+            <button class="weui-btn" bindtap="confirmlogin">确认登录</button>
+        </view>
+    </view>
+</view>

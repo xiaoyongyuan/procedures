@@ -6,7 +6,7 @@
     </view>
     <view class="view-list-bac" style="height: {{ screenHeight - someData.statusBarHeight - someData.titleBarHeight }}px">
         <view class="view-list">
-            <navigator url="/pages/index/index" class="weui-cell weui-cell_access" wx:for="{{ companylist }}"  wx:key="index" id="{{ index }}" hover-class="weui-cell_active" bindtap="selectcompany">
+            <navigator url="/pages/alarm/alarm" class="weui-cell weui-cell_access" wx:for="{{ companylist }}"  wx:key="index" id="{{ index }}" hover-class="weui-cell_active" bindtap="selectcompany">
                 <view class="weui-cell__bd weui-cell_primary">
                     <view>{{ item.cname }}</view>
                 </view>

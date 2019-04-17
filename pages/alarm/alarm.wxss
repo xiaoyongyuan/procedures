@@ -15,6 +15,9 @@ page {
     background-color: #fff;
     position: relative;
 }
+.calendar{
+    margin-left: 20rpx;
+}
 .weui-input{
     display: none;
     width: 85%;

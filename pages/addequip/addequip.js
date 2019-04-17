@@ -84,9 +84,6 @@ Page({
                                 duration: 2000
                             });
                         }, 500) ;//延迟时间 这里是1秒
-                        // wx.navigateTo({
-                        //     url:'../equipdetailsettinginfo/equipdetailsettinginfo'
-                        // })
                     }
                 });
         }

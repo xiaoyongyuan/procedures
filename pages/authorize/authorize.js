@@ -26,9 +26,6 @@ Page({
                 wx.navigateTo({
                     url: '/pages/register/register'
                 })
-              // wx.switchTab({
-              //   url: '/pages/index/index'
-              // })
             }
           });
         }
@@ -44,14 +41,7 @@ Page({
       //用户按了允许授权按钮
       var that = this;
       app.globalData.userInfo = e.detail.userInfo;
-
       //授权成功后，跳转进入小程序首页
-      // wx.switchTab({
-      //   url: '/pages/index/index'
-      // })
-      //   wx.navigateTo({
-      //       url: '/pages/register/register'
-      //   })
         wx.login({
             success: res => {
                 console.log('loginCode:', res.code);
@@ -95,7 +85,7 @@ Page({
                                     })
                                 }else {
                                     wx.switchTab({
-                                        url: '/pages/index/index'
+                                        url: '/pages/alarm/alarm'
                                     });
                                 }
                             }

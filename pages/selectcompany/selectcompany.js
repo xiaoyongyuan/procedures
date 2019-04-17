@@ -62,7 +62,7 @@ Page({
                     wx.setStorageSync('companyuser', res.data.data.companyuser.cname);
                     console.log("wocaotama",res.data.data.companyuser.cname);
                     wx.switchTab({
-                        url: '/pages/index/index'
+                        url: '/pages/alarm/alarm'
                     });
                     setTimeout(function () {
                         wx.showToast({

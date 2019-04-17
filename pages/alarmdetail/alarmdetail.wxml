@@ -91,6 +91,9 @@
                     id="myVideo"
                     src="{{alarmdetailData.videopath}}"
                     controls
+                    poster="{{ alarmdetailData.picpath }}"
+                    enable-play-gesture="true"
+                    loop="true"
             ></video>
             <view class="video-intro">
                 <text>视频简介： 入侵报警</text>

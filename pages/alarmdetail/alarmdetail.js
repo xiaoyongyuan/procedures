@@ -307,7 +307,9 @@ Page({
      */
     submit: function () {
         this.setData({
-            showModal: true
+            showModal: true,
+            reddisplay:'none',
+            bluedisplay:'none'
         })
     },
 
@@ -317,7 +319,9 @@ Page({
 
     go: function () {
         this.setData({
-            showModal: false
+            showModal: false,
+            reddisplay:'block',
+            bluedisplay:'block'
         })
     },
 

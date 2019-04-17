@@ -1,10 +1,6 @@
 <!--components/pickerYMDHM/pickerYMDHM.wxml-->
 <view bindtap="selsectdate">
   <picker disabled="{{disabled}}" mode="multiSelector" bindchange="pickerChange" bindcolumnchange="pickerColumnChange" bindcancel ="pickerCancel" value="{{pickerIndex}}" range="{{pickerArray}}" range-key="{{'name'}}">
-    <!--<view style='font-size:.7rem;background-color: #F8F8FF;line-height: 40px;padding:0px 10px;'>-->
-      <!--{{date}}-->
-    <!--</view>-->
-    <!--<image style='height:20rpx;width:40rpx;' src='/images/below.png'></image>-->
     <button>xx</button>
   </picker>
 </view>

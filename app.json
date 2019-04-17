@@ -8,6 +8,7 @@
     "pages/equip/equip",
     "pages/alarm/alarm",
     "pages/business/business",
+    "pages/confirmlogin/confirmlogin",
     "pages/bindingaccount/bindingaccount",
     "pages/logs/logs",
     "pages/authorize/authorize",

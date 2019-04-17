@@ -221,7 +221,7 @@ Page({
                                                                     }, 500) ;//延迟时间 这里是1秒
                                                                 }else {
                                                                     wx.switchTab({
-                                                                        url: '/pages/index/index'
+                                                                        url: '/pages/alarm/alarm'
                                                                     });
                                                                 }
                                                             }
@@ -237,16 +237,6 @@ Page({
                                         }
                                     });
                                 }
-                                // if(res.data.account !== '' && res.data.account !== undefined){
-                                //     wx.setStorageSync('user', res.data.account);
-                                //     wx.setStorageSync('account', res.data.data.account);
-                                // }
-                                // //success为1时，注册成功，跳到我的首页
-                                // if(res.data.success === 1){
-                                //     wx.switchTab({
-                                //         url: '/pages/index/index'
-                                //     })
-                                // }
                             }
                         });
                     }

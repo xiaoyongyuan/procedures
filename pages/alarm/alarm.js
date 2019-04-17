@@ -266,11 +266,38 @@ Page({
                 that.setData({
                     scanresult:res.result
                 });
+                wx.setStorageSync("qrcode",res.result);
                 wx.showToast({
                     title: '扫描成功',
                     icon: 'success',
                     duration: 2000
                 });
+                /**
+                 * 判断二维码是否存在
+                 */
+                request.postReq('','',"/login/qrcode_exits",
+                    {
+                        qrcode:res.result
+                    },
+                    function(res){
+                       console.log("res",res);
+                       if(res.success === 1){
+                           console.log("1");
+                           wx.navigateTo({
+                               url:'../confirmlogin/confirmlogin'
+                           })
+                       }
+                       if(res.success === 0){
+                           console.log("0");
+                           setTimeout(function () {
+                               wx.showToast({
+                                   title: '二维码失效',
+                                   icon: 'none',
+                                   duration: 2000
+                               });
+                           }, 500) ;//延迟时间 这里是1秒
+                       }
+                    });
             },
             fail: (res) => {
                 wx.showToast({
@@ -282,6 +309,13 @@ Page({
             complete: (res) => {
             }
         })
+    },
+    qrcodeInput:function(e){
+        var that = this;
+        that.setData({
+            qrcode:e.detail.value
+        });
+        console.log("qrcode",that.data.qrcode);
     },
 
     /**
