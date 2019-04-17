@@ -123,6 +123,9 @@ Page({
             PublicFun._showToast(errMsg);
             return false
         }
+        wx.showLoading({
+            title: '加载中',
+        });
         //注册发送验证码
         wx.request({
             url: 'https://api.aokecloud.cn/api/autocode/auto',
@@ -131,6 +134,7 @@ Page({
             },
             method: 'POST',
             success(res) {
+                wx.hideLoading();
                 if(res.data.success === 0){
                     wx.showToast({
                         title: '该手机号已注册',
@@ -139,6 +143,11 @@ Page({
                     });
                 }
                 if(res.data.success === 1){
+                    wx.showToast({
+                        title: '注意查收短信',
+                        icon: 'none',
+                        duration: 2000
+                    });
                     that.timer();
                     that.setData({
                         isGetCode: true,

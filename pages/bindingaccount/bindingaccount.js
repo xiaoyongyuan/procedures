@@ -109,6 +109,9 @@ Page({
             PublicFun._showToast(errMsg);
             return false
         }
+        wx.showLoading({
+            title: '加载中',
+        });
         //绑定发送验证码
         // 登录
         wx.login({
@@ -126,6 +129,7 @@ Page({
                         },
                         method: 'POST',
                         success(res) {
+                            wx.hideLoading();
                             if(res.data.auth !== undefined){
                                 that.setData({
                                     auth:res.data.auth
@@ -133,7 +137,7 @@ Page({
                             }
                             if(res.data.success === 0){
                                 wx.showToast({
-                                    title: '请先注册',
+                                    title: '该手机号未注册',
                                     icon: 'none',
                                     duration: 2000
                                 });
