@@ -42,7 +42,7 @@
     </view>
     <input class="weui-input" placeholder="请输入设备ID" value="{{ scanresult }}" />
 
-    <view class='list-li mflex'  wx:for="{{alarmListData}}"  wx:key="index" >
+    <view class='list-li mflex'  wx:for="{{alarmListData}}"  wx:key="index">
         <view class="alarm-list">
             <view class="alarm-list-one">
                 <view class="alarm-list-one-top" wx:if="{{ item.ifdanger === 0 }}" style="background-color: #fff"  bindtap="changeToalarmdetail" id='{{index}}'>

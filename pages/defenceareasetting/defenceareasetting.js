@@ -180,7 +180,8 @@ Page({
      */
     test:function(){
         // myblue_carvas.clearRect();
-        myblue_carvas.draw();
+        // myblue_carvas.draw();
+        console.log("enen");
     },
     /**
      *手指触摸结束时的事件蓝色
@@ -594,10 +595,6 @@ Page({
     flushimage:function(){
         var that = this;
         console.log("ceshi");
-        // var code = options.currentcode;
-        // that.setData({
-        //     currentcode:code
-        // });
         /**
          * 获取防区的宽和高
          */

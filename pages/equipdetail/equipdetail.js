@@ -47,11 +47,6 @@ Page({
                     })
         }
     },
-    // back: function () {
-    //     wx.switchTab({
-    //         url: '../equip/equip',   //注意switchTab只能跳转到带有tab的页面，不能跳转到不带tab的页面
-    //     })
-    // },
     /**
      * 页面跳转防区设置
      */

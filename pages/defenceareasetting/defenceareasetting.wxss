@@ -209,3 +209,9 @@ page{
     width: 60rpx;
     height: 60rpx;
 }
+.firstCanvas{
+    width: 80rpx;
+    height: 80rpx;
+    position: absolute;
+    right: 0px;
+}
