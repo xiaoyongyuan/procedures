@@ -23,12 +23,7 @@ Page({
                 qrcode:that.data.qrcode
             },
             function(res){
-                console.log("res",res);
                 if(res.success === 1){
-                    console.log("1");
-                    // wx.navigateTo({
-                    //     url:'../confirmlogin/confirmlogin'
-                    // })
                     wx.navigateBack({
                         delta: 1
                     });
@@ -39,17 +34,13 @@ Page({
                             duration: 2000
                         });
                     }, 1000) ;
+                }else {
+                    wx.showToast({
+                        title: '二维码已失效',
+                        icon: 'none',
+                        duration: 2000
+                    });
                 }
-                // if(res.success === 0){
-                //     console.log("0");
-                //     setTimeout(function () {
-                //         wx.showToast({
-                //             title: '二维码失效',
-                //             icon: 'none',
-                //             duration: 2000
-                //         });
-                //     }, 500) ;//延迟时间 这里是1秒
-                // }
             });
     },
     /**
