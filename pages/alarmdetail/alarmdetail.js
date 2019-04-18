@@ -165,90 +165,9 @@ Page({
                         navbar: ['报警图片', '报警视频'],
                     });
                 }
-                //围界信息
-                var percentxw = that.data.alarmdetailimgWidth/704;
-                var percentyw = that.data.alarmdetailimgHeight/576;
-                if(that.data.alarmdetailData.field.length > 0){
-                    myred_carvas = wx.createCanvasContext('redCanvas', this);//1.创建carvas实例对象，方便后续使用。
-                    myred_carvas.beginPath(); //创建一条路径
-                    myred_carvas.setStrokeStyle('red');  //设置边框为红色myblueCanvas
-                    myred_carvas.setLineWidth(2);
-                    for(var i = 0;i < that.data.alarmdetailData.field.length;i++){
-                        const x1 = that.data.alarmdetailData.field[i][0][0];
-                        const y1 = that.data.alarmdetailData.field[i][0][1];
-                        const x2 = that.data.alarmdetailData.field[i][1][0];
-                        const y2 = that.data.alarmdetailData.field[i][1][1];
-                        const x3 = that.data.alarmdetailData.field[i][2][0];
-                        const y3 = that.data.alarmdetailData.field[i][2][1];
-                        const x4 = that.data.alarmdetailData.field[i][3][0];
-                        const y4 = that.data.alarmdetailData.field[i][3][1];
-                        myred_carvas.moveTo(x1*percentxw,y1*percentyw); //描述路径的起点为手指触摸的x轴和y轴
-                        myred_carvas.lineTo(x2*percentxw,y2*percentyw);//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
-                        myred_carvas.lineTo(x3*percentxw,y3*percentyw);
-                        myred_carvas.lineTo(x4*percentxw,y4*percentyw);
-                        myred_carvas.lineTo(x1*percentxw,y1*percentyw);
-                    }
-                    myred_carvas.stroke();//画出当前路径的边框
-                    myred_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
-                }
-                //报警信息
-                if(that.data.alarmdetailData.finalresult1.length > 0){
-                    var percentx = that.data.alarmdetailimgWidth/that.data.alarmdetailData.pic_width;
-                    var percenty = that.data.alarmdetailimgHeight/that.data.alarmdetailData.pic_height;
-                    myblue_carvas = wx.createCanvasContext('blueCanvas', this);//1.创建carvas实例对象，方便后续使用。
-
-                    myblue_carvas.setLineWidth(2);
-                    for(var i = 0;i < that.data.alarmdetailData.finalresult1.length; i++){
-                        if(that.data.alarmdetailData.finalresult1[i].tag === 0){
-                            myblue_carvas.setStrokeStyle('#00e8e8');
-                        }else{
-                            myblue_carvas.setStrokeStyle('#bebf17');
-                        }
-                        var x = that.data.alarmdetailData.finalresult1[i].x;
-                        var y = that.data.alarmdetailData.finalresult1[i].y;
-                        var w = that.data.alarmdetailData.finalresult1[i].w;
-                        var h = that.data.alarmdetailData.finalresult1[i].h;
-                        myblue_carvas.strokeRect(x*percentx, y*percenty, w*percentx, h*percenty);
-                    }
-                    myblue_carvas.draw();
-                }
-            }
-        )
-    },
-    /**
-     * 请求上一条数据
-     */
-    last:function(){
-        var that = this;
-        var lastcode = that.data.alarmdetailData.last
-        if(that.data.alarmdetailData.last === ""){
-            wx.showToast({
-                title: '已是第一条报警',
-                icon: 'none',
-                duration: 2000
-            });
-            return;
-        }
-        request.postReq('','',"/api/alarm/getone",
-            {
-                code:lastcode
-            },
-            function (res) {
-                that.setData({
-                    alarmdetailData:res.data
-                });
-                if(that.data.alarmdetailData.ifdanger === 1){
+                if(res.data.videopath === ''){
                     that.setData({
-                        sign:true
-                    })
-                }else {
-                    that.setData({
-                        sign:false
-                    })
-                }
-                if(res.data.videopath !== ''){
-                    that.setData({
-                        navbar: ['报警图片', '报警视频'],
+                        navbar: ['报警图片'],
                     });
                 }
                 //围界信息
@@ -296,6 +215,105 @@ Page({
                         var h = that.data.alarmdetailData.finalresult1[i].h;
                         myblue_carvas.strokeRect(x*percentx, y*percenty, w*percentx, h*percenty);
                     }
+                    myblue_carvas.draw();
+                }else{
+                    myblue_carvas = wx.createCanvasContext('blueCanvas', this);//1.创建carvas实例对象，方便后续使用。
+                    myblue_carvas.setLineWidth(2);
+                    myblue_carvas.draw();
+                }
+            }
+        )
+    },
+    /**
+     * 请求上一条数据
+     */
+    last:function(){
+        var that = this;
+        var lastcode = that.data.alarmdetailData.last;
+        if(that.data.alarmdetailData.last === ""){
+            wx.showToast({
+                title: '已是第一条报警',
+                icon: 'none',
+                duration: 2000
+            });
+            return;
+        }
+        request.postReq('','',"/api/alarm/getone",
+            {
+                code:lastcode
+            },
+            function (res) {
+                that.setData({
+                    alarmdetailData:res.data
+                });
+                if(that.data.alarmdetailData.ifdanger === 1){
+                    that.setData({
+                        sign:true
+                    })
+                }else {
+                    that.setData({
+                        sign:false
+                    })
+                }
+                if(res.data.videopath !== ''){
+                    that.setData({
+                        navbar: ['报警图片', '报警视频'],
+                    });
+                }
+                if(res.data.videopath === ''){
+                    that.setData({
+                        navbar: ['报警图片'],
+                    });
+                }
+                //围界信息
+                var percentxw = that.data.alarmdetailimgWidth/704;
+                var percentyw = that.data.alarmdetailimgHeight/576;
+                if(that.data.alarmdetailData.field.length > 0){
+                    myred_carvas = wx.createCanvasContext('redCanvas', this);//1.创建carvas实例对象，方便后续使用。
+                    myred_carvas.beginPath(); //创建一条路径
+                    myred_carvas.setStrokeStyle('red');  //设置边框为红色myblueCanvas
+                    myred_carvas.setLineWidth(2);
+                    for(var i = 0;i < that.data.alarmdetailData.field.length;i++){
+                        const x1 = that.data.alarmdetailData.field[i][0][0];
+                        const y1 = that.data.alarmdetailData.field[i][0][1];
+                        const x2 = that.data.alarmdetailData.field[i][1][0];
+                        const y2 = that.data.alarmdetailData.field[i][1][1];
+                        const x3 = that.data.alarmdetailData.field[i][2][0];
+                        const y3 = that.data.alarmdetailData.field[i][2][1];
+                        const x4 = that.data.alarmdetailData.field[i][3][0];
+                        const y4 = that.data.alarmdetailData.field[i][3][1];
+                        myred_carvas.moveTo(x1*percentxw,y1*percentyw); //描述路径的起点为手指触摸的x轴和y轴
+                        myred_carvas.lineTo(x2*percentxw,y2*percentyw);//绘制一条直线，终点坐标为手指触摸结束后的x轴和y轴
+                        myred_carvas.lineTo(x3*percentxw,y3*percentyw);
+                        myred_carvas.lineTo(x4*percentxw,y4*percentyw);
+                        myred_carvas.lineTo(x1*percentxw,y1*percentyw);
+                    }
+                    myred_carvas.stroke();//画出当前路径的边框
+                    myred_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
+                }
+                //报警信息
+                if(that.data.alarmdetailData.finalresult1.length > 0){
+                    var percentx = that.data.alarmdetailimgWidth/that.data.alarmdetailData.pic_width;
+                    var percenty = that.data.alarmdetailimgHeight/that.data.alarmdetailData.pic_height;
+                    myblue_carvas = wx.createCanvasContext('blueCanvas', this);//1.创建carvas实例对象，方便后续使用。
+
+                    myblue_carvas.setLineWidth(2);
+                    for(var i = 0;i < that.data.alarmdetailData.finalresult1.length; i++){
+                        if(that.data.alarmdetailData.finalresult1[i].tag === 0){
+                            myblue_carvas.setStrokeStyle('#00e8e8');
+                        }else{
+                            myblue_carvas.setStrokeStyle('#bebf17');
+                        }
+                        var x = that.data.alarmdetailData.finalresult1[i].x;
+                        var y = that.data.alarmdetailData.finalresult1[i].y;
+                        var w = that.data.alarmdetailData.finalresult1[i].w;
+                        var h = that.data.alarmdetailData.finalresult1[i].h;
+                        myblue_carvas.strokeRect(x*percentx, y*percenty, w*percentx, h*percenty);
+                    }
+                    myblue_carvas.draw();
+                }else{
+                    myblue_carvas = wx.createCanvasContext('blueCanvas', this);//1.创建carvas实例对象，方便后续使用。
+                    myblue_carvas.setLineWidth(2);
                     myblue_carvas.draw();
                 }
             }
