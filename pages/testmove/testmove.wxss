@@ -1,0 +1,25 @@
+page{
+    line-height: 1.6;
+    font-family: -apple-system-font, "Helvetica Neue", sans-serif;
+    height: 100%;
+}
+.page{
+    height: 100%;
+    width: 100%;
+}
+.section__title{
+    width: 100%;
+    margin-top: 300rpx;
+}
+.movable-view{
+    border: #237af5 1px solid;
+    height: 200rpx;
+    width: 400rpx;
+}
+.left-movable-view{
+    /*border:  1px solid;*/
+    background: orange;
+    height: 200rpx;
+    width: 50rpx;
+    margin-left: -25rpx;
+}

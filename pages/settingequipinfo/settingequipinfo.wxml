@@ -10,7 +10,7 @@
                 <text>IP:</text>
             </view>
             <view class="settingequipinfo-item-right">
-                <input name="cameraip" bindinput="cameraipInput" placeholder="请输入设备IP" value="{{ IP }}" />
+                <input type="digit" name="cameraip" bindinput="cameraipInput" placeholder="请输入设备IP" value="{{ IP }}" />
             </view>
         </view>
         <view class="settingequipinfo-item">
@@ -18,9 +18,10 @@
                 <text>端口号:</text>
             </view>
             <view class="settingequipinfo-item-right">
-                <input name="cameraportno" bindinput="cameraportnoInput" placeholder="请输入端口号" value="{{ port }}" />
+                <input type="number" name="cameraportno" bindinput="cameraportnoInput" placeholder="请输入端口号" value="{{ port }}" />
             </view>
         </view>
+
         <view class="settingequipinfo-item">
             <view class="settingequipinfo-item-left">
                 <text>用户名:</text>

@@ -149,6 +149,10 @@ Page({
             },
             function (res) {
                 that.setData({
+                    reddisplay:'block',
+                    bluedisplay:'block',
+                    surround:true,
+                    alarminfo:true,
                     alarmdetailData:res.data
                 });
                 if(that.data.alarmdetailData.ifdanger === 1){
@@ -244,6 +248,10 @@ Page({
             },
             function (res) {
                 that.setData({
+                    reddisplay:'block',
+                    bluedisplay:'block',
+                    surround:true,
+                    alarminfo:true,
                     alarmdetailData:res.data
                 });
                 if(that.data.alarmdetailData.ifdanger === 1){

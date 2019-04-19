@@ -3,7 +3,7 @@
     <view class="versiondetail">
         <view class="versiondetail-logo">
             <image class="logo-image" src="../../images/logo.png"></image>
-            <text class="version-detail" bindtap="delwx">版本:1.0.0</text>
+            <text class="version-detail" bindtap="delwx">版本:1.0.1</text>
         </view>
         <view class="version-introduce">
             <text>更准确  更及时  更安全</text>

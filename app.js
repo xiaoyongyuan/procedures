@@ -76,6 +76,9 @@ App({
                                         wx.switchTab({
                                             url: '/pages/alarm/alarm'
                                         });
+                                        // wx.navigateTo({
+                                        //     url: '/pages/testmove/testmove'
+                                        // })
                                     }
                                 }
                                 if(res.data.success === 0){

@@ -1,7 +1,7 @@
 <!--pages/business/business.wxml-->
 <view class="page">
     <view class="banner">
-        <image class="banner-img" src="/images/banner.png"></image>
+        <image class="banner-img" src="/images/banner.jpg"></image>
     </view>
     <view class="buiness-all">
         <view class="buiness-item">
