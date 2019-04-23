@@ -1,0 +1,96 @@
+page{
+    line-height: 1.6;
+    font-family: -apple-system-font, "Helvetica Neue", sans-serif;
+    height: 100%;
+}
+.page{
+    height: 100%;
+    background-color: #e7e7e7;
+}
+.ydmessagelist{
+    width: 100%;
+    height: 220rpx;
+    background-color: white;
+    margin-top: 1px;
+}
+.ydmessagelist-one{
+    width: 100%;
+    height: 140rpx;
+    background-color: white;
+    margin-top: 1px;
+}
+.ydmessagelist-T{
+    width: 100%;
+    height: 140rpx;
+    display: flex;
+    align-items: center;
+}
+.ydmessagelist-b{
+    width: 100%;
+    height: 80rpx;
+    font-size: 24rpx;
+    color: #585858;
+    display: flex;
+    align-items: center;
+}
+.ydmessagelist-b .textview{
+    margin-left: 20rpx;
+    display: flex;
+    align-items: center;
+}
+.ydmessagelist-T-icon{
+    width: 90rpx;
+    height: 90rpx;
+    margin-left: 20rpx;
+    position: relative;
+}
+.ydmessagelist-T-icon image{
+    width: 100%;
+    height: 100%;
+}
+.ydmessagelist-T-center{
+    width: 75%;
+    height: 90rpx;
+    margin-left: 20rpx;
+}
+.ydmessagelist-T-right{
+    width: 5%;
+    height: 90rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ydmessagelist-T-center-t{
+    width: 100%;
+    height: 60%;
+    font-size: 26rpx;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+.ydmessagelist-T-center-b{
+    width: 100%;
+    height: 40%;
+    font-size: 22rpx;
+    color: #aaa;
+}
+.read{
+    width: 20rpx;
+    height: 20rpx;
+    border-radius: 50%;
+    background-color: #df1737;
+    position: absolute;
+    top: -10rpx;
+    right: -10rpx;
+}
+.up{
+    width: 30rpx;
+    height: 20rpx;
+    background-color: #237af5;
+}
+
+.dowm{
+    width: 30rpx;
+    height: 20rpx;
+    background-color: #df1737;
+}

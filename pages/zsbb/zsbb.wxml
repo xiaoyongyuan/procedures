@@ -1,0 +1,7 @@
+<view class="page">
+    <navbar back home text="{{navigationBarTitle}}"></navbar>
+    <view style="height: {{ someData.statusBarHeight+someData.titleBarHeight }}px;">
+        <!--占位1-->
+    </view>
+值守报表
+</view>

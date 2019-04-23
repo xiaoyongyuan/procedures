@@ -1,0 +1,80 @@
+<view class="page">
+    <navbar back home text="{{navigationBarTitle}}"></navbar>
+    <view style="height: {{ someData.statusBarHeight+someData.titleBarHeight }}px;">
+        <!--占位1-->
+    </view>
+
+    <view class="ydmessagelist-one" bindtap="openclose" wx:for="{{ ydmessage }}" wx:key="index" id='{{index}}' wx:if="{{ messageopen == false }}">
+        <view class="ydmessagelist-T">
+            <view class="ydmessagelist-T-icon">
+                <image wx:if="{{ item.atype === 7001 }}" src="/images/fqyd.jpg"></image>
+                <image wx:if="{{ item.atype === 7003 }}" src="/images/yidong.jpg"></image>
+                <image wx:if="{{ item.atype === 7004 }}" src="/images/accountyd.jpg"></image>
+                <image wx:if="{{ item.atype === 7006 }}" src="/images/accountyd.jpg"></image>
+                <view class="read" wx:if="{{ item.status === 0 }}"></view>
+            </view>
+            <view class="ydmessagelist-T-center">
+                <view class="ydmessagelist-T-center-t" wx:if="{{ item.atype === 7001 }}">
+                    防区异动
+                </view>
+                <view class="ydmessagelist-T-center-t" wx:elif="{{ item.atype === 7003 }}">
+                    布防时间异动
+                </view>
+                <view class="ydmessagelist-T-center-t" wx:elif="{{ item.atype === 7004 }}">
+                    布防方式异动
+                </view>
+                <view class="ydmessagelist-T-center-t" wx:elif="{{ item.atype === 7006 }}">
+                    账户异动
+                </view>
+                <view class="ydmessagelist-T-center-b">
+                    {{ item.atime }}
+                </view>
+            </view>
+            <view class="ydmessagelist-T-right">
+                <view class="dowm">
+
+                </view>
+            </view>
+        </view>
+    </view>
+
+
+    <view class="ydmessagelist" bindtap="openclose" wx:for="{{ ydmessage }}" wx:key="index" id='{{index}}' wx:if="{{ messageopen == true }}">
+        <view class="ydmessagelist-T">
+            <view class="ydmessagelist-T-icon">
+                <image wx:if="{{ item.atype === 7001 }}" src="/images/fqyd.jpg"></image>
+                <image wx:if="{{ item.atype === 7003 }}" src="/images/yidong.jpg"></image>
+                <image wx:if="{{ item.atype === 7004 }}" src="/images/accountyd.jpg"></image>
+                <image wx:if="{{ item.atype === 7006 }}" src="/images/accountyd.jpg"></image>
+            </view>
+            <view class="ydmessagelist-T-center">
+                <view class="ydmessagelist-T-center-t" wx:if="{{ item.atype === 7001 }}">
+                    防区异动
+                </view>
+                <view class="ydmessagelist-T-center-t" wx:elif="{{ item.atype === 7003 }}">
+                    布防时间异动
+                </view>
+                <view class="ydmessagelist-T-center-t" wx:elif="{{ item.atype === 7004 }}">
+                    布防方式异动
+                </view>
+                <view class="ydmessagelist-T-center-t" wx:elif="{{ item.atype === 7006 }}">
+                    账户异动
+                </view>
+                <view class="ydmessagelist-T-center-b">
+                    {{ item.atime }}
+                </view>
+            </view>
+            <view class="ydmessagelist-T-right">
+                <view class="up">
+
+                </view>
+            </view>
+        </view>
+        <view class="ydmessagelist-b">
+            <view class="textview">
+                消息通知： {{ item.memo }}
+            </view>
+        </view>
+    </view>
+
+</view>

@@ -7,16 +7,21 @@
                 y="{{y}}"
                 direction="all"
                 scale="true"
-                bindchange="test"
                 htouchmove="htouchmove"
+                bindchange="onChange"
+                htouchmove="htouchmove"
+                id="test"
+                bindscale="bindscale"
+                style="height: {{ height }}px; width: {{ width }}px"
         >
-            <movable-view
-                    class="left-movable-view"
-                    direction="vertical"
-            >
-            </movable-view>
         </movable-view>
 
+        <movable-view
+                class="left-movable-view"
+                direction="all"
+        >
+
+        </movable-view>
     </movable-area>
     <!--<view class="btn-area">-->
         <!--<button size="mini" bindtap="tap">click me to move to (30px, 30px)</button>-->

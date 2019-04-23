@@ -1,0 +1,99 @@
+<view class="page">
+    <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}" bindtap="go"></view>
+    <view style="width: 100%;height: auto;display: flex;justify-content: center">
+        <view class="detailpic" wx:if="{{showModal}}">
+            <view class="detailpic-T">
+                <view class="detailpic-T-image">
+                    <image src="{{ picpath }}"></image>
+                </view>
+            </view>
+            <view class="detailpic-B" bindtap="go">
+                <view class="detailpic-BL">
+                    取消
+                </view>
+                <view class="detailpic-BR">
+                    确认
+                </view>
+            </view>
+        </view>
+    </view>
+    <navbar back home text="{{navigationBarTitle}}"></navbar>
+    <view class="zhanweione" style="height: {{ someData.statusBarHeight+someData.titleBarHeight }}px;">
+        <!--占位1-->
+    </view>
+    <view class="zhanweione" style="height: 100px;">
+        <!--占位2-->
+    </view>
+    <view class="title" style="position:fixed; top: {{ someData.statusBarHeight+someData.titleBarHeight }}px;background-image: url('/images/daohanglan.png');">
+        <!--<image class="title-image" src="/images/daohanglan.png"></image>-->
+    </view>
+    <view class="gray" style="position:fixed; top: {{ someData.statusBarHeight+someData.titleBarHeight+45 }}px;">
+        <!--占位3-->
+
+    </view>
+
+    <view class="topcenterout">
+        <view class="topcenter" style="top: {{ someData.statusBarHeight+someData.titleBarHeight+5 }}px;">
+            <view class="topcenterT">
+                <view class="topcenterTone" bindtap="goyidong">
+                    <image src="/images/yidong.png"></image>
+                </view>
+                <view class="topcenterTone" bindtap="gozddk">
+                    <image src="/images/zhegndiandaka.png"></image>
+                </view>
+                <view class="topcenterTone" bindtap="gozsbb">
+                    <image src="/images/zhishoubaobiao.png"></image>
+                </view>
+                <view class="topcenterTone" bindtap="goother">
+                    <image src="/images/qita.png"></image>
+                </view>
+            </view>
+            <view class="topcenterB">
+                <view class="topcenterBone"bindtap="goyidong">
+                    异动
+                </view>
+                <view class="topcenterBone" bindtap="gozddk">
+                    整点打卡
+                </view>
+                <view class="topcenterBone" bindtap="gozsbb">
+                    值守报表
+                </view>
+                <view class="topcenterBone" bindtap="goother">
+                    其他
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="message-one" wx:for="{{ messageList }}" wx:key="index" bindtap="detailpic" id='{{index}}'>
+        <view class="message-one-icon">
+            <image wx:if="{{ item.atype === 12 }}" src="/images/zddk.jpg"></image>
+            <image wx:elif="{{ item.atype === 7001 || item.atype === 7003 || item.atype === 7004 || item.atype === 7006 }}" src="/images/yidong.jpg"></image>
+            <image wx:elif="{{ item.atype === 7008 }}" src="/images/zsbb.jpg"></image>
+            <image wx:else src="/images/other.jpg"></image>
+            <view class="read" wx:if="{{ item.status === 0 }}"></view>
+        </view>
+        <view class="message-one-center">
+            <view class="message-one-center-T">
+                <text wx:if="{{ item.atype === 12 }}">
+                    整点打卡
+                </text>
+                <text wx:elif="{{ item.atype === 7001 || item.atype === 7003 || item.atype === 7004 || item.atype === 7006}}">
+                    异动
+                </text>
+                <text wx:elif="{{ item.atype === 7008 }}">
+                    值守报表
+                </text>
+                <text wx:else>
+                    其他
+                </text>
+            </view>
+
+            <view class="message-one-center-B">
+                整点打卡消息通知
+            </view>
+        </view>
+        <view class="message-right">
+            <text class="time">{{ item.atime }}</text>
+        </view>
+    </view>
+</view>

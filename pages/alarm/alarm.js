@@ -245,7 +245,9 @@ Page({
         //获取当前点击元素的id(索引值)
         var Id = e.currentTarget.id;
         //获取当前点击元素的属性值。selectedvalue apptime
+        console.log("id",Id);
         var code = that.data.alarmListData[Id].code;
+        console.log("code",code);
         if(that.data.selectedvalue === 'sign'){
             wx.navigateTo({
                 url:'../alarmdetail/alarmdetail?code=' + code +'&ifdanger=1'
