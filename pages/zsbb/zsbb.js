@@ -13,6 +13,11 @@ Page({
             titleBarHeight: app.globalData.titleBarHeight
         },
         zsbbmessage:[],
+        isFromSearch: true,   // 用于判断zsbbmessage数组是不是空数组，默认true，空的数组
+        searchPageNum: 1,   // 设置加载的第几次，默认是第一次
+        callbackcount: 15,      //返回数据的个数
+        searchLoading: false, //"上拉加载"的变量，默认false，隐藏
+        searchLoadingComplete: false,  //“没有数据”的变量，默认false，隐藏
         isRefreshing: false,
     },
     /**
@@ -132,11 +137,58 @@ Page({
         that.onLoad();//数据请求
     },
 
+
+    /**
+     * 上滑加载
+     */
+    BottomLoad: function () {
+        var that = this;
+        let searchPageNum = that.data.searchPageNum,//把第几次加载次数作为参数
+            callbackcount =that.data.callbackcount; //返回数据的个数
+        /**
+         * 请求列表接口
+         */
+        request.postReq(searchPageNum,callbackcount,"/api/alarminfo/getlist",
+            {
+                atype:7008
+            },
+            function(res){
+                //判断是否有数据，有则取数据
+                if(res.data.length !== 0){
+                    let searchList = [];
+                    //如果isFromSearch是true从data中取出数据，否则先从原来的数据继续添加
+                    that.data.isFromSearch ? searchList=res.data : searchList=that.data.zsbbmessage.concat(res.data);
+                    that.setData({
+                        zsbbmessage: searchList, //获取数据数组
+                        searchLoading: false   //把"上拉加载"的变量设为false，显示
+                    });
+                    //没有数据了，把“没有数据”显示，把“上拉加载”隐藏
+                }else{
+                    that.setData({
+                        searchLoadingComplete: true, //把“没有数据”设为true，显示
+                        searchLoading: false  //把"上拉加载"的变量设为false，隐藏
+                    });
+                }
+            });
+    },
+
     /**
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-
+        let that = this;
+        if(that.data.searchLoadingComplete === false){
+            that.setData({
+                searchLoading: true
+            });
+        }
+        if(that.data.searchLoading && !that.data.searchLoadingComplete){
+            that.setData({
+                searchPageNum: that.data.searchPageNum+1,  //每次触发上拉事件，把searchPageNum+1
+                isFromSearch: false,  //触发到上拉事件，把isFromSearch设为为false
+            });
+            that.BottomLoad();
+        }
     },
 
     /**
