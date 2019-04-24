@@ -1,5 +1,6 @@
 @import "../ydmessage/ydmessage.wxss";
 @import "../equip/equip.wxss";
+@import "../alarm/alarm.wxss";
 page{
     display: flex;
     flex-direction: column;

@@ -109,6 +109,8 @@
             <text class="time">{{ item.atime }}</text>
         </view>
     </view>
+    <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>
+    <view class="loading complete"  hidden="{{!searchLoadingComplete}}">已加载全部</view>
     <view class="nomessage" wx:if="{{ nomessage }}">
         您目前还没有通知消息
     </view>
