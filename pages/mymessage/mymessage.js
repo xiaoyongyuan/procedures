@@ -51,7 +51,8 @@ Page({
         console.log("Id",Id);
         that.setData({
             showModal: true,
-            picpath:that.data.messageList[Id].picpath
+            picpath:that.data.messageList[Id].picpath,
+            memo:that.data.messageList[Id].memo
         });
         var code = that.data.messageList[Id].code;
         var status = that.data.messageList[Id].status;

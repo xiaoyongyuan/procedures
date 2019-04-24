@@ -4,7 +4,8 @@
         <view class="detailpic" wx:if="{{showModal}}">
             <view class="detailpic-T">
                 <view class="detailpic-T-image">
-                    <image src="{{ picpath }}"></image>
+                    <image src="{{ picpath }}" wx:if="{{ picpath !== '' }}"></image>
+                    <text wx:if="{{ memo !== '' }}">{{ memo }}</text>
                 </view>
             </view>
             <view class="detailpic-B" bindtap="go">

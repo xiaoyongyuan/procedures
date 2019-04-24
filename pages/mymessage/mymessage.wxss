@@ -168,7 +168,7 @@ page{
     width: 90%;
     height: 500rpx;
     background-color: #e7e7e7;
-    border-radius: 24rpx;
+    border-radius: 26rpx;
     position: fixed;
     top: 400rpx;
     z-index: 9998;
@@ -211,9 +211,14 @@ page{
     font-size: 26rpx;
     color: #5387c2;
 }
+
 .detailpic-T-image{
     width: 80%;
     height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24rpx;
 }
 .detailpic-T-image image{
     width: 100%;

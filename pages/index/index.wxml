@@ -95,7 +95,7 @@
         </view>
       </view>
       <navigator
-              url="/pages/testmove/testmove"
+              url="/pages/versions/versions"
               class="weui-cell weui-cell_access"
               hover-class="weui-cell_active"
       >
