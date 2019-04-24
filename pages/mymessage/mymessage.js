@@ -51,6 +51,8 @@ Page({
     },
     detailpic:function(e){
         var that = this;
+        let searchPageNum = that.data.searchPageNum,//把第几次加载次数作为参数
+            callbackcount =that.data.callbackcount; //返回数据的个数
         //获取当前点击元素的id(索引值)
         var Id = e.currentTarget.id;
         console.log("Id",Id);
@@ -77,10 +79,8 @@ Page({
                     /**
                      * 消息列表
                      */
-                    request.postReq('','',"/api/alarminfo/getlist",
-                        {
-
-                        },
+                    request.postReq(searchPageNum,callbackcount,"/api/alarminfo/getlist",
+                        {},
                         function(res){
                             console.log("res",res);
                             that.setData({
