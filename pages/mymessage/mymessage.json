@@ -2,5 +2,8 @@
   "usingComponents": {
     "navbar": "../component/navbar/navbar",
     "component-topnav": "/pages/component/topnav"
-  }
+  },
+  "navigationBarBackgroundColor": "#3891f8",
+  "navigationBarTextStyle":"white",
+  "enablePullDownRefresh": true
 }

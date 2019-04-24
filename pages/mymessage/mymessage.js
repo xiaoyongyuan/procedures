@@ -15,6 +15,7 @@ Page({
         },
         messageList:[],
         showModal: false,
+        isRefreshing: false,
     },
     /**
      * 生命周期函数--监听页面加载
@@ -37,6 +38,10 @@ Page({
                that.setData({
                    messageList:res.data
                });
+                that.setData({
+                    isRefreshing: false,
+                });
+                wx.stopPullDownRefresh();
             });
     },
     detailpic:function(e){
@@ -139,7 +144,14 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-
+        var that = this;
+        if (that.data.isRefreshing) {
+            return
+        }
+        that.setData({
+            isRefreshing: true,
+        });
+        that.onLoad();//数据请求
     },
 
     /**
