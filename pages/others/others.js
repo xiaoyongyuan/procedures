@@ -1,4 +1,3 @@
-// pages/versions/versions.js
 var request = require('../../utils/request.js');
 const app = getApp();
 Page({
@@ -7,13 +6,13 @@ Page({
      * 页面的初始数据
      */
     data: {
-        navigationBarTitle: '整点打卡',
+        navigationBarTitle: '其他消息',
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
         },
-        zddkmessagelist:[],
-        isFromSearch: true,   // 用于判断zddkmessagelist数组是不是空数组，默认true，空的数组
+        othermessagelist:[],
+        isFromSearch: true,   // 用于判断othermessagelist数组是不是空数组，默认true，空的数组
         searchPageNum: 1,   // 设置加载的第几次，默认是第一次
         callbackcount: 15,      //返回数据的个数
         searchLoading: false, //"上拉加载"的变量，默认false，隐藏
@@ -30,7 +29,7 @@ Page({
          */
         request.postReq('','',"/api/alarminfo/getlist",
             {
-                atype:12
+                others:1
             },
             function(res){
                 if(res.data.length === 0){
@@ -39,18 +38,18 @@ Page({
                     })
                 }
                 that.setData({
-                    zddkmessagelist:res.data
+                    othermessagelist:res.data
                 });
                 for(var i = 0;i<res.data.length;i++){
-                    that.data.zddkmessagelist[i]['messageopen']=false;
-                    if(that.data.zddkmessagelist[i]['status'] === 0){
-                        that.data.zddkmessagelist[i]['isshow']='block';
+                    that.data.othermessagelist[i]['messageopen']=false;
+                    if(that.data.othermessagelist[i]['status'] === 0){
+                        that.data.othermessagelist[i]['isshow']='block';
                     }
-                    if(that.data.zddkmessagelist[i]['status'] === 1){
-                        that.data.zddkmessagelist[i]['isshow']='none';
+                    if(that.data.othermessagelist[i]['status'] === 1){
+                        that.data.othermessagelist[i]['isshow']='none';
                     }
                     that.setData({
-                        zddkmessagelist:that.data.zddkmessagelist
+                        othermessagelist:that.data.othermessagelist
                     })
                 }
                 that.setData({
@@ -63,13 +62,13 @@ Page({
         var that = this;
         //获取当前点击元素的id(索引值)
         var Id = e.currentTarget.id;
-        var code = that.data.zddkmessagelist[Id].code;
-        var status = that.data.zddkmessagelist[Id].status;
-        var messageopen = that.data.zddkmessagelist[Id].messageopen;
-        that.data.zddkmessagelist[Id]['messageopen']=!messageopen;
-        that.data.zddkmessagelist[Id]['isshow']='none';
+        var code = that.data.othermessagelist[Id].code;
+        var status = that.data.othermessagelist[Id].status;
+        var messageopen = that.data.othermessagelist[Id].messageopen;
+        that.data.othermessagelist[Id]['messageopen']=!messageopen;
+        that.data.othermessagelist[Id]['isshow']='none';
         that.setData({
-            zddkmessagelist:that.data.zddkmessagelist
+            othermessagelist:that.data.othermessagelist
         });
         if(status === 0){
             /**
@@ -81,7 +80,7 @@ Page({
                     status:1
                 },
                 function(res){
-                    that.data.zddkmessagelist[Id]['status']=1;
+                    that.data.othermessagelist[Id]['status']=1;
                 });
         }
     },
@@ -139,16 +138,16 @@ Page({
          */
         request.postReq(searchPageNum,callbackcount,"/api/alarminfo/getlist",
             {
-                atype:12
+                others:1
             },
             function(res){
                 //判断是否有数据，有则取数据
                 if(res.data.length !== 0){
                     let searchList = [];
                     //如果isFromSearch是true从data中取出数据，否则先从原来的数据继续添加
-                    that.data.isFromSearch ? searchList=res.data : searchList=that.data.zddkmessagelist.concat(res.data);
+                    that.data.isFromSearch ? searchList=res.data : searchList=that.data.othermessagelist.concat(res.data);
                     that.setData({
-                        zddkmessagelist: searchList, //获取数据数组
+                        othermessagelist: searchList, //获取数据数组
                         searchLoading: false   //把"上拉加载"的变量设为false，显示
                     });
                     //没有数据了，把“没有数据”显示，把“上拉加载”隐藏

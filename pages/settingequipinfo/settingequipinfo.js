@@ -11,7 +11,6 @@ Page({
      */
     data: {
         navigationBarTitle:'设置设备信息',
-        // 这里是一些组件内部数据
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight

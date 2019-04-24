@@ -7,7 +7,6 @@ Page({
      */
     data: {
         navigationBarTitle: '确认登录',
-        // 这里是一些组件内部数据
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight

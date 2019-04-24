@@ -7,31 +7,15 @@
         <view class="weui-loading"></view>
         <view class="weui-loadmore-tips">正在刷新...</view>
     </view>
-    <view class="ydmessagelist-one" bindtap="openclose" wx:for="{{ ydmessage }}" wx:key="index" id='{{index}}'>
+    <view class="ydmessagelist-one" bindtap="openclose" wx:for="{{ othermessagelist }}" wx:key="index" id='{{index}}'>
         <view class="ydmessagelist-T">
             <view class="ydmessagelist-T-icon">
-                <image wx:if="{{ item.atype === 7001 }}" src="/images/fqyd.jpg"></image>
-                <image wx:if="{{ item.atype === 7002 }}" src="/images/accountyd.jpg"></image>
-                <image wx:if="{{ item.atype === 7003 }}" src="/images/yidong.jpg"></image>
-                <image wx:if="{{ item.atype === 7004 }}" src="/images/fqyd.jpg"></image>
-                <image wx:if="{{ item.atype === 7006 }}" src="/images/accountyd.jpg"></image>
+                <image src="/images/other.jpg"></image>
                 <view class="read" style="display: {{ item.isshow }}" wx:if="{{ item.status === 0 }}"></view>
             </view>
             <view class="ydmessagelist-T-center">
-                <view class="ydmessagelist-T-center-t" wx:if="{{ item.atype === 7001 }}">
-                    防区异动
-                </view>
-                <view class="ydmessagelist-T-center-t" wx:if="{{ item.atype === 7002 }}">
-                    设备操作异动
-                </view>
-                <view class="ydmessagelist-T-center-t" wx:elif="{{ item.atype === 7003 }}">
-                    布防时间异动
-                </view>
-                <view class="ydmessagelist-T-center-t" wx:elif="{{ item.atype === 7004 }}">
-                    布防方式设置异动
-                </view>
-                <view class="ydmessagelist-T-center-t" wx:elif="{{ item.atype === 7006 }}">
-                    账户异动
+                <view class="ydmessagelist-T-center-t">
+                    其他消息
                 </view>
                 <view class="ydmessagelist-T-center-b">
                     {{ item.atime }}
@@ -54,5 +38,4 @@
     <view class="nomessage" wx:if="{{ nomessage }}">
         您目前还没有通知消息
     </view>
-
 </view>

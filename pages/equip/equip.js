@@ -9,8 +9,6 @@ Page({
      */
     data: {
         title:'',
-        // title:app.globalData.cname,
-        // 这里是一些组件内部数据
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight

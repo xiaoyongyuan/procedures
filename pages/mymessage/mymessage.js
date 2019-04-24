@@ -1,4 +1,3 @@
-// pages/versions/versions.js
 var request = require('../../utils/request.js');
 const app = getApp();
 Page({
@@ -8,7 +7,6 @@ Page({
      */
     data: {
         navigationBarTitle: '我的消息',
-        // 这里是一些组件内部数据
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
@@ -35,6 +33,7 @@ Page({
 
             },
             function(res){
+            console.log("res",res);
                if(res.data.length === 0){
                    that.setData({
                        nomessage:true
@@ -43,6 +42,18 @@ Page({
                that.setData({
                    messageList:res.data
                });
+                for(var i=0;i<res.data.length;i++){
+                    that.data.messageList[i]['messageopen']=false;
+                    if(that.data.messageList[i]['status'] === 0){
+                        that.data.messageList[i]['isshow']='block';
+                    }
+                    if(that.data.messageList[i]['status'] === 1){
+                        that.data.messageList[i]['isshow']='none';
+                    }
+                    that.setData({
+                        messageList:that.data.messageList
+                    })
+                }
                 that.setData({
                     isRefreshing: false,
                 });
@@ -55,7 +66,6 @@ Page({
             callbackcount =that.data.callbackcount; //返回数据的个数
         //获取当前点击元素的id(索引值)
         var Id = e.currentTarget.id;
-        console.log("Id",Id);
         that.setData({
             showModal: true,
             picpath:that.data.messageList[Id].picpath,
@@ -63,8 +73,10 @@ Page({
         });
         var code = that.data.messageList[Id].code;
         var status = that.data.messageList[Id].status;
-        console.log("code",code);
-        console.log("status",status);
+        that.data.messageList[Id]['isshow']='none';
+        that.setData({
+            messageList:that.data.messageList
+        });
         if(status === 0){
             /**
              * 已读未读
@@ -75,18 +87,16 @@ Page({
                     status:1
                 },
                 function(res){
-                    console.log("res",res);
                     /**
                      * 消息列表
                      */
-                    request.postReq(searchPageNum,callbackcount,"/api/alarminfo/getlist",
-                        {},
-                        function(res){
-                            console.log("res",res);
-                            that.setData({
-                                messageList:res.data
-                            });
-                        });
+                    // request.postReq(searchPageNum,callbackcount,"/api/alarminfo/getlist",
+                    //     {},
+                    //     function(res){
+                    //         that.setData({
+                    //             messageList:res.data
+                    //         });
+                    //     });
                 });
         }
     },
@@ -111,11 +121,9 @@ Page({
         })
     },
     goother:function(){
-        wx.showToast({
-            title: '待开发...',
-            icon: 'none',
-            duration: 2000
-        });
+        wx.navigateTo({
+            url: '/pages/others/others'
+        })
     },
 
     /**

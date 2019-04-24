@@ -35,15 +35,15 @@ page{
     align-items: center;
 }
 .ydmessagelist-b .textview{
-    margin-left: 20rpx;
+    margin-left: 40rpx;
     display: flex;
     align-items: center;
-    margin-right: 20rpx;
+    margin-right: 40rpx;
 }
 .ydmessagelist-T-icon{
     width: 90rpx;
     height: 90rpx;
-    margin-left: 20rpx;
+    margin-left: 40rpx;
     position: relative;
 }
 .ydmessagelist-T-icon image{
@@ -51,7 +51,7 @@ page{
     height: 100%;
 }
 .ydmessagelist-T-center{
-    width: 75%;
+    width: 60%;
     height: 90rpx;
     margin-left: 20rpx;
 }
@@ -61,6 +61,8 @@ page{
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    right: 20rpx;
 }
 .ydmessagelist-T-center-t{
     width: 100%;

@@ -61,12 +61,8 @@ Page({
     },
     openclose:function(e){
         var that = this;
-        that.setData({
-            messageopen:!that.data.messageopen
-        });
         //获取当前点击元素的id(索引值)
         var Id = e.currentTarget.id;
-        console.log("Id",Id);
         var code = that.data.zsbbmessage[Id].code;
         var status = that.data.zsbbmessage[Id].status;
         var messageopen = that.data.zsbbmessage[Id].messageopen;
@@ -75,11 +71,6 @@ Page({
         that.setData({
             zsbbmessage:that.data.zsbbmessage
         });
-        console.log("zsbbmessage",that.data.zsbbmessage);
-        console.log("messageopen",messageopen);
-        console.log("code",code);
-        console.log("status",status);
-
         if(status === 0){
             /**
              * 已读未读
@@ -90,7 +81,6 @@ Page({
                     status:1
                 },
                 function(res){
-                    console.log("res",res);
                     that.data.zsbbmessage[Id]['status']=1;
                 });
         }

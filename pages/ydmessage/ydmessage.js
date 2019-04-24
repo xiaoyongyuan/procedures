@@ -8,7 +8,6 @@ Page({
      */
     data: {
         navigationBarTitle: '异动消息',
-        // 这里是一些组件内部数据
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
@@ -34,7 +33,6 @@ Page({
                 searchtype:1
             },
             function(res){
-                console.log("res",res);
                 if(res.data.length === 0){
                     that.setData({
                        nomessage:true
@@ -68,7 +66,6 @@ Page({
         });
         //获取当前点击元素的id(索引值)
         var Id = e.currentTarget.id;
-        console.log("Id",Id);
         var code = that.data.ydmessage[Id].code;
         var status = that.data.ydmessage[Id].status;
         var messageopen = that.data.ydmessage[Id].messageopen;
@@ -77,11 +74,6 @@ Page({
         that.setData({
             ydmessage:that.data.ydmessage
         });
-        console.log("ydmessage",that.data.ydmessage);
-        console.log("messageopen",messageopen);
-        console.log("code",code);
-        console.log("status",status);
-
         if(status === 0){
             /**
              * 已读未读
@@ -92,7 +84,6 @@ Page({
                     status:1
                 },
                 function(res){
-                    console.log("res",res);
                     that.data.ydmessage[Id]['status']=1;
                 });
         }

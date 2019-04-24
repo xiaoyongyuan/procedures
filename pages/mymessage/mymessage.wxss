@@ -100,7 +100,7 @@ page{
 .message-one-icon{
     width: 90rpx;
     height: 90rpx;
-    margin-left: 20rpx;
+    margin-left: 40rpx;
     position: relative;
     z-index: 1;
 }
@@ -109,7 +109,7 @@ page{
     height: 100%;
 }
 .message-one-center{
-    width: 50%;
+    width: 40%;
     height: 90rpx;
     margin-left: 20rpx;
 }
@@ -139,6 +139,8 @@ page{
     height: 90rpx;
     display: flex;
     align-items: flex-start;
+    position: absolute;
+    right: 40rpx;
 }
 .time{
     font-size: 22rpx;

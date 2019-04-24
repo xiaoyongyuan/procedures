@@ -71,18 +71,22 @@
     <view class="message-one" wx:for="{{ messageList }}" wx:key="index" bindtap="detailpic" id='{{index}}'>
         <view class="message-one-icon">
             <image wx:if="{{ item.atype === 12 }}" src="/images/zddk.jpg"></image>
+            <image wx:elif="{{ item.atype === 7002 }}" src="/images/fqyd.jpg"></image>
             <image wx:elif="{{ item.atype === 7001 || item.atype === 7003 || item.atype === 7004 || item.atype === 7006 }}" src="/images/yidong.jpg"></image>
             <image wx:elif="{{ item.atype === 7008 }}" src="/images/zsbb.jpg"></image>
             <image wx:else src="/images/other.jpg"></image>
-            <view class="read" wx:if="{{ item.status === 0 }}"></view>
+            <view class="read" style="display: {{ item.isshow }}" wx:if="{{ item.status === 0 }}"></view>
         </view>
         <view class="message-one-center">
             <view class="message-one-center-T">
                 <text wx:if="{{ item.atype === 12 }}">
                     整点打卡
                 </text>
+                <text wx:elif="{{ item.atype === 7002 }}">
+                    摄像头绑定操作
+                </text>
                 <text wx:elif="{{ item.atype === 7001 || item.atype === 7003 || item.atype === 7004 || item.atype === 7006}}">
-                    异动
+                    防区时间异动
                 </text>
                 <text wx:elif="{{ item.atype === 7008 }}">
                     值守报表
@@ -95,8 +99,11 @@
             <view class="message-one-center-B" wx:if="{{ item.atype === 12 }}">
                 整点打卡消息通知
             </view>
+            <view class="message-one-center-B" wx:elif="{{ item.atype === 7002 }}">
+                绑定消息通知
+            </view>
             <view class="message-one-center-B" wx:elif="{{ item.atype === 7001 || item.atype === 7003 || item.atype === 7004 || item.atype === 7006}}">
-                异动消息通知
+                防区时间异动消息通知
             </view>
             <view class="message-one-center-B" wx:elif="{{ item.atype === 7008 }}">
                 值守报表消息通知

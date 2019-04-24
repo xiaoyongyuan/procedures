@@ -1,0 +1,10 @@
+@import "../zsbb/zsbb.wxss";
+page{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #e7e7e7;
+}
+.page{
+    background-color: #e7e7e7;
+}
