@@ -31,7 +31,6 @@ page {
     font-size: 30rpx;
     text-align: center;
     margin-top: -90rpx;
-    /*background-color: #df1737;*/
 }
 
 .weui-loading {

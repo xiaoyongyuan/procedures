@@ -13,7 +13,7 @@ Page({
             titleBarHeight: app.globalData.titleBarHeight
         },
         zddkmessagelist:[],
-        messageopen:false
+        isRefreshing: false,
     },
     /**
      * 生命周期函数--监听页面加载
@@ -28,10 +28,30 @@ Page({
                 atype:12
             },
             function(res){
-                console.log("res",res);
+                if(res.data.length === 0){
+                    that.setData({
+                        nomessage:true
+                    })
+                }
                 that.setData({
                     zddkmessagelist:res.data
                 });
+                for(var i = 0;i<res.data.length;i++){
+                    that.data.zddkmessagelist[i]['messageopen']=false;
+                    if(that.data.zddkmessagelist[i]['status'] === 0){
+                        that.data.zddkmessagelist[i]['isshow']='block';
+                    }
+                    if(that.data.zddkmessagelist[i]['status'] === 1){
+                        that.data.zddkmessagelist[i]['isshow']='none';
+                    }
+                    that.setData({
+                        zddkmessagelist:that.data.zddkmessagelist
+                    })
+                }
+                that.setData({
+                    isRefreshing: false,
+                });
+                wx.stopPullDownRefresh();
             });
     },
     openclose:function(e){
@@ -42,14 +62,17 @@ Page({
         //获取当前点击元素的id(索引值)
         var Id = e.currentTarget.id;
         console.log("Id",Id);
-        // that.setData({
-        //     showModal: true,
-        //     picpath:that.data.messageList[Id].picpath
-        // });
         var code = that.data.zddkmessagelist[Id].code;
         var status = that.data.zddkmessagelist[Id].status;
+        var messageopen = that.data.zddkmessagelist[Id].messageopen;
+        that.data.zddkmessagelist[Id]['messageopen']=!messageopen;
+        that.data.zddkmessagelist[Id]['isshow']='none';
+        that.setData({
+            zddkmessagelist:that.data.zddkmessagelist
+        });
         console.log("code",code);
         console.log("status",status);
+        console.log("messageopen",messageopen);
         if(status === 0){
             /**
              * 已读未读
@@ -61,19 +84,7 @@ Page({
                 },
                 function(res){
                     console.log("res",res);
-                    /**
-                     * 消息列表
-                     */
-                    // request.postReq('','',"/api/alarminfo/getlist",
-                    //     {
-                    //
-                    //     },
-                    //     function(res){
-                    //         console.log("res",res);
-                    //         that.setData({
-                    //             ydmessage:res.data
-                    //         });
-                    //     });
+                    that.data.zddkmessagelist[Id]['status']=1;
                 });
         }
     },
@@ -109,7 +120,14 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-
+        var that = this;
+        if (that.data.isRefreshing) {
+            return
+        }
+        that.setData({
+            isRefreshing: true,
+        });
+        that.onLoad();//数据请求
     },
 
     /**

@@ -14,7 +14,7 @@ Page({
             titleBarHeight: app.globalData.titleBarHeight
         },
         ydmessage:[],
-        messageopen:false
+        isRefreshing: false,
     },
     /**
      * 生命周期函数--监听页面加载
@@ -30,9 +30,30 @@ Page({
             },
             function(res){
                 console.log("res",res);
+                if(res.data.length === 0){
+                    that.setData({
+                       nomessage:true
+                    });
+                }
                 that.setData({
                     ydmessage:res.data
                 });
+                for(var i=0;i<res.data.length;i++){
+                    that.data.ydmessage[i]['messageopen']=false;
+                    if(that.data.ydmessage[i]['status'] === 0){
+                        that.data.ydmessage[i]['isshow']='block';
+                    }
+                    if(that.data.ydmessage[i]['status'] === 1){
+                        that.data.ydmessage[i]['isshow']='none';
+                    }
+                    that.setData({
+                        ydmessage:that.data.ydmessage
+                    })
+                }
+                that.setData({
+                    isRefreshing: false,
+                });
+                wx.stopPullDownRefresh();
             });
     },
     openclose:function(e){
@@ -43,14 +64,19 @@ Page({
         //获取当前点击元素的id(索引值)
         var Id = e.currentTarget.id;
         console.log("Id",Id);
-        // that.setData({
-        //     showModal: true,
-        //     picpath:that.data.messageList[Id].picpath
-        // });
         var code = that.data.ydmessage[Id].code;
         var status = that.data.ydmessage[Id].status;
+        var messageopen = that.data.ydmessage[Id].messageopen;
+        that.data.ydmessage[Id]['messageopen']=!messageopen;
+        that.data.ydmessage[Id]['isshow']='none';
+        that.setData({
+            ydmessage:that.data.ydmessage
+        });
+        console.log("ydmessage",that.data.ydmessage);
+        console.log("messageopen",messageopen);
         console.log("code",code);
         console.log("status",status);
+
         if(status === 0){
             /**
              * 已读未读
@@ -62,19 +88,7 @@ Page({
                 },
                 function(res){
                     console.log("res",res);
-                    /**
-                     * 消息列表
-                     */
-                    // request.postReq('','',"/api/alarminfo/getlist",
-                    //     {
-                    //
-                    //     },
-                    //     function(res){
-                    //         console.log("res",res);
-                    //         that.setData({
-                    //             ydmessage:res.data
-                    //         });
-                    //     });
+                    that.data.ydmessage[Id]['status']=1;
                 });
         }
     },
@@ -110,7 +124,14 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-
+        var that = this;
+        if (that.data.isRefreshing) {
+            return
+        }
+        that.setData({
+            isRefreshing: true,
+        });
+        that.onLoad();//数据请求
     },
 
     /**

@@ -24,8 +24,8 @@
     <view class="zhanweione" style="height: 100px;">
         <!--占位2-->
     </view>
-    <view class="title" style="position:fixed; top: {{ someData.statusBarHeight+someData.titleBarHeight }}px;background-image: url('/images/daohanglan.png');">
-        <!--<image class="title-image" src="/images/daohanglan.png"></image>-->
+    <view class="title" style="position:fixed; top: {{ someData.statusBarHeight+someData.titleBarHeight }}px;">
+        <image class="title-image" src="/images/daohanglan.png"></image>
     </view>
     <view class="gray" style="position:fixed; top: {{ someData.statusBarHeight+someData.titleBarHeight+45 }}px;">
         <!--占位3-->
@@ -88,12 +88,24 @@
                 </text>
             </view>
 
-            <view class="message-one-center-B">
+            <view class="message-one-center-B" wx:if="{{ item.atype === 12 }}">
                 整点打卡消息通知
+            </view>
+            <view class="message-one-center-B" wx:elif="{{ item.atype === 7001 || item.atype === 7003 || item.atype === 7004 || item.atype === 7006}}">
+                异动消息通知
+            </view>
+            <view class="message-one-center-B" wx:elif="{{ item.atype === 7008 }}">
+                值守报表消息通知
+            </view>
+            <view class="message-one-center-B" wx:else>
+                其他消息通知
             </view>
         </view>
         <view class="message-right">
             <text class="time">{{ item.atime }}</text>
         </view>
+    </view>
+    <view class="nomessage" wx:if="{{ nomessage }}">
+        您目前还没有通知消息
     </view>
 </view>

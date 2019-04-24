@@ -3,32 +3,15 @@
     <view style="height: {{ someData.statusBarHeight+someData.titleBarHeight }}px;">
         <!--占位1-->
     </view>
-    <view class="zddkmessagelist-one" bindtap="openclose" wx:for="{{ zddkmessagelist }}" wx:key="index" id='{{index}}' wx:if="{{ messageopen == false }}">
-        <view class="ydmessagelist-T">
-            <view class="ydmessagelist-T-icon">
-                <image  src="/images/zddk.jpg"></image>
-                <view class="read" wx:if="{{ item.status === 0 }}"></view>
-            </view>
-            <view class="ydmessagelist-T-center">
-                <view class="ydmessagelist-T-center-t">
-                    整点打卡
-                </view>
-                <view class="ydmessagelist-T-center-b">
-                    {{ item.atime }}
-                </view>
-            </view>
-            <view class="ydmessagelist-T-right">
-                <view class="up">
-
-                </view>
-            </view>
-        </view>
+    <view class="weui-loadmore" wx:if='{{isRefreshing}}'>
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore-tips">正在刷新...</view>
     </view>
-
-    <view class="zddkmessagelist" bindtap="openclose" wx:for="{{ zddkmessagelist }}" wx:key="index" id='{{index}}' wx:if="{{ messageopen == true }}">
+    <view class="zddkmessagelist-one" bindtap="openclose" wx:for="{{ zddkmessagelist }}" wx:key="index" id='{{index}}'>
         <view class="ydmessagelist-T">
             <view class="ydmessagelist-T-icon">
                 <image  src="/images/zddk.jpg"></image>
+                <view class="read" style="display: {{ item.isshow }}" wx:if="{{ item.status === 0 }}"></view>
             </view>
             <view class="ydmessagelist-T-center">
                 <view class="ydmessagelist-T-center-t">
@@ -39,15 +22,18 @@
                 </view>
             </view>
             <view class="ydmessagelist-T-right">
-                <view class="dowm">
-
+                <view class="upimage" wx:if="{{ item.messageopen == true }}">
                 </view>
+                <image src="/images/belowme.png" wx:if="{{ item.messageopen == false }}"></image>
             </view>
         </view>
-        <view class="zddkmessagelist-B">
+        <view class="zddkmessagelist-B" wx:if="{{ item.messageopen == true }}">
             <view class="zddkmessagelist-B-inner">
                 <image src="{{ item.picpath }}"></image>
             </view>
         </view>
+    </view>
+    <view class="nomessage" wx:if="{{ nomessage }}">
+        您目前还没有通知消息
     </view>
 </view>
