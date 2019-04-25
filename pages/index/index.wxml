@@ -1,6 +1,69 @@
 <!--index.wxml-->
 <view class="page">
   <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}" bindtap="go"></view>
+  <view style="width: 100%;height: auto;display: flex;justify-content: center">
+    <view class="detailpic" wx:if="{{ showModalalarm }}">
+      <view class="detailpic-T">
+        <view class="detailpic-T-text">
+          <text>一键报警</text>
+        </view>
+        <view class="detailpic-T-radio">
+          <block wx:for="{{alarmequiplist}}" wx:key="index">
+            <view class="keyalarmone"  wx:if="{{ item.isselect === false }}"  id="{{ index }}"  bindtap="alarmselect" >
+              <text>
+                {{item.name}}
+              </text>
+            </view>
+            <view class="keyalarmone" style="border: 1px solid #00a0e9" id="{{ index }}" wx:if="{{ item.isselect === true }}" bindtap="alarmselect">
+              <text>
+                {{item.name}}
+              </text>
+            </view>
+          </block>
+
+          <!--<radio-group class="radio-group" bindchange="radioChange">-->
+            <!--<label class="radio" wx:for="{{alarmequiplist}}"  wx:key="index">-->
+              <!--<radio value="{{item.code}}" checked="{{item.checked}}" />-->
+              <!--{{item.name}}-->
+            <!--</label>-->
+          <!--</radio-group>-->
+        </view>
+      </view>
+      <view class="detailpic-B">
+        <view class="detailpic-BL" bindtap="go">
+          取消
+        </view>
+        <view class="detailpic-BR" bindtap="surekeyalarm">
+          确认
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style="width: 100%;height: auto;display: flex;justify-content: center">
+    <view class="detailpic" wx:if="{{ showModSF }}">
+      <view class="detailpic-T">
+        <checkbox-group class="checkbox-group" bindchange="checkboxChange">
+          <label class="checkbox" wx:for="{{ SFequiplist }}" wx:key="index">
+            <checkbox value="{{item.code}}" checked="{{item.checked}}" />
+            {{item.name}}
+          </label>
+        </checkbox-group>
+      </view>
+      <view class="detailpic-B">
+        <view class="detailpic-BL" bindtap="go">
+          取消
+        </view>
+        <view class="detailpic-BR" bindtap="surekeySF">
+          确认
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+
+
+
   <component-topnav inner-title="{{ title }}" is-show-back="false"></component-topnav>
   <view class="page__hd i-header">
     <view class="g-bd">
@@ -37,18 +100,17 @@
           <text>警示</text>
         </view>
       </view>
-
     </view>
     <view class="my-list">
-      <view wx:if="{{ 1===2 }}" class="key-processing">
+      <view class="key-processing">
         <view class="key-processing-word">
           <text>一键处理:</text>
         </view>
         <view class="key-processing-cicke">
-          <view class="one">报警</view>
-          <view class="one">报警</view>
-          <view class="one">报警</view>
-          <view class="one">报警</view>
+          <view class="one" bindtap="keyalarm">报警</view>
+          <view class="one" bindtap="keySF" style="background-color: #9a9a9a">设防</view>
+          <view class="one" style="background-color: #9a9a9a">撤防</view>
+          <view class="one" style="background-color: #00a0e9">恢复</view>
         </view>
       </view>
       <navigator
@@ -107,10 +169,10 @@
     </view>
   </view>
   <view class="modalDlg">
-    <view class="clearData" wx:if="{{showModal}}" bindtap="openToast">
+    <view class="clearData" wx:if="{{ showModalHC }}" bindtap="openToast">
       <text>清空缓存数据</text>
     </view>
-    <view class="cancle" wx:if="{{showModal}}" bindtap="go">
+    <view class="cancle" wx:if="{{ showModalHC }}" bindtap="go">
       <text>取消</text>
     </view>
   </view>

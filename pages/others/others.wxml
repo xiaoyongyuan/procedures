@@ -10,12 +10,16 @@
     <view class="ydmessagelist-one" bindtap="openclose" wx:for="{{ othermessagelist }}" wx:key="index" id='{{index}}'>
         <view class="ydmessagelist-T">
             <view class="ydmessagelist-T-icon">
-                <image src="/images/other.jpg"></image>
+                <image src="/images/GQ.png" wx:if="{{ item.atype === 8001 }}"></image>
+                <image src="/images/xf.png" wx:if="{{ item.atype === 8002 }}"></image>
                 <view class="read" style="display: {{ item.isshow }}" wx:if="{{ item.status === 0 }}"></view>
             </view>
             <view class="ydmessagelist-T-center">
-                <view class="ydmessagelist-T-center-t">
-                    其他消息
+                <view class="ydmessagelist-T-center-t" wx:if="{{ item.atype === 8001 }}">
+                    设备过期
+                </view>
+                <view class="ydmessagelist-T-center-t" wx:if="{{ item.atype === 8002 }}">
+                    设备续费
                 </view>
                 <view class="ydmessagelist-T-center-b">
                     {{ item.atime }}

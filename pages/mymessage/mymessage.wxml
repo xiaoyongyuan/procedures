@@ -74,6 +74,8 @@
             <image wx:elif="{{ item.atype === 7002 }}" src="/images/fqyd.jpg"></image>
             <image wx:elif="{{ item.atype === 7001 || item.atype === 7003 || item.atype === 7004 || item.atype === 7006 }}" src="/images/yidong.jpg"></image>
             <image wx:elif="{{ item.atype === 7008 }}" src="/images/zsbb.jpg"></image>
+            <image wx:elif="{{ item.atype === 8001 }}" src="/images/GQ.png"></image>
+            <image wx:elif="{{ item.atype === 8002 }}" src="/images/xf.png"></image>
             <image wx:else src="/images/other.jpg"></image>
             <view class="read" style="display: {{ item.isshow }}" wx:if="{{ item.status === 0 }}"></view>
         </view>
@@ -91,6 +93,12 @@
                 <text wx:elif="{{ item.atype === 7008 }}">
                     值守报表
                 </text>
+                <text wx:elif="{{ item.atype === 8001 }}">
+                    设备过期
+                </text>
+                <text wx:elif="{{ item.atype === 8002 }}">
+                    设备续费
+                </text>
                 <text wx:else>
                     其他
                 </text>
@@ -107,6 +115,12 @@
             </view>
             <view class="message-one-center-B" wx:elif="{{ item.atype === 7008 }}">
                 值守报表消息通知
+            </view>
+            <view class="message-one-center-B" wx:elif="{{ item.atype === 8001 }}">
+                设备过期消息通知
+            </view>
+            <view class="message-one-center-B" wx:elif="{{ item.atype === 8002 }}">
+                设备续费消息通知
             </view>
             <view class="message-one-center-B" wx:else>
                 其他消息通知
