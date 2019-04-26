@@ -1,6 +1,7 @@
 <!--index.wxml-->
 <view class="page">
   <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}" bindtap="go"></view>
+
   <view style="width: 100%;height: auto;display: flex;justify-content: center">
     <view class="detailpic" wx:if="{{ showModalalarm }}">
       <view class="detailpic-T">
@@ -8,7 +9,7 @@
           <text>一键报警</text>
         </view>
         <view class="detailpic-T-radio">
-          <block wx:for="{{alarmequiplist}}" wx:key="index">
+          <block wx:for="{{alarmequiplist}}" wx:key="index" wx:if="{{ alarmequiplist.length !== 0 }}">
             <view class="keyalarmone"  wx:if="{{ item.isselect === false }}"  id="{{ index }}"  bindtap="alarmselect" >
               <text>
                 {{item.name}}
@@ -20,13 +21,11 @@
               </text>
             </view>
           </block>
-
-          <!--<radio-group class="radio-group" bindchange="radioChange">-->
-            <!--<label class="radio" wx:for="{{alarmequiplist}}"  wx:key="index">-->
-              <!--<radio value="{{item.code}}" checked="{{item.checked}}" />-->
-              <!--{{item.name}}-->
-            <!--</label>-->
-          <!--</radio-group>-->
+            <block wx:if="{{ alarmequiplist.length === 0 }}">
+                <view class="noequip">
+                    暂无设备
+                </view>
+            </block>
         </view>
       </view>
       <view class="detailpic-B">
@@ -39,15 +38,32 @@
       </view>
     </view>
   </view>
+
   <view style="width: 100%;height: auto;display: flex;justify-content: center">
     <view class="detailpic" wx:if="{{ showModSF }}">
       <view class="detailpic-T">
-        <checkbox-group class="checkbox-group" bindchange="checkboxChange">
-          <label class="checkbox" wx:for="{{ SFequiplist }}" wx:key="index">
-            <checkbox value="{{item.code}}" checked="{{item.checked}}" />
-            {{item.name}}
-          </label>
-        </checkbox-group>
+        <view class="detailpic-T-text">
+          <text>一键设防</text>
+        </view>
+        <view class="detailpic-T-radio">
+            <block wx:for="{{ SFequiplist }}" wx:key="{{ index }}" wx:if="{{ SFequiplist.length !== 0 }}">
+                <view class="SFone" wx:if="{{ item.isselect === false }}" id="{{ index }}" bindtap="keySFselect">
+                    <text>
+                        {{ item.name }}
+                    </text>
+                </view>
+                <view class="SFone" style="border: 1px solid #00a0e9" wx:if="{{ item.isselect === true }}" id="{{ index }}" bindtap="keySFselect">
+                    <text>
+                        {{ item.name }}
+                    </text>
+                </view>
+            </block>
+            <block wx:if="{{ SFequiplist.length === 0 }}">
+                <view class="noequip">
+                    暂无设备
+                </view>
+            </block>
+        </view>
       </view>
       <view class="detailpic-B">
         <view class="detailpic-BL" bindtap="go">
@@ -60,8 +76,79 @@
     </view>
   </view>
 
+  <view style="width: 100%;height: auto;display: flex;justify-content: center">
+  <view class="detailpic" wx:if="{{ showModCF }}">
+    <view class="detailpic-T">
+      <view class="detailpic-T-text">
+        <text>一键撤防</text>
+      </view>
+      <view class="detailpic-T-radio">
+        <block wx:for="{{ CFequiplist }}" wx:key="{{ index }}" wx:if="{{ CFequiplist.length !== 0 }}">
+          <view class="SFone" wx:if="{{ item.isselect === false }}" id="{{ index }}" bindtap="keyCFselect">
+            <text>
+              {{ item.name }}
+            </text>
+          </view>
+          <view class="SFone" style="border: 1px solid #00a0e9" wx:if="{{ item.isselect === true }}" id="{{ index }}" bindtap="keyCFselect">
+            <text>
+              {{ item.name }}
+            </text>
+          </view>
+        </block>
+        <block wx:if="{{ CFequiplist.length === 0 }}">
+              <view class="noequip">
+                  暂无设备
+              </view>
+          </block>
+      </view>
+    </view>
+    <view class="detailpic-B">
+      <view class="detailpic-BL" bindtap="go">
+        取消
+      </view>
+      <view class="detailpic-BR" bindtap="surekeyCF">
+        确认
+      </view>
+    </view>
+  </view>
+</view>
 
-
+  <view style="width: 100%;height: auto;display: flex;justify-content: center">
+    <view class="detailpic" wx:if="{{ showModHF }}">
+      <view class="detailpic-T">
+        <view class="detailpic-T-text">
+          <text>一键恢复</text>
+        </view>
+        <view class="detailpic-T-radio">
+            <block wx:for="{{ HFequiplist }}" wx:key="{{ index }}" wx:if="{{ HFequiplist.length !== 0 }}">
+                <view class="SFone" wx:if="{{ item.isselect === false }}" id="{{ index }}" bindtap="keyHFselect">
+                    <text>
+                        {{ item.name }}
+                    </text>
+                </view>
+                <view class="SFone" style="border: 1px solid #00a0e9" wx:if="{{ item.isselect === true }}" id="{{ index }}" bindtap="keyHFselect">
+                    <text>
+                        {{ item.name }}
+                    </text>
+                </view>
+            </block>
+            <block wx:if="{{ HFequiplist.length === 0 }}">
+                <view class="noequip">
+                    暂无设备
+                </view>
+            </block>
+        </view>
+      </view>
+      <view class="detailpic-B">
+        <view class="detailpic-BL" bindtap="go">
+          取消
+        </view>
+        <view class="detailpic-BR" bindtap="surekeyHF">
+          确认
+        </view>
+      </view>
+    </view>
+  </view>
 
 
   <component-topnav inner-title="{{ title }}" is-show-back="false"></component-topnav>
@@ -108,9 +195,9 @@
         </view>
         <view class="key-processing-cicke">
           <view class="one" bindtap="keyalarm">报警</view>
-          <view class="one" bindtap="keySF" style="background-color: #9a9a9a">设防</view>
-          <view class="one" style="background-color: #9a9a9a">撤防</view>
-          <view class="one" style="background-color: #00a0e9">恢复</view>
+          <view class="one" bindtap="keySF" style="background-color: #00a0e9">设防</view>
+          <view class="one" bindtap="keyCF" style="background-color: #00a0e9">撤防</view>
+          <view class="one" bindtap="keyHF" style="background-color: #00a0e9">恢复</view>
         </view>
       </view>
       <navigator

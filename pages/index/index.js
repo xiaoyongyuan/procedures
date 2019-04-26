@@ -10,39 +10,25 @@ Page({
         showModal: false,
         showModalalarm:false,
         showModSF:false,
+        showModCF:false,
+        showModHF:false,
         showModalHC:false,
         alarmequiplist: [],
         SFequiplist:[],
-        items: [
-            {name: 'USA', value: '美国'},
-            {name: 'CHN', value: '中国', checked: 'true'},
-            {name: 'BRA', value: '巴西'},
-            {name: 'JPN', value: '日本'},
-            {name: 'ENG', value: '英国'},
-            {name: 'TUR', value: '法国'},
-        ]
+        SFselseequip:[],
+        SFselseequipStr:'',
+        CFequiplist:[],
+        CFselseequip:[],
+        CFselseequipStr:'',
+        HFequiplist:[],
+        HFselseequip:[],
+        HFselseequipStr:''
     },
     submit: function () {
         this.setData({
             showModal: true,
             showModalHC:true
         })
-    },
-    checkboxChange(e) {
-        var that = this;
-        console.log('checkbox发生change事件，携带value值为：', e.detail.value);
-        that.setData({
-            keySFcid:e.detail.value
-        });
-        console.log("keySFcid",that.data.keySFcid.join(','));
-    },
-    radioChange(e) {
-        var that = this;
-        console.log('radio发生change事件，携带value值为：', e.detail.value);
-        that.setData({
-            keyalarmcid:e.detail.value
-        });
-
     },
     preventTouchMove: function () {
 
@@ -53,6 +39,8 @@ Page({
             showModalalarm: false,
             showModalHC:false,
             showModSF:false,
+            showModCF:false,
+            showModHF:false,
             keyalarmcid:''
         })
     },
@@ -66,17 +54,80 @@ Page({
         });
         //获取当前点击元素的id(索引值)
         var Id = e.currentTarget.id;
-        console.log("ID",Id);
-        // var isselect = that.data.alarmequiplist[Id].isselect;
-        // console.log("isselect",isselect);
         that.data.alarmequiplist[Id]['isselect']=true;
-        console.log("that.data.alarmequiplist[Id]['isselect']",that.data.alarmequiplist[Id]['isselect']);
         that.setData({
             alarmequiplist:that.data.alarmequiplist,
             keyalarmcid:that.data.alarmequiplist[Id]['code']
         });
-        console.log("keyalarmcid",that.data.keyalarmcid);
-        console.log("alarmequiplist",that.data.alarmequiplist);
+    },
+    /**
+     *设防选择
+     */
+    keySFselect:function(e){
+        var that = this;
+        //获取当前点击元素的id(索引值)
+        var Id = e.currentTarget.id;
+        var SFselseequip = that.data.SFselseequip;
+        var isselect = that.data.SFequiplist[Id]['isselect'];
+        that.data.SFequiplist[Id]['isselect']=!isselect;
+        that.setData({
+            SFequiplist:that.data.SFequiplist,
+        });
+        if(that.data.SFequiplist[Id]['isselect'] === true){
+            SFselseequip.push(that.data.SFequiplist[Id]['code']);
+        }
+        if(that.data.SFequiplist[Id]['isselect'] === false){
+            SFselseequip.splice(that.data.SFequiplist[Id],1);
+        }
+        that.setData({
+            SFselseequipStr:SFselseequip.join(',')
+        });
+    },
+    /**
+     *撤防选择
+     */
+    keyCFselect:function(e){
+        var that = this;
+        //获取当前点击元素的id(索引值)
+        var Id = e.currentTarget.id;
+        var CFselseequip = that.data.CFselseequip;
+        var isselect = that.data.CFequiplist[Id]['isselect'];
+        that.data.CFequiplist[Id]['isselect']=!isselect;
+        that.setData({
+            CFequiplist:that.data.CFequiplist,
+        });
+        if(that.data.CFequiplist[Id]['isselect'] === true){
+            CFselseequip.push(that.data.CFequiplist[Id]['code']);
+        }
+        if(that.data.CFequiplist[Id]['isselect'] === false){
+            CFselseequip.splice(that.data.CFequiplist[Id],1);
+        }
+        that.setData({
+            CFselseequipStr:CFselseequip.join(',')
+        });
+    },
+    /**
+     *恢复选择
+     */
+    keyHFselect:function(e){
+        var that = this;
+        //获取当前点击元素的id(索引值)
+        var Id = e.currentTarget.id;
+        var HFselseequip = that.data.HFselseequip;
+        var isselect = that.data.HFequiplist[Id]['isselect'];
+        that.data.HFequiplist[Id]['isselect']=!isselect;
+        that.setData({
+            HFequiplist:that.data.HFequiplist,
+        });
+        if(that.data.HFequiplist[Id]['isselect'] === true){
+            HFselseequip.push(that.data.HFequiplist[Id]['code']);
+        }
+        if(that.data.HFequiplist[Id]['isselect'] === false){
+            HFselseequip.splice(that.data.HFequiplist[Id],1);
+        }
+        that.setData({
+            HFselseequipStr:HFselseequip.join(',')
+        });
     },
     /**
      * 清除缓存
@@ -104,7 +155,6 @@ Page({
             showModal:true
         });
         var that = this;
-        console.log("keyalarmcid",that.data.keyalarmcid);
         /**
          * 请求设备列表接口
          */
@@ -113,7 +163,6 @@ Page({
                 alarm:1
             },
             function(res){
-            console.log("res",res);
                 that.setData({
                     alarmequiplist:res.data,
                 });
@@ -132,10 +181,9 @@ Page({
         var that = this;
         that.setData({
             showModal:true,
-            showModSF:true
+            showModSF:true,
+            SFselseequip:[]
         });
-        var that = this;
-        console.log("keySFcid",that.data.keySFcid);
         /**
          * 请求设备列表接口
          */
@@ -144,10 +192,73 @@ Page({
                 if_cancel:1
             },
             function(res){
-                console.log("res",res);
                 that.setData({
                     SFequiplist:res.data,
                 });
+                for(var i = 0;i<res.data.length;i++){
+                    that.data.SFequiplist[i]['isselect']=false;
+                    that.setData({
+                        SFequiplist:that.data.SFequiplist
+                    })
+                }
+            });
+    },
+    /**
+     * 一键撤防设备
+     */
+    keyCF:function(){
+        var that = this;
+        that.setData({
+            showModal:true,
+            showModCF:true,
+            CFselseequip:[]
+        });
+        /**
+         * 请求设备列表接口
+         */
+        request.postReq('','',"/api/camera/getlist_working",
+            {
+                if_cancel:2
+            },
+            function(res){
+                that.setData({
+                    CFequiplist:res.data,
+                });
+                for(var i = 0;i<res.data.length;i++){
+                    that.data.CFequiplist[i]['isselect']=false;
+                    that.setData({
+                        CFequiplist:that.data.CFequiplist
+                    })
+                }
+            });
+    },
+    /**
+     * 一键恢复设备
+     */
+    keyHF:function(){
+        var that = this;
+        that.setData({
+            showModal:true,
+            showModHF:true,
+            HFselseequip:[]
+        });
+        /**
+         * 请求设备列表接口
+         */
+        request.postReq('','',"/api/camera/getlist_working",
+            {
+                if_cancel:0
+            },
+            function(res){
+                that.setData({
+                    HFequiplist:res.data,
+                });
+                for(var i = 0;i<res.data.length;i++){
+                    that.data.HFequiplist[i]['isselect']=false;
+                    that.setData({
+                        HFequiplist:that.data.HFequiplist
+                    })
+                }
             });
     },
     /**
@@ -176,10 +287,9 @@ Page({
                     cid:that.data.keyalarmcid
                 },
                 function(res){
-                    console.log("res",res);
                     if(res.success === 1){
                         wx.showToast({
-                            title: '一键报警成功！',
+                            title: '操作成功！',
                             icon: 'success',
                             duration: 2000
                         });
@@ -195,14 +305,119 @@ Page({
      */
     surekeySF:function(){
         var that = this;
-        console.log("keySFcid",that.data.keySFcid);
-        if(that.data.keySFcid === undefined ||  that.data.keySFcid ===''){
+        if(that.data.SFselseequipStr === undefined ||  that.data.SFselseequipStr ===''){
             wx.showToast({
                 title: '请选择设备！',
                 icon: 'none',
                 duration: 2000
             });
             return
+        }
+        if(that.data.SFselseequipStr !== undefined &&  that.data.SFselseequipStr !==''){
+            this.setData({
+                showModSF: false,
+                showModal:false
+            });
+            /**
+             * 一键设防接口
+             */
+            request.postReq('','',"/iosapi/camera/setdefense",
+                {
+                    cid:that.data.SFselseequipStr,
+                    if_cancel:1
+                },
+                function(res){
+                    if(res.success === 1){
+                        wx.showToast({
+                            title: '提交成功！',
+                            icon: 'success',
+                            duration: 2000
+                        });
+                    }
+                    that.setData({
+                        SFselseequipStr:''
+                    });
+                });
+        }
+    },
+    /**
+     * 一键撤防确认
+     */
+    surekeyCF:function(){
+        var that = this;
+        if(that.data.CFselseequipStr === undefined ||  that.data.CFselseequipStr ===''){
+            wx.showToast({
+                title: '请选择设备！',
+                icon: 'none',
+                duration: 2000
+            });
+            return
+        }
+        if(that.data.CFselseequipStr !== undefined &&  that.data.CFselseequipStr !==''){
+            this.setData({
+                showModCF: false,
+                showModal:false
+            });
+            /**
+             * 一键撤防接口
+             */
+            request.postReq('','',"/iosapi/camera/setdefense",
+                {
+                    cid:that.data.CFselseequipStr,
+                    if_cancel:2
+                },
+                function(res){
+                    if(res.success === 1){
+                        wx.showToast({
+                            title: '提交成功！',
+                            icon: 'success',
+                            duration: 2000
+                        });
+                    }
+                    that.setData({
+                        CFselseequipStr:''
+                    });
+                });
+        }
+    },
+    /**
+     * 一键恢复确认
+     */
+    surekeyHF:function(){
+        var that = this;
+        if(that.data.HFselseequipStr === undefined ||  that.data.HFselseequipStr ===''){
+            wx.showToast({
+                title: '请选择设备！',
+                icon: 'none',
+                duration: 2000
+            });
+            return
+        }
+        if(that.data.HFselseequipStr !== undefined &&  that.data.HFselseequipStr !==''){
+            this.setData({
+                showModHF: false,
+                showModal:false
+            });
+            /**
+             * 一键恢复接口
+             */
+            request.postReq('','',"/iosapi/camera/setdefense",
+                {
+                    cid:that.data.HFselseequipStr,
+                    if_cancel:0
+                },
+                function(res){
+                    if(res.success === 1){
+                        wx.showToast({
+                            title: '提交成功！',
+                            icon: 'success',
+                            duration: 2000
+                        });
+                    }
+                    that.setData({
+                        HFselseequipStr:''
+                    });
+                });
         }
     },
     /**
@@ -255,7 +470,6 @@ Page({
             workdate:wx.getStorageSync("workdate"),
             realname:wx.getStorageSync("companyuser")
         });
-        // console.log("测试切换公司2",that.data.realname);
         wx.setNavigationBarTitle({
             title: '个人中心'
         });

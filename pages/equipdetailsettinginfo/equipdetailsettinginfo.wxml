@@ -70,7 +70,7 @@
             </view>
             <view class="equipinfo-item-right">
                 <text wx:if="{{ softversion === '' || softversion === undefined}}">无</text>
-                <text>{{ version }}</text>
+                <text wx:else>{{ version }}</text>
             </view>
         </view>
         <view class="equipinfo-item">
@@ -79,7 +79,7 @@
             </view>
             <view class="equipinfo-item-right">
                 <text wx:if="{{ softversion === '' || softversion === undefined}}">无</text>
-                <text>{{ version }}</text>
+                <text wx:else>{{ version }}</text>
             </view>
         </view>
         <view class="equipinfo-item">
