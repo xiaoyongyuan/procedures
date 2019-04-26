@@ -1,0 +1,21 @@
+<view class="page">
+    <view class="page-body">
+      <live-player
+        id="player"
+          src="rtmp://58.200.131.2:1935/livetv/hunantv"
+          mode="RTC"
+          autoplay="true"
+          bindstatechange="statechange"
+          binderror="error"
+          style="width:750rpx; height:1350rpx;"
+          orientation="horizontal"
+        >
+           <cover-view class='poster'>
+                <cover-view>
+                    <button back home > 实时视频</button>
+                </cover-view>
+           </cover-view>
+        </live-player>
+
+    </view>
+</view>

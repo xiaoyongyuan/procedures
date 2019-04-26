@@ -24,6 +24,7 @@ Page({
     /**
      * 跳转设备详情页
      */
+
     changeToequipdetail:function(e){
         var that = this;
         //获取当前点击元素的id(索引值)

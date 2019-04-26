@@ -6,7 +6,6 @@
         <view class="weui-loading"></view>
         <view class="weui-loadmore-tips">正在刷新...</view>
     </view>
-
     <view class='list-li mflex'  wx:for="{{equipListData}}"  wx:key="index" >
         <view class="alarm-list">
             <view class="alarm-list-one" bindtap="changeToequipdetail" id='{{index}}'>
@@ -55,4 +54,6 @@
 
     <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>
     <view class="loading complete"  hidden="{{!searchLoadingComplete}}">已加载全部</view>
+
+   
 </view>

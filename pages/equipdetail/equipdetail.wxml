@@ -36,7 +36,7 @@
             </view>
         </view>
         <view class="topsetting-item">
-            <view class="topsetting-item-top">
+            <view class="topsetting-item-top" bindtap='test'>
                 <view class="topsetting-item-top-image">
                     <image src="/images/chakanzhibo.png"></image>
                 </view>

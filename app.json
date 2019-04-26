@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/welcome/welcome",
+    "pages/live/live",
     "pages/newcomid/newcomid",
     "pages/newcomidaddequip/newcomidaddequip",
     "pages/index/index",
