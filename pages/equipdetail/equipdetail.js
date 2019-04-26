@@ -27,12 +27,6 @@ Page({
             querybtn:true
         });
     },
-    // 跳到直播
-  test: function () {
-    wx.navigateTo({
-      url: '../live/live'
-    })
-  },
     /**
      * 页面跳转设置信息
      */
