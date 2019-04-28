@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/welcome/welcome",
     "pages/live/live",
     "pages/newcomid/newcomid",
@@ -30,12 +30,12 @@
     "pages/settingequipinfo/settingequipinfo",
     "pages/fortifytimeEchart/fortifytimeEchart"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"white",
-    "navigationStyle":"custom"
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "custom"
   },
   "tabBar": {
     "color": "#6e6d6b",
@@ -62,5 +62,6 @@
         "text": "我的"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
