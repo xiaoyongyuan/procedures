@@ -11,6 +11,8 @@ Page({
         vidoHeight:null,
         // horizontal:'horizontal',//水平显示
         // vertical:'vertical',//竖直显示
+      fu: "hscreen",
+      biaoji: "amplify"
     },
     onLoad: function () {
       var that = this;
@@ -47,11 +49,15 @@ Page({
           that.setData({
               line:'horizontal',
               vidoHeight:vidoHeight,
+              fu:"vscreen",
+            biaoji:"narrow"
           })
         }else{
             that.setData({
                 line:'vertical',
                 vidoHeight:220,
+                fu: "hscreen",
+              biaoji: "amplify"
             })
         }
         console.log("line",that.data.line);

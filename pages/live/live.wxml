@@ -16,9 +16,9 @@
                 binderror="error"
                 orientation="{{ line }}"
         >
-            <cover-view class='full_img_idv' bindtap="fullScreen">
-                <cover-view>
-                    <cover-image src='/images/biaoji.png' class='full_img' />
+            <cover-view class='full_img_idv'>
+                <cover-view class="{{ fu }}">
+                    <cover-image src='/images/{{biaoji}}.png' class='full_img'  bindtap="fullScreen"/>
                 </cover-view>
             </cover-view>
         </live-player>
