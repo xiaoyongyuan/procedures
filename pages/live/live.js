@@ -9,23 +9,18 @@ Page({
         fullScreenFlag:true,
         line:'vertical',
         vidoHeight:null,
-        // horizontal:'horizontal',//水平显示
-        // vertical:'vertical',//竖直显示
-      fu: "hscreen",
-      biaoji: "amplify"
+        fu: "hscreen",
+        biaoji: "amplify"
     },
-    onLoad: function () {
-      var that = this;
+    onLoad: function (options) {
+        var that = this;
+        var eid = options.eid;
+        that.setData({
+            eid:eid
+        });
         wx.showLoading({
             title: '加载中,请稍等...',
         });
-      wx.createLivePlayerContext('player').play({
-        success: res => {
-          // wx.hideLoading()
-            console.log("res",res);
-        },
-      })
-
     },
     onShow:function(){
 
@@ -38,6 +33,9 @@ Page({
         wx.hideLoading();
       }
     },
+    /**
+     * 水平竖直切换
+     */
     fullScreen: function() {
         var that = this;
         //全屏
@@ -50,52 +48,15 @@ Page({
               line:'horizontal',
               vidoHeight:vidoHeight,
               fu:"vscreen",
-            biaoji:"narrow"
+              biaoji:"narrow"
           })
         }else{
             that.setData({
                 line:'vertical',
                 vidoHeight:220,
                 fu: "hscreen",
-              biaoji: "amplify"
+                biaoji: "amplify"
             })
         }
-        console.log("line",that.data.line);
-        // var fullScreenFlag = that.data.fullScreenFlag;
-        // if (fullScreenFlag) {
-        //     fullScreenFlag = false;
-        // } else {
-        //     fullScreenFlag = true;
-        // }
-
-        // if (fullScreenFlag) {
-        //     //全屏
-        //     that.PlayerCtx.requestFullScreen({
-        //         success: res => {
-        //             that.setData({
-        //                 fullScreenFlag: fullScreenFlag
-        //             });
-        //             console.log('我要执行了');
-        //         },
-        //         fail: res => {
-        //             console.log('fullscreen fail');
-        //         }
-        //     });
-        //
-        // } else {
-        //     //缩小
-        //     that.PlayerCtx.exitFullScreen({
-        //         success: res => {
-        //             console.log('fullscreen success');
-        //             that.setData({
-        //                 fullScreenFlag: fullScreenFlag
-        //             });
-        //         },
-        //         fail: res => {
-        //             console.log('exit fullscreen success');
-        //         }
-        //     });
-        // }
-
     },
 });

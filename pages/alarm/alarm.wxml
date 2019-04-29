@@ -49,7 +49,9 @@
                     <view class="alarm-list-one-top-left">
                         <view class="alarm-list-one-top-left-bac">
                             <view class="alarm-list-one-top-img">
-                                <image src='{{ item.pic_min }}'></image>
+                                <image wx:if="{{ item.atype === 119 }}" src='/images/119.jpg'></image>
+                                <image wx:elif="{{ item.atype === 110 }}" src='{{ item.pic_min }}' src='/images/110.jpg'></image>
+                                <image wx:else src='{{ item.pic_min }}'></image>
                             </view>
                         </view>
                     </view>
@@ -80,7 +82,9 @@
                     <view class="alarm-list-one-top-left">
                         <view class="alarm-list-one-top-left-bac">
                             <view class="alarm-list-one-top-img">
-                                <image src='{{ item.pic_min }}'></image>
+                                <image wx:if="{{ item.atype === 119 }}" src='/images/119.jpg'></image>
+                                <image wx:elif="{{ item.atype === 110 }}" src='{{ item.pic_min }}' src='/images/110.jpg'></image>
+                                <image wx:else src='{{ item.pic_min }}'></image>
                             </view>
                         </view>
                     </view>

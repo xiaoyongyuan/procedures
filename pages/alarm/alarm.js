@@ -407,7 +407,8 @@ Page({
                 }
             });
         that.setData({
-            text:wx.getStorageSync('companyuser')
+            text:wx.getStorageSync('companyuser'),
+            searchPageNum:1
         });
         let searchPageNum = that.data.searchPageNum,//把第几次加载次数作为参数
             callbackcount =that.data.callbackcount; //返回数据的个数
@@ -418,7 +419,7 @@ Page({
             request.postReq(searchPageNum,callbackcount,"/api/alarm/getlist_forAPP",
                 {
                     apptime:that.data.apptime,
-                    ifdanger:1
+                    ifdanger:1,
                 },
                 function(res){
                     that.setData({

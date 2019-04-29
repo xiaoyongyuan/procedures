@@ -69,9 +69,20 @@ Page({
     },
     // 跳到直播
     test: function () {
-        wx.navigateTo({
-            url: '../live/live'
-        })
+        var that = this;
+        const eid = that.data.equipdetailData.eid;
+        if(that.data.ismist === "false"){
+            wx.showToast({
+                title: '设备离线，无法操作！',
+                icon: 'none',
+                duration: 2000
+            });
+        }
+        if(that.data.ismist === "true"){
+            wx.navigateTo({
+                url: '../live/live?eid=' + eid
+            })
+        }
     },
 
     /**

@@ -18,15 +18,15 @@
         >
             <cover-view class='full_img_idv'>
                 <cover-view class="{{ fu }}">
-                    <cover-image src='/images/{{biaoji}}.png' class='full_img'  bindtap="fullScreen"/>
+                    <cover-image src='/images/{{biaoji}}.png' class='full_img'  bindtap="fullScreen"></cover-image>
                 </cover-view>
             </cover-view>
         </live-player>
     </view>
 
-    <view>
+    <view class="live-intro">
         <text>
-            直播简介：xx设备实时视频
+            直播简介：{{ eid }}设备实时视频
         </text>
     </view>
 </view>
