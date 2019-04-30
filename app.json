@@ -24,6 +24,7 @@
     "pages/addequip/addequip",
     "pages/alarmdetail/alarmdetail",
     "pages/equipdetail/equipdetail",
+    "pages/taskequipdetail/taskequipdetail",
     "pages/equipdetailsettinginfo/equipdetailsettinginfo",
     "pages/defenceareasetting/defenceareasetting",
     "pages/fortifytime/fortifytime",

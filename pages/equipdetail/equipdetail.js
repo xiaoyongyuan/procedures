@@ -181,6 +181,48 @@ Page({
             })
     },
     /**
+     * 长按设备详情
+     */
+    equipdetail:function(){
+        var that = this;
+        /**
+         * 请求设备详情接口
+         */
+        request.postReq('','',"/api/equipment/get_equipmentinfo",
+            {
+                eid:that.data.equipdetailData.eid,
+                cid:that.data.currentcode,
+                apptype:1
+            },
+            function(res){
+                console.log("res",res);
+                if(res.success === 1){
+                    request.postReq('','',"/api/smptask/getone",
+                        {
+                            code:res.data,
+                            apptype:1
+                        },
+                        function(res){
+                            console.log("res",res);
+                            console.log("jsondata",res.data);
+                            const jsondata = JSON.stringify(res.data.taskresult);
+                            if(res.data.taskstatus === 0){
+                                wx.showToast({
+                                    title: '请求超时,请稍后再试......',
+                                    icon: 'none',
+                                    duration: 2000
+                                });
+                            }
+                            if(res.data.taskstatus === 1){
+                                wx.navigateTo({
+                                    url:'../taskequipdetail/taskequipdetail?jsondata=' + jsondata
+                                })
+                            }
+                        });
+                }
+            });
+    },
+    /**
      * 恢复出厂设置
      */
     restore:function(){

@@ -1,5 +1,11 @@
 Page({
     /**
+     * 页面的初始数据
+     */
+    data: {
+        navigationBarTitle: '选择企业'
+    },
+    /**
      * 临时解绑
      */
     // delwx:function(){

@@ -9,8 +9,8 @@
         <live-player
                 id="player"
                 class="live-player"
-                src="rtmp://58.200.131.2:1935/livetv/hunantv"
-                mode="RTC"
+                src="{{ liveaddress }}"
+                mode="live"
                 autoplay="true"
                 bindstatechange="statechange"
                 binderror="error"

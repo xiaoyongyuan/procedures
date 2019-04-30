@@ -1,0 +1,20 @@
+@import "../equipdetail/equipdetail.wxss";
+page{
+    line-height: 1.6;
+    font-family: -apple-system-font, "Helvetica Neue", sans-serif;
+    height: 100%;
+}
+.page{
+    min-height: 100%;
+    height: auto;
+    background-color: #e7e7e7;
+}
+/*.equipinfo-item-left{*/
+    /*height: 100%;*/
+    /*width: 100%;*/
+    /*float: left;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*flex-direction:row;*/
+    /*justify-content:flex-end;*/
+/*}*/

@@ -1,17 +1,36 @@
 // pages/versions/versions.js
+const app = getApp();
+var request = require('../../utils/request.js');
 Page({
-
     /**
      * 页面的初始数据
      */
     data: {
-        navigationBarTitle: '版本'
+        navigationBarTitle: '获取设备详情',
+        someData: {
+            statusBarHeight: app.globalData.statusBarHeight,
+            titleBarHeight: app.globalData.titleBarHeight
+        },
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        var that = this;
+        var jsondata = options.jsondata;
+        var Objjsondata = JSON.parse(jsondata);
+        console.log("cedshijsondata",jsondata);
+        console.log("duixinag",Objjsondata);
+        var arr=[];
+        for(var key in Objjsondata){
+            arr.push({label:key,value:Objjsondata[key]});
+            console.log("key",key);
+            console.log("value",Objjsondata[key]);
+        }
+        that.setData({
+            arr:arr
+        });
+        console.log("that.data.arr",that.data.arr);
     },
 
     /**
