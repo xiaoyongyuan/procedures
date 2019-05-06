@@ -123,7 +123,7 @@ Page({
             return false
         }
         wx.showLoading({
-            title: '加载中',
+            title: '请稍等......',
         });
         //注册发送验证码
         wx.request({
@@ -149,8 +149,7 @@ Page({
                     });
                     that.timer();
                     that.setData({
-                        isGetCode: true,
-                        // auth:res.data.auth
+                        isGetCode: true
                     });
                 }
             }
@@ -168,6 +167,9 @@ Page({
         //     });
         // }
         // if(parseInt(formData.code) === that.data.auth){
+        wx.showLoading({
+            title: '请稍等......',
+        });
             wx.login({
                 success: res => {
                     var code = res.code;
@@ -182,9 +184,12 @@ Page({
                             },
                             method: 'POST',
                             success(res) {
-                                console.log("res",res);
-                                if(res.success === 1){
+                                wx.hideLoading();
+                                if(res.data.success === 1){
                                     if (res.data.account !== '' && res.data.account !== undefined) {
+                                        wx.showLoading({
+                                            title: '正在登录',
+                                        });
                                         wx.login({
                                             success: res => {
                                                 var code = res.code;
@@ -198,10 +203,9 @@ Page({
                                                         method: 'POST',
                                                         dataType: 'json',
                                                         success(res) {
-                                                            console.log("绑定res", res);
+                                                            wx.hideLoading();
                                                             var companylist = [];
                                                             if (res.data.success === 1) {
-                                                                console.log("hh");
                                                                 if (res.data.data.account !== '' && res.data.data.account !== undefined) {
                                                                     wx.setStorageSync('user', res.data.data.account);
                                                                     wx.setStorageSync('account', res.data.data.account);
@@ -248,7 +252,7 @@ Page({
                                         });
                                     }
                                 }
-                                if(res.success === 0){
+                                if(res.data.success === 0){
                                     that.setData({
                                         hiddenmodalput:false,
                                     });

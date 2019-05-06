@@ -128,16 +128,18 @@ Page({
                         },
                         method: 'POST',
                         success(res) {
+                            console.log("res",res);
                             wx.hideLoading();
-                            if(res.data.auth !== undefined){
+                            if(res.data.success === 1){
                                 wx.showToast({
                                     title: '验证码获取成功!',
                                     icon: 'success',
                                     duration: 2000
                                 });
                                 that.setData({
-                                    auth:res.data.auth
+                                    isGetCode: true
                                 });
+                                that.timer();
                             }
                             if(res.data.success === 0){
                                 wx.showToast({
@@ -145,12 +147,6 @@ Page({
                                     icon: 'none',
                                     duration: 2000
                                 });
-                            }
-                            if(res.data.success === 1){
-                                that.setData({
-                                    isGetCode: true
-                                });
-                                that.timer();
                             }
                         }
                     });
@@ -167,192 +163,96 @@ Page({
         var that = this;
         let formData = that.data.formData;
         console.log("formData.phone",formData.phone);
-        if(formData.phone === "13123456789"){
-            if(parseInt(formData.code) !== 123456 ){
-                that.setData({
-                    hidden:false,
-                });
-            }
-            if(parseInt(formData.code) === 123456 ){
-                wx.showLoading({
-                    title: '正在绑定,请稍等......',
-                });
-                wx.login({
-                    success: res => {
-                        var code = res.code;
-                        if(code){
-                            //调绑定接口
-                            wx.request({
-                                url: 'https://api.aokecloud.cn/api/Wxuser/add',
-                                data: {
-                                    account:formData.phone,
-                                    xcode:code,
-                                    auth:formData.code
-                                },
-                                method: 'POST',
-                                success: function (res) {
-                                    wx.hideLoading();
-                                    if (res.data.account !== '' && res.data.account !== undefined) {
-                                        wx.showLoading({
-                                            title: '正在登录......',
-                                        });
-                                        wx.login({
-                                            success: res => {
-                                                var code = res.code;
-                                                if (code) {
-                                                    //调登录接口
-                                                    wx.request({
-                                                        url: 'https://api.aokecloud.cn/login/verifyforWX',
-                                                        data: {
-                                                            xcode: code
-                                                        },
-                                                        method: 'POST',
-                                                        dataType: 'json',
-                                                        success(res) {
-                                                            wx.hideLoading();
-                                                            console.log("绑定res", res);
-                                                            var companylist = [];
-                                                            if (res.data.success === 1) {
-                                                                console.log("hh");
-                                                                if (res.data.data.account !== '' && res.data.data.account !== undefined) {
-                                                                    wx.setStorageSync('user', res.data.data.account);
-                                                                    wx.setStorageSync('account', res.data.data.account);
-                                                                    wx.setStorageSync('comid', res.data.data.comid);
-                                                                    wx.setStorageSync('AUTHORIZATION', res.data.token);
-                                                                    wx.setStorageSync('companyuser', res.data.data.companyuser.cname);
-                                                                    console.log("companyuser",res.data.data.companyuser.cname);
-                                                                    wx.setStorageSync('realname', res.data.data.realname);
-                                                                    console.log("res.data.data.list.length",res.data.data.list.length);
-                                                                    if(res.data.data.list.length > 0){
-                                                                        for(var i = 0;i < res.data.data.list.length;i++ ){
-                                                                            companylist.push(res.data.data.list[i]);
-                                                                            console.log("cnam",res.data.data.list[i]);
-                                                                        }
-                                                                    }
-                                                                    console.log("companylist",companylist);
-                                                                    wx.setStorageSync('companylist', companylist);
-                                                                    if(res.data.data.comid === ''){
-                                                                        wx.navigateTo({
-                                                                            url: '/pages/newcomid/newcomid'
-                                                                        })
-                                                                    }else {
-                                                                        wx.switchTab({
-                                                                            url: '/pages/alarm/alarm'
-                                                                        });
+        wx.showLoading({
+            title: '正在绑定,请稍等......',
+        });
+        wx.login({
+            success: res => {
+                var code = res.code;
+                if(code){
+                    //调绑定接口
+                    wx.request({
+                        url: 'https://api.aokecloud.cn/api/Wxuser/add',
+                        data: {
+                            account:formData.phone,
+                            xcode:code,
+                            auth:formData.code
+                        },
+                        method: 'POST',
+                        success: function (res) {
+                            console.log("res",res);
+                            wx.hideLoading();
+                            if(res.data.success === 1){
+                                if (res.data.account !== '' && res.data.account !== undefined) {
+                                    wx.showLoading({
+                                        title: '正在登录',
+                                    });
+                                    wx.login({
+                                        success: res => {
+                                            var code = res.code;
+                                            if (code) {
+                                                //调登录接口
+                                                wx.request({
+                                                    url: 'https://api.aokecloud.cn/login/verifyforWX',
+                                                    data: {
+                                                        xcode: code
+                                                    },
+                                                    method: 'POST',
+                                                    dataType: 'json',
+                                                    success(res) {
+                                                        wx.hideLoading();
+                                                        var companylist = [];
+                                                        if (res.data.success === 1) {
+                                                            if (res.data.data.account !== '' && res.data.data.account !== undefined) {
+                                                                wx.setStorageSync('user', res.data.data.account);
+                                                                wx.setStorageSync('account', res.data.data.account);
+                                                                wx.setStorageSync('comid', res.data.data.comid);
+                                                                wx.setStorageSync('AUTHORIZATION', res.data.token);
+                                                                wx.setStorageSync('companyuser', res.data.data.companyuser.cname);
+                                                                console.log("companyuser",res.data.data.companyuser.cname);
+                                                                wx.setStorageSync('realname', res.data.data.realname);
+                                                                console.log("res.data.data.list.length",res.data.data.list.length);
+                                                                if(res.data.data.list.length > 0){
+                                                                    for(var i = 0;i < res.data.data.list.length;i++ ){
+                                                                        companylist.push(res.data.data.list[i]);
+                                                                        console.log("cnam",res.data.data.list[i]);
                                                                     }
                                                                 }
-                                                            }
-                                                            if (res.data.success === 0) {
-                                                                wx.navigateTo({
-                                                                    url: '/pages/register/register'
-                                                                })
-                                                            }
-                                                        }
-                                                    });
-                                                }
-                                            }
-                                        });
-                                    }
-                                }
-                            });
-                        }
-                    }
-                });
-            }
-        }
-        if(formData.phone !== "13123456789"){
-            if(parseInt(formData.code) !== that.data.auth || that.data.auth === undefined ){
-                that.setData({
-                    hidden:false,
-                });
-            }
-            if(parseInt(formData.code) === that.data.auth){
-                wx.showLoading({
-                    title: '正在绑定,请稍等......',
-                });
-                wx.login({
-                    success: res => {
-                        var code = res.code;
-                        if(code){
-                            //调绑定接口
-                            wx.request({
-                                url: 'https://api.aokecloud.cn/api/Wxuser/add',
-                                data: {
-                                    account:formData.phone,
-                                    xcode:code,
-                                    auth:formData.code
-                                },
-                                method: 'POST',
-                                success: function (res) {
-                                    wx.hideLoading();
-                                    if (res.data.account !== '' && res.data.account !== undefined) {
-                                        wx.showLoading({
-                                            title: '正在登录',
-                                        });
-                                        wx.login({
-                                            success: res => {
-                                                var code = res.code;
-                                                if (code) {
-                                                    //调登录接口
-                                                    wx.request({
-                                                        url: 'https://api.aokecloud.cn/login/verifyforWX',
-                                                        data: {
-                                                            xcode: code
-                                                        },
-                                                        method: 'POST',
-                                                        dataType: 'json',
-                                                        success(res) {
-                                                            wx.hideLoading();
-                                                            console.log("绑定res", res);
-                                                            var companylist = [];
-                                                            if (res.data.success === 1) {
-                                                                console.log("hh");
-                                                                if (res.data.data.account !== '' && res.data.data.account !== undefined) {
-                                                                    wx.setStorageSync('user', res.data.data.account);
-                                                                    wx.setStorageSync('account', res.data.data.account);
-                                                                    wx.setStorageSync('comid', res.data.data.comid);
-                                                                    wx.setStorageSync('AUTHORIZATION', res.data.token);
-                                                                    wx.setStorageSync('companyuser', res.data.data.companyuser.cname);
-                                                                    console.log("companyuser",res.data.data.companyuser.cname);
-                                                                    wx.setStorageSync('realname', res.data.data.realname);
-                                                                    console.log("res.data.data.list.length",res.data.data.list.length);
-                                                                    if(res.data.data.list.length > 0){
-                                                                        for(var i = 0;i < res.data.data.list.length;i++ ){
-                                                                            companylist.push(res.data.data.list[i]);
-                                                                            console.log("cnam",res.data.data.list[i]);
-                                                                        }
-                                                                    }
-                                                                    console.log("companylist",companylist);
-                                                                    wx.setStorageSync('companylist', companylist);
-                                                                    if(res.data.data.comid === ''){
-                                                                        wx.navigateTo({
-                                                                            url: '/pages/newcomid/newcomid'
-                                                                        })
-                                                                    }else {
-                                                                        wx.switchTab({
-                                                                            url: '/pages/alarm/alarm'
-                                                                        });
-                                                                    }
+                                                                console.log("companylist",companylist);
+                                                                wx.setStorageSync('companylist', companylist);
+                                                                if(res.data.data.comid === ''){
+                                                                    wx.navigateTo({
+                                                                        url: '/pages/newcomid/newcomid'
+                                                                    })
+                                                                }else {
+                                                                    wx.switchTab({
+                                                                        url: '/pages/alarm/alarm'
+                                                                    });
                                                                 }
                                                             }
-                                                            if (res.data.success === 0) {
-                                                                wx.navigateTo({
-                                                                    url: '/pages/register/register'
-                                                                })
-                                                            }
                                                         }
-                                                    });
-                                                }
+                                                        if (res.data.success === 0) {
+                                                            wx.navigateTo({
+                                                                url: '/pages/register/register'
+                                                            })
+                                                        }
+                                                    }
+                                                });
                                             }
-                                        });
-                                    }
+                                        }
+                                    });
                                 }
-                            });
+                            }
+                            if(res.data.success === 0){
+                                that.setData({
+                                    hidden:false,
+                                });
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
-        }
+        });
     },
     /**
      * 验证码倒计时
