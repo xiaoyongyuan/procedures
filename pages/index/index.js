@@ -133,8 +133,6 @@ Page({
      * 清除缓存
      */
     openToast: function () {
-        wx.clearStorageSync();
-        wx.clearStorage();
         this.setData({
             showModal: false,
             showModalHC:false,

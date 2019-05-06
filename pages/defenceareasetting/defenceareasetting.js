@@ -42,15 +42,16 @@ Page({
         /**
          * 获取防区的宽和高
          */
-        const query = wx.createSelectorQuery();
-        query.select('#defenceareainfor').boundingClientRect();
-        query.selectViewport().scrollOffset();
-        query.exec(function (res) {
-            that.setData({
-                defenceareaHeight:res[0].height,
-                defenceareaWidth:res[0].width
-            });
+        const screenWidth = wx.getStorageSync("screenWidth");
+        const screenHeight = wx.getStorageSync("screenHeight");
+        that.setData({
+            defenceareaHeight:screenHeight*0.9*0.33,
+            defenceareaWidth:screenWidth*0.94
         });
+        console.log("screenWidth",screenWidth);
+        console.log("screenHeight",screenHeight);
+        console.log("defenceareaHeight",that.data.defenceareaHeight);
+        console.log("defenceareaWidth",that.data.defenceareaWidth);
         /**
          * 请求设备详情接口
          */

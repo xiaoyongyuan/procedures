@@ -7,6 +7,9 @@ App({
         // 获取系统信息
         wx.getSystemInfo({
         success: function (res) {
+            console.log("res55",res);
+            wx.setStorageSync("screenWidth",res.screenWidth);
+            wx.setStorageSync("screenHeight",res.screenHeight);
             that.globalData.platform = res.platform;
             let totalTopHeight = 68;
             if (res.model.indexOf('iPhone X') !== -1) {

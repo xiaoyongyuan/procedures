@@ -20,6 +20,7 @@ Page({
         searchLoading: false, //"上拉加载"的变量，默认false，隐藏
         searchLoadingComplete: false,  //“没有数据”的变量，默认false，隐藏
         isRefreshing: false,
+        nodata:'none',
     },
     /**
      * 跳转设备详情页
@@ -56,6 +57,15 @@ Page({
                     that.setData({
                         equipListData:res.data
                     });
+                    if(that.data.equipListData.length > 0){
+                        that.setData({
+                            nodata:'none'
+                        });
+                    }else{
+                        that.setData({
+                            nodata:'block'
+                        });
+                    }
                     var currenttime = new Date(ctime);
                     for(var i=0;i<res.data.length;i++){
                         /**
@@ -155,6 +165,15 @@ Page({
                 that.setData({
                     equipListData:res.data
                 });
+                if(that.data.equipListData.length > 0){
+                    that.setData({
+                        nodata:'none'
+                    });
+                }else{
+                    that.setData({
+                        nodata:'block'
+                    });
+                }
                 var currenttime = new Date(ctime);
                 for(var i=0;i<res.data.length;i++){
                     /**
