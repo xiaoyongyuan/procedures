@@ -169,6 +169,7 @@ Page({
         var that = this;
         strat_x = e.touches[0].x; // 手指开始触摸时的x轴 x轴--->相对于画布左边的距离
         strat_y = e.touches[0].y;// 手指开始触摸时的y轴 y轴--->相对于画布顶部的距离strat_xblue
+        console.log("strat",strat_x,strat_y);
     },
     /**
      *手指触摸事件蓝色
@@ -177,14 +178,7 @@ Page({
         var that = this;
         strat_xblue = e.touches[0].x; // 手指开始触摸时的x轴 x轴--->相对于画布左边的距离
         strat_yblue = e.touches[0].y;// 手指开始触摸时的y轴 y轴--->相对于画布顶部的距离
-    },
-    /**
-     * 清除防区一
-     */
-    test:function(){
-        // myblue_carvas.clearRect();
-        // myblue_carvas.draw();
-        console.log("enen");
+        console.log("strat",strat_x,strat_y);
     },
     /**
      *手指触摸结束时的事件蓝色
@@ -193,6 +187,18 @@ Page({
         var that = this;
         end_xblue = e.changedTouches[0].x; // 手指结束触摸时的x轴 x轴--->相对于画布左边的距离
         end_yblue = e.changedTouches[0].y;// 手指结束触摸时的y轴 y轴--->相对于画布顶部的距离
+        if(end_x < 0){
+            end_x = 0;
+        }
+        if(end_x > that.data.defenceareaWidth){
+            end_x = that.data.defenceareaWidth;
+        }
+        if(end_y < 0 ){
+            end_y = 0;
+        }
+        if(end_y > that.data.defenceareaHeight){
+            end_y = that.data.defenceareaHeight;
+        }
         /**
          * 两个防区都没有
          */
@@ -261,6 +267,19 @@ Page({
         var that = this;
         end_x = e.changedTouches[0].x; // 手指结束触摸时的x轴 x轴--->相对于画布左边的距离
         end_y = e.changedTouches[0].y;// 手指结束触摸时的y轴 y轴--->相对于画布顶部的距离
+        console.log("end",end_x,end_y);
+        if(end_x < 0){
+            end_x = 0;
+        }
+        if(end_x > that.data.defenceareaWidth){
+            end_x = that.data.defenceareaWidth;
+        }
+        if(end_y < 0 ){
+            end_y = 0;
+        }
+        if(end_y > that.data.defenceareaHeight){
+            end_y = that.data.defenceareaHeight;
+        }
         const data=that.data.dianlist;
         var dian1 = [strat_x,strat_y];
         var dian2 = [end_x,end_y];
