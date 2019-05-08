@@ -103,7 +103,6 @@ Page({
      */
     onPickerChange: function (e) {
         var that = this;
-        console.log("看看",e.detail.dateString);
         this.setData({
             apptime: e.detail.dateString,
             searchPageNum:1

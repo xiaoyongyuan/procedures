@@ -9,7 +9,7 @@
         <live-player
                 id="player"
                 class="live-player"
-                src="rtmp://39.108.188.75:1935/live/JTJL99995"
+                src="rtmp://192.168.1.19/live/stream6000008"
                 mode="live"
                 autoplay="true"
                 bindstatechange="statechange"
