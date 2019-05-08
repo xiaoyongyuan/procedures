@@ -428,6 +428,10 @@ Page({
                             nodata:'block'
                         });
                     }
+                    that.setData({
+                        isRefreshing: false,
+                    });
+                    wx.stopPullDownRefresh();
                 });
         }else{
             /**
