@@ -1,6 +1,8 @@
 var my_carvas,strat_x,strat_y,end_x,end_y,myblue_carvas,strat_xblue,strat_yblue,end_xblue,end_yblue;
 const app = getApp();
+var isLock = false;  //定义全局变量
 var request = require('../../utils/request.js');
+var times = 0;
 Page({
     /**
      * 页面的初始数据
@@ -63,6 +65,7 @@ Page({
                 that.setData({
                     field:res.data.field,
                     picpath:res.data.fieldpath
+                    // picpath:'http://ftp01.aokecloud.cn/alarm/1000090/background/JTJL99997.jpg'
                 });
                 /**
                  * 两个都有
@@ -153,6 +156,92 @@ Page({
                     my_carvas.lineTo(x1*(that.data.defenceareaWidth/704),y1*(that.data.defenceareaHeight/576));
                     my_carvas.stroke();//画出当前路径的边框
                     my_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
+                }
+            });
+    },
+
+    /**
+     * 刷新
+     */
+    flushimage:function(){
+        var that = this;
+        times = 0;
+        console.log("times",times);
+        console.log("ceshi");
+        // 按钮点击事件:
+        if(isLock)
+        {
+            wx.showToast({
+                title: '操作频繁,请稍后再试......',
+                icon: 'none',
+                duration: 2000
+            });
+            return;
+        }
+        /**
+         * 请求设备详情接口
+         */
+        request.postReq2('','',"/api/equipment/get_basemap",
+            {
+                eid:that.data.eid
+            },
+            function(res){
+                console.log("res",res);
+                if(res.success === 1){
+                    that.setData({
+                        taskid:res.data
+                    });
+                    that.getone();
+                }
+            });
+        isLock = true;
+        setTimeout(function (){
+            isLock = false;
+        },15000);
+    },
+
+    getone: function () {
+        var that = this;
+        var user = wx.getStorageSync('user');
+        var account = wx.getStorageSync('account');
+        var AUTHORIZATION = wx.getStorageSync('AUTHORIZATION');
+        var comid = wx.getStorageSync('comid');
+        var getTimestamp=new Date().getTime();
+        console.log("getTimestamp",getTimestamp);
+        request.postReq2('','',"/api/smptask/getone",
+            {
+                code:that.data.taskid,
+                apptype:1,
+            },
+            function(res){
+                console.log("res",res);
+                if(res.success === 1){
+                    if(res.data.taskstatus === 0 ){
+                        if(times<120){
+                            that.getone();
+                            times++;
+                        }else{
+                            wx.hideLoading();
+                            wx.showToast({
+                                title: '请求超时,请稍后重试......',
+                                icon: 'none',
+                                duration: 2000
+                            });
+                        }
+                    }
+                    console.log("ddd2",times);
+                    if(res.data.taskstatus === 1){
+                        wx.hideLoading();
+                        wx.showToast({
+                            title: '底图刷新成功!',
+                            icon: 'success',
+                            duration: 2000
+                        });
+                        that.setData({
+                            picpath:JSON.parse(res.data.taskresult).path + '?t=' + getTimestamp
+                        });
+                        console.log("res.data.taskresult",JSON.parse(res.data.taskresult).path + '?t=' + getTimestamp);
+                    }
                 }
             });
     },
@@ -611,52 +700,13 @@ Page({
             }
         });
     },
-    /**
-     * 刷新
-     */
-    flushimage:function(){
-        var that = this;
-        console.log("ceshi");
-        /**
-         * 请求设备详情接口
-         */
-        request.postReq('','',"/api/equipment/get_basemap",
-            {
-                eid:that.data.eid
-            },
-            function(res){
-                console.log("res",res);
-                if(res.success === 1){
-                    request.postReq('','',"/api/smptask/getone",
-                        {
-                            code:res.data,
-                            apptype:1
-                        },
-                        function(res){
-                            console.log("res",res);
-                            if(res.data.taskstatus === 0){
-                                wx.showToast({
-                                    title: '请求超时,请稍后再试......',
-                                    icon: 'none',
-                                    duration: 2000
-                                });
-                            }
-                            if(res.data.taskstatus === 1){
-                                that.setData({
-                                    picpath:res.data.taskresult.path
-                                });
-                            }
-                        });
-                }
-            });
-    },
+
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function () {
+    onShow:function(){
 
     },
-
     /**
      * 生命周期函数--监听页面隐藏
      */

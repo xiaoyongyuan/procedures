@@ -1,5 +1,6 @@
 const app = getApp();
 var request = require('../../utils/request.js');
+var times = 0;
 Page({
     data: {
         navigationBarTitle: '实时视频',
@@ -16,6 +17,11 @@ Page({
     onLoad: function (options) {
         var that = this;
         var eid = options.eid;
+        that.setData({
+           eid:eid
+        });
+        times = 0;
+        console.log("times",times);
         /**
          * 请求设备详情接口
          */
@@ -26,35 +32,53 @@ Page({
             function(res){
                 console.log("res",res);
                 if(res.success === 1){
-                    request.postReq('','',"/api/smptask/getone",
-                        {
-                            code:res.data,
-                            apptype:1
-                        },
-                        function(res){
-                            console.log("res",res);
-                            console.log("jsondata",res.data);
-                            if(res.data.taskstatus === 1){
-                                wx.showLoading({
-                                    title: '加载中,请稍等...',
-                                });
-                                that.setData({
-                                    eid:eid,
-                                    liveaddress:'rtmp://39.108.188.75:1935/live/'+eid
-                                });
-                                console.log("liveaddress",that.data.liveaddress);
-                            }
-                            if(res.data.taskstatus === 0){
-                                wx.showToast({
-                                    title: '请求超时,请稍后再试......',
-                                    icon: 'none',
-                                    duration: 2000
-                                });
-                            }
-                        });
+
+                    that.setData({
+                        taskid:res.data
+                    });
+                    that.getone();
                 }
             });
     },
+
+    getone: function () {
+        var that = this;
+        request.postReq2('','',"/api/smptask/getone",
+            {
+                code:that.data.taskid,
+                apptype:1,
+            },
+            function(res){
+                console.log("res",res);
+                console.log("jsondata",res.data);
+                if(res.data.taskstatus === 0){
+                    if(times<120){
+                        that.getone();
+                        times++;
+                    }else{
+                        wx.hideLoading();
+                        wx.showToast({
+                            title: '请求超时,请稍后重试......',
+                            icon: 'none',
+                            duration: 2000
+                        });
+                    }
+                }
+                console.log("ddd2",times);
+                if(res.data.taskstatus === 1){
+                    wx.showLoading({
+                        title: '加载中,请稍等...',
+                    });
+                    that.setData({
+                        eid:that.data.eid,
+                        liveaddress:'rtmp://39.108.188.75:1935/live/'+that.data.eid
+                    });
+                    console.log("liveaddress",that.data.liveaddress);
+                }
+
+            });
+    },
+
     onShow:function(){
 
     },

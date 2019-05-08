@@ -9,7 +9,7 @@
         <live-player
                 id="player"
                 class="live-player"
-                src="{{ liveaddress }}"
+                src="rtmp://39.108.188.75:1935/live/JTJL99995"
                 mode="live"
                 autoplay="true"
                 bindstatechange="statechange"
