@@ -166,13 +166,13 @@
   <view class="page__bd">
     <view class="infodisplay">
       <view class="infodisplay-top">
-        <view  style="flex:1">
+        <view class="titlethree"  style="flex:1;">
           <text class="infodisplay-top-num serve">{{ workdate }}</text><text class="infodisplay-top-chinese">天</text>
         </view>
-        <view  style="flex:1">
+        <view class="titlethree"  style="flex:1;">
           <text class="infodisplay-top-num equip">{{ ecount }}</text><text class="infodisplay-top-chinese">个</text>
         </view>
-        <view  style="flex:1">
+        <view class="titlethree"  style="flex:1;">
           <text class="infodisplay-top-num alarm">{{ acount }}</text><text class="infodisplay-top-chinese">次</text>
         </view>
       </view>
