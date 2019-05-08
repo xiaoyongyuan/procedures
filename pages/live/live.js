@@ -21,7 +21,6 @@ Page({
            eid:eid
         });
         times = 0;
-        console.log("times",times);
         /**
          * 请求设备详情接口
          */
@@ -30,7 +29,6 @@ Page({
                 eid:eid,
             },
             function(res){
-                console.log("res",res);
                 if(res.success === 1){
 
                     that.setData({
@@ -49,8 +47,6 @@ Page({
                 apptype:1,
             },
             function(res){
-                console.log("res",res);
-                console.log("jsondata",res.data);
                 if(res.data.taskstatus === 0){
                     if(times<120){
                         that.getone();
@@ -64,7 +60,6 @@ Page({
                         });
                     }
                 }
-                console.log("ddd2",times);
                 if(res.data.taskstatus === 1){
                     wx.showLoading({
                         title: '加载中,请稍等...',
@@ -73,7 +68,6 @@ Page({
                         eid:that.data.eid,
                         liveaddress:'rtmp://39.108.188.75:1935/live/'+that.data.eid
                     });
-                    console.log("liveaddress",that.data.liveaddress);
                 }
 
             });
@@ -96,7 +90,6 @@ Page({
               duration: 2000
           });
       }
-      console.log("code",e.detail.code);
     },
     /**
      * 水平竖直切换

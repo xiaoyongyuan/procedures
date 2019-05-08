@@ -19,18 +19,13 @@ Page({
         var that = this;
         var jsondata = options.jsondata;
         var Objjsondata = JSON.parse(jsondata);
-        console.log("cedshijsondata",jsondata);
-        console.log("duixinag",Objjsondata);
         var arr=[];
         for(var key in Objjsondata){
             arr.push({label:key,value:Objjsondata[key]});
-            console.log("key",key);
-            console.log("value",Objjsondata[key]);
         }
         that.setData({
             arr:arr
         });
-        console.log("that.data.arr",that.data.arr);
     },
 
     /**

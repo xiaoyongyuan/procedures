@@ -15,7 +15,6 @@ Page({
     // 查看是否授权
     wx.getSetting({
       success: function (res) {
-        console.log("还没有授权",res);
         if (res.authSetting['scope.userInfo']) {
             // 获取用户信息
           wx.getUserInfo({
@@ -36,7 +35,6 @@ Page({
      *点击授权登录按钮
      */
   bindGetUserInfo: function (e) {
-    console.log("eee",e);
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
       var that = this;
@@ -44,10 +42,8 @@ Page({
       //授权成功后，跳转进入小程序首页
         wx.login({
             success: res => {
-                console.log('loginCode:', res.code);
                 var code = res.code;
                 if(code){
-                    console.log('获取用户登录凭证：' + code);
                     //调登录接口
                     wx.request({
                         url: 'https://api.aokecloud.cn/login/verifyforWX',
@@ -57,7 +53,6 @@ Page({
                         method: 'POST',
                         dataType:'json',
                         success(res) {
-                            console.log("res.data",res.data);
                             var companylist = [];
                             if(res.data.success === 1){
                                 if(res.data.data.account !== '' && res.data.data.account !== undefined){
@@ -66,17 +61,13 @@ Page({
                                     wx.setStorageSync('comid', res.data.data.comid);
                                     wx.setStorageSync('AUTHORIZATION', res.data.token);
                                     wx.setStorageSync('companyuser', res.data.data.companyuser.cname);
-                                    // console.log("woleigerqu",res.data.data.companyuser.cname);
                                     app.globalData.cname = res.data.data.companyuser.cname;
                                     wx.setStorageSync('realname', res.data.data.realname);
-                                    console.log("res.data.data.list.length",res.data.data.list.length);
                                     if(res.data.data.list.length > 0){
                                         for(var i = 0;i < res.data.data.list.length;i++ ){
                                             companylist.push(res.data.data.list[i]);
-                                            console.log("cnam",res.data.data.list[i]);
                                         }
                                     }
-                                    console.log("companylist",companylist);
                                     wx.setStorageSync('companylist', companylist);
                                 }
                                 if(res.data.data.comid === ''){

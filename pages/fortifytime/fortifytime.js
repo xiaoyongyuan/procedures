@@ -33,24 +33,18 @@ Page({
      */
     bindPickerChangestrat(e) {
         var that = this;
-        console.log('开始时间', e);
-        console.log('picker发送选择改变，携带值为', e.detail.value);
-        console.log("that.data.starttime",that.data.starttime);
         this.setData({
             starttime: e.detail.value
         });
-        console.log("that.data.starttime",that.data.starttime);
     },
     /**
      *截止时间
      */
     bindPickerChangeend(e) {
         var that = this;
-        console.log('picker发送选择改变，携带值为', e.detail.value);
         this.setData({
             endtime: e.detail.value
-        })
-        console.log("that.data.endtime",that.data.endtime);
+        });
     },
     /**
      *单选按钮
@@ -60,7 +54,6 @@ Page({
         that.setData({
             wtype:e.detail.value
         });
-        console.log('checkbox发生chang事件', e.detail.value);
     },
     //页面跳转图表查看
     changeTofortifytimeEchart:function(){
@@ -92,8 +85,6 @@ Page({
      */
     savelist:function(){
         var that = this;
-        console.log("kaishi",that.data.starttime);
-        console.log("jiezhi",that.data.endtime);
         if((that.data.starttime === undefined || that.data.starttime === '') || (that.data.endtime === undefined || that.data.endtime === '')){
             wx.showToast({
                 title: '请确认布防的开始时间和截止时间！',
@@ -118,7 +109,6 @@ Page({
             });
             return;
         }
-        console.log("danxuan",that.data.wtype);
         /**
          * 先查询每个状态记录多少条
          */
@@ -127,12 +117,10 @@ Page({
                 cid:that.data.currentcode,
             },
             function(res){
-                console.log("res",res);
                 var todaychecklist = [];
                 var playdaychecklist = [];
                 var weekdaychecklist = [];
                 for(var i = 0;i<res.data.length;i++){
-                    console.log("res.data[i]",res.data[i].wtype);
                     if(res.data[i].wtype === 'weekday'){
                         weekdaychecklist.push(res.data[i].wtype);
                     }
@@ -143,9 +131,6 @@ Page({
                         todaychecklist.push(res.data[i].wtype);
                     }
                 }
-                console.log("weekdaychecklist",weekdaychecklist);
-                console.log("playdaychecklist",playdaychecklist);
-                console.log("todaychecklist",todaychecklist);
                 if(that.data.wtype === 'weekday'){
                     if(weekdaychecklist.length >= 3){
                         wx.showToast({
@@ -157,17 +142,13 @@ Page({
                     }
                     if(that.data.starttime < 10){
                         var savestarttime = '0'+that.data.starttime;
-                        console.log("starttime",savestarttime);
                     }else {
                         savestarttime = that.data.starttime;
-                        console.log("starttime",savestarttime);
                     }
                     if(that.data.endtime < 10){
                         var saveendtime = '0'+that.data.endtime;
-                        console.log("endtime",saveendtime);
                     }else {
                         saveendtime = that.data.endtime;
-                        console.log("endtime",saveendtime);
                     }
                     /**
                      * 请求添加接口
@@ -221,17 +202,13 @@ Page({
                     }
                     if(that.data.starttime < 10){
                         var savestarttime = '0'+that.data.starttime;
-                        console.log("starttime",savestarttime);
                     }else {
                         savestarttime = that.data.starttime;
-                        console.log("starttime",savestarttime);
                     }
                     if(that.data.endtime < 10){
                         var saveendtime = '0'+that.data.endtime;
-                        console.log("endtime",saveendtime);
                     }else {
                         saveendtime = that.data.endtime;
-                        console.log("endtime",saveendtime);
                     }
                     /**
                      * 请求添加接口
@@ -285,17 +262,13 @@ Page({
                     }
                     if(that.data.starttime < 10){
                         var savestarttime = '0'+that.data.starttime;
-                        console.log("starttime",savestarttime);
                     }else {
                         savestarttime = that.data.starttime;
-                        console.log("starttime",savestarttime);
                     }
                     if(that.data.endtime < 10){
                         var saveendtime = '0'+that.data.endtime;
-                        console.log("endtime",saveendtime);
                     }else {
                         saveendtime = that.data.endtime;
-                        console.log("endtime",saveendtime);
                     }
                     /**
                      * 请求添加接口
@@ -398,19 +371,14 @@ Page({
      */
     switch1Change(e) {
         var that = this;
-        console.log('switch1 发生 change 事件，携带值为', e.detail.value);
-        console.log("var Id = e.currentTarget.id;",e);
         var Id = e.currentTarget.id;
-        console.log("Idc",Id);
         //获取当前点击元素的属性值。
         var code = that.data.workingtimelist[Id].code;
-        console.log("codes",code);
         if(e.detail.value === true){
             var cwstatus = 1;
         }else {
             cwstatus = 0;
         }
-        console.log("cwstatus",cwstatus);
         /**
          * 修改状态接口
          */
@@ -440,8 +408,6 @@ Page({
      *单选按钮
      */
     radioChange: function (e) {
-        console.log('checkbox发生change事件，携带value值为：', e.detail.value);
-
         var checkboxItems = this.data.checkboxItems, values = e.detail.value;
         for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
             checkboxItems[i].checked = false;

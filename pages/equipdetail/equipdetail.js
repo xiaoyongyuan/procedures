@@ -53,7 +53,6 @@ Page({
         var that = this;
         const fieldStr = JSON.stringify(that.data.field);
         const eid = that.data.equipdetailData.eid;
-        console.log("eid",that.data.equipdetailData.eid);
         if(that.data.ismist === "false"){
             wx.showToast({
                 title: '设备离线，无法操作！',
@@ -167,7 +166,6 @@ Page({
      */
     equiplight:function(options){
         var that = this;
-        console.log("eid",that.data.equipdetailData.eid);
         request.postReq('','',"/api/equipment/FlashLampV1",
             {
                 eid:that.data.equipdetailData.eid
@@ -195,7 +193,6 @@ Page({
                 apptype:1
             },
             function(res){
-                console.log("res",res);
                 if(res.success === 1){
                     request.postReq('','',"/api/smptask/getone",
                         {
@@ -203,8 +200,6 @@ Page({
                             apptype:1
                         },
                         function(res){
-                            console.log("res",res);
-                            console.log("jsondata",res.data);
                             const jsondata = JSON.stringify(res.data.taskresult);
                             if(res.data.taskstatus === 0){
                                 wx.showToast({
@@ -227,7 +222,6 @@ Page({
      */
     restore:function(){
         var that = this;
-        console.log("eid",that.data.equipdetailData.eid);
         wx.showModal({
             title: '提示',
             content: '确认恢复出厂设置吗？',
@@ -255,7 +249,6 @@ Page({
      */
     deviceEquip:function(){
         var that = this;
-        console.log("eid",that.data.equipdetailData.eid);
         wx.showModal({
             title: '提示',
             content: '确认重启设备吗？',

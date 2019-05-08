@@ -42,7 +42,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log("app.globalData.cname",app.globalData.cname);
         var ctime = util.formatTime(new Date());
         /**
          * 请求列表接口
@@ -53,7 +52,6 @@ Page({
         request.postReq(searchPageNum,callbackcount,"/api/camera/getlist_forAPP", {},
             function(res){
                 if(res.success === 1){
-                    console.log("res",res.data);
                     that.setData({
                         equipListData:res.data
                     });
@@ -71,8 +69,6 @@ Page({
                         /**
                          *两个时间都有
                          */
-                        console.log("herattime",that.data.equipListData[i].herattime.time);
-                        console.log("atime",that.data.equipListData[i].atime);
                         if(that.data.equipListData[i].atime !== '' && (that.data.equipListData[i].herattime.time !== '' || that.data.equipListData[i].herattime.time !== undefined)){
                             //两个时间相差的分钟数
                             var  mistiming =  parseInt(currenttime - new Date(that.data.equipListData[i].atime))/ 1000 / 60;
@@ -179,8 +175,6 @@ Page({
                     /**
                      *两个时间都有
                      */
-                    console.log("herattime",that.data.equipListData[i].herattime.time);
-                    console.log("atime",that.data.equipListData[i].atime);
                     if(that.data.equipListData[i].atime !== '' && (that.data.equipListData[i].herattime.time !== '' || that.data.equipListData[i].herattime.time !== undefined)){
                         //两个时间相差的分钟数
                         var  mistiming =  parseInt(currenttime - new Date(that.data.equipListData[i].atime))/ 1000 / 60;
@@ -294,7 +288,6 @@ Page({
                 if(res.data.length !== 0){
                     let searchList = [];
                     //如果isFromSearch是true从data中取出数据，否则先从原来的数据继续添加 equipListData
-                    console.log("isFromSearch",that.data.isFromSearch);
                     that.data.isFromSearch ? searchList=res.data : searchList=that.data.equipListData.concat(res.data);
                     that.setData({
                         equipListData: searchList, //获取数据数组

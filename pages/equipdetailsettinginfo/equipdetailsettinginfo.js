@@ -43,7 +43,6 @@ Page({
                 code:currentcode
             },
             function(res){
-                console.log("res.data",res.data);
                 that.setData({
                     camerainfo:res.data,
                 });
@@ -74,11 +73,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log("onLoad",undefined);
         var that= this;
         //字符串转json
         var currentcode = options.currentcode;
-        console.log("currentcode",currentcode);
         that.setData({
             currentcode:currentcode
         });
@@ -90,7 +87,6 @@ Page({
                 code:that.data.currentcode
             },
             function(res){
-                console.log("res.data",res.data);
                that.setData({
                    camerainfo:res.data,
                });
@@ -119,9 +115,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        console.log("onShow");
         var that= this;
-        console.log("code",that.data.currentcode);
         /**
          *  获取查看设备信息
          */
@@ -130,7 +124,6 @@ Page({
                 code:that.data.currentcode
             },
             function(res){
-                console.log("res.data",res.data);
                 that.setData({
                     camerainfo:res.data,
                 });

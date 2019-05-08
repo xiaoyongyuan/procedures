@@ -19,7 +19,6 @@ Page({
      */
     onLoad: function (options) {
         var that = this;
-        console.log("hh",that.data.companylist);
         wx.getSystemInfo({
             success:function (res) {
                 that.setData({
@@ -36,14 +35,8 @@ Page({
         var that = this;
         //获取当前点击元素的id(索引值)
         var Id = e.currentTarget.id;
-        console.log("ID",e);
-        console.log("ID",Id);
-        // var code = that.data.alarmListData[Id].code;
         const account  = that.data.companylist[Id].account;
         const comid = that.data.companylist[Id].companycode;
-        // const cname = that.data.companylist[Id].cname;
-        console.log("account",account);
-        console.log("comid",comid);
         //调登录接口
         wx.request({
             url: 'https://api.aokecloud.cn/login/verify_WX',
@@ -54,12 +47,10 @@ Page({
             method: 'POST',
             dataType:'json',
             success(res) {
-                console.log("切换公司",res);
                 if(res.data.success === 1){
                     wx.setStorageSync('account', res.data.data.account);
                     wx.setStorageSync('comid', res.data.data.comid);
                     wx.setStorageSync('companyuser', res.data.data.companyuser.cname);
-                    console.log("wocaotama",res.data.data.companyuser.cname);
                     wx.switchTab({
                         url: '/pages/alarm/alarm'
                     });

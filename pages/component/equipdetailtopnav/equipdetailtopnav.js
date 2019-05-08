@@ -30,7 +30,6 @@ Component({
 
     methods: {
         back: function () {
-            console.log("退回");
             wx.navigateBack({
                 delta: 1
             });
@@ -38,7 +37,6 @@ Component({
         flush: function(){
             var that = this;
             var flushcode = wx.getStorageSync("flushcode");
-            console.log("flushcode",flushcode);
             /**
              * 请求设备详情接口
              */

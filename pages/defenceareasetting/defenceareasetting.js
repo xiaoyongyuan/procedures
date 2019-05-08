@@ -36,7 +36,6 @@ Page({
         var that = this;
         var code = options.currentcode;
         var eid = options.eid;
-        console.log("eid44", eid); //由JSON字符串转换为JSON对象);
         that.setData({
             currentcode:code,
             eid:eid
@@ -50,10 +49,6 @@ Page({
             defenceareaHeight:screenHeight*0.9*0.33,
             defenceareaWidth:screenWidth*0.94
         });
-        console.log("screenWidth",screenWidth);
-        console.log("screenHeight",screenHeight);
-        console.log("defenceareaHeight",that.data.defenceareaHeight);
-        console.log("defenceareaWidth",that.data.defenceareaWidth);
         /**
          * 请求设备详情接口
          */
@@ -166,8 +161,6 @@ Page({
     flushimage:function(){
         var that = this;
         times = 0;
-        console.log("times",times);
-        console.log("ceshi");
         // 按钮点击事件:
         if(isLock)
         {
@@ -186,7 +179,6 @@ Page({
                 eid:that.data.eid
             },
             function(res){
-                console.log("res",res);
                 if(res.success === 1){
                     that.setData({
                         taskid:res.data
@@ -207,14 +199,12 @@ Page({
         var AUTHORIZATION = wx.getStorageSync('AUTHORIZATION');
         var comid = wx.getStorageSync('comid');
         var getTimestamp=new Date().getTime();
-        console.log("getTimestamp",getTimestamp);
         request.postReq2('','',"/api/smptask/getone",
             {
                 code:that.data.taskid,
                 apptype:1,
             },
             function(res){
-                console.log("res",res);
                 if(res.success === 1){
                     if(res.data.taskstatus === 0 ){
                         if(times<120){
@@ -229,7 +219,6 @@ Page({
                             });
                         }
                     }
-                    console.log("ddd2",times);
                     if(res.data.taskstatus === 1){
                         wx.hideLoading();
                         wx.showToast({
@@ -240,7 +229,6 @@ Page({
                         that.setData({
                             picpath:JSON.parse(res.data.taskresult).path + '?t=' + getTimestamp
                         });
-                        console.log("res.data.taskresult",JSON.parse(res.data.taskresult).path + '?t=' + getTimestamp);
                     }
                 }
             });
@@ -258,7 +246,6 @@ Page({
         var that = this;
         strat_x = e.touches[0].x; // 手指开始触摸时的x轴 x轴--->相对于画布左边的距离
         strat_y = e.touches[0].y;// 手指开始触摸时的y轴 y轴--->相对于画布顶部的距离strat_xblue
-        console.log("strat",strat_x,strat_y);
     },
     /**
      *手指触摸事件蓝色
@@ -267,7 +254,6 @@ Page({
         var that = this;
         strat_xblue = e.touches[0].x; // 手指开始触摸时的x轴 x轴--->相对于画布左边的距离
         strat_yblue = e.touches[0].y;// 手指开始触摸时的y轴 y轴--->相对于画布顶部的距离
-        console.log("strat",strat_x,strat_y);
     },
     /**
      *手指触摸结束时的事件蓝色
@@ -356,7 +342,6 @@ Page({
         var that = this;
         end_x = e.changedTouches[0].x; // 手指结束触摸时的x轴 x轴--->相对于画布左边的距离
         end_y = e.changedTouches[0].y;// 手指结束触摸时的y轴 y轴--->相对于画布顶部的距离
-        console.log("end",end_x,end_y);
         if(end_x < 0){
             end_x = 0;
         }
@@ -446,17 +431,6 @@ Page({
             });
         }
     },
-    // clear:function(){
-    //     var that = this;
-    //     console.log("qian",that.data.dianlist);
-    //     that.setData({
-    //         dianlist:[]
-    //     });
-    //     my_carvas.stroke();//画出当前路径的边框
-    //     my_carvas.draw(); //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
-    //     console.log("hou",that.data.dianlist);
-    //
-    // },
     /**
      * 保存
      */
@@ -476,7 +450,6 @@ Page({
             const bx4 = Math.round(that.data.pointlist[5][0]/(that.data.defenceareaWidth/704));
             const by4 = Math.round(that.data.pointlist[5][1]/(that.data.defenceareaHeight/576));
             const bfield = [[ [bx1,by1],[bx2,by2],[bx3,by3],[bx4,by4] ]];
-            console.log("保存的点",bx1,by1,bx2,by2,bx3,by3,bx4,by4);
             request.postReq('','',"/api/camera/fieldadd",
                 {
                     code:that.data.currentcode,

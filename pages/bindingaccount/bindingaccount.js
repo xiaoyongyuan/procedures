@@ -128,7 +128,6 @@ Page({
                         },
                         method: 'POST',
                         success(res) {
-                            console.log("res",res);
                             wx.hideLoading();
                             if(res.data.success === 1){
                                 wx.showToast({
@@ -162,7 +161,6 @@ Page({
     binding:function(){
         var that = this;
         let formData = that.data.formData;
-        console.log("formData.phone",formData.phone);
         wx.showLoading({
             title: '正在绑定,请稍等......',
         });
@@ -180,7 +178,6 @@ Page({
                         },
                         method: 'POST',
                         success: function (res) {
-                            console.log("res",res);
                             wx.hideLoading();
                             if(res.data.success === 1){
                                 if (res.data.account !== '' && res.data.account !== undefined) {
@@ -209,16 +206,12 @@ Page({
                                                                 wx.setStorageSync('comid', res.data.data.comid);
                                                                 wx.setStorageSync('AUTHORIZATION', res.data.token);
                                                                 wx.setStorageSync('companyuser', res.data.data.companyuser.cname);
-                                                                console.log("companyuser",res.data.data.companyuser.cname);
                                                                 wx.setStorageSync('realname', res.data.data.realname);
-                                                                console.log("res.data.data.list.length",res.data.data.list.length);
                                                                 if(res.data.data.list.length > 0){
                                                                     for(var i = 0;i < res.data.data.list.length;i++ ){
                                                                         companylist.push(res.data.data.list[i]);
-                                                                        console.log("cnam",res.data.data.list[i]);
                                                                     }
                                                                 }
-                                                                console.log("companylist",companylist);
                                                                 wx.setStorageSync('companylist', companylist);
                                                                 if(res.data.data.comid === ''){
                                                                     wx.navigateTo({

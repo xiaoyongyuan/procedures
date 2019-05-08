@@ -12,7 +12,6 @@ Page({
                         success: res => {
                             var code = res.code;
                             if(code){
-                                console.log("code",code);
                                 //调登录接口
                                 wx.request({
                                     url: 'https://api.aokecloud.cn/login/verifyforWX',
@@ -22,7 +21,6 @@ Page({
                                     method: 'POST',
                                     dataType:'json',
                                     success(res) {
-                                        console.log("登录",res);
                                         var companylist = [];
                                         if(res.data.success === 1){
                                             if(res.data.data.comid === ''){

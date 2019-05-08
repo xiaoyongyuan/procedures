@@ -244,9 +244,7 @@ Page({
         //获取当前点击元素的id(索引值)
         var Id = e.currentTarget.id;
         //获取当前点击元素的属性值。selectedvalue apptime
-        console.log("id",Id);
         var code = that.data.alarmListData[Id].code;
-        console.log("code",code);
         if(that.data.selectedvalue === 'sign'){
             wx.navigateTo({
                 url:'../alarmdetail/alarmdetail?code=' + code +'&ifdanger=1'
@@ -281,15 +279,12 @@ Page({
                         qrcode:res.result
                     },
                     function(res){
-                       console.log("res",res);
                        if(res.success === 1){
-                           console.log("1");
                            wx.navigateTo({
                                url:'../confirmlogin/confirmlogin'
                            })
                        }
                        if(res.success === 0){
-                           console.log("0");
                            setTimeout(function () {
                                wx.showToast({
                                    title: '二维码失效',
@@ -316,7 +311,6 @@ Page({
         that.setData({
             qrcode:e.detail.value
         });
-        console.log("qrcode",that.data.qrcode);
     },
 
     /**

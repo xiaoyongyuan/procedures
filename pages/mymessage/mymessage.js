@@ -33,7 +33,6 @@ Page({
 
             },
             function(res){
-            console.log("res",res);
                if(res.data.length === 0){
                    that.setData({
                        nomessage:true

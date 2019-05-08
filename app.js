@@ -38,7 +38,6 @@ App({
                 success: res => {
                     var code = res.code;
                     if(code){
-                        console.log("code",code);
                         //调登录接口
                         wx.request({
                             url: 'https://api.aokecloud.cn/login/verifyforWX',
@@ -48,7 +47,6 @@ App({
                             method: 'POST',
                             dataType:'json',
                             success(res) {
-                                console.log("登录",res);
                                 var companylist = [];
                                 if(res.data.success === 1){
                                     if(res.data.data.account !== '' && res.data.data.account !== undefined){
@@ -58,16 +56,12 @@ App({
                                         wx.setStorageSync('comid', res.data.data.comid);
                                         wx.setStorageSync('AUTHORIZATION', res.data.token);
                                         wx.setStorageSync('companyuser', res.data.data.companyuser.cname);
-                                        // console.log("woleigerqu",res.data.data.companyuser.cname);
                                         wx.setStorageSync('realname', res.data.data.realname);
-                                        console.log("res.data.data.list.length",res.data.data.list.length);
                                         if(res.data.data.list.length > 0){
                                             for(var i = 0;i < res.data.data.list.length;i++ ){
                                                 companylist.push(res.data.data.list[i]);
-                                                console.log("cnam",res.data.data.list[i]);
                                             }
                                         }
-                                        console.log("companylist",companylist);
                                         wx.setStorageSync('companylist', companylist);
                                     }
                                     if(res.data.data.comid === ''){
