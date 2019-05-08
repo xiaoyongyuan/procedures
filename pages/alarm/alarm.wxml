@@ -135,7 +135,7 @@
     </view>
     <!-- 下拉需要显示的列表 -->
     <view class="select_box_center">
-        <view class="select_box"  wx:if="{{showModal}}" bindtap="go" style="position:fixed;top:{{ someData.statusBarHeight+someData.titleBarHeight+45 }}px">
+        <view class="select_box"  wx:if="{{showModal}}" bindtap="go" catchtouchmove="catchtouchmove" style="position:fixed;top:{{ someData.statusBarHeight+someData.titleBarHeight+41 }}px">
             <block wx:for="{{equipList}}" wx:key="index">
                 <view class="select_one"  bindtap="mySelect" data-name="{{ item.name }}" data-value="{{ item.code }}">
                     <text>{{ item.name }}</text>

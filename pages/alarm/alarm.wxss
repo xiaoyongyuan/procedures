@@ -29,13 +29,28 @@ page {
     align-items: center;
     justify-content: space-between;
 }
+.selectlisttest{
+    width: 100%;
+    height: 80rpx;
+    background-color: #df1737;
+}
 .select-list{
     display: flex;
     justify-content: center;
     position: relative;
-    z-index: 9999;
+    z-index: 9998;
     width: 100%;
     height: 80rpx;
+    border: 1rpx solid red;
+}
+.select-list2{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 9998;
+    width: 100%;
+    height: 140rpx;
+    border: #2cd7aa 1rpx solid;
 }
 .select_box {
     background-color: #fff;
@@ -44,7 +59,7 @@ page {
     overflow: visible;
     font-size: 28rpx;
     border-radius: 24rpx;
-    z-index: 9001;
+    z-index: 9999;
     /*background-color: #237af5;*/
 }
 .navbar{
@@ -97,14 +112,7 @@ page {
     display: flex;
     justify-content: center;
 }
-.select-list2{
-    display: flex;
-    justify-content: center;
-    position: relative;
-    z-index: 9999;
-    width: 100%;
-    height: 140rpx;
-}
+
 .list-msg2 {
     height: 60rpx;
     display: flex;
@@ -158,6 +166,7 @@ page {
     border-bottom: 2rpx solid #ebebeb;
     margin-top: 20rpx;
     display: flex;
+    z-index: 9999;
     justify-content: space-between;
 }
 .select_one image{
