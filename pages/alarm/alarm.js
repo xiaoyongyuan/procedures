@@ -103,6 +103,7 @@ Page({
      */
     onPickerChange: function (e) {
         var that = this;
+        console.log("看看",e.detail.dateString);
         this.setData({
             apptime: e.detail.dateString,
             searchPageNum:1
@@ -490,8 +491,16 @@ Page({
         }
         that.setData({
             isRefreshing: true,
-            apptime:''
         });
+        if(that.data.reset === false){
+            that.setData({
+                apptime:''
+            });
+        }else {
+            that.setData({
+                apptime:that.data.apptime
+            });
+        }
         that.onShow();//数据请求
     },
 
