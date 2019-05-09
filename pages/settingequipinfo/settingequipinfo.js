@@ -28,8 +28,8 @@ Page({
         var port = options.port;
         var currentcode = options.currentcode;
         that.setData({
-            IP:IP === 'undefined' ? '' : IP,
-            port:port === 'undefined' ? '' : port,
+            IP:IP === 'undefined' || IP === 'null' ? '' : IP,
+            port:port === 'undefined' || port === 'null' ? 554 : port,
             currentcode:currentcode
         });
     },

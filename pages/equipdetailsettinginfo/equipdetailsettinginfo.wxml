@@ -24,7 +24,7 @@
                 <text>IP:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text wx:if="{{ camerainfo.cameraip === '' || camerainfo.cameraip === undefined}}">无</text>
+                <text wx:if="{{ camerainfo.cameraip === '' || camerainfo.cameraip === undefined ||  camerainfo.cameraip === null}}">无</text>
                 <text wx:else>{{ camerainfo.cameraip }}</text>
             </view>
         </view>
@@ -33,7 +33,7 @@
                 <text>端口号:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text wx:if="{{ camerainfo.authport === '' || camerainfo.authport === undefined}}">无</text>
+                <text wx:if="{{ camerainfo.authport === '' || camerainfo.authport === undefined || camerainfo.authport === null}}">无</text>
                 <text wx:else>{{ camerainfo.authport }}</text>
             </view>
         </view>
@@ -42,7 +42,7 @@
                 <text>用户名:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text wx:if="{{ camerainfo.ausername === '' || camerainfo.ausername === undefined}}">无</text>
+                <text wx:if="{{ camerainfo.ausername === '' || camerainfo.ausername === undefined || camerainfo.ausername === null}}">无</text>
                 <text wx:else>{{ camerainfo.ausername }}</text>
             </view>
         </view>
@@ -51,7 +51,7 @@
                 <text>用户密码:</text>
             </view>
             <view class="equipinfo-item-right">
-                <text wx:if="{{ camerainfo.camerapasswd === '' || camerainfo.camerapasswd === undefined}}">无</text>
+                <text wx:if="{{ camerainfo.camerapasswd === '' || camerainfo.camerapasswd === undefined || camerainfo.camerapasswd === null}}">无</text>
                 <text wx:else>{{ camerainfo.camerapasswd }}</text>
             </view>
         </view>
@@ -99,7 +99,7 @@
             <view class="equipinfo-item-right">
                 <text wx:if="{{ status === 'run' }}" style="color: #00a0e9">运行中</text>
                 <text wx:elif="{{ status === 'stop' }}">不在布防时间内</text>
-                <text wx:else>摄像头未绑定</text>
+                <text wx:else style="color: #df1737">设备连接，摄像头未绑定</text>
             </view>
         </view>
         <view class="equipinfo-item">

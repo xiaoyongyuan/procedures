@@ -194,10 +194,6 @@ Page({
 
     getone: function () {
         var that = this;
-        var user = wx.getStorageSync('user');
-        var account = wx.getStorageSync('account');
-        var AUTHORIZATION = wx.getStorageSync('AUTHORIZATION');
-        var comid = wx.getStorageSync('comid');
         var getTimestamp=new Date().getTime();
         request.postReq2('','',"/api/smptask/getone",
             {

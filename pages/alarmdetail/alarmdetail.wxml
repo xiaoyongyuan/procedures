@@ -106,5 +106,4 @@
             <image class="originalimg" src="{{ alarmdetailData.pic_original }}"></image>
         </view>
     </view>
-
 </view>

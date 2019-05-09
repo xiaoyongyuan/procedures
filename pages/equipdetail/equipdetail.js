@@ -2,6 +2,8 @@
 const app = getApp();
 var request = require('../../utils/request.js');
 const util = require('../../utils/util.js');
+var isLock = false;  //定义全局变量
+var times = 0;
 Page({
 
     /**
@@ -183,10 +185,21 @@ Page({
      */
     equipdetail:function(){
         var that = this;
+        times = 0;
+        // 按钮点击事件:
+        if(isLock)
+        {
+            wx.showToast({
+                title: '操作频繁,请稍后再试......',
+                icon: 'none',
+                duration: 2000
+            });
+            return;
+        }
         /**
          * 请求设备详情接口
          */
-        request.postReq('','',"/api/equipment/get_equipmentinfo",
+        request.postReq2('','',"/api/equipment/get_equipmentinfo",
             {
                 eid:that.data.equipdetailData.eid,
                 cid:that.data.currentcode,
@@ -194,29 +207,94 @@ Page({
             },
             function(res){
                 if(res.success === 1){
-                    request.postReq('','',"/api/smptask/getone",
-                        {
-                            code:res.data,
-                            apptype:1
-                        },
-                        function(res){
-                            const jsondata = JSON.stringify(res.data.taskresult);
-                            if(res.data.taskstatus === 0){
-                                wx.showToast({
-                                    title: '请求超时,请稍后再试......',
-                                    icon: 'none',
-                                    duration: 2000
-                                });
-                            }
-                            if(res.data.taskstatus === 1){
-                                wx.navigateTo({
-                                    url:'../taskequipdetail/taskequipdetail?jsondata=' + jsondata
-                                })
-                            }
+                    that.setData({
+                        taskid:res.data
+                    });
+                    that.getone();
+                }
+            });
+        isLock = true;
+        setTimeout(function (){
+            isLock = false;
+        },15000);
+    },
+
+    getone: function () {
+        var that = this;
+        request.postReq2('','',"/api/smptask/getone",
+            {
+                code:that.data.taskid,
+                apptype:1,
+            },
+            function(res){
+                if(res.success === 1){
+                    if(res.data.taskstatus === 0 ){
+                        if(times<120){
+                            that.getone();
+                            times++;
+                        }else{
+                            wx.hideLoading();
+                            wx.showToast({
+                                title: '请求超时,请稍后重试......',
+                                icon: 'none',
+                                duration: 2000
+                            });
+                        }
+                    }
+                    if(res.data.taskstatus === 1){
+                        const jsondata = JSON.stringify(res.data.taskresult);
+                        console.log("jsondata",jsondata);
+                        wx.hideLoading();
+                        wx.navigateTo({
+                            url:'../taskequipdetail/taskequipdetail?jsondata=' + jsondata
                         });
+                    }
                 }
             });
     },
+
+
+
+
+
+
+
+    // equipdetail:function(){
+    //     var that = this;
+    //     /**
+    //      * 请求设备详情接口
+    //      */
+    //     request.postReq('','',"/api/equipment/get_equipmentinfo",
+    //         {
+    //             eid:that.data.equipdetailData.eid,
+    //             cid:that.data.currentcode,
+    //             apptype:1
+    //         },
+    //         function(res){
+    //             if(res.success === 1){
+    //                 request.postReq('','',"/api/smptask/getone",
+    //                     {
+    //                         code:res.data,
+    //                         apptype:1
+    //                     },
+    //                     function(res){
+    //                         const jsondata = JSON.stringify(res.data.taskresult);
+    //                         if(res.data.taskstatus === 0){
+    //                             wx.showToast({
+    //                                 title: '请求超时,请稍后再试......',
+    //                                 icon: 'none',
+    //                                 duration: 2000
+    //                             });
+    //                         }
+    //                         if(res.data.taskstatus === 1){
+    //                             wx.navigateTo({
+    //                                 url:'../taskequipdetail/taskequipdetail?jsondata=' + jsondata
+    //                             })
+    //                         }
+    //                     });
+    //             }
+    //         });
+    // },
     /**
      * 恢复出厂设置
      */
@@ -232,6 +310,10 @@ Page({
                             eid:that.data.equipdetailData.eid
                         },
                         function(res){
+                        console.log("res重置",res);
+                        if(res.success === 1){
+                            that.onShow();
+                        }
                             wx.showToast({
                                 title: '重置成功',
                                 icon: 'success',
@@ -240,7 +322,9 @@ Page({
                         })
                 }
                 else if (res.cancel)
-                {}
+                {
+
+                }
             }
         });
     },

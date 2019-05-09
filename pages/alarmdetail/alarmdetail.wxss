@@ -171,7 +171,7 @@ page{
     color: #4f4f4f;
 }
 .ifdanger{
-    margin-left: 60rpx;
+    margin-left: 100rpx;
 }
 .mask{
     width: 100%;
