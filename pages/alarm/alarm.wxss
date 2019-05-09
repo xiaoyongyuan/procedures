@@ -198,6 +198,7 @@ page {
 .alarm-list-one-bottom{
     display: flex;
     margin: auto;
+    height: auto;
     /*height: 25%;*/
     background-color: #f4f4f4;
     /*background-color: #df1737;*/

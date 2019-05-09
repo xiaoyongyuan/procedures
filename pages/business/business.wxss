@@ -29,3 +29,27 @@ page {
     border-radius: 24rpx;
     margin-left: 2.8%;
 }
+.buiness-item-top{
+    width: 100%;
+    height: 65%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.buiness-item-bottom{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 35%;
+}
+.buiness-item-top-image{
+    width: 100rpx;
+    height: 120rpx;
+}
+.buiness-item-top-image image{
+    width: 100%;
+    height: 100%;
+}
+.buiness-item-bottom text{
+    font-size: 26rpx;
+}

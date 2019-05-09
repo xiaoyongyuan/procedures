@@ -47,8 +47,9 @@ Page({
                 apptype:1,
             },
             function(res){
+            console.log("res",res);
                 if(res.data.taskstatus === 0){
-                    if(times<120){
+                    if(times<40){
                         that.getone();
                         times++;
                     }else{
@@ -68,6 +69,7 @@ Page({
                         eid:that.data.eid,
                         liveaddress:'rtmp://39.108.188.75:1935/live/'+that.data.eid
                     });
+                    console.log("liveaddress",that.data.liveaddress);
                 }
 
             });
@@ -80,9 +82,11 @@ Page({
      *播放状态变化事件
      */
     statechange(e) {
+        var that = this;
       if (e.detail.code === 2004){
         wx.hideLoading();
       }
+      console.log("code",e.detail.code);
       if(e.detail.code === -2301){
           wx.showToast({
               title: '网络断连，稍后请重试......',

@@ -6,15 +6,33 @@
     <view class="buiness-all">
         <view class="buiness-item">
             <view class="buiness-item-top">
-
+                <view class="buiness-item-top-image">
+                    <image src="/images/xungeng.png"></image>
+                </view>
             </view>
-
+            <view class="buiness-item-bottom">
+                <text>巡更</text>
+            </view>
         </view>
         <view class="buiness-item">
-
+            <view class="buiness-item-top">
+                <view class="buiness-item-top-image">
+                    <image src="/images/dianming.png"></image>
+                </view>
+            </view>
+            <view class="buiness-item-bottom">
+                <text>点名</text>
+            </view>
         </view>
         <view class="buiness-item">
-
+            <view class="buiness-item-top">
+                <view class="buiness-item-top-image">
+                    <image src="/images/jiankong.png"></image>
+                </view>
+            </view>
+            <view class="buiness-item-bottom">
+                <text>监控</text>
+            </view>
         </view>
     </view>
 </view>

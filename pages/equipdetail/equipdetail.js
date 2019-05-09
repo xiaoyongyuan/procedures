@@ -10,7 +10,6 @@ Page({
      * 页面的初始数据
      */
     data: {
-        navigationBarTitle:'设备详情',
         someData: {
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
