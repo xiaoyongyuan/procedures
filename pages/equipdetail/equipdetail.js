@@ -15,10 +15,66 @@ Page({
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
         },
+        text:'设备详情',
+        back: {
+            type: Boolean,
+            value: false
+        },
         // list传过来的详情
         equipdetailData:{},
         logintime:'',
         querybtn:false
+    },
+    /**
+     * 返回上一页
+     */
+    back: function () {
+        var that = this;
+        wx.navigateBack({
+            delta: 1
+        });
+
+    },
+    /**
+     * 刷新
+     */
+    flush: function(){
+        var that = this;
+        var flushcode = that.data.currentcode;
+        /**
+         * 请求设备详情接口
+         */
+
+        request.postReq('','',"/api/camera/getone",
+            {
+                code:flushcode
+            },
+            function(res){
+                that.setData({
+                    equipdetailData:res.data,
+                    workingtime:res.workingtime.length,
+                    upgrade:res.upgrade,
+                    field:res.data.field,
+                });
+                if(res.heartdata !== ''){
+                    that.setData({
+                        lastheart:res.heartdata.time,
+                        temp:res.heartdata.temp,
+                        status:res.heartdata.status,
+                    })
+                }
+                if(res.login.length !== 0){
+                    that.setData({
+                        logintime:res.login.time,
+                        softversion:res.login.version,
+                    })
+                }
+                wx.showToast({
+                    title: '刷新成功',
+                    icon: 'success',
+                    duration: 2000
+                });
+            })
     },
     /**
      * 长按事件
@@ -113,7 +169,6 @@ Page({
         var ctime = util.formatTime(new Date());
         //接收code
         var code = options.code;
-        wx.setStorageSync("flushcode",code);
         //接收设备是否离线
         var ismist = options.mist;
         that.setData({
