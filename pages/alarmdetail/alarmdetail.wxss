@@ -207,3 +207,7 @@ page{
     flex-wrap: wrap;
     z-index: 9999;
 }
+.alarmdetail-pic-img image{
+    width: 100%;
+    height: 100%;
+}

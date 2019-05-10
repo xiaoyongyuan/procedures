@@ -9,7 +9,7 @@
         <live-player
                 id="player"
                 class="live-player"
-                src="rrtmp://192.168.1.19/live/stream6000008"
+                src="{{ liveaddress }}"
                 mode="live"
                 autoplay="true"
                 bindstatechange="statechange"

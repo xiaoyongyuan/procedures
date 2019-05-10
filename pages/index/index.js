@@ -319,7 +319,7 @@ Page({
             /**
              * 一键设防接口
              */
-            request.postReq('','',"/iosapi/camera/setdefense",
+            request.postReq('','',"/api/camera/setdefense",
                 {
                     cid:that.data.SFselseequipStr,
                     if_cancel:1
@@ -359,7 +359,7 @@ Page({
             /**
              * 一键撤防接口
              */
-            request.postReq('','',"/iosapi/camera/setdefense",
+            request.postReq('','',"/api/camera/setdefense",
                 {
                     cid:that.data.CFselseequipStr,
                     if_cancel:2
@@ -399,7 +399,7 @@ Page({
             /**
              * 一键恢复接口
              */
-            request.postReq('','',"/iosapi/camera/setdefense",
+            request.postReq('','',"/api/camera/setdefense",
                 {
                     cid:that.data.HFselseequipStr,
                     if_cancel:0

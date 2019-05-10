@@ -22,7 +22,13 @@
     <view class="alarmdetail">
         <!--报警图片-->
         <view class="alarmdetail-pic" hidden="{{currentTab!==0}}">
-            <view id="alarmdetailimg" bindtap="submit" class="alarmdetail-pic-img" style="background-image: url({{ alarmdetailData.picpath }})">
+            <view wx:if="{{ alarmdetailData.atype === 110 }}" class="alarmdetail-pic-img">
+                <image src="/images/110.jpg"></image>
+            </view>
+            <view wx:elif="{{ alarmdetailData.atype === 119 }}" class="alarmdetail-pic-img">
+                <image src="/images/119.jpg"></image>
+            </view>
+            <view wx:else id="alarmdetailimg" bindtap="submit" class="alarmdetail-pic-img" style="background-image: url({{ alarmdetailData.picpath }})">
                 <canvas class='redCanvas' canvas-id="redCanvas" style="display: {{ reddisplay }}" />
                 <canvas class='blueCanvas' canvas-id="blueCanvas" style="display: {{ bluedisplay }}" />
             </view>
