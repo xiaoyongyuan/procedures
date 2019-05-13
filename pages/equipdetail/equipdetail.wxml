@@ -47,16 +47,16 @@
                 <text>设防时间</text>
             </view>
         </view>
-        <view class="topsetting-item">
-            <view class="topsetting-item-top" bindtap='test'>
-                <view class="topsetting-item-top-image">
-                    <image src="/images/chakanzhibo.png"></image>
-                </view>
-            </view>
-            <view class="topsetting-item-bottom">
-                <text>查看直播</text>
-            </view>
-        </view>
+        <!--<view class="topsetting-item">-->
+            <!--<view class="topsetting-item-top" bindtap='test'>-->
+                <!--<view class="topsetting-item-top-image">-->
+                    <!--<image src="/images/chakanzhibo.png"></image>-->
+                <!--</view>-->
+            <!--</view>-->
+            <!--<view class="topsetting-item-bottom">-->
+                <!--<text>查看直播</text>-->
+            <!--</view>-->
+        <!--</view>-->
 
     </view>
 

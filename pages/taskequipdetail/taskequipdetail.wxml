@@ -5,13 +5,29 @@
     </view>
 
     <view class="equipinfo" style="min-height: 100%;">
-        <view class="equipinfo-item" wx:for="{{ arr }}" wx:key="{{ index }}">
-            <view class="equipinfo-item-left">
-                <text>{{ item.label }}</text>
+        <block  wx:for="{{ arr }}" wx:key="{{ index }}">
+            <view class="test" wx:if="{{ item.label == 'field' }}">
+                <view class="left">
+                    <text>{{ item.label }}:</text>
+                </view>
+                <view class="right">
+                    <text>{{ item.value }}</text>
+                </view>
             </view>
-            <view class="equipinfo-item-right">
-                <text>{{ item.value }}</text>
+            <view class="equipinfo-item" wx:else>
+                <view class="left">
+                    <text>{{ item.label }}:</text>
+                </view>
+                <view class="right">
+                    <text>{{ item.value }}</text>
+                </view>
+                <!--<view class="equipinfo-item-left">-->
+                    <!--<text>{{ item.label }}</text>-->
+                <!--</view>-->
+                <!--<view class="equipinfo-item-right">-->
+                    <!--<text>{{ item.value }}</text>-->
+                <!--</view>-->
             </view>
-        </view>
+        </block>
     </view>
 </view>

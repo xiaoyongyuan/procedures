@@ -19,9 +19,11 @@ Page({
         var that = this;
         var jsondata = options.jsondata;
         var Objjsondata = JSON.parse(jsondata);
+        var Objjsondatas = JSON.parse(Objjsondata);
+        console.log("Objjsondata",Objjsondatas);
         var arr=[];
-        for(var key in Objjsondata){
-            arr.push({label:key,value:Objjsondata[key]});
+        for(var key in Objjsondatas){
+            arr.push({label:key,value:Objjsondatas[key]});
         }
         that.setData({
             arr:arr
