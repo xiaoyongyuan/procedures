@@ -73,7 +73,7 @@ Page({
                             //两个时间相差的分钟数
                             var  mistiming =  parseInt(currenttime - new Date(that.data.equipListData[i].atime))/ 1000 / 60;
                             var  mistlastheart = parseInt(currenttime - new Date(that.data.equipListData[i].herattime.time))/ 1000 / 60;
-                            if(mistiming > 1 && mistlastheart > 1){
+                            if(mistiming > 1 || mistlastheart > 1){
                                 that.data.equipListData[i]['ismist']=false;
                                 that.setData({
                                     equipListData:that.data.equipListData
